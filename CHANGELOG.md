@@ -4,6 +4,41 @@ All notable changes to **LangSteps** will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [5.4.0] — 2026-10-14
+
+### 🌐 Official Developer Ecosystem & Social Unification
+- **Canonical Ecosystem Links**:
+  - Integrated canonical About page: [sanskarin.github.io/about](https://sanskarin.github.io/about) with prominent bridge banners.
+  - Integrated canonical Contact page: [sanskarin.github.io/contact](https://sanskarin.github.io/contact) and created dedicated `contact.html` bridge page with interactive email builder and direct channels.
+  - Integrated canonical Projects showcase: [sanskarin.github.io/projects](https://sanskarin.github.io/projects) and updated `projects.html` with polyglot project tracks (Python, TypeScript, C# / ASP.NET).
+  - Integrated canonical Tech Blog: [sanskarin.github.io/blog](https://sanskarin.github.io/blog) and created `blog.html` tech blog showcase with Dev.to articles.
+- **Updated Social & Support Presence Across All 60+ Pages**:
+  - Buy Me a Coffee: `https://buymeacoffee.com/SanskarCodes`
+  - Razorpay: `https://razorpay.me/@SanskarCodes`
+  - LinkedIn: `https://linkedin.com/in/SanskarCodes`
+  - X (Twitter): `https://x.com/SanskarCodes`
+  - Dev.to: `https://dev.to/SanskarCodes`
+  - Bluesky: `https://SanskarCodes.bsky.social`
+  - Instagram: `https://instagram.com/SanskarCode`
+  - Threads: `https://threads.com/SanskarCode`
+
+### 🔷 TypeScript Subsystem Expansion (`src/`)
+- **Developer Profile Core**: Added `src/types/profile.ts` and `src/core/profileManager.ts` managing official profile metadata and links.
+- **Execution Engine**: Added `src/modules/playgroundEngine.ts` enabling client-side multi-language code simulation with metrics.
+- **Curriculum & Quiz Controllers**: Added `src/modules/quizModule.ts` and `src/modules/pythonModule.ts` controllers for programmatic curriculum access.
+- **Packaging & Build**: Updated `package.json` to v1.1.0 with comprehensive keywords, author info, and repository link.
+
+### 🎯 ASP.NET Core Backend Enhancements (`server/LangSteps.Server`)
+- **Profile & Statistics Endpoints**:
+  - `GET /api/profile`: Full developer profile model with official links.
+  - `GET /api/profile/socials`: Verified social profiles.
+  - `GET /api/profile/ecosystem`: Canonical ecosystem URLs.
+  - `GET /api/stats/summary`: Platform summary metrics across all languages.
+- **Interactive Execution Runner**:
+  - `POST /api/playground/execute`: Sandboxed execution simulation for Python, JavaScript, and C#.
+
+---
+
 ## [5.3.0] — 2026-10-14
 
 ### 🚀 LangSteps Rebrand & Platform Unification
