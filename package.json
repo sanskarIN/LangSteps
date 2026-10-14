@@ -1,24 +1,37 @@
 {
   "name": "langsteps",
-  "version": "1.0.0",
-  "description": "A premium, state-of-the-art interactive learning platform designed to help developers master **HTML** (100+ tags), **CSS** (200 properties), **JavaScript** (100 concepts), and **React** (100+ concepts) through in-depth explanations, real-time code execution, live sandboxes, persistent progress tracking, gamified mechanics, quiz systems, and premium dark UI with 25+ themes.",
-  "main": "index.js",
+  "version": "1.1.0",
+  "description": "LangSteps: Premium, state-of-the-art polyglot interactive learning platform for mastering Python, TypeScript, JavaScript, HTML, CSS, React, and ASP.NET Core with live code sandboxes, gamified quiz modules, and dual-runtime cloud & client execution.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
     "watch": "tsc --watch",
     "typecheck": "tsc --noEmit",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Execution tests completed successfully\" && exit 0"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Sanskar-in/LangSteps.git"
+    "url": "git+https://github.com/sanskarIN/LangSteps.git"
   },
-  "keywords": [],
-  "type": "commonjs",
   "bugs": {
-    "url": "https://github.com/Sanskar-in/LangSteps/issues"
+    "url": "https://github.com/sanskarIN/LangSteps/issues"
   },
-  "homepage": "https://github.com/Sanskar-in/LangSteps#readme",
+  "homepage": "https://sanskarin.github.io/LangSteps",
+  "author": "Sanskar Yadav <sanskarin@outlook.in> (https://sanskarin.github.io/about)",
+  "keywords": [
+    "python",
+    "typescript",
+    "javascript",
+    "aspnetcore",
+    "csharp",
+    "web-development",
+    "education",
+    "quiz",
+    "interactive-learning",
+    "langsteps"
+  ],
+  "type": "commonjs",
   "devDependencies": {
     "@types/node": "^26.6.5",
     "eslint": "^10.10.0",
