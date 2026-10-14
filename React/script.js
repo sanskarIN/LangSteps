@@ -1505,8 +1505,12 @@ function initConceptOfDay() {
 
     const dayIndex = Math.floor(Date.now() / 86400000) % TAGS.length;
     const tag = TAGS[dayIndex];
-    text.textContent = `Today's concept: ${tag.title} — ${tag.description}`;
-    btn.onclick = () => loadTag(tag.id);
+    text.textContent = `Today's concept: ${tag.title} — ${tag.description || ''}`;
+    btn.onclick = () => {
+        loadTag(tag.id);
+        const contentEl = document.getElementById('content');
+        if (contentEl) contentEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
     card.style.display = 'block';
 }
 

@@ -171,88 +171,80 @@
     </div>
 
     <header>
-      <div class="logo-wrap">
+      <div class="logo-wrap" style="display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:12px;">
         <img src="react-logo.svg" alt="React Logo" class="hdr-logo"
-          style="width:56px;height:56px;animation:spin 10s linear infinite;" />
+          style="width:44px;height:44px;animation:spin 10s linear infinite;" />
         <div>
           <div id="greetingWrap"
-            style="font-size:1.15rem; font-weight:600; color:var(--text); margin-bottom:4px; font-family:'Plus Jakarta Sans',sans-serif; letter-spacing:0.5px;">
+            style="font-size:1rem; font-weight:600; color:var(--text); margin-bottom:2px; font-family:'Plus Jakarta Sans',sans-serif; letter-spacing:0.5px;">
           </div>
-          <h1>React Mastery</h1>
-          <p><span id="totalTagsDesc">100</span> Concepts Explained In-Depth with Live Sandbox &amp; Interactive Code —
-            by Sanskar
-          </p>
+          <h1 style="font-size:1.85rem;margin:0;font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">React Mastery</h1>
+          <p style="font-size:0.85rem;color:var(--text2);margin:2px 0 0;"><span id="totalTagsDesc">120</span> Concepts Explained In-Depth with Live Sandbox &amp; Interactive Code — by Sanskar</p>
         </div>
       </div>
-      <div class="hdr-stats">
-        <div class="stat"><span class="stat-n" id="totalTagsStat">100</span><span class="stat-l">Concepts</span></div>
-        <div class="stat"><span class="stat-n" id="masteryLevel">1</span><span class="stat-l">Level</span></div>
-        <div class="stat"><span class="stat-n" id="masteryCountStat">0</span><span class="stat-l">Mastered</span></div>
+      <div class="hdr-stats" style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:12px;">
+        <div class="stat" style="padding:8px 14px;min-width:65px;"><span class="stat-n" id="totalTagsStat" style="font-size:1.2rem;">120</span><span class="stat-l" style="font-size:0.68rem;">Concepts</span></div>
+        <div class="stat" style="padding:8px 14px;min-width:65px;"><span class="stat-n" id="masteryLevel" style="font-size:1.2rem;">1</span><span class="stat-l" style="font-size:0.68rem;">Level</span></div>
+        <div class="stat" style="padding:8px 14px;min-width:65px;"><span class="stat-n" id="masteryCountStat" style="font-size:1.2rem;">0</span><span class="stat-l" style="font-size:0.68rem;">Mastered</span></div>
         <div class="stat"
           onclick="document.getElementById('sbFilter').value='FAVORITES'; applyFilters(); document.getElementById('sbFilter').scrollIntoView();"
-          style="cursor:pointer;" title="View your saved concepts"><span class="stat-n" id="favCountStat">0</span><span
-            class="stat-l">Favorites</span></div>
-        <div class="stat" title="Estimated Reading Time"><span class="stat-n" id="readTime">--</span><span
-            class="stat-l">Min Read</span></div>
+          style="cursor:pointer;padding:8px 14px;min-width:65px;" title="View your saved concepts"><span class="stat-n" id="favCountStat" style="font-size:1.2rem;">0</span><span
+            class="stat-l" style="font-size:0.68rem;">Favorites</span></div>
+        <div class="stat" title="Estimated Reading Time" style="padding:8px 14px;min-width:65px;"><span class="stat-n" id="readTime" style="font-size:1.2rem;">--</span><span
+            class="stat-l" style="font-size:0.68rem;">Min Read</span></div>
         <div class="stat" onclick="openDonate()"
-          style="cursor:pointer; background: linear-gradient(135deg, rgba(245, 158, 11, 0.12), rgba(239, 68, 68, 0.12)); border-color: rgba(245, 158, 11, 0.3); box-shadow: 0 4px 12px rgba(245, 158, 11, 0.05);"
+          style="cursor:pointer;padding:8px 14px;min-width:65px;background:linear-gradient(135deg, rgba(245, 158, 11, 0.12), rgba(239, 68, 68, 0.12)); border-color: rgba(245, 158, 11, 0.3);"
           title="Support Sanskar's work!">
-          <span class="stat-n" style="color: #ef4444; font-size: 1.6rem; line-height: 1.1;">❤️</span>
-          <span class="stat-l" style="font-weight: 700; color: var(--text);">Donate</span>
+          <span class="stat-n" style="color: #ef4444; font-size: 1.2rem; line-height: 1.1;">❤️</span>
+          <span class="stat-l" style="font-weight:700; color:var(--text); font-size:0.68rem;">Donate</span>
         </div>
       </div>
-      <div style="text-align:center;margin-top:12px;position:relative;z-index:2;">
+      <div style="text-align:center;margin-top:8px;position:relative;z-index:2;">
         <span
-          style="font-size:0.8rem;font-weight:800;color:var(--accent);text-transform:uppercase;letter-spacing:1.5px;">Rank:
+          style="font-size:0.75rem;font-weight:800;color:var(--accent);text-transform:uppercase;letter-spacing:1px;">Rank:
           <span id="masteryRank">Novice</span></span>
       </div>
       <!-- Concept of the Day -->
       <div id="totDayCard" class="tot-day-card"
-        style="display:none;max-width:600px;margin:24px auto 0;padding:20px 24px;background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 10%,var(--bg2)),color-mix(in srgb,var(--accent2) 10%,var(--bg2)));border:1px solid var(--border);border-radius:16px;text-align:center;position:relative;z-index:2;">
-        <h2 style="margin:0 0 6px;font-size:1.2rem;font-family:'Plus Jakarta Sans',sans-serif;">🌟 Concept of the Day
-        </h2>
-        <p id="totDayText" style="margin:0 0 12px;color:var(--text2);font-size:0.9rem;"></p>
+        style="display:none;max-width:580px;margin:12px auto 0;padding:12px 18px;background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 10%,var(--bg2)),color-mix(in srgb,var(--accent2) 10%,var(--bg2)));border:1px solid var(--border);border-radius:12px;text-align:center;position:relative;z-index:2;">
+        <h2 style="margin:0 0 4px;font-size:1rem;font-family:'Plus Jakarta Sans',sans-serif;">🌟 Concept of the Day</h2>
+        <p id="totDayText" style="margin:0 0 8px;color:var(--text2);font-size:0.82rem;line-height:1.4;"></p>
         <button id="totDayBtn" onclick=""
-          style="background:var(--accent);color:#fff;border:none;padding:8px 20px;border-radius:8px;cursor:pointer;font-weight:bold;font-family:inherit;">Go
-          to Concept ➔</button>
+          style="background:var(--accent);color:#fff;border:none;padding:5px 16px;border-radius:6px;cursor:pointer;font-weight:bold;font-size:0.8rem;font-family:inherit;">Go to Concept ➔</button>
       </div>
       <div class="hdr-actions"
-        style="display:flex; gap:12px; margin-top:20px; flex-wrap:wrap; align-items:center; position:relative; z-index:999;">
+        style="display:flex; gap:8px; margin-top:14px; flex-wrap:wrap; align-items:center; justify-content:center; position:relative; z-index:999;">
         <button type="button" class="action-btn" onclick="openQuiz(event)" title="Take a random quiz!"
-          style="background:color-mix(in srgb, var(--accent) 15%, transparent); color:var(--accent); border:1px solid var(--accent); padding:8px 16px; border-radius:8px; font-weight:bold; cursor:pointer; font-family:inherit; transition:0.2s; position:relative; z-index:1000; box-shadow:0 4px 10px rgba(0,0,0,0.1);">🎯
-          Test Knowledge</button>
-        <button type="button" class="action-btn" onclick="openCheatSheet()" title="View all 100 concepts at a glance"
-          style="background:color-mix(in srgb, var(--accent2) 15%, transparent); color:var(--accent2); border:1px solid var(--accent2); padding:8px 16px; border-radius:8px; font-weight:bold; cursor:pointer; font-family:inherit; transition:0.2s; position:relative; z-index:1000;">📜
-          Cheat Sheet</button>
+          style="background:color-mix(in srgb, var(--accent) 15%, transparent); color:var(--accent); border:1px solid var(--accent); padding:6px 14px; border-radius:8px; font-weight:bold; font-size:0.82rem; cursor:pointer; font-family:inherit; transition:0.2s;">🎯 Test Knowledge</button>
+        <button type="button" class="action-btn" onclick="openCheatSheet()" title="View all concepts at a glance"
+          style="background:color-mix(in srgb, var(--accent2) 15%, transparent); color:var(--accent2); border:1px solid var(--accent2); padding:6px 14px; border-radius:8px; font-weight:bold; font-size:0.82rem; cursor:pointer; font-family:inherit; transition:0.2s;">📜 Cheat Sheet</button>
         <button type="button" class="action-btn" onclick="openMasteryCenter()" title="Interview Prep & Flashcards"
-          style="background:color-mix(in srgb, var(--accent3) 15%, transparent); color:var(--accent3); border:1px solid var(--accent3); padding:8px 16px; border-radius:8px; font-weight:bold; cursor:pointer; font-family:inherit; transition:0.2s; position:relative; z-index:1000;">🎓
-          Mastery Center</button>
+          style="background:color-mix(in srgb, var(--accent3) 15%, transparent); color:var(--accent3); border:1px solid var(--accent3); padding:6px 14px; border-radius:8px; font-weight:bold; font-size:0.82rem; cursor:pointer; font-family:inherit; transition:0.2s;">🎓 Mastery Center</button>
         <button type="button" class="action-btn" onclick="setTimeout(function(){ window.print(); }, 100);"
           title="Print or Save as PDF"
-          style="background:color-mix(in srgb, var(--text) 10%, transparent); color:var(--text); border:1px solid var(--border); padding:8px 16px; border-radius:8px; font-weight:bold; cursor:pointer; font-family:inherit; transition:0.2s; position:relative; z-index:1000; box-shadow:0 4px 10px rgba(0,0,0,0.1);">🖨️
-          Save as PDF</button>
+          style="background:color-mix(in srgb, var(--text) 10%, transparent); color:var(--text); border:1px solid var(--border); padding:6px 14px; border-radius:8px; font-weight:bold; font-size:0.82rem; cursor:pointer; font-family:inherit; transition:0.2s;">🖨️ Save as PDF</button>
         <button type="button" id="zenBtn" onclick="toggleZenMode()" title="Toggle Focus Mode"
-          style="background:transparent; color:var(--text); border:1px solid var(--border); padding:8px 16px; border-radius:8px; font-weight:bold; cursor:pointer; font-family:inherit; transition:0.2s; position:relative; z-index:1000; box-shadow:0 4px 10px rgba(0,0,0,0.05);">👁️
-          Zen Mode</button>
+          style="background:transparent; color:var(--text); border:1px solid var(--border); padding:6px 14px; border-radius:8px; font-weight:bold; font-size:0.82rem; cursor:pointer; font-family:inherit; transition:0.2s;">👁️ Zen Mode</button>
         <button type="button" onclick="openTranslateModal()" title="Translate to any language"
-          style="background:transparent; color:var(--text); border:1px solid var(--border); padding:8px 16px; border-radius:8px; font-weight:bold; cursor:pointer; font-family:inherit; transition:0.2s; position:relative; z-index:1000; box-shadow:0 4px 10px rgba(0,0,0,0.05);">🌍
-          Translate</button>
+          style="background:transparent; color:var(--text); border:1px solid var(--border); padding:6px 14px; border-radius:8px; font-weight:bold; font-size:0.82rem; cursor:pointer; font-family:inherit; transition:0.2s;">🌍 Translate</button>
         <button type="button" onclick="document.getElementById('historyModal').showModal()"
           title="React Evolution History"
-          style="background:transparent; color:var(--text); border:none; padding:8px; cursor:pointer; font-size:1.2rem; opacity:0.7; transition:0.2s;"
+          style="background:transparent; color:var(--text); border:none; padding:6px; cursor:pointer; font-size:1.1rem; opacity:0.7; transition:0.2s;"
           onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.7">📜</button>
         <button type="button" onclick="document.getElementById('shortcutsModal').showModal()" title="Keyboard Shortcuts"
-          style="background:transparent; color:var(--text); border:none; padding:8px; cursor:pointer; font-size:1.2rem; opacity:0.7; transition:0.2s;"
+          style="background:transparent; color:var(--text); border:none; padding:6px; cursor:pointer; font-size:1.1rem; opacity:0.7; transition:0.2s;"
           onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.7">⌨️</button>
       </div>
     </header>
-<nav class="module-nav" style="display:flex;gap:12px;justify-content:center;padding:16px;background:rgba(108,99,255,0.1);border-radius:12px;margin:16px 0;flex-wrap:wrap;">
-  <a href="../HTML/index.html" style="padding:8px 20px;background:linear-gradient(135deg,#6c63ff,#5b54e6);color:#fff;border-radius:8px;text-decoration:none;font-weight:600;font-size:0.9rem;">📄 HTML</a>
-  <a href="../CSS/index.html" style="padding:8px 20px;background:linear-gradient(135deg,#3ecfcf,#2ba8a8);color:#fff;border-radius:8px;text-decoration:none;font-weight:600;font-size:0.9rem;">🎨 CSS</a>
-  <a href="../JavaScript/index.html" style="padding:8px 20px;background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;border-radius:8px;text-decoration:none;font-weight:600;font-size:0.9rem;">⚡ JavaScript</a>
-  <a href="../React/index.html" style="padding:8px 20px;background:linear-gradient(135deg,#bf5af2,#9b30d1);color:#fff;border-radius:8px;text-decoration:none;font-weight:600;font-size:0.9rem;">⚛️ React</a>
-  <a href="../Python/index.html" style="padding:8px 20px;background:linear-gradient(135deg,#306998,#FFD43B);color:#fff;border-radius:8px;text-decoration:none;font-weight:600;font-size:0.9rem;">🐍 Python</a>
-  <a href="../index.html" style="padding:8px 20px;background:rgba(255,255,255,0.1);color:#f8fafc;border-radius:8px;text-decoration:none;font-weight:600;font-size:0.9rem;border:1px solid rgba(255,255,255,0.2);">🏠 Home</a>
+<nav class="module-nav" style="display:flex;gap:8px;justify-content:center;padding:10px 16px;background:rgba(108,99,255,0.08);border-radius:10px;margin:12px 0;flex-wrap:wrap;">
+  <a href="../HTML/index.html" style="padding:6px 16px;background:linear-gradient(135deg,#6c63ff,#5b54e6);color:#fff;border-radius:8px;text-decoration:none;font-weight:600;font-size:0.85rem;">📄 HTML</a>
+  <a href="../CSS/index.html" style="padding:6px 16px;background:linear-gradient(135deg,#3ecfcf,#2ba8a8);color:#fff;border-radius:8px;text-decoration:none;font-weight:600;font-size:0.85rem;">🎨 CSS</a>
+  <a href="../JavaScript/index.html" style="padding:6px 16px;background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;border-radius:8px;text-decoration:none;font-weight:600;font-size:0.85rem;">⚡ JavaScript</a>
+  <a href="../React/index.html" style="padding:6px 16px;background:linear-gradient(135deg,#61dafb,#4fa8c7);color:#000;border-radius:8px;text-decoration:none;font-weight:700;font-size:0.85rem;box-shadow:0 0 12px rgba(97,218,251,0.4);">⚛️ React</a>
+  <a href="../Python/index.html" style="padding:6px 16px;background:linear-gradient(135deg,#3776ab,#2b5b84);color:#fff;border-radius:8px;text-decoration:none;font-weight:600;font-size:0.85rem;">🐍 Python</a>
+  <a href="../TypeScript/index.html" style="padding:6px 16px;background:linear-gradient(135deg,#3178c6,#235a96);color:#fff;border-radius:8px;text-decoration:none;font-weight:600;font-size:0.85rem;">📘 TypeScript</a>
+  <a href="../Rust/index.html" style="padding:6px 16px;background:linear-gradient(135deg,#dea584,#b76b40);color:#fff;border-radius:8px;text-decoration:none;font-weight:600;font-size:0.85rem;">🦀 Rust</a>
+  <a href="../index.html" style="padding:6px 16px;background:rgba(255,255,255,0.08);color:#f8fafc;border-radius:8px;text-decoration:none;font-weight:600;font-size:0.85rem;border:1px solid rgba(255,255,255,0.15);">🏠 Home</a>
 </nav>
 
     <!-- PLACEHOLDER: content sections will be here -->
