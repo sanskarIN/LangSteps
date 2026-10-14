@@ -1255,9 +1255,28 @@ function renderThemeGrid() {
 function toggleSidebar() {
   const sb = document.getElementById('sidebar');
   const overlay = document.getElementById('overlay');
-  if (sb) sb.classList.toggle('open');
-  if (overlay) overlay.style.display = sb && sb.classList.contains('open') ? 'block' : 'none';
+  const wrap = document.getElementById('mainWrap');
+  if (!sb) return;
+
+  if (window.innerWidth <= 960) {
+    const isOpen = sb.classList.toggle('open');
+    if (overlay) overlay.style.display = isOpen ? 'block' : 'none';
+  } else {
+    const isCollapsed = sb.classList.toggle('collapsed');
+    if (wrap) wrap.classList.toggle('fullwidth', isCollapsed);
+    if (overlay) overlay.style.display = 'none';
+  }
 }
+
+// Global Escape listener to dismiss open drawer or modals
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    const sb = document.getElementById('sidebar');
+    if (sb && sb.classList.contains('open')) {
+      toggleSidebar();
+    }
+  }
+});
 
 function toggleZenMode() {
   const wrap = document.getElementById('mainWrap');
