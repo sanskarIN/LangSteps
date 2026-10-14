@@ -4,7 +4,7 @@
     <link rel="canonical" href="https://sanskarin.github.io/LangSteps/bookmarks.html">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Web Dev Bookmarks">
+    <meta name="description" content="LangSteps Bookmarks">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@SanskarCodes">
     <meta name="twitter:creator" content="@SanskarCodes">
@@ -31,7 +31,7 @@
     </style>
 </head>
 <body>
-    <nav><div class="logo">WebDev Mastery</div><div><a href="index.html">Home</a><a href="bookmarks.html">Bookmarks</a></div></nav>
+    <nav><div class="logo">LangSteps</div><div><a href="index.html">Home</a><a href="bookmarks.html">Bookmarks</a></div></nav>
     <div class="container">
         <h1>My Bookmarks</h1>
         <div class="controls">
@@ -42,7 +42,7 @@
         <div class="list" id="bookmark-list"></div>
     </div>
     <script>
-        let bookmarks = JSON.parse(localStorage.getItem('webDevBookmarks')) || [
+        let bookmarks = JSON.parse(localStorage.getItem('langstepsBookmarks')) || [
             { id: 1, title: 'Flexbox Guide', url: 'https://css-tricks.com/snippets/css/a-guide-to-flexbox/', date: new Date().toLocaleDateString() }
         ];
 
@@ -69,7 +69,7 @@
             save(); render();
         }
 
-        function save() { localStorage.setItem('webDevBookmarks', JSON.stringify(bookmarks)); }
+        function save() { localStorage.setItem('langstepsBookmarks', JSON.stringify(bookmarks)); }
 
         document.getElementById('add-btn').addEventListener('click', () => {
             const title = prompt("Enter bookmark title:");
