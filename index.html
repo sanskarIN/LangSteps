@@ -3382,22 +3382,6 @@
         document.getElementById('cookieBanner').classList.remove('visible');
     }
     </script>
-
-    <!-- Scroll to Top Feature -->
-    <button id="scroll-to-top" style="display:none; position:fixed; bottom:20px; right:20px; z-index:99; background:var(--accent1); color:white; border:none; padding:15px; border-radius:50%; cursor:pointer;">↑</button>
-    <script>
-        window.onscroll = function() {
-            var btn = document.getElementById('scroll-to-top');
-            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                btn.style.display = "block";
-            } else {
-                btn.style.display = "none";
-            }
-        };
-        document.getElementById('scroll-to-top').onclick = function() {
-            window.scrollTo({top: 0, behavior: 'smooth'});
-        };
-    </script>
 </body>
 
 <!-- Service Worker Registration -->
