@@ -691,6 +691,46 @@ const TAGS = [
     "emoji": "\ud83d\udcd1",
     "defaultCode": "# ReportLab or PyPDF pattern\n# from reportlab.lib.pagesizes import letter\n# from reportlab.pdfgen import canvas\nprint('Generate certificates, invoices, and reports dynamically with Python')",
     "content": "<h3>\ud83d\udccc Deep Dive: Document Automation</h3><p>Libraries like ReportLab, WeasyPrint, and pypdf enable dynamic programmatic creation and manipulation of PDF documents for enterprise reporting.</p><h4>\u2699\ufe0f Under the Hood</h4><p>PDF engines build PostScript drawing commands, vector paths, embedded fonts, and xref tables according to the ISO 32000 specification.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>For complex layouts, use WeasyPrint: write standard HTML/CSS templates and render them directly into pixel-perfect PDFs.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\"># Certificate generation skeleton\ndef generate_pdf(filename, student_name):\n    # c = canvas.Canvas(filename, pagesize=letter)\n    # c.drawString(100, 750, f'Certificate of Mastery: {student_name}')\n    return filename</code></pre>"
+  },
+  {
+    "id": "py-86",
+    "title": "Python Descriptors: __get__, __set__ & __delete__",
+    "badge": "ADVANCED",
+    "emoji": "\ud83e\uddec",
+    "defaultCode": "class ValidatedString:\n    def __set_name__(self, owner, name):\n        self.name = name\n    def __get__(self, instance, owner):\n        return instance.__dict__.get(self.name, '')\n    def __set__(self, instance, value):\n        if not isinstance(value, str):\n            raise TypeError('Must be string')\n        instance.__dict__[self.name] = value\n\nclass User:\n    username = ValidatedString()\n\nu = User()\nu.username = 'sanskarIN'\nprint('Descriptor validated:', u.username)",
+    "content": "<h3>\ud83d\udccc Deep Dive: Python Descriptors</h3><p>Descriptors are objects that customize attribute lookup, assignment, and deletion. They power Python's methods, properties, classmethods, and staticmethods.</p><h4>\u2699\ufe0f Under the Hood</h4><p>When accessing <code>obj.attr</code>, Python checks the class dictionary. If the attribute implements <code>__get__</code> (and optionally <code>__set__</code>), the descriptor protocol takes precedence over the instance dictionary.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Implement <code>__set_name__(self, owner, name)</code> (Python 3.6+) so the descriptor knows its attribute name on the owner class automatically.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\">try: u.username = 12345\nexcept TypeError as e: print('Caught:', e)</code></pre>"
+  },
+  {
+    "id": "py-87",
+    "title": "Metaclasses & type.__new__",
+    "badge": "ADVANCED",
+    "emoji": "\ud83e\ude84",
+    "defaultCode": "class Meta(type):\n    def __new__(mcs, name, bases, attrs):\n        attrs['CATEGORY'] = 'DevForge Core'\n        return super().__new__(mcs, name, bases, attrs)\n\nclass Plugin(metaclass=Meta):\n    pass\n\nprint('Auto-injected by metaclass:', Plugin.CATEGORY)",
+    "content": "<h3>\ud83d\udccc Deep Dive: Metaclasses</h3><p>Metaclasses are 'classes of classes'. They govern how classes are constructed, validated, and registered at class definition time.</p><h4>\u2699\ufe0f Under the Hood</h4><p>By default, classes are created by the <code>type</code> metaclass. Subclassing <code>type</code> allows intercepting class creation via <code>__new__</code> and <code>__init__</code> before any instance of the class exists.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Before reaching for metaclasses, check if <code>__init_subclass__</code> or class decorators satisfy your requirement with simpler code.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\">class AutoRegisterMeta(type):\n    registry = {}\n    def __new__(mcs, name, bases, attrs):\n        cls = super().__new__(mcs, name, bases, attrs)\n        mcs.registry[name] = cls\n        return cls</code></pre>"
+  },
+  {
+    "id": "py-88",
+    "title": "Class Customization with __init_subclass__",
+    "badge": "ADVANCED",
+    "emoji": "\ud83c\udf31",
+    "defaultCode": "class PluginBase:\n    plugins = []\n    def __init_subclass__(cls, plugin_name=None, **kwargs):\n        super().__init_subclass__(**kwargs)\n        cls.plugin_name = plugin_name or cls.__name__\n        PluginBase.plugins.append(cls)\n\nclass AudioPlugin(PluginBase, plugin_name='AudioEngine'): pass\nprint('Registered plugins:', [p.plugin_name for p in PluginBase.plugins])",
+    "content": "<h3>\ud83d\udccc Deep Dive: __init_subclass__ (PEP 487)</h3><p>Introduced in Python 3.6, <code>__init_subclass__</code> allows base classes to customize and validate subclass creation without the complexity of metaclasses.</p><h4>\u2699\ufe0f Under the Hood</h4><p>Whenever a subclass is created, its parent's <code>__init_subclass__</code> method is automatically called with any class keyword arguments passed in the inheritance definition.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Use <code>__init_subclass__</code> to enforce subclass contracts, register plugins, or auto-generate documentation.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\">class ValidatedBase:\n    def __init_subclass__(cls, **kwargs):\n        if not hasattr(cls, 'execute'):\n            raise TypeError(f'{cls.__name__} must define execute()')</code></pre>"
+  },
+  {
+    "id": "py-89",
+    "title": "Memory Optimization with __slots__",
+    "badge": "OPTIMIZATION",
+    "emoji": "\ud83d\udcbe",
+    "defaultCode": "import sys\nclass StandardPoint:\n    def __init__(self, x, y): self.x, self.y = x, y\n\nclass SlottedPoint:\n    __slots__ = ('x', 'y')\n    def __init__(self, x, y): self.x, self.y = x, y\n\nsp = SlottedPoint(10, 20)\nprint('Slots prevent dynamic __dict__ creation, slashing RAM overhead')",
+    "content": "<h3>\ud83d\udccc Deep Dive: Memory Optimization with __slots__</h3><p>Declaring <code>__slots__</code> on a class replaces the dynamic <code>__dict__</code> dictionary on each instance with a fixed array of descriptor pointers.</p><h4>\u2699\ufe0f Under the Hood</h4><p>Saves 40-70% memory per instance by eliminating the <code>__dict__</code> hash table, enabling millions of lightweight objects to reside comfortably in RAM.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>When subclassing a slotted class, the subclass must also define <code>__slots__</code>; otherwise, Python creates a <code>__dict__</code> for the subclass.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\"># Demonstrating prohibited dynamic attributes\ntry: sp.z = 30\nexcept AttributeError as err: print('Slots enforce strict attrs:', err)</code></pre>"
+  },
+  {
+    "id": "py-90",
+    "title": "Weak References & the weakref Module",
+    "badge": "MEMORY",
+    "emoji": "\ud83d\udd17",
+    "defaultCode": "import weakref\nclass HeavyNode:\n    def __init__(self, name): self.name = name\n\nnode = HeavyNode('Root')\nref = weakref.ref(node)\nprint('Referenced object:', ref().name)\ndel node\nprint('After deletion, ref() is:', ref())",
+    "content": "<h3>\ud83d\udccc Deep Dive: Weak References</h3><p>The <code>weakref</code> module allows referencing objects without increasing their reference count (<code>ob_refcnt</code>), preventing cyclic memory leaks.</p><h4>\u2699\ufe0f Under the Hood</h4><p>When the referenced object's strong reference count drops to zero, the object is immediately deallocated and the weak reference cleanly resolves to <code>None</code>.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Use <code>weakref.WeakValueDictionary</code> to build memory-safe in-memory object caches that automatically evict items when unreferenced elsewhere.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\">cache = weakref.WeakValueDictionary()\n# Cached items disappear automatically when deleted</code></pre>"
   }
 ];
 
