@@ -194,8 +194,7 @@ LangSteps/
 ├── html_logo.svg                        # SVG logo graphic representing HTML5
 ├── privacy_logo.svg                     # SVG identity graphic for Privacy page
 ├── support_logo.svg                     # SVG identity graphic for Support page
-├── terms_logo.svg                       # SVG identity graphic for Terms page
-└── Payment-Ramsandesh.jpeg              # Image asset for payment/donation operations
+└── terms_logo.svg                       # SVG identity graphic for Terms page
 ```
 
 ---
@@ -659,8 +658,7 @@ The file [thanks.html](file:///e:/All the Projects of the Sanskar/SANSKAR Folder
 - **Visual Design**: Card layouts, donation buttons, payment qr guides, and custom styling.
 - **Content**:
   - **Thank You message**: Expressing gratitude to community members and donors.
-  - **Contribution Methods**: Information on how to support the developer.
-  - **Payment Integration**: Renders [Payment-Ramsandesh.jpeg](file:///e:/All the Projects of the Sanskar/SANSKAR Folder/LangSteps/Payment-Ramsandesh.jpeg) dynamically inside the UI.
+  - **Contribution Methods**: Information on how to support the developer via Buy Me a Coffee and Razorpay.
 
 ### 7. Custom Fallback Page (`404.html`)
 Located at [404.html](file:///e:/All the Projects of the Sanskar/SANSKAR Folder/LangSteps/404.html), this page handles missing routes.
