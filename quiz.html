@@ -4763,6 +4763,20 @@
 
         // Initialize leaderboard on startup
         updateLeaderboardUI();
+
+        // Auto-start quiz if 'lang' query parameter is specified (e.g. quiz.html?lang=python)
+        try {
+            const urlParams = new URLSearchParams(window.location.search);
+            const reqLang = urlParams.get('lang');
+            if (reqLang) {
+                const targetMod = MODULES.find(m => m.id.toLowerCase() === reqLang.toLowerCase() || m.name.toLowerCase() === reqLang.toLowerCase());
+                if (targetMod) {
+                    setTimeout(() => startQuizForLanguage(targetMod.id), 100);
+                }
+            }
+        } catch (e) {
+            console.error('URL parse error:', e);
+        }
     </script>
 </body>
 </html>
