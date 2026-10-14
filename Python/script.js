@@ -491,6 +491,46 @@ const TAGS = [
     "emoji": "\ud83d\udc1b",
     "defaultCode": "# In Python 3.7+:\n# def process_payment(amount):\n#     breakpoint()  # Drops into interactive PDB session\n#     return amount > 0\nprint('breakpoint() pauses execution and opens the PDB debugger')",
     "content": "<h3>\ud83d\udccc Deep Dive: Debugging with pdb</h3><p>The Python debugger (<code>pdb</code>) provides step-by-step code execution, variable inspection, stack exploration, and dynamic code evaluation.</p><h4>\u2699\ufe0f Under the Hood</h4><p>The built-in <code>breakpoint()</code> function calls <code>sys.breakpointhook()</code>, which defaults to launching <code>pdb.set_trace()</code>. Set <code>PYTHONBREAKPOINT=0</code> in your environment to disable all breakpoints in production without code modifications.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Key pdb commands: <code>n</code> (next line), <code>s</code> (step into function), <code>c</code> (continue), <code>p variable</code> (print), <code>q</code> (quit).</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\">import pdb\ndef debug_example(a, b):\n    # pdb.set_trace() can be used in older scripts\n    return a + b\nprint('Result:', debug_example(5, 10))</code></pre>"
+  },
+  {
+    "id": "py-61",
+    "title": "Socket Programming: TCP & UDP Sockets",
+    "badge": "NETWORKING",
+    "emoji": "\ud83d\udd0c",
+    "defaultCode": "import socket\n# Simple hostname IP lookup\nhost = 'python.org'\nip = socket.gethostbyname(host)\nprint(f'{host} resolves to: {ip}')",
+    "content": "<h3>\ud83d\udccc Deep Dive: Network Sockets</h3><p>The <code>socket</code> module provides low-level C-style networking interfaces for establishing TCP streams and UDP datagram connections.</p><h4>\u2699\ufe0f Under the Hood</h4><p>Sockets map directly to the operating system's Berkeley sockets API. TCP provides reliable, ordered data transmission; UDP provides lightweight, connectionless transmission.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Always set socket timeouts (<code>sock.settimeout(5.0)</code>) to prevent worker threads from hanging indefinitely on dead connections.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\"># Creating a basic TCP socket client\ns = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\ns.settimeout(2.0)\ntry: s.connect(('127.0.0.1', 80))\nexcept OSError: print('Local port 80 closed')\nfinally: s.close()</code></pre>"
+  },
+  {
+    "id": "py-62",
+    "title": "Modern HTTP Clients (requests & httpx)",
+    "badge": "NETWORKING",
+    "emoji": "\ud83c\udf10",
+    "defaultCode": "import requests\n# Example GET request with query params\nres = requests.get('https://httpbin.org/get', params={'user': 'Sanskar'}, timeout=5)\nprint('Status:', res.status_code)\nprint('Server echoed:', res.json().get('args'))",
+    "content": "<h3>\ud83d\udccc Deep Dive: HTTP Clients</h3><p><code>requests</code> is the human-friendly standard for synchronous HTTP in Python. <code>httpx</code> provides next-generation HTTP/2 and async client capabilities.</p><h4>\u2699\ufe0f Under the Hood</h4><p>HTTP clients use connection pooling (via urllib3) to reuse existing TCP handshakes and TLS sessions across multiple requests to the same host.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Always use <code>requests.Session()</code> when making multiple requests to the same service to benefit from persistent cookies and connection pooling.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\">session = requests.Session()\nsession.headers.update({'User-Agent': 'DevForge-Bot/1.0'})\n# Reuses TCP connection\nr = session.get('https://httpbin.org/headers')\nprint('Response headers received')</code></pre>"
+  },
+  {
+    "id": "py-63",
+    "title": "Real-Time WebSockets in Python",
+    "badge": "NETWORKING",
+    "emoji": "\u26a1",
+    "defaultCode": "# websockets async server pattern:\n# import asyncio, websockets\n# async def echo(websocket):\n#     async for message in websocket:\n#         await websocket.send(f'Echo: {message}')\nprint('WebSockets provide full-duplex real-time communication')",
+    "content": "<h3>\ud83d\udccc Deep Dive: WebSocket Protocol</h3><p>WebSockets establish persistent, bidirectional, full-duplex communication channels over a single TCP connection, ideal for chat, dashboards, and live trading.</p><h4>\u2699\ufe0f Under the Hood</h4><p>The connection starts as an HTTP request with an <code>Upgrade: websocket</code> header before switching to lightweight binary or text frames with minimal header overhead.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Implement heartbeat ping/pong messages to detect broken client connections and clear stale state.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\"># Client connection skeleton\nasync def ws_client():\n    # async with websockets.connect('ws://localhost:8765') as ws:\n    #     await ws.send('Ping')\n    pass</code></pre>"
+  },
+  {
+    "id": "py-64",
+    "title": "Consuming REST APIs, Rate Limiting & Auth",
+    "badge": "NETWORKING",
+    "emoji": "\ud83d\udd11",
+    "defaultCode": "import requests\ndef fetch_with_retry(url, retries=3):\n    for attempt in range(retries):\n        try:\n            res = requests.get(url, timeout=3)\n            if res.status_code == 200: return res.json()\n        except requests.RequestException:\n            pass\n    return None\nprint('Robust API client structure ready')",
+    "content": "<h3>\ud83d\udccc Deep Dive: REST API Consumption</h3><p>Production API consumers must handle authentication (Bearer tokens, API keys), HTTP status codes, exponential backoff retries, and rate limiting headers.</p><h4>\u2699\ufe0f Under the Hood</h4><p>HTTP 429 indicates rate limiting. Read the <code>Retry-After</code> header to determine how many seconds to pause before sending subsequent requests.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Use <code>urllib3.util.retry.Retry</code> combined with an HTTPAdapter to configure automated exponential backoff on transient 5xx errors.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\">headers = {'Authorization': 'Bearer sample_token_xyz', 'Accept': 'application/json'}\n# Send authenticated request with custom headers</code></pre>"
+  },
+  {
+    "id": "py-65",
+    "title": "Building Async APIs with FastAPI",
+    "badge": "FRAMEWORKS",
+    "emoji": "\u26a1",
+    "defaultCode": "# from fastapi import FastAPI\n# app = FastAPI(title='DevForge API')\n# @app.get('/items/{item_id}')\n# async def read_item(item_id: int, q: str = None):\n#     return {'item_id': item_id, 'q': q}\nprint('FastAPI delivers high-performance async APIs with automatic OpenAPI docs')",
+    "content": "<h3>\ud83d\udccc Deep Dive: Modern FastAPI Architecture</h3><p>FastAPI is a high-performance web framework based on Starlette and Pydantic, supporting asynchronous concurrency and automatic OpenAPI / Swagger documentation.</p><h4>\u2699\ufe0f Under the Hood</h4><p>FastAPI uses Python type annotations to validate request bodies, parse query parameters, and serialize responses with minimal CPU overhead.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Define endpoints as <code>async def</code> for asynchronous I/O operations, or regular <code>def</code> if using blocking legacy database drivers.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\"># Pydantic schema validation\nfrom pydantic import BaseModel\nclass Item(BaseModel):\n    name: str\n    price: float\n    in_stock: bool = True\nitem = Item(name='Laptop', price=999.99)\nprint(item.model_dump())</code></pre>"
   }
 ];
 
