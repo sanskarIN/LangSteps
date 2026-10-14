@@ -771,6 +771,46 @@ const TAGS = [
     "emoji": "\u26a1",
     "defaultCode": "import ctypes\n# Call C standard library puts directly\nlibc = ctypes.CDLL(None) if sys.platform != 'win32' else ctypes.cdll.msvcrt\nprint('ctypes interface ready for foreign C function calls')",
     "content": "<h3>\ud83d\udccc Deep Dive: Foreign Function Interoperability</h3><p>Python can invoke external compiled C, C++, or Rust shared libraries (.so / .dll) without writing complex C extensions using <code>ctypes</code> or <code>cffi</code>.</p><h4>\u2699\ufe0f Under the Hood</h4><p><code>ctypes</code> maps Python types to native C datatypes, prepares CPU call stacks according to target ABI calling conventions, and executes compiled machine code.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>For high-performance bindings, consider <code>cffi</code> or Rust's <code>PyO3</code> / <code>maturin</code> toolchain.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\"># Using ctypes for C math function\nimport math\nprint('Native math vs C binding comparison ready')</code></pre>"
+  },
+  {
+    "id": "py-96",
+    "title": "Python 3.10-3.13 Structural Pattern Matching",
+    "badge": "MODERN PYTHON",
+    "emoji": "\ud83d\udd00",
+    "defaultCode": "def handle_command(cmd):\n    match cmd.split():\n        case ['quit']:\n            return 'Exiting...'\n        case ['go', ('north' | 'south' | 'east' | 'west') as direction]:\n            return f'Moving {direction}'\n        case ['save', filename]:\n            return f'Saving to {filename}'\n        case _:\n            return 'Unknown command'\n\nprint(handle_command('go north'))\nprint(handle_command('save progress.json'))",
+    "content": "<h3>\ud83d\udccc Deep Dive: Structural Pattern Matching (PEP 634)</h3><p>Introduced in Python 3.10, <code>match / case</code> statements perform structural pattern matching, unpacking sequences, mappings, and classes while filtering with guards.</p><h4>\u2699\ufe0f Under the Hood</h4><p>Pattern matching compiles into highly optimized jump tables and type checks in the interpreter, outperforming cascaded <code>isinstance()</code> and dictionary dispatch trees.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Add <code>if</code> guards to case branches (e.g. <code>case [x, y] if x > 0:</code>) for precise condition matching.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\"># Matching object attributes\nclass Point:\n    __match_args__ = ('x', 'y')\n    def __init__(self, x, y): self.x, self.y = x, y\ndef inspect_pt(pt):\n    match pt:\n        case Point(0, 0): return 'Origin'\n        case Point(x, y): return f'Point at {x}, {y}'</code></pre>"
+  },
+  {
+    "id": "py-97",
+    "title": "Python 3.11-3.13: Exception Groups & except*",
+    "badge": "MODERN PYTHON",
+    "emoji": "\ud83c\udf32",
+    "defaultCode": "# Python 3.11+ ExceptionGroup pattern:\n# eg = ExceptionGroup('Multiple errors', [ValueError('Bad input'), TypeError('Wrong type')])\n# try: raise eg\n# except* ValueError as eg_val:\n#     print('Handled value error group')\nprint('Exception Groups handle multiple concurrent exceptions in TaskGroups')",
+    "content": "<h3>\ud83d\udccc Deep Dive: Exception Groups (PEP 654)</h3><p>Python 3.11 introduced <code>ExceptionGroup</code> and the <code>except*</code> syntax to handle multiple unrelated exceptions raised simultaneously during concurrent execution.</p><h4>\u2699\ufe0f Under the Hood</h4><p>Used extensively with <code>asyncio.TaskGroup</code>. An <code>except* T</code> clause matches and extracts all exceptions of type T from the tree, allowing partial handling and re-raising unhandled errors.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Use <code>asyncio.TaskGroup()</code> (Python 3.11+) instead of <code>asyncio.gather()</code> for modern, structured concurrent error handling.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\"># Modern TaskGroup pattern\nasync def run_group():\n    # async with asyncio.TaskGroup() as tg:\n    #     tg.create_task(task1())\n    pass</code></pre>"
+  },
+  {
+    "id": "py-98",
+    "title": "Performance Optimization: Bytecode & dis Module",
+    "badge": "INTERNALS",
+    "emoji": "\u26a1",
+    "defaultCode": "import dis\ndef sample(a, b):\n    return a + b\n\nprint('Disassembled bytecode:')\ndis.dis(sample)",
+    "content": "<h3>\ud83d\udccc Deep Dive: Python Bytecode & The Virtual Machine</h3><p>CPython compiles Python source code into bytecode (.pyc), which executes on a stack-based virtual machine (CEval loop).</p><h4>\u2699\ufe0f Under the Hood</h4><p>Python 3.11-3.13 introduced the Faster CPython specializing adaptive interpreter (PEP 659), dynamically replacing generic opcodes with type-specialized opcodes for hot loops.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Local variable lookups use fast array indexing (<code>LOAD_FAST</code>), whereas global lookups require dictionary hashing (<code>LOAD_GLOBAL</code>). Binding globals to local variables in tight loops improves speed.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\"># Inspecting code object flags and constants\nco = sample.__code__\nprint('Co varnames:', co.co_varnames)\nprint('Co consts:', co.co_consts)</code></pre>"
+  },
+  {
+    "id": "py-99",
+    "title": "Building Python Packages (Wheels & PyPI Publishing)",
+    "badge": "TOOLING",
+    "emoji": "\ud83d\ude80",
+    "defaultCode": "# Modern build workflow:\n# pip install build twine\n# python -m build\n# twine check dist/*\n# twine upload dist/*\nprint('Distribute your libraries to the worldwide Python community via PyPI')",
+    "content": "<h3>\ud83d\udccc Deep Dive: Packaging & Wheel Distributions</h3><p>The standard Python package format is the Wheel (<code>.whl</code>), a zip archive containing pre-built code and metadata conforming to PEP 427.</p><h4>\u2699\ufe0f Under the Hood</h4><p>Wheels install significantly faster than legacy source distributions (.tar.gz) because installation simply unzips files directly into <code>site-packages</code> without running <code>setup.py</code>.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Always use build tools like <code>build</code> (<code>python -m build</code>) and <code>flit</code> or <code>hatchling</code> to generate compliant wheels.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\"># Example wheel tag format: {distribution}-{version}(-{build tag})?-{python tag}-{abi tag}-{platform tag}.whl</code></pre>"
+  },
+  {
+    "id": "py-100",
+    "title": "Python Zen & The Art of Pythonic Mastery",
+    "badge": "MASTERY",
+    "emoji": "\ud83c\udfc6",
+    "defaultCode": "import this\n# The Zen of Python by Tim Peters\nprint('\\nDevForge Python Grandmaster \u2014 Congratulations!')",
+    "content": "<h3>\ud83d\udccc Deep Dive: The Zen of Python</h3><p>Mastery of Python transcends syntax; it embraces philosophy: readability counts, explicit is better than implicit, and simple is better than complex.</p><h4>\u2699\ufe0f Under the Hood</h4><p>Executing <code>import this</code> displays Tim Peters' famous 19 guiding aphorisms, stored as rot13 encrypted text within the CPython standard library.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Write code for humans first and machines second. Beautiful code that clearly conveys developer intent is the true hallmark of a Python Grandmaster.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\"># Pythonic idioms summary:\n# 1. Use comprehensions, not manual loops\n# 2. Use context managers for resources\n# 3. Use generators for large data streams\n# 4. Use EAFP over LBYL\n# 5. Type-hint public interfaces</code></pre>"
   }
 ];
 
