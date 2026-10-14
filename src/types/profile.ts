@@ -43,7 +43,7 @@ export interface DeveloperProfile {
 }
 
 export interface ExecutionRequest {
-  language: 'python' | 'javascript' | 'typescript' | 'csharp';
+  language: 'python' | 'javascript' | 'typescript' | 'csharp' | 'rust';
   code: string;
   stdin?: string;
   timeoutMs?: number;
@@ -56,5 +56,5 @@ export interface ExecutionResult {
   exitCode: number;
   durationMs: number;
   hasErrors: boolean;
-  status: 'success' | 'runtime_error' | 'syntax_error' | 'timeout';
+  status: 'success' | 'runtime_error' | 'syntax_error' | 'compile_error' | 'timeout';
 }
