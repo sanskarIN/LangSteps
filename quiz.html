@@ -1733,9 +1733,7 @@
                     </div>
                 `;
                 card.addEventListener('click', () => {
-                    if (window.startQuizForLanguage) {
-                        window.startQuizForLanguage(mod.id);
-                    }
+                    startQuizForLanguage(mod.id);
                 });
                 languageGrid.appendChild(card);
             });
@@ -1754,6 +1752,415 @@
                 toast.classList.remove('show');
             }, 3000);
         }
+
+        // ==========================================
+        // QUIZ DATA CONTAINER (Placeholder for Phase 2)
+        // ==========================================
+        window.QUIZ_QUESTIONS = window.QUIZ_QUESTIONS || {};
+
+        // Fallback generator for testing engine before 200 questions insertion
+        function getQuestionsForModule(moduleId) {
+            if (window.QUIZ_QUESTIONS && window.QUIZ_QUESTIONS[moduleId] && window.QUIZ_QUESTIONS[moduleId].length > 0) {
+                return window.QUIZ_QUESTIONS[moduleId];
+            }
+            // Fallback starter questions
+            return Array.from({ length: 20 }, (_, i) => ({
+                question: `Sample Question ${i + 1} for ${moduleId.toUpperCase()}: What is the core characteristic of this concept?`,
+                code: i % 2 === 0 ? `// Code sample ${i + 1}\nconst assessment = "${moduleId}";` : '',
+                category: `${moduleId.toUpperCase()} Basics & Architecture`,
+                options: [
+                    `Correct architectural principle option A for Question ${i + 1}`,
+                    `Alternative behavior option B`,
+                    `Deprecated legacy pattern option C`,
+                    `Invalid syntax approach option D`
+                ],
+                correct: 0,
+                explanation: `Option A is the correct answer. It adheres to standard ${moduleId.toUpperCase()} conventions and specifications.`
+            }));
+        }
+
+        // ==========================================
+        // QUIZ ENGINE STATE & LOGIC
+        // ==========================================
+        const viewHub = document.getElementById('view-hub');
+        const viewQuiz = document.getElementById('view-quiz');
+        const viewResults = document.getElementById('view-results');
+
+        // Quiz elements
+        const quizActiveIcon = document.getElementById('quizActiveIcon');
+        const quizActiveTitle = document.getElementById('quizActiveTitle');
+        const quizTimerWidget = document.getElementById('quizTimerWidget');
+        const timerSecondsEl = document.getElementById('timerSeconds');
+        const questionCounterEl = document.getElementById('questionCounter');
+        const currentScoreIndicatorEl = document.getElementById('currentScoreIndicator');
+        const progressBarFillEl = document.getElementById('progressBarFill');
+        const questionCategoryEl = document.getElementById('questionCategory');
+        const questionTextEl = document.getElementById('questionText');
+        const questionCodeBlockEl = document.getElementById('questionCodeBlock');
+        const optionsContainerEl = document.getElementById('optionsContainer');
+        const explanationBoxEl = document.getElementById('explanationBox');
+        const explanationTextEl = document.getElementById('explanationText');
+        const btnNextQuestion = document.getElementById('btnNextQuestion');
+        const btnQuitMidQuiz = document.getElementById('btnQuitMidQuiz');
+        const btnExitQuiz = document.getElementById('btnExitQuiz');
+
+        // Results elements
+        const resultsIcon = document.getElementById('resultsIcon');
+        const resultsSubtitle = document.getElementById('resultsSubtitle');
+        const resultCircleBar = document.getElementById('resultCircleBar');
+        const resultScoreFraction = document.getElementById('resultScoreFraction');
+        const resultScorePercent = document.getElementById('resultScorePercent');
+        const resultRatingBadge = document.getElementById('resultRatingBadge');
+        const statCorrectAnswers = document.getElementById('statCorrectAnswers');
+        const statWrongAnswers = document.getElementById('statWrongAnswers');
+        const statCompletionTime = document.getElementById('statCompletionTime');
+        const btnRetryQuiz = document.getElementById('btnRetryQuiz');
+        const btnChooseAnother = document.getElementById('btnChooseAnother');
+        const btnShareScore = document.getElementById('btnShareScore');
+
+        // State variables
+        let activeModule = null;
+        let activeQuestions = [];
+        let currentIndex = 0;
+        let currentScore = 0;
+        let timerSeconds = 30;
+        let timerInterval = null;
+        let isAnswered = false;
+        let quizStartTime = null;
+        let questionUserAnswers = [];
+
+        // View management
+        function switchView(viewName) {
+            viewHub.classList.add('hidden');
+            viewQuiz.classList.add('hidden');
+            viewResults.classList.add('hidden');
+
+            if (viewName === 'hub') {
+                viewHub.classList.remove('hidden');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                if (typeof updateLeaderboardUI === 'function') {
+                    updateLeaderboardUI();
+                }
+            } else if (viewName === 'quiz') {
+                viewQuiz.classList.remove('hidden');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else if (viewName === 'results') {
+                viewResults.classList.remove('hidden');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        // Start Quiz
+        function startQuizForLanguage(moduleId) {
+            const mod = MODULES.find(m => m.id === moduleId);
+            if (!mod) return;
+
+            activeModule = mod;
+            activeQuestions = getQuestionsForModule(moduleId);
+            currentIndex = 0;
+            currentScore = 0;
+            questionUserAnswers = [];
+            quizStartTime = Date.now();
+
+            quizActiveIcon.textContent = mod.icon;
+            quizActiveTitle.textContent = `${mod.name} Mastery Quiz`;
+
+            switchView('quiz');
+            loadQuestion(0);
+        }
+        window.startQuizForLanguage = startQuizForLanguage;
+
+        // Load Question at Index
+        function loadQuestion(index) {
+            isAnswered = false;
+            clearInterval(timerInterval);
+
+            const q = activeQuestions[index];
+            const total = activeQuestions.length;
+
+            // Update Progress & Counters
+            questionCounterEl.textContent = `Question ${index + 1} of ${total}`;
+            currentScoreIndicatorEl.textContent = `Current Score: ${currentScore}`;
+            const progressPercent = ((index + 1) / total) * 100;
+            progressBarFillEl.style.width = `${progressPercent}%`;
+
+            // Reset Actions & Explanation
+            btnNextQuestion.disabled = true;
+            btnNextQuestion.innerHTML = index === total - 1 ? '<span>Finish Quiz 🏁</span>' : '<span>Next Question →</span>';
+            explanationBoxEl.style.display = 'none';
+
+            // Question Details
+            questionCategoryEl.textContent = q.category || `${activeModule.name} Fundamentals`;
+            questionTextEl.textContent = q.question;
+
+            // Code snippet support
+            if (q.code && q.code.trim().length > 0) {
+                questionCodeBlockEl.style.display = 'block';
+                questionCodeBlockEl.querySelector('code').textContent = q.code;
+            } else {
+                questionCodeBlockEl.style.display = 'none';
+            }
+
+            // Options List
+            optionsContainerEl.innerHTML = '';
+            const optionLetters = ['A', 'B', 'C', 'D'];
+
+            q.options.forEach((optText, optIdx) => {
+                const optEl = document.createElement('div');
+                optEl.className = 'option-item';
+                optEl.dataset.index = optIdx;
+                optEl.innerHTML = `
+                    <div class="option-letter">${optionLetters[optIdx]}</div>
+                    <div class="option-text">${escapeHtml(optText)}</div>
+                    <div class="option-status-icon"></div>
+                `;
+
+                optEl.addEventListener('click', () => {
+                    if (!isAnswered) {
+                        selectAnswer(optIdx);
+                    }
+                });
+
+                optionsContainerEl.appendChild(optEl);
+            });
+
+            // Start Question Countdown Timer
+            startTimer();
+        }
+
+        // Escape HTML for safe option display
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        // Question Countdown Timer
+        function startTimer() {
+            clearInterval(timerInterval);
+            timerSeconds = 30;
+            timerSecondsEl.textContent = timerSeconds;
+            quizTimerWidget.classList.remove('timer-warning');
+
+            timerInterval = setInterval(() => {
+                timerSeconds--;
+                timerSecondsEl.textContent = timerSeconds;
+
+                if (timerSeconds <= 5 && timerSeconds > 0) {
+                    quizTimerWidget.classList.add('timer-warning');
+                }
+
+                if (timerSeconds <= 0) {
+                    clearInterval(timerInterval);
+                    handleTimeOut();
+                }
+            }, 1000);
+        }
+
+        // Handle Question Timeout
+        function handleTimeOut() {
+            if (isAnswered) return;
+            isAnswered = true;
+
+            const q = activeQuestions[currentIndex];
+            const allOptionNodes = optionsContainerEl.querySelectorAll('.option-item');
+
+            allOptionNodes.forEach(node => {
+                node.classList.add('locked');
+                const idx = parseInt(node.dataset.index);
+                if (idx === q.correct) {
+                    node.classList.add('correct');
+                    node.querySelector('.option-status-icon').textContent = '✓';
+                }
+            });
+
+            // Show explanation with timeout notice
+            explanationBoxEl.style.display = 'block';
+            explanationTextEl.innerHTML = `<strong style="color: var(--accent-danger);">⏰ Time expired!</strong> The correct answer was <strong>${q.options[q.correct]}</strong>.<br><br>${q.explanation}`;
+
+            questionUserAnswers.push({
+                questionIndex: currentIndex,
+                selectedOption: null,
+                correctOption: q.correct,
+                isCorrect: false,
+                timeout: true
+            });
+
+            btnNextQuestion.disabled = false;
+        }
+
+        // Select Answer
+        function selectAnswer(selectedIdx) {
+            if (isAnswered) return;
+            isAnswered = true;
+            clearInterval(timerInterval);
+
+            const q = activeQuestions[currentIndex];
+            const isCorrect = selectedIdx === q.correct;
+            const allOptionNodes = optionsContainerEl.querySelectorAll('.option-item');
+
+            if (isCorrect) {
+                currentScore++;
+                currentScoreIndicatorEl.textContent = `Current Score: ${currentScore}`;
+            }
+
+            allOptionNodes.forEach(node => {
+                node.classList.add('locked');
+                const idx = parseInt(node.dataset.index);
+
+                if (idx === selectedIdx) {
+                    node.classList.add('selected');
+                    if (isCorrect) {
+                        node.classList.add('correct');
+                        node.querySelector('.option-status-icon').textContent = '✓';
+                    } else {
+                        node.classList.add('wrong');
+                        node.querySelector('.option-status-icon').textContent = '✕';
+                    }
+                }
+
+                if (!isCorrect && idx === q.correct) {
+                    node.classList.add('correct');
+                    node.querySelector('.option-status-icon').textContent = '✓';
+                }
+            });
+
+            // Reveal explanation
+            explanationBoxEl.style.display = 'block';
+            explanationTextEl.innerHTML = q.explanation;
+
+            questionUserAnswers.push({
+                questionIndex: currentIndex,
+                selectedOption: selectedIdx,
+                correctOption: q.correct,
+                isCorrect: isCorrect,
+                timeout: false
+            });
+
+            btnNextQuestion.disabled = false;
+        }
+
+        // Next Question Handler
+        btnNextQuestion.addEventListener('click', () => {
+            if (!isAnswered) return;
+
+            if (currentIndex < activeQuestions.length - 1) {
+                currentIndex++;
+                loadQuestion(currentIndex);
+            } else {
+                finishQuiz();
+            }
+        });
+
+        // Quit Quiz handlers
+        function confirmExitQuiz() {
+            if (confirm("Are you sure you want to quit this quiz? Your current progress will not be saved.")) {
+                clearInterval(timerInterval);
+                switchView('hub');
+            }
+        }
+        btnQuitMidQuiz.addEventListener('click', confirmExitQuiz);
+        btnExitQuiz.addEventListener('click', confirmExitQuiz);
+
+        // Finish Quiz & Show Results
+        function finishQuiz() {
+            clearInterval(timerInterval);
+
+            const total = activeQuestions.length;
+            const accuracy = Math.round((currentScore / total) * 100);
+            const totalElapsedMs = Date.now() - quizStartTime;
+            const totalElapsedSecs = Math.round(totalElapsedMs / 1000);
+            const mins = Math.floor(totalElapsedSecs / 60);
+            const secs = totalElapsedSecs % 60;
+            const timeFormatted = mins > 0 ? `${mins}m ${secs}s` : `${secs}s`;
+
+            // Performance Rating
+            let rating = { label: 'Beginner', badgeClass: 'rating-beginner', icon: '📚', subtitle: 'Keep practicing! Review the learning module to strengthen core foundations.' };
+            if (accuracy >= 95) {
+                rating = { label: 'Master', badgeClass: 'rating-master', icon: '👑', subtitle: 'Flawless execution! You possess world-class mastery in this language.' };
+            } else if (accuracy >= 85) {
+                rating = { label: 'Expert', badgeClass: 'rating-expert', icon: '🌟', subtitle: 'Outstanding knowledge! You demonstrated deep technical insights.' };
+            } else if (accuracy >= 70) {
+                rating = { label: 'Advanced', badgeClass: 'rating-advanced', icon: '🏆', subtitle: 'Great work! Strong command of architectural principles and semantics.' };
+            } else if (accuracy >= 50) {
+                rating = { label: 'Intermediate', badgeClass: 'rating-intermediate', icon: '🎯', subtitle: 'Solid effort! You have a good foundation with room to polish advanced concepts.' };
+            }
+
+            // Update Results DOM
+            resultsIcon.textContent = rating.icon;
+            resultsSubtitle.textContent = `Completed ${activeModule.name} Assessment — ${rating.subtitle}`;
+            resultScoreFraction.textContent = `${currentScore}/${total}`;
+            resultScorePercent.textContent = `${accuracy}% Accuracy`;
+
+            resultRatingBadge.textContent = rating.label;
+            resultRatingBadge.className = `rating-badge ${rating.badgeClass}`;
+
+            statCorrectAnswers.textContent = currentScore;
+            statWrongAnswers.textContent = total - currentScore;
+            statCompletionTime.textContent = timeFormatted;
+
+            // Animate SVG Circular Progress
+            // Circumference for r=70 is 2 * π * 70 ≈ 440
+            const circumference = 440;
+            const strokeOffset = circumference - (circumference * accuracy / 100);
+            resultCircleBar.style.strokeDashoffset = circumference;
+            setTimeout(() => {
+                resultCircleBar.style.strokeDashoffset = strokeOffset;
+            }, 100);
+
+            // Hook for localStorage leaderboard persistence
+            if (typeof saveQuizResultToStorage === 'function') {
+                saveQuizResultToStorage(activeModule.id, activeModule.name, currentScore, total, accuracy, rating.label);
+            }
+
+            switchView('results');
+        }
+
+        // Results Actions
+        btnRetryQuiz.addEventListener('click', () => {
+            if (activeModule) {
+                startQuizForLanguage(activeModule.id);
+            }
+        });
+
+        btnChooseAnother.addEventListener('click', () => {
+            switchView('hub');
+        });
+
+        btnShareScore.addEventListener('click', async () => {
+            const total = activeQuestions.length;
+            const accuracy = Math.round((currentScore / total) * 100);
+            const shareText = `🚀 I just scored ${currentScore}/${total} (${accuracy}%) on the DevForge ${activeModule.name} Quiz! Test your developer skills here: https://sanskarin.github.io/DevForge/quiz.html`;
+
+            if (navigator.share) {
+                try {
+                    await navigator.share({
+                        title: `DevForge ${activeModule.name} Quiz Result`,
+                        text: shareText,
+                        url: 'https://sanskarin.github.io/DevForge/quiz.html'
+                    });
+                    showToast('Quiz score shared successfully!', '🎉');
+                    return;
+                } catch (e) {
+                    // user cancelled or fallback
+                }
+            }
+
+            // Clipboard fallback
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(shareText).then(() => {
+                    showToast('Score copied to clipboard! Share it with friends.', '📋');
+                }).catch(() => {
+                    showToast('Could not copy to clipboard', '⚠️');
+                });
+            } else {
+                showToast('Sharing not supported on this browser', '⚠️');
+            }
+        });
     </script>
 </body>
 </html>
