@@ -2761,6 +2761,34 @@ header p {
   justify-content: center;
 }
 
+/* React Workbench 2-Column Responsive Grid */
+.react-workbench-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: 20px;
+  align-items: stretch;
+  margin-top: 20px;
+}
+
+.react-workbench-grid .editor-section,
+.react-workbench-grid .preview-section {
+  min-height: 480px;
+}
+
+.react-workbench-grid .CodeMirror {
+  height: 420px;
+}
+
+@media (max-width: 992px) {
+  .react-workbench-grid {
+    grid-template-columns: 1fr;
+  }
+  .react-workbench-grid .editor-section,
+  .react-workbench-grid .preview-section {
+    min-height: auto;
+  }
+}
+
 /* Cheat Sheet Grid */
 .cs-grid {
   display: grid;

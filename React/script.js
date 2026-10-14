@@ -2020,35 +2020,37 @@ function buildContentArea() {
     content.innerHTML = `
         <section id="explanationPanel" class="explanation-panel" style="background:var(--bg2);border:1px solid var(--border);border-radius:16px;margin:0 0 20px;overflow:hidden;"></section>
 
-        <section class="editor-section" style="background:var(--bg2);border:1px solid var(--border);border-radius:16px;overflow:hidden;">
-            <div class="editor-toolbar" style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg3);border-bottom:1px solid var(--border);flex-wrap:wrap;gap:8px;">
-                <div style="display:flex;align-items:center;gap:12px;">
-                    <span style="font-weight:700;font-size:0.9rem;color:var(--text);">📝 Code Editor (JSX)</span>
-                    <label style="display:flex;align-items:center;gap:6px;font-size:0.82rem;color:var(--text2);cursor:pointer;">
-                        <input type="checkbox" id="auto-run" checked style="accent-color:var(--accent);cursor:pointer;"> Auto-Run
-                    </label>
+        <div class="react-workbench-grid">
+            <section class="editor-section" style="background:var(--bg2);border:1px solid var(--border);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;">
+                <div class="editor-toolbar" style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--bg3);border-bottom:1px solid var(--border);flex-wrap:wrap;gap:8px;">
+                    <div style="display:flex;align-items:center;gap:12px;">
+                        <span style="font-weight:700;font-size:0.9rem;color:var(--text);">📝 Code Editor (JSX)</span>
+                        <label style="display:flex;align-items:center;gap:6px;font-size:0.82rem;color:var(--text2);cursor:pointer;">
+                            <input type="checkbox" id="auto-run" checked style="accent-color:var(--accent);cursor:pointer;"> Auto-Run
+                        </label>
+                    </div>
+                    <div style="display:flex;gap:8px;">
+                        <button id="runBtn" style="background:var(--accent);color:#fff;border:none;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:bold;font-family:inherit;font-size:0.85rem;transition:0.2s;">▶ Run</button>
+                        <button id="copyCodeBtn" style="background:var(--bg4);color:var(--text);border:1px solid var(--border);padding:8px 12px;border-radius:8px;cursor:pointer;font-family:inherit;font-size:0.85rem;">📋 Copy</button>
+                        <button id="clearConsoleBtn" style="background:var(--bg4);color:var(--text);border:1px solid var(--border);padding:8px 12px;border-radius:8px;cursor:pointer;font-family:inherit;font-size:0.85rem;">🗑️ Clear</button>
+                    </div>
                 </div>
-                <div style="display:flex;gap:8px;">
-                    <button id="runBtn" style="background:var(--accent);color:#fff;border:none;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:bold;font-family:inherit;font-size:0.85rem;transition:0.2s;">▶ Run</button>
-                    <button id="copyCodeBtn" style="background:var(--bg4);color:var(--text);border:1px solid var(--border);padding:8px 12px;border-radius:8px;cursor:pointer;font-family:inherit;font-size:0.85rem;">📋 Copy</button>
-                    <button id="clearConsoleBtn" style="background:var(--bg4);color:var(--text);border:1px solid var(--border);padding:8px 12px;border-radius:8px;cursor:pointer;font-family:inherit;font-size:0.85rem;">🗑️ Clear</button>
-                </div>
-            </div>
-            <textarea id="codeEditor"></textarea>
-        </section>
+                <textarea id="codeEditor"></textarea>
+            </section>
 
-        <section class="preview-section" style="background:var(--bg2);border:1px solid var(--border);border-radius:16px;margin-top:20px;overflow:hidden;">
-            <div style="padding:12px 16px;background:var(--bg3);border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
-                <span style="font-weight:700;font-size:0.9rem;color:var(--text);">👁️ Live Preview</span>
-                <div style="display:flex;gap:6px;align-items:center;">
-                    <span style="width:10px;height:10px;background:#ef4444;border-radius:50%;display:inline-block;"></span>
-                    <span style="width:10px;height:10px;background:#f59e0b;border-radius:50%;display:inline-block;"></span>
-                    <span style="width:10px;height:10px;background:#10b981;border-radius:50%;display:inline-block;"></span>
+            <section class="preview-section" style="background:var(--bg2);border:1px solid var(--border);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;">
+                <div style="padding:12px 16px;background:var(--bg3);border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
+                    <span style="font-weight:700;font-size:0.9rem;color:var(--text);">👁️ Live Preview</span>
+                    <div style="display:flex;gap:6px;align-items:center;">
+                        <span style="width:10px;height:10px;background:#ef4444;border-radius:50%;display:inline-block;"></span>
+                        <span style="width:10px;height:10px;background:#f59e0b;border-radius:50%;display:inline-block;"></span>
+                        <span style="width:10px;height:10px;background:#10b981;border-radius:50%;display:inline-block;"></span>
+                    </div>
                 </div>
-            </div>
-            <div id="sandbox" style="min-height:200px;background:var(--bg);"></div>
-            <div id="consoleOutput" style="padding:12px 16px;background:var(--bg3);border-top:1px solid var(--border);font-family:'Fira Code',monospace;font-size:0.82rem;color:var(--text2);min-height:32px;max-height:200px;overflow-y:auto;"></div>
-        </section>
+                <div id="sandbox" style="min-height:220px;flex:1;background:var(--bg);"></div>
+                <div id="consoleOutput" style="padding:12px 16px;background:var(--bg3);border-top:1px solid var(--border);font-family:'Fira Code',monospace;font-size:0.82rem;color:var(--text2);min-height:36px;max-height:160px;overflow-y:auto;"></div>
+            </section>
+        </div>
 
         <div style="display:flex;gap:12px;margin-top:20px;justify-content:center;flex-wrap:wrap;">
             <button id="markCompleteBtn" onclick="markCompleted()" style="background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border:none;padding:14px 28px;border-radius:12px;cursor:pointer;font-weight:bold;font-size:1rem;font-family:inherit;transition:0.3s;box-shadow:0 4px 15px rgba(0,0,0,0.2);"
