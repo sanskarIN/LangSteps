@@ -1,127 +1,1759 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <link rel="canonical" href="https://sanskarin.github.io/DevForge/quiz.html">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Web Development Quiz">
+    <title>DevForge Quiz Hub — Test Your Knowledge Across 10 Languages</title>
+    <meta name="description" content="Challenge yourself with 200 curated questions across HTML, CSS, JavaScript, React, Python, TypeScript, Rust, Go, SQL, and C#. Interactive timer, instant explanations, and leaderboard.">
+    <meta name="keywords" content="Programming Quiz, Web Development Quiz, JavaScript Quiz, Python Quiz, Rust Quiz, React Quiz, DevForge, Sanskar Developer">
+    <meta name="author" content="Sanskar Yadav">
+    <meta name="theme-color" content="#0b0f19">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="DevForge Quiz Hub — Test Your Knowledge Across 10 Languages">
+    <meta property="og:description" content="Test your engineering skills with real questions in 10 programming languages with instant feedback and explanations.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="splash.png">
+    <meta property="og:url" content="https://sanskarin.github.io/DevForge/quiz.html">
+
+    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@Sanskar_in">
     <meta name="twitter:creator" content="@Sanskar_in">
+    <meta name="twitter:title" content="DevForge Quiz Hub — Test Your Knowledge Across 10 Languages">
+    <meta name="twitter:description" content="Test your programming knowledge with real-time feedback and leaderboard.">
+    <meta name="twitter:image" content="splash.png">
+
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="splash.png">
-    <title>Web Dev Quiz</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" href="splash.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Quiz",
+      "name": "DevForge Programming Quiz Hub",
+      "description": "Comprehensive 10-language programming quiz platform covering HTML, CSS, JavaScript, React, Python, TypeScript, Rust, Go, SQL, and C#.",
+      "educationalLevel": "Beginner to Advanced",
+      "author": {
+        "@type": "Person",
+        "name": "Sanskar Yadav",
+        "url": "https://github.com/sanskarIN"
+      }
+    }
+    </script>
+
     <style>
-        :root { --bg: #0b0f19; --text: #f8fafc; --accent1: #6c63ff; --accent2: #3ecfcf; --accent3: #bf5af2; --glass-bg: rgba(255, 255, 255, 0.05); --glass-border: rgba(255, 255, 255, 0.1); }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
-        body { background-color: var(--bg); color: var(--text); line-height: 1.6; }
-        nav { background: var(--glass-bg); backdrop-filter: blur(10px); border-bottom: 1px solid var(--glass-border); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
-        nav a { color: var(--text); text-decoration: none; margin-left: 1rem; font-weight: 500; }
-        .logo { font-size: 1.5rem; font-weight: 700; background: linear-gradient(45deg, var(--accent1), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .container { max-width: 800px; margin: 2rem auto; padding: 2rem; background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 12px; backdrop-filter: blur(10px); }
-        h1 { text-align: center; margin-bottom: 1rem; color: var(--accent2); }
-        .stats { display: flex; justify-content: space-between; margin-bottom: 1rem; font-size: 0.9rem; opacity: 0.8; }
-        .progress-bar { width: 100%; height: 8px; background: rgba(255,255,255,0.1); border-radius: 4px; margin-bottom: 2rem; overflow: hidden; }
-        .progress { width: 0%; height: 100%; background: linear-gradient(90deg, var(--accent1), var(--accent2)); transition: width 0.3s ease; }
-        .question-container { margin-bottom: 2rem; }
-        .question { font-size: 1.2rem; font-weight: 600; margin-bottom: 1rem; }
-        .options { display: flex; flex-direction: column; gap: 0.75rem; }
-        .option { padding: 1rem; border: 1px solid var(--glass-border); border-radius: 8px; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 1rem; }
-        .option:hover { background: rgba(255,255,255,0.1); }
-        .option input { transform: scale(1.2); accent-color: var(--accent1); }
-        .btn { padding: 0.75rem 1.5rem; background: var(--accent1); color: #fff; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: background 0.3s; font-size: 1rem; width: 100%; }
-        .btn:hover { background: var(--accent3); }
-        .result { display: none; text-align: center; }
-        .result h2 { margin-bottom: 1rem; color: var(--accent2); }
-        .score { font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; }
-        footer { background: var(--glass-bg); border-top: 1px solid var(--glass-border); padding: 2rem; text-align: center; margin-top: 4rem; }
+        :root {
+            --bg: #0b0f19;
+            --bg-secondary: #111827;
+            --bg-card: rgba(255, 255, 255, 0.04);
+            --bg-card-hover: rgba(255, 255, 255, 0.07);
+            --text: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --accent1: #6c63ff;
+            --accent2: #3ecfcf;
+            --accent3: #bf5af2;
+            --accent-success: #10b981;
+            --accent-danger: #ef4444;
+            --accent-warning: #f59e0b;
+            --glass-bg: rgba(17, 24, 39, 0.7);
+            --glass-card: rgba(255, 255, 255, 0.035);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-border-hover: rgba(108, 99, 255, 0.4);
+            --font-heading: 'Outfit', sans-serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+            --font-code: 'Fira Code', monospace;
+            --radius-lg: 20px;
+            --radius-md: 14px;
+            --radius-sm: 8px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow-glow: 0 0 35px rgba(108, 99, 255, 0.2);
+        }
+
+        [data-theme="light"] {
+            --bg: #f8fafc;
+            --bg-secondary: #ffffff;
+            --bg-card: rgba(0, 0, 0, 0.03);
+            --bg-card-hover: rgba(0, 0, 0, 0.06);
+            --text: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #64748b;
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --glass-card: rgba(255, 255, 255, 0.9);
+            --glass-border: rgba(0, 0, 0, 0.08);
+            --glass-border-hover: rgba(108, 99, 255, 0.5);
+            --shadow-glow: 0 10px 30px rgba(108, 99, 255, 0.12);
+        }
+
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            position: relative;
+            transition: background-color var(--transition), color var(--transition);
+        }
+
+        /* Ambient glowing background orbs */
+        .ambient-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.22;
+            pointer-events: none;
+            z-index: 0;
+            animation: orbPulse 16s ease-in-out infinite alternate;
+        }
+        .orb-1 { width: 500px; height: 500px; background: var(--accent1); top: -150px; left: -100px; }
+        .orb-2 { width: 450px; height: 450px; background: var(--accent2); top: 40%; right: -120px; animation-delay: -5s; }
+        .orb-3 { width: 400px; height: 400px; background: var(--accent3); bottom: -100px; left: 25%; animation-delay: -10s; }
+
+        @keyframes orbPulse {
+            0% { transform: scale(1) translate(0, 0); }
+            50% { transform: scale(1.1) translate(20px, 30px); }
+            100% { transform: scale(0.95) translate(-20px, -15px); }
+        }
+
+        /* Top Navigation Bar */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 0.85rem 2rem;
+            transition: all var(--transition);
+        }
+
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--text);
+        }
+
+        .brand-logo-img {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            object-fit: cover;
+            box-shadow: 0 0 15px rgba(108, 99, 255, 0.4);
+        }
+
+        .brand-text {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--text) 30%, var(--accent2) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        .brand-badge {
+            font-size: 0.7rem;
+            padding: 0.2rem 0.55rem;
+            border-radius: 20px;
+            background: rgba(108, 99, 255, 0.15);
+            border: 1px solid rgba(108, 99, 255, 0.3);
+            color: var(--accent2);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: color var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--accent2);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+        }
+
+        .btn-theme-toggle {
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            color: var(--text);
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all var(--transition);
+            font-size: 1.15rem;
+        }
+
+        .btn-theme-toggle:hover {
+            border-color: var(--accent1);
+            background: var(--bg-card-hover);
+            transform: scale(1.05);
+        }
+
+        /* Container */
+        .main-container {
+            max-width: 1240px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem 4rem;
+            position: relative;
+            z-index: 1;
+            flex: 1;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .hero-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 1rem;
+            border-radius: 30px;
+            background: rgba(108, 99, 255, 0.12);
+            border: 1px solid rgba(108, 99, 255, 0.3);
+            color: var(--accent2);
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 1.25rem;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        .hero-pill-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent2);
+            box-shadow: 0 0 8px var(--accent2);
+            animation: pulseDot 2s infinite;
+        }
+
+        @keyframes pulseDot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.8); }
+        }
+
+        .hero-title {
+            font-family: var(--font-heading);
+            font-size: 3.2rem;
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -1px;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ffffff 20%, var(--accent2) 60%, var(--accent1) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        [data-theme="light"] .hero-title {
+            background: linear-gradient(135deg, #0f172a 20%, #4338ca 70%, #0d9488 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 680px;
+            margin: 0 auto 2rem;
+            font-weight: 500;
+        }
+
+        .hero-stats-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+
+        .hero-stat {
+            background: var(--glass-card);
+            border: 1px solid var(--glass-border);
+            padding: 0.85rem 1.6rem;
+            border-radius: var(--radius-md);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .hero-stat-icon {
+            font-size: 1.5rem;
+        }
+
+        .hero-stat-text strong {
+            display: block;
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: var(--text);
+            font-family: var(--font-heading);
+            line-height: 1.1;
+        }
+
+        .hero-stat-text span {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+
+        /* Views (Language Hub, Quiz Player, Results) */
+        .view-section {
+            display: block;
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+
+        .view-section.hidden {
+            display: none !important;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Language Grid */
+        .section-header-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.8rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .section-header-title {
+            font-family: var(--font-heading);
+            font-size: 1.65rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .language-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3.5rem;
+        }
+
+        .language-card {
+            background: var(--glass-card);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            padding: 1.6rem;
+            cursor: pointer;
+            transition: all var(--transition);
+            backdrop-filter: blur(12px);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .language-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--card-color, var(--accent1)), var(--accent2));
+            opacity: 0;
+            transition: opacity var(--transition);
+        }
+
+        .language-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--glass-border-hover);
+            background: var(--bg-card-hover);
+            box-shadow: 0 16px 36px rgba(0, 0, 0, 0.3), var(--shadow-glow);
+        }
+
+        .language-card:hover::before {
+            opacity: 1;
+        }
+
+        .card-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 1.25rem;
+        }
+
+        .lang-icon-wrapper {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.9rem;
+            transition: transform var(--transition);
+        }
+
+        .language-card:hover .lang-icon-wrapper {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .lang-difficulty-badge {
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 0.25rem 0.65rem;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+        }
+
+        .badge-beginner { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+        .badge-intermediate { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
+        .badge-advanced { background: rgba(191, 90, 242, 0.15); color: #d8b4fe; border: 1px solid rgba(191, 90, 242, 0.3); }
+        .badge-all { background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); }
+
+        .lang-title {
+            font-family: var(--font-heading);
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 0.4rem;
+        }
+
+        .lang-desc {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.4rem;
+            line-height: 1.5;
+            flex-grow: 1;
+        }
+
+        .card-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 1rem;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .question-count {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .btn-start-quiz {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--accent2);
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            transition: gap var(--transition);
+        }
+
+        .language-card:hover .btn-start-quiz {
+            gap: 0.6rem;
+            color: #fff;
+        }
+
+        /* Quiz Player Interface */
+        .quiz-container {
+            max-width: 860px;
+            margin: 0 auto;
+            background: var(--glass-card);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            padding: 2.2rem;
+            backdrop-filter: blur(16px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+        }
+
+        .quiz-top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .btn-back-hub {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            color: var(--text-secondary);
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            font-size: 0.88rem;
+            font-weight: 600;
+            transition: all var(--transition);
+        }
+
+        .btn-back-hub:hover {
+            color: var(--text);
+            border-color: var(--accent1);
+            background: var(--bg-card-hover);
+        }
+
+        .quiz-lang-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .quiz-lang-icon {
+            font-size: 1.6rem;
+        }
+
+        .quiz-lang-name {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .quiz-timer-widget {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            padding: 0.45rem 0.95rem;
+            border-radius: 20px;
+            font-family: var(--font-code);
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--text);
+        }
+
+        .timer-warning {
+            border-color: var(--accent-danger) !important;
+            color: var(--accent-danger) !important;
+            animation: pulseWarning 0.8s infinite alternate;
+        }
+
+        @keyframes pulseWarning {
+            from { background: rgba(239, 68, 68, 0.1); }
+            to { background: rgba(239, 68, 68, 0.3); }
+        }
+
+        .quiz-progress-section {
+            margin-bottom: 2rem;
+        }
+
+        .progress-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 0.6rem;
+        }
+
+        .progress-bar-track {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.07);
+            border-radius: 6px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            width: 5%;
+            background: linear-gradient(90deg, var(--accent1), var(--accent2));
+            border-radius: 6px;
+            transition: width 0.35s ease;
+        }
+
+        .question-card-body {
+            margin-bottom: 2rem;
+        }
+
+        .question-category-tag {
+            display: inline-block;
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--accent2);
+            text-transform: uppercase;
+            letter-spacing: 0.7px;
+            margin-bottom: 0.75rem;
+        }
+
+        .question-title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            line-height: 1.45;
+            color: var(--text);
+            margin-bottom: 1.25rem;
+        }
+
+        .question-code-block {
+            background: #060913;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-sm);
+            padding: 1rem 1.25rem;
+            font-family: var(--font-code);
+            font-size: 0.9rem;
+            color: #38bdf8;
+            margin-bottom: 1.5rem;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            display: none;
+        }
+
+        /* Answer Options */
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+            margin-bottom: 1.75rem;
+        }
+
+        .option-item {
+            background: var(--bg-card);
+            border: 1.5px solid var(--glass-border);
+            border-radius: var(--radius-md);
+            padding: 1rem 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            cursor: pointer;
+            transition: all 0.22s ease;
+            position: relative;
+            user-select: none;
+        }
+
+        .option-item:hover:not(.locked) {
+            background: var(--bg-card-hover);
+            border-color: var(--glass-border-hover);
+            transform: translateX(4px);
+        }
+
+        .option-letter {
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            flex-shrink: 0;
+            transition: all 0.2s ease;
+        }
+
+        .option-text {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text);
+            flex: 1;
+        }
+
+        .option-item.selected {
+            border-color: var(--accent1);
+            background: rgba(108, 99, 255, 0.12);
+        }
+
+        .option-item.correct {
+            border-color: var(--accent-success) !important;
+            background: rgba(16, 185, 129, 0.16) !important;
+        }
+
+        .option-item.correct .option-letter {
+            background: var(--accent-success);
+            color: #fff;
+        }
+
+        .option-item.wrong {
+            border-color: var(--accent-danger) !important;
+            background: rgba(239, 68, 68, 0.16) !important;
+        }
+
+        .option-item.wrong .option-letter {
+            background: var(--accent-danger);
+            color: #fff;
+        }
+
+        .option-status-icon {
+            font-size: 1.2rem;
+            display: none;
+        }
+
+        .option-item.correct .option-status-icon,
+        .option-item.wrong .option-status-icon {
+            display: block;
+        }
+
+        /* Explanation Box */
+        .explanation-box {
+            background: rgba(17, 24, 39, 0.6);
+            border: 1px solid var(--glass-border);
+            border-left: 4px solid var(--accent2);
+            border-radius: var(--radius-sm);
+            padding: 1.2rem 1.4rem;
+            margin-bottom: 2rem;
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .explanation-title {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--accent2);
+            margin-bottom: 0.35rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .explanation-text {
+            font-size: 0.92rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Quiz Action Buttons */
+        .quiz-actions-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 1.2rem;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .btn-action {
+            padding: 0.75rem 1.6rem;
+            border-radius: var(--radius-sm);
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all var(--transition);
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--text-secondary);
+            border: 1px solid var(--glass-border);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent1), #584ae0);
+            color: #ffffff;
+            box-shadow: 0 4px 15px rgba(108, 99, 255, 0.35);
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(108, 99, 255, 0.5);
+            background: linear-gradient(135deg, #7c74ff, var(--accent1));
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Results Screen */
+        .results-card {
+            max-width: 680px;
+            margin: 0 auto;
+            background: var(--glass-card);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            padding: 3rem 2.2rem;
+            backdrop-filter: blur(18px);
+            text-align: center;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .results-trophy-icon {
+            font-size: 3.5rem;
+            margin-bottom: 0.8rem;
+            animation: bounce 1s ease infinite alternate;
+        }
+
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-8px); }
+        }
+
+        .results-title {
+            font-family: var(--font-heading);
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 0.4rem;
+        }
+
+        .results-subtitle {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        /* Circular progress chart */
+        .circle-progress-wrapper {
+            position: relative;
+            width: 170px;
+            height: 170px;
+            margin: 0 auto 2rem;
+        }
+
+        .circle-progress-svg {
+            width: 170px;
+            height: 170px;
+            transform: rotate(-90deg);
+        }
+
+        .circle-bg {
+            fill: none;
+            stroke: rgba(255, 255, 255, 0.08);
+            stroke-width: 12;
+        }
+
+        .circle-bar {
+            fill: none;
+            stroke: url(#scoreGradient);
+            stroke-width: 12;
+            stroke-linecap: round;
+            stroke-dasharray: 440;
+            stroke-dashoffset: 440;
+            transition: stroke-dashoffset 1.2s ease-out;
+        }
+
+        .circle-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .circle-score-number {
+            font-family: var(--font-heading);
+            font-size: 2.4rem;
+            font-weight: 800;
+            line-height: 1;
+            color: var(--text);
+        }
+
+        .circle-score-percent {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--accent2);
+        }
+
+        .rating-badge {
+            display: inline-block;
+            padding: 0.45rem 1.4rem;
+            border-radius: 30px;
+            font-family: var(--font-heading);
+            font-weight: 800;
+            font-size: 1.05rem;
+            margin-bottom: 2rem;
+            letter-spacing: 0.5px;
+        }
+
+        .rating-master { background: rgba(191, 90, 242, 0.2); color: #d8b4fe; border: 1.5px solid #bf5af2; }
+        .rating-expert { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1.5px solid #38bdf8; }
+        .rating-advanced { background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1.5px solid #10b981; }
+        .rating-intermediate { background: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1.5px solid #f59e0b; }
+        .rating-beginner { background: rgba(148, 163, 184, 0.2); color: #cbd5e1; border: 1.5px solid #94a3b8; }
+
+        .results-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 2.2rem;
+        }
+
+        .result-stat-box {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-md);
+            padding: 1rem 0.75rem;
+        }
+
+        .stat-val {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 0.2rem;
+        }
+
+        .stat-lbl {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .results-actions {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        /* Leaderboard & Stats Section */
+        .leaderboard-section {
+            margin-top: 5rem;
+        }
+
+        .stats-summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.25rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .summary-card {
+            background: var(--glass-card);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-md);
+            padding: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 1.1rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .summary-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: rgba(108, 99, 255, 0.15);
+            color: var(--accent2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .summary-info h4 {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text);
+            line-height: 1.1;
+        }
+
+        .summary-info p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .leaderboard-container {
+            background: var(--glass-card);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            padding: 1.8rem;
+            backdrop-filter: blur(12px);
+            margin-bottom: 2.5rem;
+        }
+
+        .best-scores-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .best-score-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-sm);
+            padding: 0.9rem 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .best-score-lang {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .best-score-value {
+            font-family: var(--font-code);
+            font-weight: 700;
+            font-size: 0.92rem;
+            color: var(--accent2);
+        }
+
+        .history-table-wrapper {
+            overflow-x: auto;
+        }
+
+        .history-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+            text-align: left;
+        }
+
+        .history-table th {
+            padding: 0.85rem 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            color: var(--text-muted);
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+        }
+
+        .history-table td {
+            padding: 0.95rem 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            color: var(--text);
+        }
+
+        .history-empty-msg {
+            text-align: center;
+            padding: 2.5rem 1rem;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Cross-Module Navigation */
+        .modules-nav-section {
+            margin-top: 4rem;
+            padding: 2.5rem 2rem;
+            background: var(--glass-card);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            text-align: center;
+        }
+
+        .modules-nav-title {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .modules-nav-subtitle {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.8rem;
+        }
+
+        .modules-pill-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .module-nav-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.15rem;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--glass-border);
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 600;
+            transition: all var(--transition);
+        }
+
+        .module-nav-pill:hover {
+            color: #fff;
+            border-color: var(--accent1);
+            background: rgba(108, 99, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .site-footer {
+            background: rgba(7, 10, 18, 0.95);
+            border-top: 1px solid var(--glass-border);
+            padding: 4rem 2rem 2rem;
+            margin-top: auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-grid {
+            max-width: 1240px;
+            margin: 0 auto 3rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 2.5rem;
+        }
+
+        .footer-col h4 {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 1.25rem;
+            letter-spacing: -0.3px;
+        }
+
+        .footer-col p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 1.25rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+        }
+
+        .footer-col a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color var(--transition);
+        }
+
+        .footer-col a:hover {
+            color: var(--accent2);
+        }
+
+        .footer-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.6rem;
+            word-break: break-all;
+        }
+
+        .footer-contact-item a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .footer-contact-item a:hover {
+            color: var(--accent2);
+        }
+
+        .footer-bottom {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        /* Toast notifications */
+        .toast-msg {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #1e1b4b;
+            color: #f8fafc;
+            border: 1px solid var(--accent1);
+            padding: 0.85rem 1.4rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.9rem;
+            font-weight: 600;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            z-index: 9999;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .toast-msg.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 992px) {
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .hero-title {
+                font-size: 2.6rem;
+            }
+        }
+
+        @media (max-width: 680px) {
+            .navbar {
+                padding: 0.8rem 1rem;
+            }
+            .nav-links {
+                display: none;
+            }
+            .hero-title {
+                font-size: 2.1rem;
+            }
+            .hero-subtitle {
+                font-size: 1.05rem;
+            }
+            .hero-stats-row {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+            .hero-stat {
+                width: 100%;
+                justify-content: center;
+            }
+            .quiz-container {
+                padding: 1.4rem;
+            }
+            .results-stats-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
-    <nav>
-        <div class="logo">WebDev Mastery</div>
-        <div><a href="index.html">Home</a><a href="quiz.html">Quiz</a></div>
+    <!-- Ambient glowing backdrop orbs -->
+    <div class="ambient-orb orb-1"></div>
+    <div class="ambient-orb orb-2"></div>
+    <div class="ambient-orb orb-3"></div>
+
+    <!-- SVG Gradients -->
+    <svg width="0" height="0" style="position: absolute;">
+        <defs>
+            <linearGradient id="scoreGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#6c63ff" />
+                <stop offset="50%" stop-color="#3ecfcf" />
+                <stop offset="100%" stop-color="#bf5af2" />
+            </linearGradient>
+        </defs>
+    </svg>
+
+    <!-- Top Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <img src="splash.png" alt="DevForge Logo" class="brand-logo-img">
+                <span class="brand-text">DevForge</span>
+                <span class="brand-badge">Quiz Hub</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">🏠 Home</a></li>
+                <li><a href="#languages-section" class="nav-link active">⚡ Quizzes</a></li>
+                <li><a href="#leaderboard-section" class="nav-link">🏆 Leaderboard</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="developer.html" class="nav-link">API</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="btn-theme-toggle" id="themeToggleBtn" aria-label="Toggle theme" title="Toggle theme">🌙</button>
+            </div>
+        </div>
     </nav>
-    <div class="container">
-        <div id="quiz-screen">
-            <h1>Web Dev Knowledge Quiz</h1>
-            <div class="stats">
-                <span id="q-counter">Question 1 of 10</span>
-                <span id="best-score">Best Score: 0%</span>
+
+    <!-- Main Content Container -->
+    <main class="main-container">
+        
+        <!-- ================= VIEW 1: LANGUAGE SELECTION HUB ================= -->
+        <section id="view-hub" class="view-section">
+            <div class="hero">
+                <div class="hero-pill">
+                    <span class="hero-pill-dot"></span>
+                    Interactive Knowledge Assessments
+                </div>
+                <h1 class="hero-title">DevForge Quiz Hub</h1>
+                <p class="hero-subtitle">Test Your Knowledge Across 10 Languages — from core semantics and modern syntax to architecture, memory safety, and optimization.</p>
+                
+                <div class="hero-stats-row">
+                    <div class="hero-stat">
+                        <div class="hero-stat-icon">💻</div>
+                        <div class="hero-stat-text">
+                            <strong>10 Languages</strong>
+                            <span>Web & Systems</span>
+                        </div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-icon">🎯</div>
+                        <div class="hero-stat-text">
+                            <strong>200 Questions</strong>
+                            <span>20 Curated Each</span>
+                        </div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-icon">⏱️</div>
+                        <div class="hero-stat-text">
+                            <strong>30 Seconds</strong>
+                            <span>Per Question</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="progress-bar"><div class="progress" id="progress"></div></div>
-            <div class="question-container">
-                <div class="question" id="question-text">Loading question...</div>
-                <div class="options" id="options"></div>
+
+            <!-- Language Cards Grid -->
+            <div id="languages-section">
+                <div class="section-header-bar">
+                    <h2 class="section-header-title">⚡ Select a Programming Language</h2>
+                    <span style="font-size: 0.9rem; color: var(--text-muted); font-weight: 600;">Choose a module to begin assessment</span>
+                </div>
+
+                <div class="language-grid" id="languageGrid">
+                    <!-- Cards will be populated with all 10 modules -->
+                </div>
             </div>
-            <button class="btn" id="next-btn">Next</button>
+
+            <!-- Leaderboard / Statistics Section -->
+            <div class="leaderboard-section" id="leaderboard-section">
+                <div class="section-header-bar">
+                    <h2 class="section-header-title">🏆 Your Performance & Leaderboard</h2>
+                    <button class="btn-secondary btn-action" id="resetStatsBtn" style="padding: 0.45rem 0.9rem; font-size: 0.8rem;">↺ Reset Stats</button>
+                </div>
+
+                <div class="stats-summary-grid">
+                    <div class="summary-card">
+                        <div class="summary-icon">🔥</div>
+                        <div class="summary-info">
+                            <h4 id="statTotalCompleted">0</h4>
+                            <p>Quizzes Completed</p>
+                        </div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="summary-icon">⭐</div>
+                        <div class="summary-info">
+                            <h4 id="statBestOverall">0 / 20</h4>
+                            <p>Highest Score</p>
+                        </div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="summary-icon">📊</div>
+                        <div class="summary-info">
+                            <h4 id="statAverageScore">0%</h4>
+                            <p>Average Accuracy</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="leaderboard-container">
+                    <h3 style="font-family: var(--font-heading); font-size: 1.15rem; margin-bottom: 1.25rem;">Best Scores By Module</h3>
+                    <div class="best-scores-grid" id="bestScoresGrid">
+                        <!-- Populated by JavaScript -->
+                    </div>
+
+                    <h3 style="font-family: var(--font-heading); font-size: 1.15rem; margin-bottom: 1.25rem; margin-top: 1.5rem;">Recent Attempts History</h3>
+                    <div class="history-table-wrapper">
+                        <table class="history-table">
+                            <thead>
+                                <tr>
+                                    <th>Language</th>
+                                    <th>Score</th>
+                                    <th>Accuracy</th>
+                                    <th>Rating</th>
+                                    <th>Date & Time</th>
+                                </tr>
+                            </thead>
+                            <tbody id="historyTableBody">
+                                <tr>
+                                    <td colspan="5" class="history-empty-msg">No quiz attempts recorded yet. Select a language above and take your first test!</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cross-Module Navigation -->
+            <div class="modules-nav-section">
+                <h3 class="modules-nav-title">Explore DevForge Learning Modules</h3>
+                <p class="modules-nav-subtitle">Deep dive into detailed tutorials, live playground environments, and syntax references</p>
+                <div class="modules-pill-grid">
+                    <a href="HTML/index.html" class="module-nav-pill">🌐 HTML Module</a>
+                    <a href="CSS/index.html" class="module-nav-pill">🎨 CSS Module</a>
+                    <a href="JavaScript/index.html" class="module-nav-pill">⚡ JavaScript Module</a>
+                    <a href="React/index.html" class="module-nav-pill">⚛️ React Module</a>
+                    <a href="Python/index.html" class="module-nav-pill">🐍 Python Module</a>
+                    <a href="TypeScript/index.html" class="module-nav-pill">🔷 TypeScript Module</a>
+                    <a href="Rust/index.html" class="module-nav-pill">🦀 Rust Module</a>
+                    <a href="Go/index.html" class="module-nav-pill">🐹 Go Module</a>
+                    <a href="SQL/index.html" class="module-nav-pill">🗄️ SQL Module</a>
+                    <a href="CSharp/index.html" class="module-nav-pill">🎯 C# Module</a>
+                    <a href="index.html" class="module-nav-pill" style="border-color: var(--accent2); color: var(--accent2);">🏠 Platform Home</a>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================= VIEW 2: QUIZ PLAYER ================= -->
+        <section id="view-quiz" class="view-section hidden">
+            <div class="quiz-container">
+                <div class="quiz-top-bar">
+                    <button class="btn-back-hub" id="btnExitQuiz">
+                        <span>← Back to Hub</span>
+                    </button>
+                    <div class="quiz-lang-header">
+                        <span class="quiz-lang-icon" id="quizActiveIcon">⚡</span>
+                        <span class="quiz-lang-name" id="quizActiveTitle">Language Quiz</span>
+                    </div>
+                    <div class="quiz-timer-widget" id="quizTimerWidget">
+                        <span>⏱️</span>
+                        <span id="timerSeconds">30</span>s
+                    </div>
+                </div>
+
+                <div class="quiz-progress-section">
+                    <div class="progress-labels">
+                        <span id="questionCounter">Question 1 of 20</span>
+                        <span id="currentScoreIndicator">Current Score: 0</span>
+                    </div>
+                    <div class="progress-bar-track">
+                        <div class="progress-bar-fill" id="progressBarFill"></div>
+                    </div>
+                </div>
+
+                <div class="question-card-body">
+                    <span class="question-category-tag" id="questionCategory">Concept Area</span>
+                    <h3 class="question-title" id="questionText">Loading question prompt...</h3>
+                    <pre class="question-code-block" id="questionCodeBlock"><code></code></pre>
+
+                    <div class="options-list" id="optionsContainer">
+                        <!-- 4 Options generated by JS -->
+                    </div>
+
+                    <div class="explanation-box" id="explanationBox">
+                        <div class="explanation-title">
+                            <span>💡 Detailed Explanation:</span>
+                        </div>
+                        <p class="explanation-text" id="explanationText"></p>
+                    </div>
+                </div>
+
+                <div class="quiz-actions-bar">
+                    <button class="btn-secondary btn-action" id="btnQuitMidQuiz">Quit Quiz</button>
+                    <button class="btn-primary btn-action" id="btnNextQuestion" disabled>
+                        <span>Next Question →</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================= VIEW 3: RESULTS SCREEN ================= -->
+        <section id="view-results" class="view-section hidden">
+            <div class="results-card">
+                <div class="results-trophy-icon" id="resultsIcon">🏆</div>
+                <h2 class="results-title">Quiz Completed!</h2>
+                <p class="results-subtitle" id="resultsSubtitle">Great effort testing your skills in HTML.</p>
+
+                <div class="circle-progress-wrapper">
+                    <svg class="circle-progress-svg" viewBox="0 0 160 160">
+                        <circle class="circle-bg" cx="80" cy="80" r="70"></circle>
+                        <circle class="circle-bar" id="resultCircleBar" cx="80" cy="80" r="70"></circle>
+                    </svg>
+                    <div class="circle-content">
+                        <div class="circle-score-number" id="resultScoreFraction">18/20</div>
+                        <div class="circle-score-percent" id="resultScorePercent">90% Accuracy</div>
+                    </div>
+                </div>
+
+                <div id="ratingBadgeContainer">
+                    <span class="rating-badge rating-master" id="resultRatingBadge">Master</span>
+                </div>
+
+                <div class="results-stats-grid">
+                    <div class="result-stat-box">
+                        <div class="stat-val" style="color: var(--accent-success);" id="statCorrectAnswers">0</div>
+                        <div class="stat-lbl">Correct</div>
+                    </div>
+                    <div class="result-stat-box">
+                        <div class="stat-val" style="color: var(--accent-danger);" id="statWrongAnswers">0</div>
+                        <div class="stat-lbl">Incorrect</div>
+                    </div>
+                    <div class="result-stat-box">
+                        <div class="stat-val" style="color: var(--accent2);" id="statCompletionTime">--</div>
+                        <div class="stat-lbl">Time Taken</div>
+                    </div>
+                </div>
+
+                <div class="results-actions">
+                    <button class="btn-primary btn-action" id="btnRetryQuiz">
+                        <span>🔄 Retake Quiz</span>
+                    </button>
+                    <button class="btn-secondary btn-action" id="btnChooseAnother">
+                        <span>📚 Choose Language</span>
+                    </button>
+                    <button class="btn-secondary btn-action" id="btnShareScore" style="border-color: var(--accent2); color: var(--accent2);">
+                        <span>🔗 Share Score</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+                    <img src="splash.png" alt="DevForge Logo" style="width: 32px; height: 32px; border-radius: 8px;">
+                    <h4 style="margin-bottom: 0;">DevForge Learning Ecosystem</h4>
+                </div>
+                <p>The premier interactive, open-source engineering mastery hub. Test, build, and level up with 10 industry-standard languages and frameworks.</p>
+                <div style="display: flex; gap: 1rem; margin-top: 1.25rem;">
+                    <a href="https://github.com/sanskarIN" target="_blank" rel="noopener" aria-label="GitHub" style="font-size: 1.3rem;">🐙</a>
+                    <a href="https://x.com/Sanskar_in" target="_blank" rel="noopener" aria-label="X Twitter" style="font-size: 1.3rem;">𝕏</a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Quick Navigation</h4>
+                <ul>
+                    <li><a href="index.html">Platform Home</a></li>
+                    <li><a href="quiz.html">Quiz Hub</a></li>
+                    <li><a href="about.html">About Developer</a></li>
+                    <li><a href="Follow-Sanskar.html">Follow Sanskar</a></li>
+                    <li><a href="developer.html">Developer API</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                    <li><a href="support.html">Support Project</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Learning Modules</h4>
+                <ul>
+                    <li><a href="HTML/index.html">HTML Mastery</a></li>
+                    <li><a href="CSS/index.html">CSS Mastery</a></li>
+                    <li><a href="JavaScript/index.html">JavaScript Mastery</a></li>
+                    <li><a href="React/index.html">React Mastery</a></li>
+                    <li><a href="Python/index.html">Python Mastery</a></li>
+                    <li><a href="TypeScript/index.html">TypeScript Mastery</a></li>
+                    <li><a href="Rust/index.html">Rust Mastery</a></li>
+                    <li><a href="Go/index.html">Go Mastery</a></li>
+                    <li><a href="SQL/index.html">SQL Mastery</a></li>
+                    <li><a href="CSharp/index.html">C# Mastery</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contact & Creator Support</h4>
+                <div class="footer-contact-item">
+                    <span>📧</span>
+                    <a href="mailto:sanskarin@outlook.in">sanskarin@outlook.in</a>
+                </div>
+                <div class="footer-contact-item">
+                    <span>💼</span>
+                    <a href="mailto:sanskarin.business@gmail.com">sanskarin.business@gmail.com</a>
+                </div>
+                <div class="footer-contact-item">
+                    <span>🛠️</span>
+                    <a href="mailto:supportramsandesh@gmail.com">supportramsandesh@gmail.com</a>
+                </div>
+
+                <div style="margin-top: 1.2rem; display: flex; flex-direction: column; gap: 0.6rem;">
+                    <a href="https://www.buymeacoffee.com/sanskarIN" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg, #FFDD00, #FF6600);color:#000;padding:8px 14px;border-radius:8px;text-decoration:none;font-weight:700;font-size:12px;width:fit-content;">
+                        ☕ Buy Me a Coffee
+                    </a>
+                    <a href="https://sanskarIN.gumroad.com" target="_blank" rel="noopener" style="color: var(--accent3); font-size: 0.88rem; font-weight: 600;">
+                        🛍️ Gumroad Store →
+                    </a>
+                </div>
+            </div>
         </div>
-        <div id="result-screen" class="result">
-            <h2>Quiz Completed!</h2>
-            <div class="score" id="score-text">0/10</div>
-            <p id="feedback" style="margin-bottom: 2rem;"></p>
-            <button class="btn" onclick="location.reload()">Try Again</button>
+
+        <div class="footer-bottom">
+            <span>© 2026 Sanskar Yadav. All Rights Reserved. DevForge is built with precision & ❤️ in India.</span>
+            <span>Version 2.4.0 • Standalone Offline-Ready</span>
         </div>
+    </footer>
+
+    <!-- Toast Notification Element -->
+    <div class="toast-msg" id="toastMessage">
+        <span id="toastIcon">📋</span>
+        <span id="toastText">Score copied to clipboard!</span>
     </div>
-    <footer><p>&copy; 2026 DevForge</p></footer>
+
+    <!-- Scripts -->
     <script>
-        const questions = [
-            { q: "What does HTML stand for?", options: ["Hyper Text Markup Language", "High Tech Modern Language", "Hyperlink Text Markup Language", "Home Tool Markup Language"], a: 0 },
-            { q: "Which property is used to change the background color?", options: ["color", "bgcolor", "background-color", "background-image"], a: 2 },
-            { q: "Choose the correct HTML element for the largest heading:", options: ["<h1>", "<heading>", "<head>
-    <link rel="canonical" href="https://sanskarin.github.io/DevForge/quiz.html">", "<h6>"], a: 0 },
-            { q: "Inside which HTML element do we put the JavaScript?", options: ["<scripting>", "<js>", "<javascript>", "<script>"], a: 3 },
-            { q: "What is the correct syntax for referring to an external script called 'app.js'?", options: ["<script href='app.js'>", "<script name='app.js'>", "<script src='app.js'>", "<script file='app.js'>"], a: 2 },
-            { q: "How do you write 'Hello World' in an alert box?", options: ["msgBox('Hello World');", "alertBox('Hello World');", "msg('Hello World');", "alert('Hello World');"], a: 3 },
-            { q: "How do you create a function in JavaScript?", options: ["function myFunction()", "function:myFunction()", "function = myFunction()", "def myFunction()"], a: 0 },
-            { q: "Which CSS property controls the text size?", options: ["text-style", "font-size", "text-size", "font-style"], a: 1 },
-            { q: "How do you select an element with id 'demo'?", options: [".demo", "#demo", "demo", "*demo"], a: 1 },
-            { q: "Which event occurs when the user clicks on an HTML element?", options: ["onmouseclick", "onchange", "onclick", "onmouseover"], a: 2 }
+        // Module definitions
+        const MODULES = [
+            { id: 'html', name: 'HTML', icon: '🌐', questionsCount: 20, difficulty: 'Beginner', badgeClass: 'badge-beginner', desc: 'Elements, semantic tags, forms, accessibility, HTML5 media, canvas, and web APIs.', color: '#e34f26' },
+            { id: 'css', name: 'CSS', icon: '🎨', questionsCount: 20, difficulty: 'Intermediate', badgeClass: 'badge-intermediate', desc: 'Box model, flexbox, CSS grid, animations, custom properties, specificity, and modern layouts.', color: '#264de4' },
+            { id: 'javascript', name: 'JavaScript', icon: '⚡', questionsCount: 20, difficulty: 'Intermediate', badgeClass: 'badge-intermediate', desc: 'Closures, promises, async/await, event loop, prototypes, ES6+, and DOM manipulation.', color: '#f7df1e' },
+            { id: 'react', name: 'React', icon: '⚛️', questionsCount: 20, difficulty: 'Advanced', badgeClass: 'badge-advanced', desc: 'Hooks, Virtual DOM, state management, context API, component lifecycle, and optimization.', color: '#61dafb' },
+            { id: 'python', name: 'Python', icon: '🐍', questionsCount: 20, difficulty: 'All Levels', badgeClass: 'badge-all', desc: 'Data structures, OOP, decorators, generators, asyncio, comprehensions, and ecosystem.', color: '#3776ab' },
+            { id: 'typescript', name: 'TypeScript', icon: '🔷', questionsCount: 20, difficulty: 'Intermediate', badgeClass: 'badge-intermediate', desc: 'Static types, interfaces, generics, utility types, conditional types, and compiler configs.', color: '#3178c6' },
+            { id: 'rust', name: 'Rust', icon: '🦀', questionsCount: 20, difficulty: 'Advanced', badgeClass: 'badge-advanced', desc: 'Ownership, borrowing, lifetimes, pattern matching, traits, concurrency, and memory safety.', color: '#dea584' },
+            { id: 'go', name: 'Go', icon: '🐹', questionsCount: 20, difficulty: 'Intermediate', badgeClass: 'badge-intermediate', desc: 'Goroutines, channels, interfaces, struct embedding, error idioms, and slices/maps.', color: '#00add8' },
+            { id: 'sql', name: 'SQL', icon: '🗄️', questionsCount: 20, difficulty: 'All Levels', badgeClass: 'badge-all', desc: 'Queries, JOINs, aggregations, window functions, CTEs, indexes, and ACID transactions.', color: '#00758f' },
+            { id: 'csharp', name: 'C#', icon: '🎯', questionsCount: 20, difficulty: 'Intermediate', badgeClass: 'badge-intermediate', desc: 'OOP, LINQ, async/await, generics, ASP.NET Core, Entity Framework, and modern C# features.', color: '#9b4993' }
         ];
-        let currentQ = 0; let score = 0;
-        const qText = document.getElementById('question-text');
-        const opts = document.getElementById('options');
-        const nextBtn = document.getElementById('next-btn');
-        const progress = document.getElementById('progress');
-        const qCounter = document.getElementById('q-counter');
-        const quizScreen = document.getElementById('quiz-screen');
-        const resultScreen = document.getElementById('result-screen');
-        const bestScoreDisplay = document.getElementById('best-score');
-        
-        let bestScore = localStorage.getItem('quizBestScore') || 0;
-        bestScoreDisplay.textContent = `Best Score: ${bestScore}%`;
 
-        function loadQuestion() {
-            const q = questions[currentQ];
-            qText.textContent = q.q;
-            opts.innerHTML = '';
-            q.options.forEach((opt, idx) => {
-                const label = document.createElement('label');
-                label.className = 'option';
-                label.innerHTML = `<input type="radio" name="quiz" value="${idx}"> ${opt}`;
-                opts.appendChild(label);
-            });
-            progress.style.width = `${(currentQ / questions.length) * 100}%`;
-            qCounter.textContent = `Question ${currentQ + 1} of ${questions.length}`;
+        // Theme management
+        const THEME_KEY = 'devforge_theme';
+        const themeToggleBtn = document.getElementById('themeToggleBtn');
+        function initTheme() {
+            const saved = localStorage.getItem(THEME_KEY) || 'dark';
+            document.documentElement.setAttribute('data-theme', saved);
+            themeToggleBtn.textContent = saved === 'dark' ? '☀️' : '🌙';
         }
-        
-        nextBtn.addEventListener('click', () => {
-            const selected = document.querySelector('input[name="quiz"]:checked');
-            if (!selected) return alert("Please select an option!");
-            if (parseInt(selected.value) === questions[currentQ].a) score++;
-            currentQ++;
-            if (currentQ < questions.length) loadQuestion();
-            else showResult();
+        themeToggleBtn.addEventListener('click', () => {
+            const current = document.documentElement.getAttribute('data-theme');
+            const next = current === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', next);
+            localStorage.setItem(THEME_KEY, next);
+            themeToggleBtn.textContent = next === 'dark' ? '☀️' : '🌙';
         });
+        initTheme();
 
-        function showResult() {
-            quizScreen.style.display = 'none';
-            resultScreen.style.display = 'block';
-            const percent = (score / questions.length) * 100;
-            document.getElementById('score-text').textContent = `${score}/${questions.length} (${percent}%)`;
-            if (percent > bestScore) { localStorage.setItem('quizBestScore', percent); }
+        // Render Language Selector Grid
+        const languageGrid = document.getElementById('languageGrid');
+        function renderLanguageCards() {
+            languageGrid.innerHTML = '';
+            MODULES.forEach(mod => {
+                const card = document.createElement('div');
+                card.className = 'language-card';
+                card.style.setProperty('--card-color', mod.color);
+                card.innerHTML = `
+                    <div class="card-top">
+                        <div class="lang-icon-wrapper">${mod.icon}</div>
+                        <span class="lang-difficulty-badge ${mod.badgeClass}">${mod.difficulty}</span>
+                    </div>
+                    <h3 class="lang-title">${mod.name}</h3>
+                    <p class="lang-desc">${mod.desc}</p>
+                    <div class="card-bottom">
+                        <div class="question-count">
+                            <span>📝</span>
+                            <span>${mod.questionsCount} Questions</span>
+                        </div>
+                        <div class="btn-start-quiz">
+                            <span>Start Quiz</span>
+                            <span>→</span>
+                        </div>
+                    </div>
+                `;
+                card.addEventListener('click', () => {
+                    if (window.startQuizForLanguage) {
+                        window.startQuizForLanguage(mod.id);
+                    }
+                });
+                languageGrid.appendChild(card);
+            });
         }
-        loadQuestion();
+        renderLanguageCards();
+
+        // Toast Helper
+        function showToast(message, icon = '📋') {
+            const toast = document.getElementById('toastMessage');
+            const toastText = document.getElementById('toastText');
+            const toastIcon = document.getElementById('toastIcon');
+            toastText.textContent = message;
+            toastIcon.textContent = icon;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
     </script>
 </body>
 </html>
