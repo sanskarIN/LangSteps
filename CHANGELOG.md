@@ -200,7 +200,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### 🐦 SEO — Twitter Cards
 - Added `twitter:card`, `twitter:site`, `twitter:creator` meta tags across all HTML files
-- Twitter handle: `@Sanskar_in`
+- Twitter handle: `@SanskarCodes`
 
 ### 🔧 CI/CD
 - Added production GitHub Pages deployment workflow

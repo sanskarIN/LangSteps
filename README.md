@@ -927,11 +927,11 @@ node split_files.js
 For support and feedback, contact:
 - **Email**: sanskarin@outlook.in
 - **Support Email**: supportramsandesh@gmail.com
-- **Buy Me a Coffee**: [www.buymeacoffee.com/sanskarIN](https://www.buymeacoffee.com/sanskarIN)
+- **Buy Me a Coffee**: [www.buymeacoffee.com/sanskarIN](https://buymeacoffee.com/SanskarCodes)
 - **GitHub**: [@sanskarIN](https://github.com/sanskarIN)
-- **LinkedIn**: [in/sanskarIN](https://www.linkedin.com/in/sanskarIN)
+- **LinkedIn**: [in/sanskarIN](https://linkedin.com/in/SanskarCodes)
 - **YouTube**: [@sanskarIN](https://www.youtube.com/@sanskarIN)
-- **Twitter/X**: [@Sanskar_in](https://www.x.com/Sanskar_in)
+- **Twitter/X**: [@SanskarCodes](https://x.com/SanskarCodes)
 
 ---
 
