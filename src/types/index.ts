@@ -1,7 +1,7 @@
 /**
  * LangSteps Core Type Definitions
  * Enterprise-grade TypeScript interfaces for modules, concepts, quizzes, themes, and gamification.
- * @author Sanskar Yadav <sanskarin@outlook.in>
+ * @author Sanskar <sanskarin@outlook.in>
  * @license MIT
  */
 

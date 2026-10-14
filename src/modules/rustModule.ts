@@ -1,6 +1,6 @@
 /**
  * LangSteps Rust Systems Mastery Module
- * Author: Sanskar Yadav <sanskarin@outlook.in>
+ * Author: Sanskar <sanskarin@outlook.in>
  * Version: 1.0.0 (Rust 2024 Edition)
  */
 

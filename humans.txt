@@ -1,5 +1,5 @@
 /* TEAM */
-Developer: Sanskar Yadav
+Developer: Sanskar
 Contact: sanskarin@outlook.in
 GitHub: github.com/sanskarIN
 From: India

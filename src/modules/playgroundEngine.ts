@@ -2,7 +2,7 @@
  * LangSteps Code Playground Engine
  * Multi-language client-side code runner and execution simulator.
  * Supports Python, JavaScript, and TypeScript runtime simulation.
- * @author Sanskar Yadav <sanskarin@outlook.in>
+ * @author Sanskar <sanskarin@outlook.in>
  */
 
 import { ExecutionRequest, ExecutionResult } from '../types/index.js';

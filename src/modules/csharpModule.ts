@@ -1,6 +1,6 @@
 /**
  * LangSteps C# 13 & ASP.NET Core Mastery Module
- * Author: Sanskar Yadav <sanskarin@outlook.in>
+ * Author: Sanskar <sanskarin@outlook.in>
  * Version: 1.0.0 (.NET 9 / C# 13)
  */
 

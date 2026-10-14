@@ -177,7 +177,7 @@ LangSteps/
 ├── Using JS for HTML Mastery.js          # Main logic, datasets, playground, state managers
 ├── Using Style for HTML Mastery.css      # Core styles, preset themes, animations, variables
 │
-├── about.html                           # Profile portal for Sanskar Yadav & project vision
+├── about.html                           # Profile portal for Sanskar & project vision
 ├── developer.html                       # Hub containing guidelines, APIs, and dev workflows
 ├── privacy.html                         # Offline storage policies & data statements
 ├── support.html                         # Help & FAQ portal with feedback routing forms
@@ -610,7 +610,7 @@ The application includes several secondary HTML files that handle specific pages
 The page [about.html](file:///e:/All the Projects of the Sanskar/SANSKAR Folder/LangSteps/about.html) provides information about the developer and the project's goals.
 - **Visual Design**: Sleek dark/light theme, modern typography, grid layouts, and cards explaining the developer's journey.
 - **Sections**:
-  - **Developer Profile**: Introduction to Sanskar Yadav (Full-Stack Developer & Educator).
+  - **Developer Profile**: Introduction to Sanskar (Full-Stack Developer & Educator).
   - **Project Mission**: The vision behind creating the HTML Mastery platform.
   - **Skills Portfolio**: Showcase of developer capabilities (HTML5, CSS3, JavaScript, etc.).
 - **Branding logo**: Displays `about_logo.svg`.
@@ -967,4 +967,4 @@ If you find value in LangSteps, tutorials, or open-source projects, consider sup
 ## 📄 License
 
 This project is licensed under the **MIT License**. 
-Copyright (c) 2026 Sanskar Yadav. All rights reserved.
+Copyright (c) 2026 Sanskar. All rights reserved.

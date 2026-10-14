@@ -1,6 +1,6 @@
 /**
  * LangSteps Developer Profile & Social Ecosystem Types
- * @author Sanskar Yadav <sanskarin@outlook.in>
+ * @author Sanskar <sanskarin@outlook.in>
  */
 
 export interface SocialLinks {

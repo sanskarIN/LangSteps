@@ -2,7 +2,7 @@
  * LangSteps Theme Engine
  * Provides type-safe theme management, dynamic CSS variable injection,
  * and 25+ hand-crafted color palettes.
- * @author Sanskar Yadav <sanskarin@outlook.in>
+ * @author Sanskar <sanskarin@outlook.in>
  */
 
 import { Theme } from '../types/index.js';

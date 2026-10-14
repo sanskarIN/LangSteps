@@ -4,7 +4,7 @@
 **Tag**: `v1.0.0`  
 **Target Branch**: `main`  
 **Release Date**: October 14, 2026  
-**Author & Lead Architect**: [Sanskar Yadav](https://sanskarin.github.io/about) (`sanskarIN <sanskarin@outlook.in>`)  
+**Author & Lead Architect**: [Sanskar](https://sanskarin.github.io/about) (`sanskarIN <sanskarin@outlook.in>`)  
 **Official Repository**: [https://github.com/sanskarIN/LangSteps](https://github.com/sanskarIN/LangSteps)  
 **Live Platform**: [https://sanskarin.github.io/LangSteps](https://sanskarin.github.io/LangSteps)
 
@@ -61,7 +61,7 @@ Incomplete modules (Go, SQL, and C#) have been decoupled and safely relocated to
 
 ## 🌐 Official Sanskar Developer Ecosystem
 
-Connect with Sanskar Yadav and explore his open-source network:
+Connect with Sanskar and explore his open-source network:
 - 👤 **About Sanskar**: [https://sanskarin.github.io/about](https://sanskarin.github.io/about)
 - 📬 **Contact Hub**: [https://sanskarin.github.io/contact](https://sanskarin.github.io/contact)
 - 🚀 **Project Portfolio**: [https://sanskarin.github.io/projects](https://sanskarin.github.io/projects)
@@ -124,4 +124,4 @@ git push origin v1.0.0
 ---
 
 *LangSteps — The Ultimate Offline-First Polyglot Learning Platform.*  
-*Crafted with precision by Sanskar Yadav.*
+*Crafted with precision by Sanskar.*

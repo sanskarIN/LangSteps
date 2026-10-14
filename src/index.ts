@@ -1,7 +1,7 @@
 /**
  * LangSteps Application Core Entry Point
  * Exports all modules, engines, and utilities for modern TypeScript development.
- * @author Sanskar Yadav <sanskarin@outlook.in>
+ * @author Sanskar <sanskarin@outlook.in>
  * @license MIT
  */
 

@@ -2,7 +2,7 @@
  * LangSteps API Client
  * Type-safe HTTP client connecting client applications to the ASP.NET Core REST API backend.
  * Provides seamless offline fallbacks when running as a standalone static bundle.
- * @author Sanskar Yadav <sanskarin@outlook.in>
+ * @author Sanskar <sanskarin@outlook.in>
  */
 
 import {

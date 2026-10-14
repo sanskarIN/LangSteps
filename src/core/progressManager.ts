@@ -2,7 +2,7 @@
  * LangSteps Progress Manager
  * Handles local progress persistence, XP mechanics, level/rank calculation,
  * and JSON progress import/export.
- * @author Sanskar Yadav <sanskarin@outlook.in>
+ * @author Sanskar <sanskarin@outlook.in>
  */
 
 import { UserProgress, RankTier } from '../types/index.js';

@@ -1,13 +1,13 @@
 /**
  * LangSteps Developer Profile & Ecosystem Manager
  * Centralized registry for official social links, personal pages, and donation endpoints.
- * @author Sanskar Yadav <sanskarin@outlook.in>
+ * @author Sanskar <sanskarin@outlook.in>
  */
 
 import { DeveloperProfile } from '../types/index.js';
 
 export const OFFICIAL_PROFILE: DeveloperProfile = {
-  name: 'Sanskar Yadav',
+  name: 'Sanskar',
   handle: 'SanskarCodes',
   tagline: 'Full-Stack Developer, Open Source Creator & Engineering Educator',
   bio: 'Building LangSteps — a multi-language programming and software engineering mastery platform. Passionate about performant polyglot architectures, systems engineering, and interactive education.',

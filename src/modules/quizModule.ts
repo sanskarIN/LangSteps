@@ -2,7 +2,7 @@
  * LangSteps Quiz Module Controller
  * Provides complete quiz workflow, timer tracking, option selection,
  * evaluation, and review presentation in pure TypeScript.
- * @author Sanskar Yadav <sanskarin@outlook.in>
+ * @author Sanskar <sanskarin@outlook.in>
  */
 
 import { QuizQuestion, QuizSubmission, QuizResult } from '../types/index.js';

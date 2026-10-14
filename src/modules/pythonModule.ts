@@ -2,7 +2,7 @@
  * LangSteps Python Module Controller
  * Core curriculum manager, search indexing, category filtering,
  * and concept navigation in TypeScript.
- * @author Sanskar Yadav <sanskarin@outlook.in>
+ * @author Sanskar <sanskarin@outlook.in>
  */
 
 import { Concept } from '../types/index.js';

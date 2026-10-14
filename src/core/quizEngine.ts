@@ -2,7 +2,7 @@
  * LangSteps Quiz Engine
  * Robust quiz validation, scoring mechanics, tier classification,
  * and review generator.
- * @author Sanskar Yadav <sanskarin@outlook.in>
+ * @author Sanskar <sanskarin@outlook.in>
  */
 
 import { QuizQuestion, QuizSubmission, QuizResult, QuestionReview } from '../types/index.js';

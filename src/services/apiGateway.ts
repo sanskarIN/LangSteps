@@ -1,7 +1,7 @@
 /**
  * LangSteps Enterprise API Gateway
  * Connects frontend clients to ASP.NET Core backend endpoints with offline fallback caching
- * Author: Sanskar Yadav <sanskarin@outlook.in>
+ * Author: Sanskar <sanskarin@outlook.in>
  * Version: 1.0.0
  */
 

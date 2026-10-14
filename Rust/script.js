@@ -1,6 +1,6 @@
 /**
  * LangSteps — Rust Mastery Engine
- * Author: Sanskar Yadav (sanskarIN <sanskarin@outlook.in>)
+ * Author: Sanskar (sanskarIN <sanskarin@outlook.in>)
  * Comprehensive 35-concept systems curriculum, compiler diagnostics, and interactive playground runner.
  */
 
