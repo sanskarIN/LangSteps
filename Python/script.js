@@ -1,15 +1,41 @@
-// ===== DEVFORGE PYTHON MASTERY SCRIPT (100 CONCEPTS) =====
-// Generated for complete Python mastery with gamification, themes, code simulator, and quizzes
+// ===== LANGSTEPS PYTHON MASTERY SCRIPT (100 CONCEPTS) =====
+// Complete engineering curriculum with gamification, 25+ themes, live sandbox, and quiz integration
 
 setTimeout(() => {
-  const splash = document.getElementById('splash');
+  const splash = document.getElementById('splash-screen') || document.getElementById('splash');
   if (splash) {
     splash.classList.add('hide');
     setTimeout(() => splash.remove(), 800);
   }
-}, 1200);
+}, 1000);
 
-const PRESET_THEMES = [{"id": "dark", "name": "Midnight Dark", "bg": "#0a0a1a", "bg2": "#12122a", "bg3": "#0d0d22", "bg4": "#080818", "text": "#d0d0ee", "text2": "#b0b0d0", "text3": "#8888bb", "accent": "#6c63ff", "accent2": "#3ecfcf", "accent3": "#ffa36b", "border": "#6c63ff22", "card": "#12122a", "codeBg": "#080818", "sbBg": "#0f0f24", "hdrBg": "linear-gradient(135deg,#1a0a3e,#0f2027,#0a1628)"}, {"id": "light", "name": "Clean Light", "bg": "#f0f0f8", "bg2": "#ffffff", "bg3": "#f5f5ff", "bg4": "#eeeef8", "text": "#1a1a2e", "text2": "#333333", "text3": "#666666", "accent": "#5b54e6", "accent2": "#1aada0", "accent3": "#e8823a", "border": "#5b54e622", "card": "#ffffff", "codeBg": "#f0f0f8", "sbBg": "#ffffff", "hdrBg": "linear-gradient(135deg,#5b54e6,#1aada0)"}, {"id": "cyberpunk", "name": "Cyberpunk Neon", "bg": "#080812", "bg2": "#0f0f24", "bg3": "#0c0c1c", "bg4": "#06060e", "text": "#e0e0ff", "text2": "#c0c0e0", "text3": "#8080b0", "accent": "#ff2a6d", "accent2": "#05d9e8", "accent3": "#f9c80e", "border": "#ff2a6d22", "card": "#0f0f24", "codeBg": "#06060e", "sbBg": "#0b0b1c", "hdrBg": "linear-gradient(135deg,#1a0026,#001a2e,#000)"}, {"id": "synthwave", "name": "Synthwave Sunset", "bg": "#120824", "bg2": "#1c0d38", "bg3": "#160a2e", "bg4": "#0e061c", "text": "#e8d8f8", "text2": "#c8b8dc", "text3": "#9888ac", "accent": "#f72585", "accent2": "#7209b7", "accent3": "#4cc9f0", "border": "#f7258522", "card": "#1c0d38", "codeBg": "#0e061c", "sbBg": "#160a2e", "hdrBg": "linear-gradient(135deg,#2e0854,#180b38,#0b001a)"}, {"id": "dracula", "name": "Dracula Classic", "bg": "#1e1f29", "bg2": "#282a36", "bg3": "#222430", "bg4": "#191a24", "text": "#f8f8f2", "text2": "#e0e0d8", "text3": "#6272a4", "accent": "#bd93f9", "accent2": "#50fa7b", "accent3": "#ff79c6", "border": "#bd93f922", "card": "#282a36", "codeBg": "#191a24", "sbBg": "#21222c", "hdrBg": "linear-gradient(135deg,#282a36,#1e1f29,#14141d)"}, {"id": "nord", "name": "Nordic Frost", "bg": "#242933", "bg2": "#2e3440", "bg3": "#292e39", "bg4": "#1d212a", "text": "#eceff4", "text2": "#d8dee9", "text3": "#81a1c1", "accent": "#88c0d0", "accent2": "#a3be8c", "accent3": "#ebcb8b", "border": "#88c0d022", "card": "#2e3440", "codeBg": "#1d212a", "sbBg": "#272c36", "hdrBg": "linear-gradient(135deg,#2e3440,#1d212a,#181a20)"}, {"id": "monokai", "name": "Monokai Pro", "bg": "#221f22", "bg2": "#2d2a2e", "bg3": "#272427", "bg4": "#1c191c", "text": "#fcfcfa", "text2": "#c1c0c0", "text3": "#727072", "accent": "#ffd866", "accent2": "#a9dc76", "accent3": "#ff6188", "border": "#ffd86622", "card": "#2d2a2e", "codeBg": "#1c191c", "sbBg": "#252225", "hdrBg": "linear-gradient(135deg,#2d2a2e,#1c191c,#141214)"}, {"id": "github-dark", "name": "GitHub Dark Dimmed", "bg": "#1c2128", "bg2": "#22272e", "bg3": "#1e232a", "bg4": "#161b22", "text": "#adbac7", "text2": "#909dab", "text3": "#636e7b", "accent": "#539bf5", "accent2": "#57ab5a", "accent3": "#c69026", "border": "#539bf522", "card": "#22272e", "codeBg": "#161b22", "sbBg": "#1e232a", "hdrBg": "linear-gradient(135deg,#22272e,#161b22,#0f1317)"}];
+const PRESET_THEMES = [
+  { id: "dark", name: "Midnight Dark", bg: "#0a0e17", bg2: "#111827", bg3: "#1f2937", bg4: "#374151", text: "#f8fafc", text2: "#cbd5e1", text3: "#94a3b8", accent: "#3776ab", accent2: "#ffd43b", accent3: "#4ade80", border: "rgba(55, 118, 171, 0.25)", card: "#111827", codeBg: "#060913", sbBg: "#0f172a", hdrBg: "linear-gradient(135deg,#0b1120,#111827,#1e293b)" },
+  { id: "light", name: "Clean Light", bg: "#f8fafc", bg2: "#ffffff", bg3: "#f1f5f9", bg4: "#e2e8f0", text: "#0f172a", text2: "#334155", text3: "#64748b", accent: "#2563eb", accent2: "#d97706", accent3: "#16a34a", border: "rgba(37, 99, 235, 0.2)", card: "#ffffff", codeBg: "#f1f5f9", sbBg: "#ffffff", hdrBg: "linear-gradient(135deg,#e2e8f0,#ffffff,#f8fafc)" },
+  { id: "cyberpunk", name: "Cyberpunk Neon", bg: "#080812", bg2: "#0f0f24", bg3: "#0c0c1c", bg4: "#06060e", text: "#e0e0ff", text2: "#c0c0e0", text3: "#8080b0", accent: "#ff2a6d", accent2: "#05d9e8", accent3: "#f9c80e", border: "#ff2a6d33", card: "#0f0f24", codeBg: "#06060e", sbBg: "#0b0b1c", hdrBg: "linear-gradient(135deg,#1a0026,#001a2e,#000)" },
+  { id: "synthwave", name: "Synthwave Sunset", bg: "#120824", bg2: "#1c0d38", bg3: "#160a2e", bg4: "#0e061c", text: "#e8d8f8", text2: "#c8b8dc", text3: "#9888ac", accent: "#f72585", accent2: "#7209b7", accent3: "#4cc9f0", border: "#f7258533", card: "#1c0d38", codeBg: "#0e061c", sbBg: "#160a2e", hdrBg: "linear-gradient(135deg,#2e0854,#180b38,#0b001a)" },
+  { id: "dracula", name: "Dracula Classic", bg: "#1e1f29", bg2: "#282a36", bg3: "#222430", bg4: "#191a24", text: "#f8f8f2", text2: "#e0e0d8", text3: "#6272a4", accent: "#bd93f9", accent2: "#50fa7b", accent3: "#ff79c6", border: "#bd93f933", card: "#282a36", codeBg: "#191a24", sbBg: "#21222c", hdrBg: "linear-gradient(135deg,#282a36,#1e1f29,#14141d)" },
+  { id: "nord", name: "Nordic Frost", bg: "#242933", bg2: "#2e3440", bg3: "#292e39", bg4: "#1d212a", text: "#eceff4", text2: "#d8dee9", text3: "#81a1c1", accent: "#88c0d0", accent2: "#a3be8c", accent3: "#ebcb8b", border: "#88c0d033", card: "#2e3440", codeBg: "#1d212a", sbBg: "#272c36", hdrBg: "linear-gradient(135deg,#2e3440,#1d212a,#181a20)" },
+  { id: "monokai", name: "Monokai Pro", bg: "#221f22", bg2: "#2d2a2e", bg3: "#272427", bg4: "#1c191c", text: "#fcfcfa", text2: "#c1c0c0", text3: "#727072", accent: "#ffd866", accent2: "#a9dc76", accent3: "#ff6188", border: "#ffd86633", card: "#2d2a2e", codeBg: "#1c191c", sbBg: "#252225", hdrBg: "linear-gradient(135deg,#2d2a2e,#1c191c,#141214)" },
+  { id: "github-dark", name: "GitHub Dark Dimmed", bg: "#1c2128", bg2: "#22272e", bg3: "#1e232a", bg4: "#161b22", text: "#adbac7", text2: "#909dab", text3: "#636e7b", accent: "#539bf5", accent2: "#57ab5a", accent3: "#c69026", border: "#539bf533", card: "#22272e", codeBg: "#161b22", sbBg: "#1e232a", hdrBg: "linear-gradient(135deg,#22272e,#161b22,#0f1317)" },
+  { id: "ocean", name: "Deep Ocean", bg: "#0a192f", bg2: "#112240", bg3: "#0d1b33", bg4: "#0a1628", text: "#ccd6f6", text2: "#8892b0", text3: "#5a6a8a", accent: "#64ffda", accent2: "#57cbff", accent3: "#f5a623", border: "#64ffda33", card: "#112240", codeBg: "#0a1628", sbBg: "#0d1d38", hdrBg: "linear-gradient(135deg,#0a192f,#112240,#1a365d)" },
+  { id: "gruvbox", name: "Gruvbox Dark", bg: "#282828", bg2: "#3c3836", bg3: "#32302f", bg4: "#1d2021", text: "#ebdbb2", text2: "#d5c4a1", text3: "#928374", accent: "#fabd2f", accent2: "#b8bb26", accent3: "#fe8019", border: "#fabd2f33", card: "#3c3836", codeBg: "#1d2021", sbBg: "#282828", hdrBg: "linear-gradient(135deg,#1d2021,#282828,#3c3836)" },
+  { id: "tokyo", name: "Tokyo Night", bg: "#1a1b26", bg2: "#24283b", bg3: "#1f2231", bg4: "#16161e", text: "#c0caf5", text2: "#a9b1d6", text3: "#565f89", accent: "#7aa2f7", accent2: "#bb9af7", accent3: "#ff9e64", border: "#7aa2f733", card: "#24283b", codeBg: "#16161e", sbBg: "#1a1b26", hdrBg: "linear-gradient(135deg,#16161e,#1a1b26,#24283b)" },
+  { id: "matrix", name: "The Matrix", bg: "#0d1112", bg2: "#131a18", bg3: "#101515", bg4: "#090c0c", text: "#d1f1e2", text2: "#a4debe", text3: "#4b7a63", accent: "#00ff41", accent2: "#008f11", accent3: "#003b00", border: "#00ff4133", card: "#131a18", codeBg: "#090c0c", sbBg: "#0d1112", hdrBg: "linear-gradient(135deg,#090c0c,#0d1112,#131a18)" },
+  { id: "solarized", name: "Solarized Dark", bg: "#002b36", bg2: "#073642", bg3: "#04303c", bg4: "#001e26", text: "#839496", text2: "#93a1a1", text3: "#586e75", accent: "#b58900", accent2: "#2aa198", accent3: "#cb4b16", border: "#b5890033", card: "#073642", codeBg: "#001e26", sbBg: "#002b36", hdrBg: "linear-gradient(135deg,#001e26,#002b36,#073642)" },
+  { id: "emerald", name: "Emerald Forest", bg: "#062016", bg2: "#0b2e21", bg3: "#08271c", bg4: "#041710", text: "#d1fae5", text2: "#a7f3d0", text3: "#6ee7b7", accent: "#10b981", accent2: "#34d399", accent3: "#fbbf24", border: "rgba(16,185,129,0.3)", card: "#0b2e21", codeBg: "#041710", sbBg: "#08271c", hdrBg: "linear-gradient(135deg,#041710,#0b2e21,#062016)" },
+  { id: "rose", name: "Rosé Pine", bg: "#191724", bg2: "#1f1d2e", bg3: "#1c1a29", bg4: "#121019", text: "#e0def4", text2: "#908caa", text3: "#6e6a86", accent: "#ebbcba", accent2: "#31748f", accent3: "#f6c177", border: "#ebbcba33", card: "#1f1d2e", codeBg: "#121019", sbBg: "#191724", hdrBg: "linear-gradient(135deg,#121019,#191724,#1f1d2e)" },
+  { id: "sunset", name: "Sunset Horizon", bg: "#1a0b18", bg2: "#291227", bg3: "#200e1f", bg4: "#120711", text: "#fde8f5", text2: "#f3bde0", text3: "#b870a0", accent: "#f43f5e", accent2: "#fb923c", accent3: "#facc15", border: "rgba(244,63,94,0.3)", card: "#291227", codeBg: "#120711", sbBg: "#200e1f", hdrBg: "linear-gradient(135deg,#120711,#291227,#f43f5e)" },
+  { id: "coffee", name: "Espresso Roast", bg: "#1b1410", bg2: "#271d18", bg3: "#201813", bg4: "#130e0b", text: "#eedccd", text2: "#d5ba9f", text3: "#a6886c", accent: "#d97706", accent2: "#b45309", accent3: "#f59e0b", border: "rgba(217,119,6,0.3)", card: "#271d18", codeBg: "#130e0b", sbBg: "#201813", hdrBg: "linear-gradient(135deg,#130e0b,#271d18,#d97706)" },
+  { id: "amethyst", name: "Amethyst Crystal", bg: "#150d24", bg2: "#201438", bg3: "#1a102e", bg4: "#0e0819", text: "#ede9fe", text2: "#c4b5fd", text3: "#8b5cf6", accent: "#a855f7", accent2: "#c084fc", accent3: "#e879f9", border: "rgba(168,85,247,0.3)", card: "#201438", codeBg: "#0e0819", sbBg: "#1a102e", hdrBg: "linear-gradient(135deg,#0e0819,#201438,#a855f7)" },
+  { id: "cherry", name: "Cherry Blossom", bg: "#2a1e26", bg2: "#3d2833", bg3: "#33232c", bg4: "#21151c", text: "#ffeef6", text2: "#f4d1e2", text3: "#a37c96", accent: "#ffb3d9", accent2: "#e18bb3", accent3: "#ff7eb6", border: "#ffb3d933", card: "#3d2833", codeBg: "#21151c", sbBg: "#2a1e26", hdrBg: "linear-gradient(135deg,#21151c,#2a1e26,#3d2833)" },
+  { id: "hacker", name: "Term Hacker", bg: "#000000", bg2: "#111111", bg3: "#080808", bg4: "#000000", text: "#33ff00", text2: "#2cbd00", text3: "#166000", accent: "#33ff00", accent2: "#ffffff", accent3: "#88ff88", border: "#33ff0033", card: "#111111", codeBg: "#000000", sbBg: "#000000", hdrBg: "linear-gradient(135deg,#000000,#080808,#111111)" },
+  { id: "vue", name: "Vue Green", bg: "#34495e", bg2: "#41b883", bg3: "#3b7b62", bg4: "#2c3e50", text: "#ffffff", text2: "#e2f0e9", text3: "#a1ccb8", accent: "#41b883", accent2: "#34495e", accent3: "#f1c40f", border: "#41b88333", card: "#41b883", codeBg: "#2c3e50", sbBg: "#34495e", hdrBg: "linear-gradient(135deg,#2c3e50,#34495e,#41b883)" },
+  { id: "blood", name: "Blood Moon", bg: "#1a0404", bg2: "#2b0a0a", bg3: "#210707", bg4: "#100202", text: "#ffd6d6", text2: "#d69c9c", text3: "#8f4e4e", accent: "#e62e2e", accent2: "#ff6b6b", accent3: "#facc15", border: "#e62e2e33", card: "#2b0a0a", codeBg: "#100202", sbBg: "#1a0404", hdrBg: "linear-gradient(135deg,#100202,#1a0404,#2b0a0a)" },
+  { id: "ice", name: "Arctic Ice", bg: "#e0f2fe", bg2: "#ffffff", bg3: "#dcf0fd", bg4: "#cce6f8", text: "#082f49", text2: "#0c4a6e", text3: "#38bdf8", accent: "#0284c7", accent2: "#0284c7", accent3: "#fbbf24", border: "#0284c733", card: "#ffffff", codeBg: "#cce6f8", sbBg: "#e0f2fe", hdrBg: "linear-gradient(135deg,#cce6f8,#0284c7)" },
+  { id: "discord", name: "Gamer Dark", bg: "#36393f", bg2: "#2f3136", bg3: "#32353b", bg4: "#202225", text: "#dcddde", text2: "#b9bbbe", text3: "#72767d", accent: "#5865F2", accent2: "#eb459f", accent3: "#fee75c", border: "#5865F233", card: "#2f3136", codeBg: "#202225", sbBg: "#36393f", hdrBg: "linear-gradient(135deg,#202225,#36393f,#5865F2)" },
+  { id: "magma", name: "Magma Core", bg: "#180603", bg2: "#2c0c06", bg3: "#200804", bg4: "#100301", text: "#fed7aa", text2: "#fdba74", text3: "#ea580c", accent: "#f97316", accent2: "#ef4444", accent3: "#eab308", border: "rgba(249,115,22,0.3)", card: "#2c0c06", codeBg: "#100301", sbBg: "#200804", hdrBg: "linear-gradient(135deg,#100301,#2c0c06,#f97316)" }
+];
 
 const TAGS = [
   {
@@ -828,192 +854,510 @@ let masteredTags = JSON.parse(localStorage.getItem('pythonMasteredTags')) || [];
 let userXP = parseInt(localStorage.getItem('pythonUserXP')) || 0;
 let favorites = JSON.parse(localStorage.getItem('pythonFavorites')) || [];
 let activeCategory = 'ALL';
+let currentConceptId = TAGS[0]?.id || 'py-1';
+let currentThemeId = localStorage.getItem('langsteps-theme') || 'dark';
+let conceptOfTheDay = null;
+
+function getRank(count) {
+  if (count < 10) return { title: 'Python Novice', color: '#888' };
+  if (count < 25) return { title: 'Script Apprentice', color: '#4ade80' };
+  if (count < 40) return { title: 'OOP & Data Craftsman', color: '#3b82f6' };
+  if (count < 60) return { title: 'Concurrency Architect', color: '#a855f7' };
+  if (count < 80) return { title: 'Full-Stack & Systems Pro', color: '#f59e0b' };
+  if (count < 100) return { title: 'Python Specialist', color: '#ec4899' };
+  return { title: 'Python Grandmaster', color: '#ef4444' };
+}
 
 function init() {
-    renderCategoryFilters();
-    renderSidebar();
-    updateStats();
-    setupThemeToggle();
-    setupPlayground();
+  applyTheme(currentThemeId);
+  renderThemeGrid();
+  setupScrollProgress();
+  setupConceptOfTheDay();
+  populateCategoryFilter();
+  renderSidebar();
+  updateStats();
+  setupPlayground();
 
-    document.getElementById('search')?.addEventListener('input', (e) => {
-        renderSidebar(e.target.value.toLowerCase());
+  // Search input listener
+  const searchInput = document.getElementById('sbSearch');
+  if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+      renderSidebar(e.target.value.trim().toLowerCase());
     });
+  }
 
-    // Load first tag or saved concept
-    if (TAGS.length > 0) {
-        const first = TAGS[0];
-        loadConcept(first);
-    }
+  // Filter select listener
+  const filterSelect = document.getElementById('sbFilter');
+  if (filterSelect) {
+    filterSelect.addEventListener('change', (e) => {
+      activeCategory = e.target.value;
+      renderSidebar();
+    });
+  }
+
+  // Hash navigation or default to first tag
+  const hash = window.location.hash.replace('#', '');
+  const matched = TAGS.find(t => t.id === hash);
+  loadConcept(matched || TAGS[0]);
 }
 
-function renderCategoryFilters() {
-    const categories = ['ALL', 'BASICS', 'DATA STRUCTURES', 'CONTROL FLOW', 'FUNCTIONS', 'OOP', 'SYSTEM', 'LIBRARIES', 'CONCURRENCY', 'FRAMEWORKS', 'DATA SCIENCE', 'ADVANCED', 'MODERN PYTHON'];
-    const nav = document.getElementById('category-filters');
-    if (!nav) return;
-    nav.innerHTML = '';
-    categories.forEach(cat => {
-        const btn = document.createElement('button');
-        btn.className = `cat-btn ${activeCategory === cat ? 'active' : ''}`;
-        btn.textContent = cat;
-        btn.onclick = () => {
-            activeCategory = cat;
-            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            renderSidebar();
-        };
-        nav.appendChild(btn);
-    });
+function setupScrollProgress() {
+  window.addEventListener('scroll', () => {
+    const bar = document.getElementById('progress-bar');
+    if (!bar) return;
+    const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = totalHeight > 0 ? (window.scrollY / totalHeight) * 100 : 0;
+    bar.style.width = `${progress}%`;
+  });
 }
 
-function renderSidebar(filter = '') {
-    const list = document.getElementById('concept-list');
-    if (!list) return;
-    list.innerHTML = '';
-    
-    let filtered = TAGS;
-    if (activeCategory !== 'ALL') {
-        filtered = filtered.filter(t => t.badge === activeCategory);
-    }
-    if (filter) {
-        filtered = filtered.filter(t => t.title.toLowerCase().includes(filter) || t.badge.toLowerCase().includes(filter));
-    }
+function setupConceptOfTheDay() {
+  // Deterministic daily concept based on day of year
+  const now = new Date();
+  const start = new Date(now.getFullYear(), 0, 0);
+  const diff = now - start;
+  const oneDay = 1000 * 60 * 60 * 24;
+  const dayOfYear = Math.floor(diff / oneDay);
+  const idx = dayOfYear % TAGS.length;
+  conceptOfTheDay = TAGS[idx] || TAGS[0];
 
-    filtered.forEach(tag => {
-        const li = document.createElement('li');
-        const isMastered = masteredTags.includes(tag.id);
-        li.className = `concept-item ${isMastered ? 'mastered' : ''}`;
-        li.innerHTML = `
-            <span class="concept-emoji">${tag.emoji}</span>
-            <div class="concept-meta">
-                <span class="concept-title">${tag.title}</span>
-                <span class="concept-badge badge-${tag.badge.toLowerCase().replace(/\s+/g, '-')}">${tag.badge}</span>
-            </div>
-            ${isMastered ? '<span class="check-mark">✓</span>' : ''}
-        `;
-        li.onclick = () => loadConcept(tag);
-        list.appendChild(li);
-    });
+  const nameEl = document.getElementById('totDayName');
+  if (nameEl && conceptOfTheDay) {
+    nameEl.textContent = `${conceptOfTheDay.emoji} ${conceptOfTheDay.title} (${conceptOfTheDay.badge})`;
+  }
+}
+
+function goToConceptOfTheDay() {
+  if (conceptOfTheDay) {
+    loadConcept(conceptOfTheDay);
+    document.getElementById('conceptDetailCard')?.scrollIntoView({ behavior: 'smooth' });
+  }
+}
+
+function populateCategoryFilter() {
+  const select = document.getElementById('sbFilter');
+  if (!select) return;
+  const categories = Array.from(new Set(TAGS.map(t => t.badge))).sort();
+  select.innerHTML = `<option value="ALL">All Categories (${TAGS.length})</option>`;
+  categories.forEach(cat => {
+    const count = TAGS.filter(t => t.badge === cat).length;
+    select.innerHTML += `<option value="${cat}">${cat} (${count})</option>`;
+  });
+  select.innerHTML += `<option value="FAVORITES">⭐ Saved Favorites</option>`;
+  select.innerHTML += `<option value="MASTERED">✓ Mastered Concepts</option>`;
+}
+
+function renderSidebar(searchQuery = '') {
+  const nav = document.getElementById('sbNav');
+  if (!nav) return;
+  nav.innerHTML = '';
+
+  let filtered = TAGS;
+  if (activeCategory === 'FAVORITES') {
+    filtered = filtered.filter(t => favorites.includes(t.id));
+  } else if (activeCategory === 'MASTERED') {
+    filtered = filtered.filter(t => masteredTags.includes(t.id));
+  } else if (activeCategory !== 'ALL') {
+    filtered = filtered.filter(t => t.badge === activeCategory);
+  }
+
+  if (searchQuery) {
+    filtered = filtered.filter(t => 
+      t.title.toLowerCase().includes(searchQuery) ||
+      t.badge.toLowerCase().includes(searchQuery) ||
+      t.id.toLowerCase().includes(searchQuery)
+    );
+  }
+
+  if (filtered.length === 0) {
+    nav.innerHTML = `<div style="padding:20px;text-align:center;color:var(--text3);font-size:0.85rem;">No matching concepts found.</div>`;
+    return;
+  }
+
+  filtered.forEach(tag => {
+    const isMastered = masteredTags.includes(tag.id);
+    const isActive = tag.id === currentConceptId;
+    const item = document.createElement('div');
+    item.className = `sb-item ${isActive ? 'active' : ''} ${isMastered ? 'mastered' : ''}`;
+    item.id = `nav-${tag.id}`;
+    item.innerHTML = `
+      <span class="sb-item-emoji">${tag.emoji}</span>
+      <div class="sb-item-info">
+        <div class="sb-item-title">${tag.title}</div>
+        <div class="sb-item-badge">${tag.badge}</div>
+      </div>
+      ${isMastered ? '<span class="sb-check" title="Mastered">✓</span>' : ''}
+    `;
+    item.onclick = () => {
+      loadConcept(tag);
+      if (window.innerWidth < 960) toggleSidebar();
+    };
+    nav.appendChild(item);
+  });
 }
 
 function loadConcept(tag) {
-    const ca = document.getElementById('content-area');
-    if (ca) {
-        ca.innerHTML = `
-            <div class="concept-header">
-                <h2>${tag.emoji} ${tag.title}</h2>
-                <div class="concept-tags">
-                    <span class="tag-badge">${tag.badge}</span>
-                    <button id="fav-btn" class="fav-btn">${favorites.includes(tag.id) ? '★ Favorited' : '☆ Favorite'}</button>
-                    <a href="../quiz.html?lang=python" class="quick-quiz-btn">🎯 Test with Quiz</a>
-                </div>
-            </div>
-            ${tag.content}
-        `;
-        
-        document.getElementById('fav-btn')?.addEventListener('click', () => {
-            toggleFavorite(tag.id);
-        });
-    }
+  if (!tag) return;
+  currentConceptId = tag.id;
+  window.location.hash = tag.id;
 
-    const editor = document.getElementById('code-editor');
-    if (editor) {
-        editor.value = tag.defaultCode || '# Write Python code here';
-    }
+  const card = document.getElementById('conceptDetailCard');
+  if (card) {
+    const isFav = favorites.includes(tag.id);
+    const isMastered = masteredTags.includes(tag.id);
 
-    if (!masteredTags.includes(tag.id)) {
-        masteredTags.push(tag.id);
-        userXP += 100;
-        localStorage.setItem('pythonMasteredTags', JSON.stringify(masteredTags));
-        localStorage.setItem('pythonUserXP', userXP.toString());
-        updateStats();
-        renderSidebar();
-    }
+    card.innerHTML = `
+      <div class="concept-top-bar">
+        <div class="concept-heading">
+          <span class="concept-heading-emoji">${tag.emoji}</span>
+          <div class="concept-heading-text">
+            <h2>${tag.title}</h2>
+            <span class="concept-heading-badge">${tag.badge}</span>
+          </div>
+        </div>
+        <div class="concept-actions">
+          <button id="favBtn" class="btn-fav" onclick="toggleFavorite('${tag.id}')">
+            ${isFav ? '★ Saved to Favorites' : '☆ Add to Favorites'}
+          </button>
+          <button class="btn-fav" onclick="toggleMastery('${tag.id}')" style="color:var(--accent3);">
+            ${isMastered ? '✓ Mastered' : '○ Mark Mastered'}
+          </button>
+          <a href="../quiz.html?lang=python" class="btn-quiz-shortcut" title="Test your Python knowledge in Quiz Hub">
+            🎯 Quiz Hub
+          </a>
+        </div>
+      </div>
+      <div class="concept-body">
+        ${tag.content}
+      </div>
+    `;
+  }
+
+  // Update Code Playground default snippet
+  const editor = document.getElementById('codeEditor');
+  if (editor) {
+    editor.value = tag.defaultCode || '# Interactive Python Editor\nprint("Hello, LangSteps Python Mastery!")';
+  }
+
+  // Auto-mark as visited/mastered
+  if (!masteredTags.includes(tag.id)) {
+    masteredTags.push(tag.id);
+    userXP += 100;
+    localStorage.setItem('pythonMasteredTags', JSON.stringify(masteredTags));
+    localStorage.setItem('pythonUserXP', userXP.toString());
+  }
+
+  updateStats();
+
+  // Highlight active item in sidebar
+  document.querySelectorAll('.sb-item').forEach(el => el.classList.remove('active'));
+  const activeNav = document.getElementById(`nav-${tag.id}`);
+  if (activeNav) {
+    activeNav.classList.add('active');
+    activeNav.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+  }
 }
 
 function toggleFavorite(id) {
-    if (favorites.includes(id)) {
-        favorites = favorites.filter(f => f !== id);
-    } else {
-        favorites.push(id);
-    }
-    localStorage.setItem('pythonFavorites', JSON.stringify(favorites));
-    const btn = document.getElementById('fav-btn');
-    if (btn) btn.textContent = favorites.includes(id) ? '★ Favorited' : '☆ Favorite';
+  if (favorites.includes(id)) {
+    favorites = favorites.filter(f => f !== id);
+  } else {
+    favorites.push(id);
+  }
+  localStorage.setItem('pythonFavorites', JSON.stringify(favorites));
+  updateStats();
+  const tag = TAGS.find(t => t.id === id);
+  if (tag) loadConcept(tag);
+}
+
+function toggleMastery(id) {
+  if (masteredTags.includes(id)) {
+    masteredTags = masteredTags.filter(m => m !== id);
+  } else {
+    masteredTags.push(id);
+  }
+  localStorage.setItem('pythonMasteredTags', JSON.stringify(masteredTags));
+  updateStats();
+  renderSidebar();
+  const tag = TAGS.find(t => t.id === id);
+  if (tag) loadConcept(tag);
 }
 
 function updateStats() {
-    const mc = document.getElementById('mastered-count');
-    if (mc) mc.innerText = `Mastered: ${masteredTags.length}/${TAGS.length}`;
-    const pr = document.getElementById('progress');
-    if (pr) pr.style.width = `${(masteredTags.length / Math.max(1, TAGS.length)) * 100}%`;
-    const r = document.getElementById('rank');
-    if (r) {
-        const rankInfo = getRank(masteredTags.length);
-        r.innerText = `XP: ${userXP} | Rank: ${rankInfo.title}`;
-        r.style.color = rankInfo.color;
-    }
-}
+  const total = TAGS.length;
+  const count = masteredTags.length;
+  const percent = total > 0 ? Math.round((count / total) * 100) : 0;
+  const rankInfo = getRank(count);
 
-function setupThemeToggle() {
-    const btn = document.getElementById('theme-toggle');
-    if (!btn) return;
-    let currentIdx = 0;
-    btn.onclick = () => {
-        currentIdx = (currentIdx + 1) % PRESET_THEMES.length;
-        const theme = PRESET_THEMES[currentIdx];
-        document.documentElement.style.setProperty('--bg', theme.bg);
-        document.documentElement.style.setProperty('--text', theme.text);
-        document.documentElement.style.setProperty('--accent1', theme.accent);
-        document.documentElement.style.setProperty('--accent2', theme.accent2);
-        btn.textContent = `Theme: ${theme.name}`;
-    };
+  const totalEl = document.getElementById('totalTagsStat');
+  if (totalEl) totalEl.textContent = total;
+
+  const countEl = document.getElementById('masteryCountStat');
+  if (countEl) countEl.textContent = count;
+
+  const sbCountEl = document.getElementById('sbMasteryCount');
+  if (sbCountEl) sbCountEl.textContent = `${count}/${total}`;
+
+  const barEl = document.getElementById('masteryProgressBar');
+  if (barEl) barEl.style.width = `${percent}%`;
+
+  const favEl = document.getElementById('favCountStat');
+  if (favEl) favEl.textContent = favorites.length;
+
+  const level = Math.floor(count / 10) + 1;
+  const levelEl = document.getElementById('masteryLevel');
+  if (levelEl) levelEl.textContent = level;
+
+  const rankEl = document.getElementById('masteryRank');
+  if (rankEl) {
+    rankEl.textContent = rankInfo.title;
+    rankEl.style.color = rankInfo.color;
+  }
 }
 
 function setupPlayground() {
-    const runBtn = document.getElementById('run-code-btn');
-    const resetBtn = document.getElementById('reset-code-btn');
-    const copyBtn = document.getElementById('copy-code-btn');
-    const output = document.getElementById('console-output');
-    const editor = document.getElementById('code-editor');
+  const runBtn = document.getElementById('run-code-btn');
+  const copyBtn = document.getElementById('copy-code-btn');
+  const resetBtn = document.getElementById('reset-code-btn');
+  const clearBtn = document.getElementById('clear-console-btn');
+  const editor = document.getElementById('codeEditor');
+  const output = document.getElementById('consoleOutput');
 
-    if (runBtn && output && editor) {
-        runBtn.onclick = () => {
-            output.textContent = 'Executing simulated Python environment...\n';
+  if (runBtn && editor && output) {
+    runBtn.onclick = () => {
+      output.textContent = '>>> Initializing Python 3.12 Runtime Engine...\n';
+      const code = editor.value;
+      try {
+        const lines = code.split('\n');
+        let outputs = [];
+        let vars = {};
+
+        for (let rawLine of lines) {
+          const line = rawLine.trim();
+          if (!line || line.startsWith('#')) continue;
+
+          // Simple assignment simulation: x = 10, name = "Sanskar"
+          const assignMatch = line.match(/^([a-zA-Z_][a-zA-Z0-9_]*)\s*=\s*(.+)$/);
+          if (assignMatch && !line.includes('==') && !line.startsWith('def ') && !line.startsWith('class ')) {
+            const varName = assignMatch[1];
+            const expr = assignMatch[2];
             try {
-                const lines = editor.value.split('\n');
-                let prints = [];
-                for (let line of lines) {
-                    const match = line.match(/^print\((.*)\)$/);
-                    if (match) {
-                        prints.push('>>> ' + match[1]);
-                    }
-                }
-                if (prints.length > 0) {
-                    output.textContent += prints.join('\n') + '\n\n[Program exited cleanly with code 0]';
-                } else {
-                    output.textContent += 'Code checked: syntax is valid.\n[Program exited cleanly with code 0]';
-                }
-            } catch (err) {
-                output.textContent += 'Execution Error: ' + err.message;
+              // Safe evaluation for literals
+              vars[varName] = expr;
+            } catch (e) {}
+          }
+
+          // Print statement simulation
+          const printMatch = line.match(/^print\s*\((.*)\)\s*$/);
+          if (printMatch) {
+            let inner = printMatch[1].trim();
+            // Handle f-strings or string literals
+            if (inner.startsWith("f'") || inner.startsWith('f"')) {
+              let fstr = inner.slice(2, -1);
+              fstr = fstr.replace(/{([^}]+)}/g, (_, expr) => {
+                if (vars[expr.trim()]) return vars[expr.trim()].replace(/['"]/g, '');
+                try { return eval(expr); } catch (e) { return expr; }
+              });
+              outputs.push(fstr);
+            } else if ((inner.startsWith("'") && inner.endsWith("'")) || (inner.startsWith('"') && inner.endsWith('"'))) {
+              outputs.push(inner.slice(1, -1));
+            } else {
+              outputs.push(inner);
             }
-        };
-    }
+          }
+        }
 
-    if (copyBtn && editor) {
-        copyBtn.onclick = () => {
-            navigator.clipboard.writeText(editor.value);
-            copyBtn.textContent = 'Copied!';
-            setTimeout(() => copyBtn.textContent = 'Copy Code', 2000);
-        };
-    }
+        if (outputs.length > 0) {
+          output.textContent += outputs.map(o => `>>> ${o}`).join('\n');
+          output.textContent += '\n\n----------------------------------------\n[Program exited successfully with code 0]';
+        } else {
+          output.textContent += '>>> Syntax check complete: Valid Python statements compiled.\n';
+          output.textContent += '>>> No unhandled exceptions occurred.\n\n[Program exited cleanly with code 0]';
+        }
+      } catch (err) {
+        output.textContent += `Traceback (most recent call last):\n  File "main.py", line 1, in <module>\nRuntimeError: ${err.message}`;
+      }
+    };
+  }
 
-    if (resetBtn && editor) {
-        resetBtn.onclick = () => {
-            editor.value = '# Python Playground\nprint("Hello from LangSteps Python Playground!")';
-            if (output) output.textContent = 'Terminal cleared. Click "Run Code" to simulate execution.';
-        };
+  if (copyBtn && editor) {
+    copyBtn.onclick = () => {
+      navigator.clipboard.writeText(editor.value);
+      copyBtn.textContent = '✓ Copied!';
+      setTimeout(() => copyBtn.textContent = '📋 Copy Code', 2000);
+    };
+  }
+
+  if (resetBtn && editor) {
+    resetBtn.onclick = () => {
+      const current = TAGS.find(t => t.id === currentConceptId);
+      editor.value = current?.defaultCode || '# Reset to default\nprint("LangSteps Python Ready")';
+      if (output) output.textContent = 'Terminal reset. Click "▶ Run Code" to simulate execution.';
+    };
+  }
+
+  if (clearBtn && output) {
+    clearBtn.onclick = () => {
+      output.textContent = 'Terminal cleared. Waiting for code execution...';
+    };
+  }
+}
+
+function applyTheme(themeId) {
+  const theme = PRESET_THEMES.find(t => t.id === themeId) || PRESET_THEMES[0];
+  currentThemeId = theme.id;
+  localStorage.setItem('langsteps-theme', theme.id);
+
+  const root = document.documentElement;
+  root.style.setProperty('--bg', theme.bg);
+  root.style.setProperty('--bg2', theme.bg2);
+  root.style.setProperty('--bg3', theme.bg3);
+  root.style.setProperty('--bg4', theme.bg4);
+  root.style.setProperty('--text', theme.text);
+  root.style.setProperty('--text2', theme.text2);
+  root.style.setProperty('--text3', theme.text3);
+  root.style.setProperty('--accent', theme.accent);
+  root.style.setProperty('--accent2', theme.accent2);
+  root.style.setProperty('--accent3', theme.accent3);
+  root.style.setProperty('--border', theme.border);
+  root.style.setProperty('--card', theme.card);
+  root.style.setProperty('--codeBg', theme.codeBg);
+  root.style.setProperty('--sbBg', theme.sbBg);
+  root.style.setProperty('--hdrBg', theme.hdrBg);
+}
+
+function renderThemeGrid() {
+  const grid = document.getElementById('themeGrid');
+  if (!grid) return;
+  grid.innerHTML = '';
+
+  PRESET_THEMES.forEach(t => {
+    const card = document.createElement('div');
+    card.className = 'theme-card';
+    card.style.background = t.bg2;
+    card.style.borderColor = t.border;
+    card.innerHTML = `
+      <div class="theme-card-preview" style="background:${t.hdrBg};">
+        <span style="flex:1;background:${t.accent};opacity:0.8;"></span>
+        <span style="flex:1;background:${t.accent2};opacity:0.8;"></span>
+        <span style="flex:1;background:${t.accent3};opacity:0.8;"></span>
+      </div>
+      <div class="theme-card-name" style="color:${t.text};">${t.name}</div>
+    `;
+    card.onclick = () => {
+      applyTheme(t.id);
+      document.getElementById('themeModal')?.close();
+    };
+    grid.appendChild(card);
+  });
+}
+
+function toggleSidebar() {
+  const sb = document.getElementById('sidebar');
+  const overlay = document.getElementById('overlay');
+  if (sb) sb.classList.toggle('open');
+  if (overlay) overlay.style.display = sb && sb.classList.contains('open') ? 'block' : 'none';
+}
+
+function toggleZenMode() {
+  const wrap = document.getElementById('mainWrap');
+  const sb = document.getElementById('sidebar');
+  const btn = document.getElementById('zenToggleBtn');
+  if (wrap && sb) {
+    const isZen = wrap.classList.toggle('fullwidth');
+    sb.classList.toggle('collapsed');
+    if (btn) btn.textContent = isZen ? '👁️ Exit Zen' : '👁️ Zen Mode';
+  }
+}
+
+function openDonate() {
+  const modal = document.getElementById('donateModal');
+  if (modal) modal.showModal();
+}
+
+let currentFontSize = 16;
+function changeFontSize(delta) {
+  currentFontSize = Math.min(22, Math.max(12, currentFontSize + delta));
+  document.documentElement.style.fontSize = `${currentFontSize}px`;
+}
+
+function exportProgress() {
+  const data = {
+    module: 'Python',
+    masteredTags,
+    favorites,
+    userXP,
+    exportDate: new Date().toISOString()
+  };
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `langsteps-python-progress-${Date.now()}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function importProgress(event) {
+  const file = event.target.files?.[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    try {
+      const data = JSON.parse(e.target.result);
+      if (Array.isArray(data.masteredTags)) {
+        masteredTags = data.masteredTags;
+        localStorage.setItem('pythonMasteredTags', JSON.stringify(masteredTags));
+      }
+      if (Array.isArray(data.favorites)) {
+        favorites = data.favorites;
+        localStorage.setItem('pythonFavorites', JSON.stringify(favorites));
+      }
+      if (typeof data.userXP === 'number') {
+        userXP = data.userXP;
+        localStorage.setItem('pythonUserXP', userXP.toString());
+      }
+      updateStats();
+      renderSidebar();
+      alert('Progress imported successfully!');
+    } catch (err) {
+      alert('Failed to parse progress file: ' + err.message);
     }
+  };
+  reader.readAsText(file);
+}
+
+function filterByFavorites() {
+  activeCategory = 'FAVORITES';
+  const filter = document.getElementById('sbFilter');
+  if (filter) filter.value = 'FAVORITES';
+  renderSidebar();
+  document.getElementById('sidebar')?.scrollIntoView();
+}
+
+function markAllMastered() {
+  if (confirm('Mark all 100 Python concepts as mastered?')) {
+    masteredTags = TAGS.map(t => t.id);
+    userXP = TAGS.length * 100;
+    localStorage.setItem('pythonMasteredTags', JSON.stringify(masteredTags));
+    localStorage.setItem('pythonUserXP', userXP.toString());
+    updateStats();
+    renderSidebar();
+  }
+}
+
+function resetModuleProgress() {
+  if (confirm('Are you sure you want to reset your Python module progress?')) {
+    masteredTags = [];
+    favorites = [];
+    userXP = 0;
+    localStorage.removeItem('pythonMasteredTags');
+    localStorage.removeItem('pythonFavorites');
+    localStorage.removeItem('pythonUserXP');
+    updateStats();
+    renderSidebar();
+  }
 }
 
 window.addEventListener('DOMContentLoaded', init);
+

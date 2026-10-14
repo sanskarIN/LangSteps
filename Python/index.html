@@ -1,94 +1,261 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Python Mastery - Complete Curriculum (100 Concepts) | LangSteps</title>
-    <meta name="description" content="Complete Python Mastery on LangSteps. 100 in-depth concepts from core syntax to asyncio, Django, FastAPI, NumPy, Pandas, metaclasses, and optimization.">
-    <link rel="canonical" href="https://sanskarin.github.io/LangSteps/Python/index.html">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" href="../splash.png">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="robots" content="index, follow">
+  <meta name="description"
+    content="Complete Python Mastery Curriculum on LangSteps — 100 in-depth concepts from core syntax to asyncio, Django, FastAPI, NumPy, Pandas, metaclasses, and optimization with interactive playground and 25+ themes." />
+  <meta name="keywords"
+    content="Python tutorial, Python reference, Python mastery, asyncio, Django, FastAPI, NumPy, Pandas, LangSteps, Sanskar Developer" />
+  <meta name="author" content="Sanskar Yadav" />
+  <link rel="canonical" href="https://sanskarin.github.io/LangSteps/Python/index.html" />
+  <title>LangSteps — Python Mastery (100 Engineering Concepts) | Sanskar Developer</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&family=Fira+Code:wght@400;500;600&display=swap"
+    rel="stylesheet" />
+  <link rel="icon" type="image/png" href="../splash.png" />
+  <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
-    <div id="splash">Python Mastery 🐍</div>
-    
-    <header>
-        <div class="header-left">
-            <a href="../index.html" class="logo">🐍 Python Mastery</a>
-            <span class="subtitle">Complete Engineering Curriculum (100 Concepts)</span>
+  <!-- Splash Screen -->
+  <div id="splash-screen">
+    <div class="splash-logo" style="font-size: 72px; text-align: center; line-height: 1;">🐍</div>
+    <div class="splash-title">LangSteps — Python</div>
+    <div class="splash-subtitle">Initializing 100 Python Engineering Concepts...</div>
+  </div>
+
+  <!-- Page scroll progress -->
+  <div id="progress-bar" role="progressbar" aria-label="Page scroll progress" aria-valuemin="0" aria-valuemax="100"
+    aria-valuenow="0" style="position:fixed; top:0; left:0; height:3px; background:linear-gradient(90deg, #3776ab, #ffd43b); z-index:9999; width:0%; transition:width 0.1s;"></div>
+
+  <!-- Floating Navigation -->
+  <a href="../index.html" class="floating-home-btn" title="Back to LangSteps Hub">🏠</a>
+
+  <!-- Cross-Module Top Navigation Bar -->
+  <div class="cross-nav-bar">
+    <div class="cross-nav-links">
+      <a href="../HTML/index.html">📄 HTML</a>
+      <a href="../CSS/index.html">🎨 CSS</a>
+      <a href="../JavaScript/index.html">⚡ JavaScript</a>
+      <a href="../React/index.html">⚛️ React</a>
+      <a href="../Python/index.html" class="active">🐍 Python</a>
+      <a href="../TypeScript/index.html">🔷 TypeScript</a>
+      <a href="../Rust/index.html">🦀 Rust</a>
+      <a href="../Go/index.html">🐹 Go</a>
+      <a href="../SQL/index.html">🗄️ SQL</a>
+      <a href="../CSharp/index.html">🎯 C#</a>
+      <a href="../quiz.html?lang=python" class="quiz-pill">🎯 Python Quiz (20 Qs)</a>
+    </div>
+    <div style="display:flex; align-items:center; gap:8px;">
+      <button onclick="document.getElementById('themeModal').showModal()" class="theme-gallery-btn" style="background:rgba(255,255,255,0.06); border:1px solid var(--border); color:var(--text); padding:5px 12px; border-radius:8px; font-size:0.75rem; font-weight:700; cursor:pointer;">🎨 Themes</button>
+      <button onclick="openDonate()" class="top-donate-btn" style="background:linear-gradient(135deg, #f59e0b, #ef4444); color:#fff; border:none; padding:5px 12px; border-radius:8px; font-size:0.75rem; font-weight:700; cursor:pointer;">❤️ Donate</button>
+    </div>
+  </div>
+
+  <!-- SIDEBAR -->
+  <aside id="sidebar" role="complementary" aria-label="Python Concept navigation sidebar">
+    <div class="sb-head">
+      <div class="sb-logo-title">
+        <span style="font-size:1.6rem;">🐍</span>
+        <span>Python Mastery</span>
+      </div>
+      <button id="sbClose" class="sb-close" onclick="toggleSidebar()" aria-label="Close sidebar">✕</button>
+    </div>
+
+    <div class="sb-search-wrap">
+      <input type="search" id="sbSearch" placeholder="🔍 Search 100 concepts..." autocomplete="off" />
+    </div>
+
+    <select id="sbFilter" aria-label="Filter concepts by category">
+      <option value="ALL">All Categories (100)</option>
+    </select>
+
+    <nav id="sbNav" aria-label="Concept navigation list"></nav>
+
+    <div class="sb-progress-card">
+      <div class="sb-progress-header">
+        <span>🎓 Mastery Progress</span>
+        <span id="sbMasteryCount">0/100</span>
+      </div>
+      <div class="sb-progress-bar">
+        <div id="masteryProgressBar" class="sb-progress-fill"></div>
+      </div>
+    </div>
+
+    <div class="sb-footer">
+      <div class="sb-btn-row">
+        <button onclick="openDonate()" class="sb-action-btn" style="background:linear-gradient(135deg, rgba(245,158,11,0.2), rgba(239,68,68,0.2)); color:#f59e0b; border-color:rgba(245,158,11,0.4);">❤️ Donate</button>
+        <button onclick="document.getElementById('themeModal').showModal()" class="sb-action-btn">🎨 Themes</button>
+      </div>
+      <div class="sb-btn-row">
+        <button onclick="changeFontSize(-1)" class="sb-action-btn" title="Decrease font size">A-</button>
+        <button onclick="changeFontSize(1)" class="sb-action-btn" title="Increase font size">A+</button>
+        <button onclick="exportProgress()" class="sb-action-btn" title="Export Progress">📤 Export</button>
+        <button onclick="document.getElementById('importInput').click()" class="sb-action-btn" title="Import Progress">📥 Import</button>
+        <input type="file" id="importInput" style="display:none" accept=".json" onchange="importProgress(event)">
+      </div>
+    </div>
+  </aside>
+
+  <!-- OVERLAY (for mobile) -->
+  <div id="overlay" onclick="toggleSidebar()" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); backdrop-filter:blur(4px); z-index:940;"></div>
+
+  <!-- MAIN WRAPPER -->
+  <main id="mainWrap" role="main">
+    <div style="padding: 12px 24px 0; display:flex; justify-content:space-between; align-items:center;">
+      <button id="sbOpen" onclick="toggleSidebar()" style="background:rgba(255,255,255,0.05); border:1px solid var(--border); color:var(--text); padding:8px 14px; border-radius:8px; cursor:pointer; font-weight:700;">☰ Menu</button>
+      <div class="social-cluster-nav" style="display:inline-flex; gap:12px; align-items:center;">
+        <a href="https://www.youtube.com/@sanskarIN" target="_blank" style="color:var(--text3); transition:color 0.2s;" title="YouTube"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.5 12 3.5 12 3.5s-7.505 0-9.377.55a3.016 3.016 0 0 0-2.122 2.136C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.55 9.376.55 9.376.55s7.505 0 9.377-.55a3.016 3.016 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+        <a href="https://github.com/sanskarIN" target="_blank" style="color:var(--text3); transition:color 0.2s;" title="GitHub"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></a>
+        <a href="https://www.linkedin.com/in/sanskarIN" target="_blank" style="color:var(--text3); transition:color 0.2s;" title="LinkedIn"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+        <a href="https://www.x.com/Sanskar_in" target="_blank" style="color:var(--text3); transition:color 0.2s;" title="X"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+      </div>
+    </div>
+
+    <div class="content-inner">
+      <!-- HEADER -->
+      <header class="module-header">
+        <div class="hdr-top">
+          <div class="hdr-brand">
+            <div class="hdr-brand-icon">🐍</div>
+            <div class="hdr-titles">
+              <h1>Deep Dive into Python Mastery</h1>
+              <p>100 Advanced Engineering Concepts Explained In-Depth with Interactive Sandbox & Quizzes — by Sanskar</p>
+            </div>
+          </div>
         </div>
-        
-        <nav class="cross-module">
-            <a href="../HTML/index.html">HTML</a>
-            <a href="../CSS/index.html">CSS</a>
-            <a href="../JavaScript/index.html">JS</a>
-            <a href="../React/index.html">React</a>
-            <a href="../Python/index.html" class="active">Python</a>
-            <a href="../TypeScript/index.html">TypeScript</a>
-            <a href="../Rust/index.html">Rust</a>
-            <a href="../Go/index.html">Go</a>
-            <a href="../SQL/index.html">SQL</a>
-            <a href="../CSharp/index.html">C#</a>
-            <a href="../quiz.html?lang=python" class="quiz-link">🎯 Quiz Hub</a>
-            <a href="../index.html">🏠 Home</a>
-        </nav>
-        
-        <button id="theme-toggle" class="theme-btn">🎨 Themes</button>
-    </header>
 
-    <div class="category-bar" id="category-filters">
-        <!-- Rendered dynamically by script.js -->
+        <div class="hdr-stats-grid">
+          <div class="stat-box"><span class="stat-box-val" id="totalTagsStat">100</span><span class="stat-box-lbl">Concepts</span></div>
+          <div class="stat-box"><span class="stat-box-val" id="masteryLevel">1</span><span class="stat-box-lbl">Level</span></div>
+          <div class="stat-box"><span class="stat-box-val" id="masteryCountStat">0</span><span class="stat-box-lbl">Mastered</span></div>
+          <div class="stat-box" onclick="filterByFavorites()" style="cursor:pointer;" title="Click to view favorites"><span class="stat-box-val" id="favCountStat">0</span><span class="stat-box-lbl">Favorites</span></div>
+          <div class="stat-box"><span class="stat-box-val" id="readTime">45</span><span class="stat-box-lbl">Min Read</span></div>
+          <div class="stat-box"><span class="stat-box-val" id="masteryRank" style="color:var(--accent2); font-size:1.1rem;">Novice</span><span class="stat-box-lbl">Rank</span></div>
+          <div class="stat-box" onclick="openDonate()" style="cursor:pointer; background:linear-gradient(135deg, rgba(245,158,11,0.15), rgba(239,68,68,0.15));"><span class="stat-box-val" style="color:#ef4444;">❤️</span><span class="stat-box-lbl" style="color:var(--text); font-weight:700;">Donate</span></div>
+        </div>
+
+        <!-- Concept of the Day -->
+        <div id="totDayCard">
+          <div>
+            <div class="tot-day-title">🌟 Concept of the Day</div>
+            <h3 id="totDayName" class="tot-day-name">Loading...</h3>
+          </div>
+          <button id="totDayBtn" class="tot-day-btn" onclick="goToConceptOfTheDay()">Go to Concept ➔</button>
+        </div>
+      </header>
+
+      <!-- Action Pills Row -->
+      <div class="action-pills-row">
+        <a href="../quiz.html?lang=python" class="action-pill gold">🎯 Take Python Quiz (20 Qs)</a>
+        <button onclick="toggleZenMode()" class="action-pill" id="zenToggleBtn">👁️ Zen Mode</button>
+        <button onclick="document.getElementById('themeModal').showModal()" class="action-pill">🎨 25+ Themes</button>
+        <button onclick="window.print()" class="action-pill">🖨️ Save as PDF</button>
+        <button onclick="markAllMastered()" class="action-pill">✓ Complete All</button>
+        <button onclick="resetModuleProgress()" class="action-pill">↺ Reset Progress</button>
+      </div>
+
+      <!-- ACTIVE CONCEPT CARD -->
+      <div id="conceptDetailCard">
+        <!-- Content dynamically injected here -->
+      </div>
+
+      <!-- PLAYGROUND -->
+      <div id="playground">
+        <div class="pg-header">
+          <h3>💻 Interactive Python Sandbox & Terminal Simulator</h3>
+          <div class="pg-controls">
+            <button id="run-code-btn" class="pg-btn primary">▶ Run Code</button>
+            <button id="copy-code-btn" class="pg-btn">📋 Copy Code</button>
+            <button id="reset-code-btn" class="pg-btn">↺ Reset Code</button>
+            <button id="clear-console-btn" class="pg-btn">🧹 Clear Terminal</button>
+          </div>
+        </div>
+        <textarea id="codeEditor" spellcheck="false" placeholder="Write or test Python code here..."></textarea>
+        <div class="console-box">
+          <div class="console-box-hdr">SIMULATED PYTHON 3.12 INTERPRETER OUTPUT</div>
+          <pre id="consoleOutput">Click "▶ Run Code" above to simulate program execution.</pre>
+        </div>
+      </div>
+
+      <!-- SITE FOOTER -->
+      <footer id="siteFooter" style="background:var(--bg2); border:1px solid var(--border); border-radius:16px; margin-top:40px; padding:36px; text-align:left;">
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:32px; margin-bottom:28px;">
+          <div>
+            <h3 style="margin:0 0 10px; color:var(--text); font-size:1.15rem;">🚀 LangSteps — Python</h3>
+            <p style="color:var(--text3); font-size:0.85rem; line-height:1.6; margin:0 0 16px;">
+              Designed and built by Sanskar Yadav. Complete engineering curricula with interactive sandboxes, verified quizzes, and enterprise toolchains.
+            </p>
+            <div style="display:flex; gap:10px;">
+              <a href="https://github.com/sanskarIN" target="_blank" style="color:var(--text2); text-decoration:none; font-weight:600; font-size:0.8rem; padding:6px 10px; background:var(--bg3); border-radius:6px;">GitHub</a>
+              <a href="https://www.youtube.com/@sanskarIN" target="_blank" style="color:var(--text2); text-decoration:none; font-weight:600; font-size:0.8rem; padding:6px 10px; background:var(--bg3); border-radius:6px;">YouTube</a>
+              <a href="https://www.x.com/Sanskar_in" target="_blank" style="color:var(--text2); text-decoration:none; font-weight:600; font-size:0.8rem; padding:6px 10px; background:var(--bg3); border-radius:6px;">Twitter</a>
+            </div>
+          </div>
+          <div>
+            <h4 style="margin:0 0 12px; color:var(--text); font-size:0.95rem;">📬 Contact & Support</h4>
+            <p style="margin:4px 0; font-size:0.82rem; color:var(--text3);"><a href="mailto:sanskarin@outlook.in">sanskarin@outlook.in</a></p>
+            <p style="margin:4px 0; font-size:0.82rem; color:var(--text3);"><a href="mailto:sanskarin.business@gmail.com">sanskarin.business@gmail.com</a></p>
+            <p style="margin:4px 0; font-size:0.82rem; color:var(--text3);"><a href="mailto:supportramsandesh@gmail.com">supportramsandesh@gmail.com</a></p>
+          </div>
+          <div>
+            <h4 style="margin:0 0 12px; color:var(--text); font-size:0.95rem;">🌐 Explore Modules</h4>
+            <div style="display:flex; flex-direction:column; gap:6px; font-size:0.82rem;">
+              <a href="../HTML/index.html">📄 HTML Mastery (100 Tags)</a>
+              <a href="../CSS/index.html">🎨 CSS Mastery (100 Properties)</a>
+              <a href="../JavaScript/index.html">⚡ JavaScript Mastery</a>
+              <a href="../quiz.html">🎯 Master Quiz Hub (10 Languages)</a>
+            </div>
+          </div>
+          <div>
+            <h4 style="margin:0 0 12px; color:var(--text); font-size:0.95rem;">💖 Support & Merch</h4>
+            <div style="display:flex; flex-direction:column; gap:6px; font-size:0.82rem;">
+              <a href="https://www.buymeacoffee.com/sanskarIN" target="_blank">☕ Buy Me a Coffee</a>
+              <a href="https://sanskarIN.gumroad.com" target="_blank">📚 Gumroad Store</a>
+              <a href="javascript:void(0)" onclick="openDonate()">❤️ Donate Direct</a>
+            </div>
+          </div>
+        </div>
+        <div style="border-top:1px solid var(--border); padding-top:16px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; font-size:0.78rem; color:var(--text3);">
+          <span>&copy; 2026 Sanskar Yadav — All Rights Reserved. Built for developers worldwide.</span>
+          <span>Repository: <a href="https://github.com/sanskarIN/LangSteps" target="_blank">github.com/sanskarIN/LangSteps</a></span>
+        </div>
+      </footer>
     </div>
-    
-    <div class="container">
-        <aside id="sidebar">
-            <input type="text" id="search" placeholder="Search 100 Python concepts...">
-            <ul id="concept-list"></ul>
-        </aside>
-        
-        <main id="main-content">
-            <div id="hero">
-                <h1>Welcome to Python Mastery</h1>
-                <p>From fundamental syntax and data structures to asyncio, web frameworks, scientific computing, and CPython internals.</p>
-                <div class="stats">
-                    <span id="mastered-count" class="stat-pill">Mastered: 0/100</span>
-                    <span id="rank" class="stat-pill">Rank: Novice</span>
-                    <div class="progress-bar"><div id="progress"></div></div>
-                    <a href="../quiz.html?lang=python" class="quick-quiz-btn">🎯 Test Your Python Skills in Quiz Hub</a>
-                </div>
-            </div>
+  </main>
 
-            <div id="content-area">
-                <!-- Concept content injected dynamically -->
-            </div>
-
-            <div id="playground">
-                <div class="playground-header">
-                    <h3>💻 Interactive Python Code Playground</h3>
-                    <div class="playground-actions">
-                        <button id="run-code-btn" class="pg-btn pg-btn-primary">▶ Run Code</button>
-                        <button id="copy-code-btn" class="pg-btn">📋 Copy Code</button>
-                        <button id="reset-code-btn" class="pg-btn">↺ Reset</button>
-                    </div>
-                </div>
-                <textarea id="code-editor" placeholder="Write or test python code here..."></textarea>
-                <div class="console-panel">
-                    <div class="console-header">SIMULATED PYTHON TERMINAL OUTPUT</div>
-                    <pre id="console-output">Click "Run Code" to simulate execution.</pre>
-                </div>
-            </div>
-        </main>
+  <!-- THEME MODAL (25+ PRESET THEMES) -->
+  <dialog id="themeModal">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+      <h2 style="margin:0; font-size:1.4rem;">🎨 Theme Gallery (25+ Presets)</h2>
+      <button onclick="document.getElementById('themeModal').close()" style="background:none; border:none; color:var(--text); font-size:1.3rem; cursor:pointer;">✕</button>
     </div>
+    <p style="color:var(--text3); font-size:0.85rem; margin:0 0 16px;">Select a color scheme to instantly transform your learning environment:</p>
+    <div class="theme-grid" id="themeGrid">
+      <!-- Injected by script.js -->
+    </div>
+  </dialog>
 
-    <footer>
-        <p>&copy; 2026 sanskarIN. LangSteps Open Source Engineering Platform. All rights reserved.</p>
-        <p>Links: <a href="about.html">About</a> | <a href="developer.html">Developer</a> | <a href="privacy.html">Privacy</a> | <a href="support.html">Support</a> | <a href="terms.html">Terms</a> | <a href="thanks.html">Thanks</a> | <a href="../quiz.html">Quiz Hub</a></p>
-        <p>GitHub: <a href="https://www.github.com/sanskarIN">sanskarIN</a> | Twitter: <a href="https://x.com/Sanskar_in">@Sanskar_in</a> | YouTube: @sanskarIN | LinkedIn: sanskarIN</p>
-        <p>Business Inquiries: <a href="mailto:sanskarin@outlook.in">sanskarin@outlook.in</a> &bull; <a href="mailto:sanskarin.business@gmail.com">sanskarin.business@gmail.com</a> &bull; Support: <a href="mailto:supportramsandesh@gmail.com">supportramsandesh@gmail.com</a></p>
-        <p><a href="https://sanskarIN.gumroad.com">Gumroad Store</a> &bull; <a href="https://www.buymeacoffee.com/sanskarIN">Buy Me a Coffee</a></p>
-    </footer>
+  <!-- DONATE MODAL -->
+  <dialog id="donateModal" style="margin:auto; padding:28px; background:var(--bg2); color:var(--text); border:1px solid var(--border); border-radius:16px; max-width:440px; width:90%; text-align:center;">
+    <h3 style="margin:0 0 8px; font-size:1.4rem; color:var(--accent2);">❤️ Support Sanskar Developer</h3>
+    <p style="font-size:0.88rem; color:var(--text2); line-height:1.5; margin:0 0 16px;">
+      If you enjoy LangSteps and appreciate free, high-quality open source education, consider supporting this project!
+    </p>
+    <div style="background:var(--bg3); padding:14px; border-radius:10px; margin-bottom:16px; font-size:0.85rem; text-align:left;">
+      <p style="margin:4px 0;"><strong>UPI / Support:</strong> supportramsandesh@gmail.com</p>
+      <p style="margin:4px 0;"><strong>Developer Email:</strong> sanskarin@outlook.in</p>
+      <p style="margin:4px 0;"><strong>Buy Me a Coffee:</strong> <a href="https://www.buymeacoffee.com/sanskarIN" target="_blank" style="color:var(--accent2);">buymeacoffee.com/sanskarIN</a></p>
+    </div>
+    <button onclick="document.getElementById('donateModal').close()" style="background:var(--accent); color:#fff; border:none; padding:10px 24px; border-radius:8px; font-weight:700; cursor:pointer;">Close</button>
+  </dialog>
 
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
