@@ -91,6 +91,46 @@ const TAGS = [
     "emoji": "\ud83d\udd00",
     "defaultCode": "import re\ntext = 'User Sanskar with id #4092'\nif (match := re.search(r'#(\\d+)', text)):\n    user_id = match.group(1)\n    print(f'Found user ID: {user_id}')",
     "content": "<h3>\ud83d\udccc Deep Dive: Control Flow & Walrus Operator</h3><p>The assignment expression operator (<code>:=</code>), introduced in PEP 572, allows variable assignment inside expressions (while-loops, if-statements, comprehensions).</p><h4>\u2699\ufe0f Under the Hood</h4><p>The walrus operator evaluates the right-hand side, binds the value to the variable name in the enclosing scope, and returns the value to the outer expression without creating an extra bytecode instruction block.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Use the walrus operator when checking expensive computations or regex matches to avoid computing them twice.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\">sample_data = ['apple', 'banana', 'kiwi', 'strawberry']\nlong_names = [w for w in sample_data if (n := len(w)) > 5]\nprint('Words with length > 5:', long_names)</code></pre>"
+  },
+  {
+    "id": "py-11",
+    "title": "While Loops & Loop Else Clause",
+    "badge": "CONTROL FLOW",
+    "emoji": "\ud83d\udd01",
+    "defaultCode": "target = 42\nnum = 1\nwhile num <= 50:\n    if num == target:\n        print(f'Found target {target}!')\n        break\n    num += 1\nelse:\n    print('Target not found in range!')",
+    "content": "<h3>\ud83d\udccc Deep Dive: While Loops & The Else Clause</h3><p>While loops repeatedly execute a block of code as long as a condition evaluates to True. In Python, loops can also have an optional <code>else</code> block.</p><h4>\u2699\ufe0f Under the Hood</h4><p>The <code>else</code> block attached to a loop executes ONLY if the loop completes normally without encountering a <code>break</code> statement. This eliminates the need for temporary boolean flags like <code>found = False</code>.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Think of loop-else as 'no-break': 'execute this code if no break occurred inside the loop'.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\"># Prime number check with loop else\nval = 29\nfor i in range(2, int(val ** 0.5) + 1):\n    if val % i == 0:\n        print(f'{val} is not prime')\n        break\nelse:\n    print(f'{val} is prime!')</code></pre>"
+  },
+  {
+    "id": "py-12",
+    "title": "For Loops, range() & enumerate()",
+    "badge": "CONTROL FLOW",
+    "emoji": "\ud83d\udd22",
+    "defaultCode": "stack = ['HTML', 'CSS', 'JavaScript', 'Python']\nfor idx, tech in enumerate(stack, start=1):\n    print(f'{idx}. {tech}')\n# Step through range\nfor n in range(0, 20, 5):\n    print(n, end=' ')  # 0 5 10 15",
+    "content": "<h3>\ud83d\udccc Deep Dive: For Loops & Iteration Protocols</h3><p>Python's <code>for</code> loop is a 'for-each' construct that iterates directly over any iterable object implementing the <code>__iter__()</code> or <code>__getitem__()</code> protocol.</p><h4>\u2699\ufe0f Under the Hood</h4><p>The loop requests an iterator using <code>iter(obj)</code>, then repeatedly calls <code>next(iterator)</code> in bytecode until a <code>StopIteration</code> exception is raised and quietly caught.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Never use <code>for i in range(len(items)):</code> when you need both index and element. Always use <code>enumerate(items)</code>.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\"># Parallel iteration with zip()\nnames = ['Alice', 'Bob', 'Charlie']\nscores = [95, 88, 92]\nfor name, score in zip(names, scores):\n    print(f'{name}: {score}')</code></pre>"
+  },
+  {
+    "id": "py-13",
+    "title": "Functions, Default Arguments & Scope (LEGB)",
+    "badge": "FUNCTIONS",
+    "emoji": "\ud83d\udee0\ufe0f",
+    "defaultCode": "def create_user(username, role='Developer', *, verified=False):\n    return {'user': username, 'role': role, 'active': verified}\n\nprint(create_user('Sanskar', verified=True))",
+    "content": "<h3>\ud83d\udccc Deep Dive: Functions & LEGB Scope</h3><p>Functions are first-class citizens in Python. Names are resolved using the LEGB rule: Local, Enclosing, Global, and Built-in scopes.</p><h4>\u2699\ufe0f Under the Hood</h4><p>Default argument expressions are evaluated once when the function is defined, NOT at execution time. This is why using mutable defaults (like <code>def f(x=[])</code>) causes state leakage across calls.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Always use <code>None</code> as the default value for mutable arguments (lists, dicts), and initialize inside the function body: <code>if items is None: items = []</code>.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\">def append_to(element, target=None):\n    if target is None:\n        target = []\n    target.append(element)\n    return target\nprint(append_to(1))\nprint(append_to(2))  # Fresh list each time!</code></pre>"
+  },
+  {
+    "id": "py-14",
+    "title": "Arbitrary Arguments: *args & **kwargs",
+    "badge": "FUNCTIONS",
+    "emoji": "\ud83c\udf1f",
+    "defaultCode": "def log_event(event_name, *tags, level='INFO', **metadata):\n    print(f'[{level}] {event_name}')\n    print('Tags:', tags)\n    print('Metadata:', metadata)\n\nlog_event('UserLogin', 'auth', 'security', user_id=42, ip='192.168.1.1')",
+    "content": "<h3>\ud83d\udccc Deep Dive: *args and **kwargs</h3><p>The single asterisk <code>*args</code> collects excess positional arguments into a tuple. The double asterisk <code>**kwargs</code> collects excess keyword arguments into a dictionary.</p><h4>\u2699\ufe0f Under the Hood</h4><p>In function signatures, asterisks denote packing; in call sites, asterisks denote unpacking. A lone asterisk <code>*</code> enforces keyword-only arguments after it.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Use keyword-only arguments to make function calls explicit and self-documenting, especially for boolean flags.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\"># Forwarding arguments cleanly in wrappers\ndef audit_wrapper(func):\n    def inner(*args, **kwargs):\n        print(f'Calling {func.__name__}...')\n        return func(*args, **kwargs)\n    return inner</code></pre>"
+  },
+  {
+    "id": "py-15",
+    "title": "Lambda Functions & Higher-Order Functions",
+    "badge": "FUNCTIONS",
+    "emoji": "\u03bb",
+    "defaultCode": "products = [\n    {'name': 'Laptop', 'price': 1200},\n    {'name': 'Mouse', 'price': 25},\n    {'name': 'Monitor', 'price': 300}\n]\nsorted_products = sorted(products, key=lambda p: p['price'])\nprint(sorted_products)",
+    "content": "<h3>\ud83d\udccc Deep Dive: Lambda Expressions</h3><p>Lambdas are anonymous, single-expression inline functions defined with the <code>lambda</code> keyword. They cannot contain statements or annotations.</p><h4>\u2699\ufe0f Under the Hood</h4><p>A lambda creates a standard function object with <code>__name__ = '<lambda>'</code>. While useful for callbacks, list comprehensions and named functions often provide superior readability and stack traces.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>For dictionary sorting, prefer <code>operator.itemgetter('price')</code> over <code>lambda x: x['price']</code> for cleaner code and up to 2x faster execution in CPython.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\">from operator import itemgetter\nby_price = sorted(products, key=itemgetter('price'))\nprint('Fast sorted:', by_price)</code></pre>"
   }
 ];
 
