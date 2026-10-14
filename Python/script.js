@@ -611,6 +611,46 @@ const TAGS = [
     "emoji": "\ud83d\udcca",
     "defaultCode": "import pandas as pd\nsales = pd.DataFrame({\n    'Dept': ['Dev', 'Dev', 'Design', 'Design', 'Sales'],\n    'Revenue': [12000, 15000, 8000, 9500, 20000]\n})\nprint(sales.groupby('Dept')['Revenue'].agg(['count', 'mean', 'sum']))",
     "content": "<h3>\ud83d\udccc Deep Dive: GroupBy & Aggregations</h3><p>The GroupBy mechanism follows the Split-Apply-Combine paradigm: split data into groups by key, apply aggregation functions, and combine results.</p><h4>\u2699\ufe0f Under the Hood</h4><p>Pandas indexes group keys into contiguous categorical codes for accelerated C-level reductions.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Use <code>.agg({'colA': 'mean', 'colB': 'sum'})</code> to compute different aggregations on different columns simultaneously.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\">pivot = sales.pivot_table(values='Revenue', index='Dept', aggfunc='sum')\nprint('Pivot:\\n', pivot)</code></pre>"
+  },
+  {
+    "id": "py-76",
+    "title": "Data Visualization with Matplotlib",
+    "badge": "DATA SCIENCE",
+    "emoji": "\ud83d\udcc8",
+    "defaultCode": "import matplotlib.pyplot as plt\nx = [1, 2, 3, 4, 5]\ny = [10, 24, 36, 45, 60]\nfig, ax = plt.subplots(figsize=(6, 3))\nax.plot(x, y, marker='o', color='#6c63ff', label='Progress')\nax.set_title('Learning Curve')\nprint('Matplotlib figure created successfully')",
+    "content": "<h3>\ud83d\udccc Deep Dive: Matplotlib Architecture</h3><p>Matplotlib is the foundational 2D plotting library for Python, offering fine-grained programmatic control over every chart element.</p><h4>\u2699\ufe0f Under the Hood</h4><p>Follows the Object-Oriented API: a <code>Figure</code> canvas contains one or more <code>Axes</code> (subplots), which contain lines, text, ticks, and legends.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Always use the explicit object-oriented interface <code>fig, ax = plt.subplots()</code> rather than global <code>plt.plot()</code> commands.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\">ax.grid(True, linestyle='--', alpha=0.6)\nax.legend()\n# plt.savefig('curve.png')</code></pre>"
+  },
+  {
+    "id": "py-77",
+    "title": "Statistical Visualization with Seaborn",
+    "badge": "DATA SCIENCE",
+    "emoji": "\ud83c\udfa8",
+    "defaultCode": "# import seaborn as sns\n# tips = sns.load_dataset('tips')\n# sns.scatterplot(data=tips, x='total_bill', y='tip', hue='time')\nprint('Seaborn builds beautiful statistical themes and charts on top of Matplotlib')",
+    "content": "<h3>\ud83d\udccc Deep Dive: Statistical Visualization</h3><p>Seaborn provides high-level abstractions for plotting attractive statistical graphics closely integrated with Pandas DataFrames.</p><h4>\u2699\ufe0f Under the Hood</h4><p>Seaborn automatically performs statistical calculations (confidence intervals, regressions, distributions) before rendering onto Matplotlib Axes.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Use <code>sns.set_theme(style='darkgrid')</code> at application startup to instantly upgrade chart aesthetics across your entire project.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\"># Correlation matrix heatmap\n# sns.heatmap(df.corr(), annot=True, cmap='coolwarm')</code></pre>"
+  },
+  {
+    "id": "py-78",
+    "title": "Machine Learning Basics with Scikit-Learn",
+    "badge": "MACHINE LEARNING",
+    "emoji": "\ud83e\udd16",
+    "defaultCode": "from sklearn.linear_model import LinearRegression\nimport numpy as np\nX = np.array([[1], [2], [3], [4]])\ny = np.array([2, 4, 6, 8])\nmodel = LinearRegression().fit(X, y)\nprint('Prediction for 5:', model.predict([[5]])[0])",
+    "content": "<h3>\ud83d\udccc Deep Dive: Scikit-Learn Estimator API</h3><p>Scikit-learn is the standard Python machine learning library, offering consistent interfaces for classification, regression, clustering, and dimensional reduction.</p><h4>\u2699\ufe0f Under the Hood</h4><p>All estimators follow three standard methods: <code>fit(X, y)</code> to train, <code>predict(X)</code> to infer, and <code>transform(X)</code> to preprocess.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Always split data into train and test sets (<code>train_test_split</code>) before training to avoid evaluating models on training data.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\">from sklearn.model_selection import train_test_split\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25)</code></pre>"
+  },
+  {
+    "id": "py-79",
+    "title": "Feature Scaling & Machine Learning Pipelines",
+    "badge": "MACHINE LEARNING",
+    "emoji": "\u2699\ufe0f",
+    "defaultCode": "from sklearn.pipeline import Pipeline\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.linear_model import LogisticRegression\npipe = Pipeline([\n    ('scaler', StandardScaler()),\n    ('classifier', LogisticRegression())\n])\nprint('ML Pipeline assembled with scaling + classifier')",
+    "content": "<h3>\ud83d\udccc Deep Dive: ML Pipelines</h3><p>Scikit-Learn <code>Pipeline</code> chains data transformers and estimators into a single atomic model, preventing data leakage during cross-validation.</p><h4>\u2699\ufe0f Under the Hood</h4><p>Calling <code>pipeline.fit()</code> sequentially runs <code>fit_transform()</code> on all intermediate steps and <code>fit()</code> on the final estimator.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Fit transformers ONLY on training data; never fit on the test dataset to preserve true generalization metrics.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\"># Pipelines can be serialized atomically with joblib\nimport joblib\n# joblib.dump(pipe, 'model_v1.pkl')</code></pre>"
+  },
+  {
+    "id": "py-80",
+    "title": "Model Evaluation: Precision, Recall & Cross-Validation",
+    "badge": "MACHINE LEARNING",
+    "emoji": "\ud83c\udfaf",
+    "defaultCode": "from sklearn.metrics import classification_report\ny_true = [0, 1, 0, 1, 1]\ny_pred = [0, 1, 0, 0, 1]\nprint('Classification metrics:\\n', classification_report(y_true, y_pred))",
+    "content": "<h3>\ud83d\udccc Deep Dive: Machine Learning Metrics</h3><p>Accuracy can be misleading on imbalanced datasets. Model evaluation requires inspecting Precision, Recall, F1-Score, and ROC-AUC curves.</p><h4>\u2699\ufe0f Under the Hood</h4><p>K-Fold Cross-Validation partitions data into K folds, training on K-1 folds and validating on the remaining fold K times to measure model variance.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>For fraud detection or medical diagnosis where false negatives are dangerous, optimize for high Recall.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\">from sklearn.metrics import confusion_matrix\ncm = confusion_matrix(y_true, y_pred)\nprint('Confusion matrix:\\n', cm)</code></pre>"
   }
 ];
 
