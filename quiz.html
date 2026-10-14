@@ -4572,6 +4572,197 @@
                 showToast('Sharing not supported on this browser', '⚠️');
             }
         });
+
+        // ==========================================
+        // LEADERBOARD & LOCALSTORAGE FEATURES
+        // ==========================================
+        const STORAGE_KEY_BEST = 'quizBestScores';
+        const STORAGE_KEY_TOTAL = 'quizTotalCompleted';
+        const STORAGE_KEY_HISTORY = 'quizHistory';
+
+        // DOM Elements
+        const statTotalCompletedEl = document.getElementById('statTotalCompleted');
+        const statBestOverallEl = document.getElementById('statBestOverall');
+        const statAverageScoreEl = document.getElementById('statAverageScore');
+        const bestScoresGridEl = document.getElementById('bestScoresGrid');
+        const historyTableBodyEl = document.getElementById('historyTableBody');
+        const resetStatsBtn = document.getElementById('resetStatsBtn');
+
+        function getStoredBestScores() {
+            try {
+                return JSON.parse(localStorage.getItem(STORAGE_KEY_BEST)) || {};
+            } catch (e) {
+                return {};
+            }
+        }
+
+        function getStoredTotalCompleted() {
+            try {
+                return parseInt(localStorage.getItem(STORAGE_KEY_TOTAL), 10) || 0;
+            } catch (e) {
+                return 0;
+            }
+        }
+
+        function getStoredHistory() {
+            try {
+                return JSON.parse(localStorage.getItem(STORAGE_KEY_HISTORY)) || [];
+            } catch (e) {
+                return [];
+            }
+        }
+
+        function saveQuizResultToStorage(moduleId, moduleName, score, total, percentage, rating) {
+            const bestScores = getStoredBestScores();
+            let totalCompleted = getStoredTotalCompleted();
+            const history = getStoredHistory();
+
+            // Increment total
+            totalCompleted += 1;
+
+            // Update best score for language
+            const prevBest = bestScores[moduleId] !== undefined ? bestScores[moduleId] : -1;
+            if (score > prevBest) {
+                bestScores[moduleId] = score;
+            }
+
+            // Append to history
+            const now = new Date();
+            const dateStr = now.toLocaleDateString(undefined, {
+                month: 'short',
+                day: 'numeric',
+                year: 'numeric'
+            }) + ' ' + now.toLocaleTimeString(undefined, {
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+
+            history.unshift({
+                moduleId: moduleId,
+                language: moduleName,
+                score: score,
+                total: total,
+                percentage: percentage,
+                rating: rating,
+                date: dateStr
+            });
+
+            // Keep only latest 25 entries
+            if (history.length > 25) {
+                history.pop();
+            }
+
+            // Save to localStorage
+            try {
+                localStorage.setItem(STORAGE_KEY_BEST, JSON.stringify(bestScores));
+                localStorage.setItem(STORAGE_KEY_TOTAL, totalCompleted.toString());
+                localStorage.setItem(STORAGE_KEY_HISTORY, JSON.stringify(history));
+            } catch (e) {
+                console.warn('LocalStorage save failed:', e);
+            }
+
+            // Update UI
+            updateLeaderboardUI();
+        }
+
+        function updateLeaderboardUI() {
+            const bestScores = getStoredBestScores();
+            const totalCompleted = getStoredTotalCompleted();
+            const history = getStoredHistory();
+
+            // Summary stats
+            statTotalCompletedEl.textContent = totalCompleted;
+
+            let highestScore = 0;
+            let totalPctSum = 0;
+
+            if (history.length > 0) {
+                history.forEach(item => {
+                    if (item.score > highestScore) highestScore = item.score;
+                    totalPctSum += item.percentage;
+                });
+                statBestOverallEl.textContent = `${highestScore} / 20`;
+                const avg = Math.round(totalPctSum / history.length);
+                statAverageScoreEl.textContent = `${avg}%`;
+            } else {
+                statBestOverallEl.textContent = '0 / 20';
+                statAverageScoreEl.textContent = '0%';
+            }
+
+            // Best Scores By Module Grid
+            bestScoresGridEl.innerHTML = '';
+            MODULES.forEach(mod => {
+                const score = bestScores[mod.id];
+                const scoreDisplay = score !== undefined ? `${score} / ${mod.questionsCount}` : 'Not Taken';
+                const scoreClass = score !== undefined ? (score >= 16 ? 'var(--accent-success)' : (score >= 10 ? 'var(--accent2)' : 'var(--accent-warning)')) : 'var(--text-muted)';
+
+                const item = document.createElement('div');
+                item.className = 'best-score-item';
+                item.innerHTML = `
+                    <div class="best-score-lang">
+                        <span>${mod.icon}</span>
+                        <span>${mod.name}</span>
+                    </div>
+                    <span class="best-score-value" style="color: ${scoreClass};">${scoreDisplay}</span>
+                `;
+                bestScoresGridEl.appendChild(item);
+            });
+
+            // History Table
+            if (history.length === 0) {
+                historyTableBodyEl.innerHTML = `
+                    <tr>
+                        <td colspan="5" class="history-empty-msg">No quiz attempts recorded yet. Select a language above and take your first test!</td>
+                    </tr>
+                `;
+            } else {
+                historyTableBodyEl.innerHTML = '';
+                history.forEach(entry => {
+                    const tr = document.createElement('tr');
+                    const mod = MODULES.find(m => m.id === entry.moduleId);
+                    const icon = mod ? mod.icon : '📝';
+
+                    let ratingColor = '#94a3b8';
+                    if (entry.rating === 'Master') ratingColor = '#d8b4fe';
+                    else if (entry.rating === 'Expert') ratingColor = '#38bdf8';
+                    else if (entry.rating === 'Advanced') ratingColor = '#34d399';
+                    else if (entry.rating === 'Intermediate') ratingColor = '#fbbf24';
+
+                    tr.innerHTML = `
+                        <td style="font-weight: 600;">
+                            <span style="margin-right: 6px;">${icon}</span>${escapeHtml(entry.language)}
+                        </td>
+                        <td style="font-family: var(--font-code); font-weight: 600;">${entry.score} / ${entry.total}</td>
+                        <td>
+                            <span style="font-weight: 700; color: ${entry.percentage >= 70 ? 'var(--accent-success)' : (entry.percentage >= 50 ? 'var(--accent-warning)' : 'var(--accent-danger)')};">
+                                ${entry.percentage}%
+                            </span>
+                        </td>
+                        <td>
+                            <span style="display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 700; background: rgba(255,255,255,0.06); color: ${ratingColor};">
+                                ${escapeHtml(entry.rating)}
+                            </span>
+                        </td>
+                        <td style="color: var(--text-muted); font-size: 0.82rem;">${escapeHtml(entry.date)}</td>
+                    `;
+                    historyTableBodyEl.appendChild(tr);
+                });
+            }
+        }
+
+        // Reset stats button
+        resetStatsBtn.addEventListener('click', () => {
+            if (confirm("Are you sure you want to reset all your saved quiz best scores and history?")) {
+                localStorage.removeItem(STORAGE_KEY_BEST);
+                localStorage.removeItem(STORAGE_KEY_TOTAL);
+                localStorage.removeItem(STORAGE_KEY_HISTORY);
+                updateLeaderboardUI();
+                showToast('Leaderboard and statistics have been reset!', '🔄');
+            }
+        });
+
+        // Initialize leaderboard on startup
+        updateLeaderboardUI();
     </script>
 </body>
 </html>
