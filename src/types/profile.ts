@@ -11,7 +11,6 @@ export interface SocialLinks {
   bluesky: string;
   instagram: string;
   threads: string;
-  youtube: string;
 }
 
 export interface SupportLinks {
