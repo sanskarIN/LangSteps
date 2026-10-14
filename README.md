@@ -16,7 +16,7 @@ This platform requires **no compilation, no server setup, and no dependencies**.
 | ⚛️ **React Mastery** | 100+ Concepts | Live Sandbox, Hooks, Component Architecture | `#bf5af2` Violet |
 | 🐍 **Python Mastery** | 100 Concepts | Core to Asyncio, Django, FastAPI, NumPy, Pandas | `#3776ab` Blue & Yellow |
 | 🔷 **TypeScript Mastery** | 50 Concepts | Generics, Conditional Types, Utility Types | `#3178c6` TS Blue |
-| 🦀 **Rust Mastery** | 30 Concepts | Ownership, Borrowing, Lifetimes, Concurrency | `#dea584` Rust Orange |
+| 🦀 **Rust Mastery** | 35 Concepts | Ownership, Borrowing, Lifetimes, Concurrency, and Compiler Diagnostics | `#f74c00` Rust Orange |
 | 🐹 **Go Mastery** | 30 Concepts | Goroutines, Channels, Interfaces, Tooling | `#00add8` Go Cyan |
 | 🗄️ **SQL Mastery** | 30 Concepts | DDL, DML, Joins, Window Functions, ACID | `#336791` SQL Blue |
 | 🎯 **C# / .NET Mastery** | 40 Concepts | Modern C# 13, LINQ, Async/Await, ASP.NET Core | `#512bd4` .NET Purple |
@@ -72,7 +72,7 @@ This platform requires **no compilation, no server setup, and no dependencies**.
 | 🎬 **CSS Animations** | Live animation playground with presets, controls, and CSS output |
 | 🐍 **Python Module** | 100 concepts: OOP, asyncio, Django, FastAPI, SQLAlchemy, NumPy, Pandas, Scikit-learn, Metaclasses, Optimization |
 | 🔷 **TypeScript Module** | 50+ concepts: Types, Interfaces, Generics, Utility Types, Decorators |
-| 🦀 **Rust Module** | 30+ concepts: Ownership, Borrowing, Lifetimes, Traits, Concurrency |
+| 🦀 **Rust Module** | 35 concepts: Ownership, Borrowing, Lifetimes, Traits, Concurrency, and Compiler Diagnostics |
 | 🐹 **Go Module** | 30+ concepts: Goroutines, Channels, Interfaces, HTTP Server |
 | 🗄️ **SQL Module** | 30+ concepts: JOINs, Subqueries, Window Functions, Transactions |
 | 💜 **C# Module** | 40+ concepts: OOP, LINQ, ASP.NET Core, Entity Framework, Web API |
