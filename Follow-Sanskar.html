@@ -39,7 +39,6 @@
             --github: #24292e;
             --linkedin: #0077b5;
             --twitter: #000000;
-            --gumroad: #ff90e8;
             --razorpay: #02042b;
             
             /* Animation Timing */
@@ -475,11 +474,6 @@
         .card-twitter .platform-icon { background: var(--twitter); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
         .card-twitter .platform-btn { background: rgba(0,0,0,0.1); color: var(--text-primary); }
         .card-twitter:hover .platform-btn { background: var(--twitter); color: white; }
-
-        .card-gumroad .platform-icon { background: var(--gumroad); box-shadow: 0 8px 20px rgba(255,144,232,0.3); color: #000; }
-        .card-gumroad .platform-btn { background: rgba(255,144,232,0.2); color: #d642b8; }
-        [data-theme="dark"] .card-gumroad .platform-btn { color: #ff90e8; }
-        .card-gumroad:hover .platform-btn { background: var(--gumroad); color: black; }
 
         .card-razorpay .platform-icon { background: var(--razorpay); box-shadow: 0 8px 20px rgba(2,4,43,0.2); }
         .card-razorpay .platform-btn { background: rgba(2,4,43,0.1); color: var(--razorpay); }
@@ -1020,91 +1014,6 @@
                 </div>
                 <a href="https://x.com/SanskarCodes" target="_blank" class="platform-btn">Follow</a>
             </div>
-
-            <!-- Gumroad -->
-            <div class="platform-card card-gumroad">
-                <div class="platform-icon"><i class="fa-solid fa-store"></i></div>
-                <h3 class="platform-name">Gumroad</h3>
-                <p class="platform-desc">E-books, premium templates, and digital products.</p>
-                <div class="platform-stats">
-                    <span class="stat-number" data-target="10">0</span>
-                    <span class="stat-label">Products</span>
-                </div>
-                <a href="https://sanskarIN.gumroad.com" target="_blank" class="platform-btn">Visit Store</a>
-            </div>
-
-            <!-- Razorpay -->
-            <div class="platform-card card-razorpay">
-                <div class="platform-icon"><i class="fa-solid fa-credit-card"></i></div>
-                <h3 class="platform-name">Razorpay</h3>
-                <p class="platform-desc">Support my open-source work and content creation via donations.</p>
-                <div class="platform-stats">
-                    <span class="stat-number" data-target="100">0</span>
-                    <span class="stat-label">Supporters</span>
-                </div>
-                <a href="https://razorpay.me/@SanskarCodes" target="_blank" class="platform-btn">Donate Now</a>
-            </div>
-
-            <!-- Buy Me a Coffee -->
-            <div class="platform-card card-bmc">
-                <div class="platform-icon"><i class="fa-solid fa-mug-hot"></i></div>
-                <h3 class="platform-name">Buy Me a Coffee</h3>
-                <p class="platform-desc">Support my work with a virtual coffee donation.</p>
-                <div class="platform-stats">
-                    <span class="stat-number" data-target="100">0</span>
-                    <span class="stat-label">Supporters</span>
-                </div>
-                <a href="https://buymeacoffee.com/SanskarCodes" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:8px;background:linear-gradient(135deg, #FFDD00, #FF6600);color:#000;padding:10px 16px;border-radius:10px;text-decoration:none;font-weight:700;font-size:13px;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='scale(1.05)';this.style.boxShadow='0 4px 15px rgba(255,102,0,0.4)'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='none'">☕ Buy Me a Coffee</a>
-            </div>
-
-            <!-- Dev.to -->
-            <div class="platform-card card-devto">
-                <div class="platform-icon"><i class="fa-brands fa-dev"></i></div>
-                <h3 class="platform-name">Dev.to</h3>
-                <p class="platform-desc">In-depth technical articles, developer guides, and coding tutorials.</p>
-                <div class="platform-stats">
-                    <span class="stat-number" data-target="500">0</span>
-                    <span class="stat-label">Readers</span>
-                </div>
-                <a href="https://dev.to/SanskarCodes" target="_blank" class="platform-btn">Read on Dev.to</a>
-            </div>
-
-            <!-- Bluesky -->
-            <div class="platform-card card-bluesky">
-                <div class="platform-icon"><i class="fa-solid fa-cloud"></i></div>
-                <h3 class="platform-name">Bluesky</h3>
-                <p class="platform-desc">Decentralized social networking and open-web tech discussions.</p>
-                <div class="platform-stats">
-                    <span class="stat-number" data-target="300">0</span>
-                    <span class="stat-label">Followers</span>
-                </div>
-                <a href="https://SanskarCodes.bsky.social" target="_blank" class="platform-btn">Follow on Bluesky</a>
-            </div>
-
-            <!-- Instagram -->
-            <div class="platform-card card-instagram">
-                <div class="platform-icon"><i class="fa-brands fa-instagram"></i></div>
-                <h3 class="platform-name">Instagram</h3>
-                <p class="platform-desc">Developer life reels, UI design showcases, and quick tech carousels.</p>
-                <div class="platform-stats">
-                    <span class="stat-number" data-target="2500">0</span>
-                    <span class="stat-label">Followers</span>
-                </div>
-                <a href="https://instagram.com/SanskarCode" target="_blank" class="platform-btn">Follow on Instagram</a>
-            </div>
-
-            <!-- Threads -->
-            <div class="platform-card card-threads">
-                <div class="platform-icon"><i class="fa-brands fa-threads"></i></div>
-                <h3 class="platform-name">Threads</h3>
-                <p class="platform-desc">Quick coding thoughts, tech community discussions, and daily Q&As.</p>
-                <div class="platform-stats">
-                    <span class="stat-number" data-target="1000">0</span>
-                    <span class="stat-label">Followers</span>
-                </div>
-                <a href="https://threads.com/SanskarCode" target="_blank" class="platform-btn">Follow on Threads</a>
-            </div>
-        </div>
     </section>
 
     <!-- Featured Content -->
@@ -1209,7 +1118,6 @@
                 <button onclick="openDonate()" class="btn btn-primary"><i class="fa-solid fa-qrcode"></i> Scan QR to Donate</button>
                 <a href="https://razorpay.me/@SanskarCodes" target="_blank" class="btn btn-secondary"><i class="fa-solid fa-bolt"></i> Razorpay</a>
                 <a href="https://buymeacoffee.com/SanskarCodes" target="_blank" class="btn btn-secondary"><i class="fa-solid fa-mug-hot"></i> Buy Me a Coffee</a>
-                <a href="https://sanskarIN.gumroad.com" target="_blank" class="btn btn-secondary"><i class="fa-solid fa-store"></i> Gumroad</a>
             </div>
         </div>
     </section>
@@ -1264,7 +1172,6 @@
                         <a href="#" onclick="openDonate(); return false;">Donate</a>
                         <a href="https://razorpay.me/@SanskarCodes" target="_blank">Razorpay</a>
                         <a href="https://buymeacoffee.com/SanskarCodes" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:8px;background:linear-gradient(135deg, #FFDD00, #FF6600);color:#000;padding:10px 16px;border-radius:10px;text-decoration:none;font-weight:700;font-size:13px;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='scale(1.05)';this.style.boxShadow='0 4px 15px rgba(255,102,0,0.4)'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='none'">☕ Buy Me a Coffee</a>
-                        <a href="https://sanskarIN.gumroad.com" target="_blank">Store</a>
                         <a href="mailto:sanskarin@outlook.in">Email Direct</a>
                     </div>
                 </div>
