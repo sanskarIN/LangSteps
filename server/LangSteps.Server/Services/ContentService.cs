@@ -63,10 +63,10 @@ public class ContentService : IContentService
         new LanguageModule(
             "rust", "Rust", "rust", "🦀",
             "Rust Mastery",
-            "Ownership, Borrowing, Lifetimes, Concurrency, and Cargo Ecosystem",
+            "Ownership, Borrowing, Lifetimes, Concurrency, and Zero-Cost Systems Engineering",
             "Rust/index.html",
-            50, 6,
-            new[] { "Ownership", "Borrowing", "Traits", "Lifetimes", "Concurrency", "Unsafe" }
+            35, 6,
+            new[] { "Basics", "Ownership", "Modeling", "Functional", "Concurrency", "Systems" }
         ),
         new LanguageModule(
             "go", "Go", "go", "🐹",

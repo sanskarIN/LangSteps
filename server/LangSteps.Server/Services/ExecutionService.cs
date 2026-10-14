@@ -109,6 +109,24 @@ public class ExecutionService : IExecutionService
                     continue;
                 }
             }
+
+            // Rust println! or print! or eprintln!
+            if (language is "rust" or "rs")
+            {
+                if (line.StartsWith("//")) continue;
+
+                var match = Regex.Match(line, @"^(?:println!|print!|eprintln!)\s*\(\s*""(.*?)""(?:\s*,\s*(.*))?\s*\)\s*;?$");
+                if (match.Success)
+                {
+                    var formatStr = match.Groups[1].Value;
+                    var args = match.Groups[2].Success ? match.Groups[2].Value.Split(',').Select(a => a.Trim().Trim('"', '\'')).ToArray() : Array.Empty<string>();
+
+                    var argIndex = 0;
+                    formatStr = Regex.Replace(formatStr, @"\{(?::\?)?\}", m => argIndex < args.Length ? args[argIndex++] : m.Value);
+                    outputs.Add(formatStr);
+                    continue;
+                }
+            }
         }
 
         if (outputs.Count > 0)
