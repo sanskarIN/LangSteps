@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="canonical" href="https://sanskarin.github.io/LangSteps/Rust/index.html">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rust Mastery | LangSteps</title>
+    <meta name="description" content="Rust Mastery | LangSteps — Master the 35 core systems concepts of Rust: Ownership, Borrowing, Lifetimes, Concurrency, and Zero-Cost Abstractions with interactive compiler playground.">
+    <title>Rust Mastery | LangSteps — Systems Programming by Sanskar</title>
     <link rel="icon" href="../splash.png" type="image/png">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -13,90 +17,131 @@
     <!-- Splash Screen -->
     <div id="splash-screen">
         <div class="loader">
-            <img src="../splash.png" alt="LangSteps Logo">
-            <h2>Loading Rust Mastery...</h2>
+            <span style="font-size: 64px; line-height: 1; display: block; margin-bottom: 12px;">🦀</span>
+            <h2 style="font-size: 1.25rem; font-weight: 700;">Initializing Rust Mastery Engine...</h2>
+            <p style="font-size: 0.85rem; color: #94a3b8; margin-top: 4px;">Loading 35 Systems Concepts & Compiler Diagnostics</p>
         </div>
     </div>
 
-    <!-- Navigation -->
+    <!-- Cross-Module Top Navigation Bar -->
+    <div class="cross-nav-bar">
+        <div class="cross-nav-links">
+            <a href="../index.html">🏠 Hub</a>
+            <a href="../HTML/index.html">📄 HTML</a>
+            <a href="../CSS/index.html">🎨 CSS</a>
+            <a href="../JavaScript/index.html">⚡ JavaScript</a>
+            <a href="../React/index.html">⚛️ React</a>
+            <a href="../Python/index.html">🐍 Python</a>
+            <a href="../TypeScript/index.html">🔷 TypeScript</a>
+            <a href="index.html" class="active">🦀 Rust</a>
+            <a href="../Go/index.html">🐹 Go</a>
+            <a href="../SQL/index.html">🗄️ SQL</a>
+            <a href="../CSharp/index.html">🎯 C#</a>
+            <a href="../quiz.html?lang=rust" class="quiz-pill">🎯 Rust Quiz (20 Qs)</a>
+        </div>
+        <div style="display:flex; align-items:center; gap:8px;">
+            <a href="https://buymeacoffee.com/SanskarCodes" target="_blank" style="background:linear-gradient(135deg, #FFDD00, #FF6600); color:#000; padding:4px 10px; border-radius:6px; font-size:0.75rem; font-weight:700; text-decoration:none;">☕ BMC</a>
+            <a href="https://razorpay.me/@SanskarCodes" target="_blank" style="background:#02042b; border:1px solid rgba(255,255,255,0.2); color:#fff; padding:4px 10px; border-radius:6px; font-size:0.75rem; font-weight:700; text-decoration:none;">⚡ Razorpay</a>
+        </div>
+    </div>
+
+    <!-- Navigation Header -->
     <nav class="navbar">
-        <div class="logo">
+        <a href="../index.html" class="logo">
             <img src="../splash.png" alt="Logo">
             <span>LangSteps</span>
-        </div>
-        <ul class="nav-links">
-            <li><a href="../index.html">Home</a></li>
-            <li><a href="../HTML/index.html">HTML</a></li>
-            <li><a href="../CSS/index.html">CSS</a></li>
-            <li><a href="../JS/index.html">JS</a></li>
-            <li><a href="../React/index.html">React</a></li>
-            <li><a href="../Python/index.html">Python</a></li>
-            <li><a href="../TypeScript/index.html">TypeScript</a></li>
-            <li><a href="index.html" class="active">Rust</a></li>
-        </ul>
+        </a>
         <div class="nav-actions">
             <div class="search-box">
                 <i class="fas fa-search"></i>
-                <input type="text" id="global-search" placeholder="Search topics (Ctrl+K)...">
+                <input type="text" id="global-search" placeholder="Search 35 topics (Ctrl+K)...">
             </div>
             <div class="theme-selector">
-                <button id="theme-btn"><i class="fas fa-palette"></i></button>
+                <button id="theme-btn" title="Choose from 25 Themes"><i class="fas fa-palette"></i></button>
                 <div class="theme-dropdown" id="theme-dropdown"></div>
             </div>
             <div class="user-stats">
                 <span class="xp-badge"><i class="fas fa-star"></i> <span id="user-xp">0</span> XP</span>
-                <span class="rank-badge" id="user-rank">Novice</span>
+                <span class="rank-badge" id="user-rank">Crab Hatchling</span>
             </div>
         </div>
     </nav>
 
-    <!-- Main Content -->
+    <!-- Main Content Grid -->
     <main class="container">
         <!-- Sidebar -->
         <aside class="sidebar">
             <div class="sidebar-header">
-                <h3><i class="fa-brands fa-rust"></i> Rust Topics</h3>
-                <button id="toggle-favorites"><i class="far fa-heart"></i></button>
+                <h3><i class="fa-brands fa-rust"></i> Rust Curriculum</h3>
+                <button id="toggle-favorites" title="Toggle Favorite"><i class="far fa-heart"></i></button>
             </div>
             <div class="progress-container">
                 <div class="progress-bar" id="learning-progress"></div>
             </div>
-            <p class="progress-text"><span id="completed-count">0</span>/30 Completed</p>
+            <p class="progress-text"><span id="completed-count">0</span>/35 Mastered</p>
+
+            <!-- Category Filter Pills -->
+            <div class="category-bar">
+                <button class="cat-pill active" data-cat="all" onclick="setCategory('all')">All</button>
+                <button class="cat-pill" data-cat="basics" onclick="setCategory('basics')">Basics</button>
+                <button class="cat-pill" data-cat="ownership" onclick="setCategory('ownership')">Ownership</button>
+                <button class="cat-pill" data-cat="modeling" onclick="setCategory('modeling')">Modeling</button>
+                <button class="cat-pill" data-cat="functional" onclick="setCategory('functional')">Functional</button>
+                <button class="cat-pill" data-cat="concurrency" onclick="setCategory('concurrency')">Concurrency</button>
+                <button class="cat-pill" data-cat="systems" onclick="setCategory('systems')">Systems</button>
+            </div>
+
             <ul id="topic-list" class="topic-list">
-                <!-- Topics injected via JS -->
+                <!-- Injected via script.js -->
             </ul>
         </aside>
 
         <!-- Content Area -->
         <section class="content-area">
             <header class="hero">
-                <h1>Rust Mastery</h1>
-                <p>Systems programming with safety and speed</p>
+                <h1>🦀 Rust Systems Mastery</h1>
+                <p>Bare-metal performance, fearless concurrency, and compiler-guaranteed memory safety without garbage collection.</p>
             </header>
-            
+
+            <!-- Deep Dive Content Display -->
             <div id="content-display" class="content-display glass-panel">
                 <div class="placeholder">
                     <i class="fa-brands fa-rust placeholder-icon"></i>
                     <h2>Select a topic to start learning</h2>
-                    <p>Master memory safety, concurrency, and performance with Rust.</p>
+                    <p>Master memory safety, the borrow checker, algebraic data types, and systems programming.</p>
                 </div>
             </div>
 
-            <!-- Code Playground -->
+            <!-- Interactive Code Playground -->
             <div class="playground glass-panel">
                 <div class="playground-header">
-                    <h3><i class="fas fa-code"></i> Rust Playground</h3>
+                    <h3><i class="fas fa-terminal" style="color:var(--accent-color);"></i> Rust Compiler & Playground</h3>
                     <div class="playground-actions">
+                        <select id="code-samples" title="Load Sample Program">
+                            <option value="">-- Load Sample Code --</option>
+                            <option value="rust-1">Variables & Shadowing</option>
+                            <option value="rust-7">Ownership & Move Semantics</option>
+                            <option value="rust-8">References & Borrowing</option>
+                            <option value="rust-12">Structs & Methods (impl)</option>
+                            <option value="rust-13">Enums & Pattern Matching</option>
+                            <option value="rust-16">Result & ? Operator</option>
+                            <option value="rust-22">Iterators & Functional Pipelines</option>
+                            <option value="rust-26">Thread Spawning & Join</option>
+                            <option value="rust-27">Message Passing (mpsc)</option>
+                            <option value="rust-28">Shared State Mutex</option>
+                            <option value="rust-34">Unsafe Rust & Raw Pointers</option>
+                        </select>
                         <button id="run-code"><i class="fas fa-play"></i> Run Code</button>
-                        <button id="copy-code"><i class="far fa-copy"></i></button>
+                        <button id="reset-code" class="secondary" title="Reset Code"><i class="fas fa-undo"></i></button>
+                        <button id="copy-code" class="secondary" title="Copy Code"><i class="far fa-copy"></i></button>
                     </div>
                 </div>
                 <div class="editor-container">
-                    <textarea id="code-editor" spellcheck="false">// Write your Rust code here</textarea>
+                    <textarea id="code-editor" spellcheck="false">// Select a topic or sample to load code</textarea>
                 </div>
                 <div class="output-container">
-                    <div class="output-header">Output</div>
-                    <pre id="code-output">Output will appear here...</pre>
+                    <div class="output-header">Terminal Output & Diagnostics</div>
+                    <pre id="code-output">Click "Run Code" to compile and execute with compiler diagnostics...</pre>
                 </div>
             </div>
         </section>
@@ -104,27 +149,49 @@
 
     <!-- Footer -->
     <footer>
-        <div class="footer-content">
-            <div class="footer-social">
-                <a href="https://github.com/sanskarIN" target="_blank"><i class="fab fa-github"></i> GitHub: sanskarIN</a>
-                <a href="https://youtube.com/@sanskarIN" target="_blank"><i class="fab fa-youtube"></i> YouTube: @sanskarIN</a>
-                <a href="https://linkedin.com/in/SanskarCodes" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn: sanskarIN</a>
-                <a href="https://x.com/SanskarCodes" target="_blank"><i class="fab fa-twitter"></i> Twitter: @SanskarCodes</a>
+        <div class="footer-inner">
+            <div class="footer-col">
+                <h4>🦀 LangSteps — Rust Module</h4>
+                <p style="color: var(--text-secondary); font-size: 0.88rem; line-height: 1.6;">
+                    Curated and engineered by Sanskar Yadav. Designed for developers transitioning from C++, Python, Go, and TypeScript to high-performance systems engineering.
+                </p>
             </div>
-            <div class="footer-links">
-                <a href="about.html">About</a>
-                <a href="developer.html">Developer</a>
-                <a href="privacy.html">Privacy Policy</a>
-                <a href="support.html">Support</a>
-                <a href="terms.html">Terms</a>
-                <a href="thanks.html">Thanks</a>
+            <div class="footer-col">
+                <h5>Official Ecosystem</h5>
+                <ul>
+                    <li><a href="https://sanskarin.github.io/about" target="_blank">👤 About Sanskar</a></li>
+                    <li><a href="https://sanskarin.github.io/contact" target="_blank">📬 Contact Page</a></li>
+                    <li><a href="https://sanskarin.github.io/projects" target="_blank">🚀 All Projects</a></li>
+                    <li><a href="https://sanskarin.github.io/blog" target="_blank">✍️ Tech Blog</a></li>
+                    <li><a href="../quiz.html?lang=rust">🎯 Rust Quiz (20 Qs)</a></li>
+                </ul>
             </div>
-            <div class="footer-contact">
-                <p>Email: sanskarin@outlook.in | sanskarin.business@gmail.com | supportramsandesh@gmail.com</p>
-                <p>Support: <a href="https://sanskarIN.gumroad.com" target="_blank">Gumroad</a> | <a href="https://buymeacoffee.com/SanskarCodes" target="_blank">Buy Me a Coffee</a></p>
+            <div class="footer-col">
+                <h5>Community & Socials</h5>
+                <ul>
+                    <li><a href="https://linkedin.com/in/SanskarCodes" target="_blank">💼 LinkedIn @SanskarCodes</a></li>
+                    <li><a href="https://x.com/SanskarCodes" target="_blank">🐦 X @SanskarCodes</a></li>
+                    <li><a href="https://dev.to/SanskarCodes" target="_blank">📝 Dev.to @SanskarCodes</a></li>
+                    <li><a href="https://SanskarCodes.bsky.social" target="_blank">☁️ Bluesky @SanskarCodes</a></li>
+                    <li><a href="https://github.com/sanskarIN" target="_blank">🐙 GitHub @sanskarIN</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Support & Contribution</h5>
+                <ul>
+                    <li><a href="https://buymeacoffee.com/SanskarCodes" target="_blank" style="color:#FFDD00; font-weight:700;">☕ Buy Me a Coffee</a></li>
+                    <li><a href="https://razorpay.me/@SanskarCodes" target="_blank" style="color:var(--accent-color); font-weight:700;">⚡ Support via Razorpay</a></li>
+                    <li><a href="https://instagram.com/SanskarCode" target="_blank">📷 Instagram @SanskarCode</a></li>
+                    <li><a href="https://threads.com/SanskarCode" target="_blank">🧵 Threads @SanskarCode</a></li>
+                    <li><a href="mailto:sanskarin@outlook.in">📧 sanskarin@outlook.in</a></li>
+                </ul>
             </div>
         </div>
+        <div class="footer-bottom">
+            &copy; 2026 Sanskar Yadav. All Rights Reserved. | <a href="https://sanskarin.github.io/LangSteps" style="color:inherit;">LangSteps</a>
+        </div>
     </footer>
+
     <script src="script.js"></script>
 </body>
 </html>
