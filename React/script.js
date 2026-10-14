@@ -1397,16 +1397,32 @@ function toggleSidebar() {
     const isOpen = sidebar.classList.contains('open');
     if (isOpen) {
         sidebar.classList.remove('open');
-        if (overlay) overlay.classList.remove('active');
+        if (overlay) {
+            overlay.classList.remove('active');
+            overlay.classList.remove('show');
+        }
         document.body.classList.remove('sb-open');
         if (sbOpen) sbOpen.setAttribute('aria-expanded', 'false');
     } else {
         sidebar.classList.add('open');
-        if (overlay) overlay.classList.add('active');
+        if (overlay) {
+            overlay.classList.add('active');
+            overlay.classList.add('show');
+        }
         document.body.classList.add('sb-open');
         if (sbOpen) sbOpen.setAttribute('aria-expanded', 'true');
     }
 }
+
+// Global Escape listener to close drawer or modals
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        const sidebar = document.getElementById('sidebar');
+        if (sidebar && sidebar.classList.contains('open')) {
+            toggleSidebar();
+        }
+    }
+});
 
 // --- GREETING & USERNAME ---
 function getGreeting() {
@@ -1873,7 +1889,7 @@ function renderSidebar() {
             }
             el.onmouseover = () => { if (!el.classList.contains('active')) { el.style.background = 'var(--bg3)'; el.style.paddingLeft = '20px'; } };
             el.onmouseout = () => { if (!el.classList.contains('active')) { el.style.background = 'transparent'; el.style.paddingLeft = '16px'; } };
-            el.onclick = () => { loadTag(tag.id); if (window.innerWidth < 900) toggleSidebar(); };
+            el.onclick = () => { loadTag(tag.id); toggleSidebar(); };
             nav.appendChild(el);
         });
     });
