@@ -4,6 +4,9 @@
   "description": "A premium, state-of-the-art interactive learning platform designed to help developers master **HTML** (100+ tags), **CSS** (200 properties), **JavaScript** (100 concepts), and **React** (100+ concepts) through in-depth explanations, real-time code execution, live sandboxes, persistent progress tracking, gamified mechanics, quiz systems, and premium dark UI with 25+ themes.",
   "main": "index.js",
   "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "typecheck": "tsc --noEmit",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,9 +20,11 @@
   },
   "homepage": "https://github.com/Sanskar-in/LangSteps#readme",
   "devDependencies": {
+    "@types/node": "^26.6.5",
     "eslint": "^10.10.0",
     "htmlhint": "^1.9.2",
     "prettier": "^3.9.6",
-    "stylelint": "^17.15.0"
+    "stylelint": "^17.15.0",
+    "typescript": "^7.0.2"
   }
 }
