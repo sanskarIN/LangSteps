@@ -63,6 +63,6 @@ except Exception as e:
 # Push
 print("Pushing to repository...")
 # Using the remote provided in the prompt
-subprocess.run(["git", "remote", "set-url", "origin", "https://github.com/sanskarIN/Web-Development-Mastery.git"], check=True)
+subprocess.run(["git", "remote", "set-url", "origin", "https://github.com/sanskarIN/LangSteps.git"], check=True)
 subprocess.run(["git", "push", "origin", "main"], check=False)
 print("Done!")

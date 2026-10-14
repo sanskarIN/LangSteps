@@ -1,4 +1,4 @@
-# 🚀 LangSteps — Complete Web Development Learning Platform
+# 🚀 LangSteps — Polyglot & Multi-Language Software Engineering Platform
 
 ### HTML · CSS · JavaScript · React · Python · TypeScript · Rust · Go · SQL · C# — 1,000+ Concepts | By Sanskar Developer
 
@@ -43,9 +43,9 @@ This platform requires **no compilation, no server setup, and no dependencies**.
 |---------|-------------|
 | 📱 **PWA Support** | Install as native app, offline caching via service worker |
 | 🎮 **Code Playground** | Standalone HTML/CSS/JS editor with live preview |
-| 📝 **Interactive Quiz** | 10-question web dev quiz with scoring and timer |
+| 📝 **Interactive Quiz** | Multi-language coding quiz with scoring and timer |
 | 📊 **Progress Dashboard** | Visual XP tracking, streaks, and module progress |
-| 📖 **Searchable Glossary** | 50+ web dev terms with live search |
+| 📖 **Searchable Glossary** | 50+ software engineering terms with live search |
 | 📋 **Cheat Sheets** | Tabbed reference with copy-to-clipboard |
 | 🔖 **Bookmarks** | Save concepts to revisit later |
 | 📚 **Resources** | Curated learning resources and tools |

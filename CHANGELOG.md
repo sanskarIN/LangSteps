@@ -293,7 +293,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - **Framework Comparison** (`compare.html`) — React vs Vue vs Angular vs Svelte comparison tool
 - **Detailed Learning Roadmap** (`roadmap-detail.html`) — Interactive 4-phase learning path with localStorage progress
 - **Code Snippets Library** (`snippets.html`) — 40+ curated snippets with copy-to-clipboard
-- **Daily Web Dev Tips** (`tips.html`) — 30+ tips organized by category with random tip generator
+- **Daily Programming Tips** (`tips.html`) — 30+ tips organized by category with random tip generator
 
 ### 🔍 SEO
 - Added 4 new pages to sitemap.xml
@@ -306,12 +306,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### 🚀 Major New Features
 - **Progressive Web App (PWA)** — Full offline support with service worker caching, web app manifest for installability, and Apple touch icon support
 - **Standalone Code Playground** (`playground.html`) — Split-pane code editor with HTML/CSS/JS panels and live preview iframe
-- **Interactive Quiz Page** (`quiz.html`) — 10-question web dev quiz with score tracking, timer, progress bar, and localStorage best score
+- **Interactive Quiz Page** (`quiz.html`) — Multi-language quiz with score tracking, timer, progress bar, and localStorage best score
 - **Progress Dashboard** (`progress-dashboard.html`) — Learning analytics with XP tracking, module progress bars, streaks, and circular progress rings
-- **Searchable Glossary** (`glossary.html`) — 50+ web development terms with A-Z alphabetical listing, live search, and expandable definitions
+- **Searchable Glossary** (`glossary.html`) — 50+ software engineering terms with A-Z alphabetical listing, live search, and expandable definitions
 - **Cheat Sheet Reference** (`cheatsheet.html`) — Tabbed reference for HTML tags, CSS properties, JS methods, and React hooks with copy-to-clipboard
 - **Bookmarks System** (`bookmarks.html`) — localStorage-based bookmarking with search, filter, timestamps, and bulk management
-- **Resources Directory** (`resources.html`) — Curated web dev resources organized by Learning Platforms, Dev Tools, Design Resources, API References, and Community
+- **Resources Directory** (`resources.html`) — Curated programming resources organized by Learning Platforms, Dev Tools, Design Resources, API References, and Community
 - **Visual Changelog Viewer** (`changelog-viewer.html`) — Timeline-formatted release notes with color-coded badges and scroll animations
 
 ### 🛡️ Security & Compliance

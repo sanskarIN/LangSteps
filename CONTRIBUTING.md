@@ -102,8 +102,8 @@ LangSteps/
 ├── 404.html                # Root 404 page
 ├── Follow-Sanskar.html     # Follow developer page
 ├── playground.html         # Standalone code playground
-├── quiz.html               # Interactive web dev quiz
-├── glossary.html           # Searchable web dev glossary
+├── quiz.html               # Interactive multi-language quiz
+├── glossary.html           # Searchable programming glossary
 ├── cheatsheet.html         # Quick reference cheat sheets
 ├── resources.html          # Curated learning resources
 ├── bookmarks.html          # Bookmark management page
@@ -112,7 +112,7 @@ LangSteps/
 ├── compare.html            # Framework comparison tool
 ├── roadmap-detail.html     # Interactive learning roadmap
 ├── snippets.html           # Code snippets library
-├── tips.html               # Daily web dev tips
+├── tips.html               # Daily programming & architecture tips
 ├── tools.html              # Interactive CSS tools
 ├── interview.html          # Interview questions & answers
 ├── certificates.html       # Learning certificates & badges

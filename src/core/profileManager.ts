@@ -10,7 +10,7 @@ export const OFFICIAL_PROFILE: DeveloperProfile = {
   name: 'Sanskar Yadav',
   handle: 'SanskarCodes',
   tagline: 'Full-Stack Developer, Open Source Creator & Engineering Educator',
-  bio: 'Building LangSteps and modern web developer mastery curricula. Passionate about performant client architectures, systems engineering, and interactive education.',
+  bio: 'Building LangSteps — a multi-language programming and software engineering mastery platform. Passionate about performant polyglot architectures, systems engineering, and interactive education.',
   email: 'sanskarin@outlook.in',
   supportEmail: 'supportramsandesh@gmail.com',
   businessEmail: 'sanskarin.business@gmail.com',
