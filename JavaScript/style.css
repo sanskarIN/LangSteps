@@ -15,6 +15,12 @@
   --codeBg: #1e1e1e;
   --sbBg: #252526;
   --hdrBg: linear-gradient(135deg, #1e1e1e, #252526, #2d2d30);
+  --bg-secondary: #252526;
+  --bg-tertiary: #2d2d30;
+  --bg-quaternary: #3e3e42;
+  --text-muted: #808080;
+  --text-faint: #6e7681;
+  --accent-secondary: #f0db4f;
 }
 
 /* Theme Modal */
