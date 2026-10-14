@@ -3,65 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Python Mastery</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Python Mastery - Complete Curriculum (100 Concepts) | DevForge</title>
+    <meta name="description" content="Complete Python Mastery on DevForge. 100 in-depth concepts from core syntax to asyncio, Django, FastAPI, NumPy, Pandas, metaclasses, and optimization.">
+    <link rel="canonical" href="https://sanskarin.github.io/DevForge/Python/index.html">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="../splash.png">
     <link rel="stylesheet" href="style.css">
-    <style>
-        :root {
-            --bg: #0b0f19;
-            --text: #f8fafc;
-            --accent1: #6c63ff;
-            --accent2: #3ecfcf;
-        }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); }
-    </style>
 </head>
 <body>
-    <div id="splash">Python Mastery</div>
+    <div id="splash">Python Mastery 🐍</div>
+    
     <header>
-        <div class="logo">Python Mastery</div>
-        <div class="subtitle">From basics to advanced Python programming</div>
-        <button id="theme-toggle">Themes</button>
+        <div class="header-left">
+            <a href="../index.html" class="logo">🐍 Python Mastery</a>
+            <span class="subtitle">Complete Engineering Curriculum (100 Concepts)</span>
+        </div>
+        
         <nav class="cross-module">
             <a href="../HTML/index.html">HTML</a>
             <a href="../CSS/index.html">CSS</a>
             <a href="../JavaScript/index.html">JS</a>
             <a href="../React/index.html">React</a>
-            <a href="../Python/index.html">Python</a>
-            <a href="../index.html">Home</a>
+            <a href="../Python/index.html" class="active">Python</a>
+            <a href="../TypeScript/index.html">TypeScript</a>
+            <a href="../Rust/index.html">Rust</a>
+            <a href="../Go/index.html">Go</a>
+            <a href="../SQL/index.html">SQL</a>
+            <a href="../CSharp/index.html">C#</a>
+            <a href="../quiz.html?lang=python" class="quiz-link">🎯 Quiz Hub</a>
+            <a href="../index.html">🏠 Home</a>
         </nav>
+        
+        <button id="theme-toggle" class="theme-btn">🎨 Themes</button>
     </header>
+
+    <div class="category-bar" id="category-filters">
+        <!-- Rendered dynamically by script.js -->
+    </div>
     
     <div class="container">
         <aside id="sidebar">
-            <input type="text" id="search" placeholder="Search concepts...">
+            <input type="text" id="search" placeholder="Search 100 Python concepts...">
             <ul id="concept-list"></ul>
         </aside>
         
         <main id="main-content">
             <div id="hero">
                 <h1>Welcome to Python Mastery</h1>
-                <p>Master Python with interactive examples and deep dives.</p>
+                <p>From fundamental syntax and data structures to asyncio, web frameworks, scientific computing, and CPython internals.</p>
                 <div class="stats">
-                    <span id="mastered-count">Mastered: 0/30</span>
-                    <span id="rank">Rank: Novice</span>
+                    <span id="mastered-count" class="stat-pill">Mastered: 0/100</span>
+                    <span id="rank" class="stat-pill">Rank: Novice</span>
                     <div class="progress-bar"><div id="progress"></div></div>
+                    <a href="../quiz.html?lang=python" class="quick-quiz-btn">🎯 Test Your Python Skills in Quiz Hub</a>
                 </div>
             </div>
-            <div id="content-area"></div>
+
+            <div id="content-area">
+                <!-- Concept content injected dynamically -->
+            </div>
+
             <div id="playground">
-                <h3>Code Playground</h3>
-                <textarea id="code-editor" placeholder="Write python code here..."></textarea>
+                <div class="playground-header">
+                    <h3>💻 Interactive Python Code Playground</h3>
+                    <div class="playground-actions">
+                        <button id="run-code-btn" class="pg-btn pg-btn-primary">▶ Run Code</button>
+                        <button id="copy-code-btn" class="pg-btn">📋 Copy Code</button>
+                        <button id="reset-code-btn" class="pg-btn">↺ Reset</button>
+                    </div>
+                </div>
+                <textarea id="code-editor" placeholder="Write or test python code here..."></textarea>
+                <div class="console-panel">
+                    <div class="console-header">SIMULATED PYTHON TERMINAL OUTPUT</div>
+                    <pre id="console-output">Click "Run Code" to simulate execution.</pre>
+                </div>
             </div>
         </main>
     </div>
 
     <footer>
-        <p>&copy; 2026 sanskarIN. Links: <a href="about.html">About</a> | <a href="developer.html">Developer</a> | <a href="privacy.html">Privacy</a> | <a href="support.html">Support</a> | <a href="terms.html">Terms</a></p>
-        <p>GitHub: sanskarIN | YouTube: @sanskarIN | LinkedIn: sanskarIN | Twitter: @Sanskar_in</p>
-        <p>Emails: sanskarin@outlook.in, sanskarin.business@gmail.com, supportramsandesh@gmail.com</p>
-        <p><a href="https://sanskarIN.gumroad.com">Gumroad</a> | <a href="https://www.buymeacoffee.com/sanskarIN">Buy me a coffee</a></p>
+        <p>&copy; 2026 sanskarIN. DevForge Open Source Engineering Platform. All rights reserved.</p>
+        <p>Links: <a href="about.html">About</a> | <a href="developer.html">Developer</a> | <a href="privacy.html">Privacy</a> | <a href="support.html">Support</a> | <a href="terms.html">Terms</a> | <a href="thanks.html">Thanks</a> | <a href="../quiz.html">Quiz Hub</a></p>
+        <p>GitHub: <a href="https://www.github.com/sanskarIN">sanskarIN</a> | Twitter: <a href="https://x.com/Sanskar_in">@Sanskar_in</a> | YouTube: @sanskarIN | LinkedIn: sanskarIN</p>
+        <p>Business Inquiries: <a href="mailto:sanskarin@outlook.in">sanskarin@outlook.in</a> &bull; <a href="mailto:sanskarin.business@gmail.com">sanskarin.business@gmail.com</a> &bull; Support: <a href="mailto:supportramsandesh@gmail.com">supportramsandesh@gmail.com</a></p>
+        <p><a href="https://sanskarIN.gumroad.com">Gumroad Store</a> &bull; <a href="https://www.buymeacoffee.com/sanskarIN">Buy Me a Coffee</a></p>
     </footer>
 
     <script src="script.js"></script>
