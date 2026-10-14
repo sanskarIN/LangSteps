@@ -96,12 +96,16 @@ The project does not rely on bundlers (Webpack, Vite, Rollup) or runtime environ
 
 ### 🔷 TypeScript Client Architecture (`src/`)
 LangSteps incorporates a fully typed, modern TypeScript subsystem that provides type-safety, engine modularity, and reusable services:
-- **`src/types/index.ts`**: Strict types for `Theme`, `Concept`, `ModuleInfo`, `QuizQuestion`, `QuizSubmission`, `QuizResult`, and `UserProgress`.
+- **`src/types/index.ts` & `src/types/profile.ts`**: Strict types for `Theme`, `Concept`, `ModuleInfo`, `QuizQuestion`, `QuizSubmission`, `QuizResult`, `UserProgress`, `DeveloperProfile`, `SocialLinks`, and `ExecutionResult`.
+- **`src/core/profileManager.ts`**: Developer profile management with official social links, ecosystem endpoints, and copy utilities.
 - **`src/core/themeEngine.ts`**: Comprehensive theme engine with 25+ hand-crafted palettes, custom CSS variable injection, and persistence.
 - **`src/core/progressManager.ts`**: LocalStorage-backed progress manager tracking XP, levels (1-10), rank tiers (Novice to Grandmaster), and export/import.
 - **`src/core/quizEngine.ts`**: Scoring state machine, speed bonus calculations, performance tiers, and answer review generator.
 - **`src/core/apiClient.ts`**: Type-safe HTTP client connecting to the ASP.NET Core backend with zero-latency offline fallbacks.
-- **`src/index.ts`**: Unified entry point exposing the `LangStepsApp` bootstrapping API.
+- **`src/modules/playgroundEngine.ts`**: Interactive multi-language client execution simulator with stdout formatting and execution metrics.
+- **`src/modules/quizModule.ts`**: Quiz module controller for topic selection, countdown timing, and live score evaluation.
+- **`src/modules/pythonModule.ts`**: Complete Python curriculum controller covering Core Syntax, OOP, AsyncIO, and Data Science.
+- **`src/index.ts`**: Unified entry point exposing all core engines, curriculum controllers, and bootstrapping utilities.
 
 ```bash
 # Build TypeScript to dist/
@@ -120,12 +124,17 @@ For enterprise deployments, production microservices, or local full-stack hostin
 - **CORS Enabled**: Configured for seamless cross-origin communication from GitHub Pages, local dev environments, or custom clients.
 - **Minimal API Endpoints**:
   - `GET /api/health` — Platform status, version, server timestamp, runtime details, and catalog counts.
-  - `GET /api/modules` — Complete catalog of all 10 language modules with metadata and category tags.
+  - `GET /api/modules` — Complete catalog of all language modules with metadata and category tags.
   - `GET /api/modules/{id}` — Lookup module by identifier (e.g. `python`, `html`, `css`, `csharp`).
   - `GET /api/quiz/{language}` — Curated educational quiz question sets for any supported language.
   - `POST /api/quiz/submit` — Validates submissions, computes accuracy percentage, awards time bonuses, and returns detailed question explanations.
   - `GET /api/leaderboard` — Retrieves top 10 global learners ranked by XP and mastery.
   - `POST /api/leaderboard` — Submits new learner high scores.
+  - `GET /api/profile` — Retrieves the complete developer profile, verified socials, and ecosystem URLs.
+  - `GET /api/profile/socials` — Retrieves verified social handles and community links.
+  - `GET /api/profile/ecosystem` — Returns canonical URLs for About, Contact, Projects, Blog, and Repository.
+  - `POST /api/playground/execute` — Simulates safe, sandboxed code execution for Python, JavaScript, and C#.
+  - `GET /api/stats/summary` — High-level platform statistics including module counts, question counts, and active links.
 
 ```bash
 # Run the ASP.NET Core server (hosts both frontend and REST APIs)
@@ -922,16 +931,40 @@ node split_files.js
 
 ---
 
-## 📧 Contact & Support
+## 🌐 Official Developer Ecosystem & Pages
 
-For support and feedback, contact:
-- **Email**: sanskarin@outlook.in
-- **Support Email**: supportramsandesh@gmail.com
-- **Buy Me a Coffee**: [www.buymeacoffee.com/sanskarIN](https://buymeacoffee.com/SanskarCodes)
-- **GitHub**: [@sanskarIN](https://github.com/sanskarIN)
-- **LinkedIn**: [in/sanskarIN](https://linkedin.com/in/SanskarCodes)
+Visit Sanskar's official web presence and developer channels:
+- 👤 **About Sanskar**: [sanskarin.github.io/about](https://sanskarin.github.io/about)
+- 📬 **Contact Portal**: [sanskarin.github.io/contact](https://sanskarin.github.io/contact)
+- 🚀 **All Projects Showcase**: [sanskarin.github.io/projects](https://sanskarin.github.io/projects)
+- ✍️ **Tech Blog**: [sanskarin.github.io/blog](https://sanskarin.github.io/blog)
+- 🐙 **GitHub Repository**: [github.com/sanskarIN/LangSteps](https://github.com/sanskarIN/LangSteps)
+
+---
+
+## 📧 Contact & Community
+
+Connect with Sanskar across social and developer platforms:
+- **Email**: [sanskarin@outlook.in](mailto:sanskarin@outlook.in)
+- **Business Email**: [sanskarin.business@gmail.com](mailto:sanskarin.business@gmail.com)
+- **Support Email**: [supportramsandesh@gmail.com](mailto:supportramsandesh@gmail.com)
+- **LinkedIn**: [@SanskarCodes](https://linkedin.com/in/SanskarCodes)
+- **X (Twitter)**: [@SanskarCodes](https://x.com/SanskarCodes)
+- **Dev.to**: [@SanskarCodes](https://dev.to/SanskarCodes)
+- **Bluesky**: [@SanskarCodes.bsky.social](https://SanskarCodes.bsky.social)
+- **Instagram**: [@SanskarCode](https://instagram.com/SanskarCode)
+- **Threads**: [@SanskarCode](https://threads.com/SanskarCode)
 - **YouTube**: [@sanskarIN](https://www.youtube.com/@sanskarIN)
-- **Twitter/X**: [@SanskarCodes](https://x.com/SanskarCodes)
+- **GitHub**: [@sanskarIN](https://github.com/sanskarIN)
+
+---
+
+## ☕ Support & Sponsorship
+
+If you find value in LangSteps, tutorials, or open-source projects, consider supporting:
+- ☕ **Buy Me a Coffee**: [buymeacoffee.com/SanskarCodes](https://buymeacoffee.com/SanskarCodes)
+- ⚡ **Razorpay**: [razorpay.me/@SanskarCodes](https://razorpay.me/@SanskarCodes)
+- 🛍️ **Gumroad Store**: [sanskarIN.gumroad.com](https://sanskarIN.gumroad.com)
 
 ---
 
