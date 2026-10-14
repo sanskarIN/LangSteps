@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <link rel="canonical" href="https://sanskarin.github.io/contact">
+    <meta name="robots" content="index, follow">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact Sanskar Yadav — Creator of LangSteps, Full-Stack Developer, and Educator. Reach out for collaborations, queries, or sponsorships.">
+    <meta name="author" content="Sanskar Yadav">
+    <meta property="og:title" content="Contact Sanskar | LangSteps Developer Ecosystem">
+    <meta property="og:description" content="Reach out to Sanskar for software engineering, tech tutorials, mentoring, or partnership opportunities.">
+    <meta property="og:url" content="https://sanskarin.github.io/contact">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@SanskarCodes">
+    <meta name="twitter:creator" content="@SanskarCodes">
+    <title>Contact Sanskar Yadav | LangSteps</title>
+
+    <link rel="icon" type="image/png" href="splash.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --accent: #6c63ff;
+            --accent-glow: rgba(108, 99, 255, 0.3);
+            --accent2: #3ecfcf;
+            --accent3: #bf5af2;
+            --font-heading: 'Outfit', sans-serif;
+            --font-subheading: 'Plus Jakarta Sans', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --radius-lg: 20px;
+            --radius: 14px;
+            --radius-sm: 8px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #0b0f19;
+            --bg-secondary: #121826;
+            --bg-card: rgba(255, 255, 255, 0.04);
+            --bg-card-hover: rgba(255, 255, 255, 0.08);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border: rgba(255, 255, 255, 0.1);
+            --border-hover: rgba(108, 99, 255, 0.4);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #f8fafc;
+            --bg-secondary: #eef2f6;
+            --bg-card: rgba(255, 255, 255, 0.85);
+            --bg-card-hover: #ffffff;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+            --border: rgba(0, 0, 0, 0.08);
+            --border-hover: rgba(108, 99, 255, 0.4);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background var(--transition), color var(--transition);
+        }
+
+        /* Glassmorphic Navbar */
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: color-mix(in srgb, var(--bg-primary) 85%, transparent);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 1.5rem;
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color var(--transition);
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--accent);
+        }
+
+        .theme-toggle {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            color: var(--text-primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            transition: var(--transition);
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--accent);
+            transform: scale(1.05);
+        }
+
+        /* Container & Hero */
+        .container {
+            max-width: 1160px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .hero {
+            padding: 60px 0 30px;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(108, 99, 255, 0.12);
+            border: 1px solid rgba(108, 99, 255, 0.3);
+            color: var(--accent);
+            padding: 6px 16px;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+        }
+
+        .hero h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(2.2rem, 5vw, 3.4rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--text-primary), var(--accent2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            max-width: 650px;
+            margin: 0 auto 2rem;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        /* Canonical Bridge Banner */
+        .canonical-banner {
+            background: linear-gradient(135deg, rgba(108, 99, 255, 0.15), rgba(62, 207, 207, 0.12));
+            border: 1px solid rgba(108, 99, 255, 0.3);
+            border-radius: var(--radius-lg);
+            padding: 1.25rem 1.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .canonical-banner-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .canonical-banner-icon {
+            font-size: 1.8rem;
+            color: var(--accent);
+        }
+
+        .canonical-banner a.btn {
+            background: var(--accent);
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+
+        .canonical-banner a.btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px var(--accent-glow);
+        }
+
+        /* Grid Layout */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        @media (max-width: 860px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: var(--shadow);
+            transition: border-color var(--transition), transform var(--transition);
+        }
+
+        .card:hover {
+            border-color: var(--border-hover);
+        }
+
+        .card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Direct Channels */
+        .channel-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 12px 16px;
+            border-radius: var(--radius);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            margin-bottom: 1rem;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: var(--transition);
+        }
+
+        .channel-item:hover {
+            border-color: var(--accent);
+            transform: translateX(4px);
+            background: var(--bg-card-hover);
+        }
+
+        .channel-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            background: rgba(108, 99, 255, 0.15);
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .channel-text h4 {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .channel-text p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        /* Social Pills */
+        .socials-cluster {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .social-btn:hover {
+            border-color: var(--accent);
+            background: var(--bg-card-hover);
+            transform: translateY(-2px);
+        }
+
+        /* Support Buttons */
+        .support-cluster {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+
+        .support-btn-bmc {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #FFDD00, #FF6600);
+            color: #000;
+            font-weight: 700;
+            padding: 12px 18px;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .support-btn-bmc:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 102, 0, 0.35);
+        }
+
+        .support-btn-rzp {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #02042b, #1d4ed8);
+            color: #ffffff;
+            font-weight: 700;
+            padding: 12px 18px;
+            border-radius: 12px;
+            text-decoration: none;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: var(--transition);
+        }
+
+        .support-btn-rzp:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(29, 78, 216, 0.35);
+        }
+
+        /* Form */
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .form-group label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 12px 14px;
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-glow);
+        }
+
+        .submit-btn {
+            background: var(--accent);
+            color: #ffffff;
+            border: none;
+            padding: 14px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px var(--accent-glow);
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 40px 0 20px;
+            margin-top: 60px;
+            background: color-mix(in srgb, var(--bg-primary) 95%, transparent);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .footer-col h4,
+        .footer-col h5 {
+            font-family: var(--font-heading);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col li {
+            margin-bottom: 8px;
+        }
+
+        .footer-col a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color var(--transition);
+        }
+
+        .footer-col a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-brand">
+                <span style="font-size: 1.4rem;">⚡</span> LangSteps
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Hub</a>
+                <a href="https://sanskarin.github.io/about" target="_blank">About Sanskar</a>
+                <a href="https://sanskarin.github.io/projects" target="_blank">Projects</a>
+                <a href="https://sanskarin.github.io/blog" target="_blank">Blog</a>
+                <a href="contact.html" class="active">Contact</a>
+                <a href="quiz.html">Quiz</a>
+            </div>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle Theme">🌙</button>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-badge">📬 Official Contact Portal</div>
+            <h1>Get in Touch with Sanskar</h1>
+            <p>Have questions, project inquiries, sponsorship proposals, or want to collaborate? I'd love to hear from you!</p>
+        </section>
+
+        <!-- Official Canonical Bridge Banner -->
+        <div class="canonical-banner">
+            <div class="canonical-banner-info">
+                <i class="fa-solid fa-compass-drafting canonical-banner-icon"></i>
+                <div>
+                    <strong>Official Portfolio & Contact Page</strong>
+                    <div style="font-size: 0.9rem; color: var(--text-secondary);">Direct access to Sanskar's primary web hub at sanskarin.github.io</div>
+                </div>
+            </div>
+            <a href="https://sanskarin.github.io/contact" target="_blank" class="btn">
+                Visit Official Contact Page <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+        </div>
+
+        <!-- Contact Content Grid -->
+        <div class="contact-grid">
+            <!-- Left Column: Direct Info & Social Channels -->
+            <div class="card">
+                <h3><i class="fa-solid fa-envelope-open-text" style="color: var(--accent);"></i> Direct Channels</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.95rem;">
+                    Reach out via email or direct messaging on your preferred developer network.
+                </p>
+
+                <a href="mailto:sanskarin@outlook.in" class="channel-item">
+                    <div class="channel-icon"><i class="fa-regular fa-envelope"></i></div>
+                    <div class="channel-text">
+                        <h4>sanskarin@outlook.in</h4>
+                        <p>Primary Developer & Personal Inquiries</p>
+                    </div>
+                </a>
+
+                <a href="mailto:sanskarin.business@gmail.com" class="channel-item">
+                    <div class="channel-icon"><i class="fa-solid fa-briefcase"></i></div>
+                    <div class="channel-text">
+                        <h4>sanskarin.business@gmail.com</h4>
+                        <p>Business & Partnership Communications</p>
+                    </div>
+                </a>
+
+                <a href="mailto:supportramsandesh@gmail.com" class="channel-item">
+                    <div class="channel-icon"><i class="fa-solid fa-headset"></i></div>
+                    <div class="channel-text">
+                        <h4>supportramsandesh@gmail.com</h4>
+                        <p>Platform & Tech Support Desk</p>
+                    </div>
+                </a>
+
+                <h4 style="margin-top: 1.5rem; font-family: var(--font-heading);">Connect on Social Networks</h4>
+                <div class="socials-cluster">
+                    <a href="https://linkedin.com/in/SanskarCodes" target="_blank" class="social-btn">
+                        <i class="fa-brands fa-linkedin" style="color: #0077b5;"></i> LinkedIn
+                    </a>
+                    <a href="https://x.com/SanskarCodes" target="_blank" class="social-btn">
+                        <i class="fa-brands fa-x-twitter"></i> X (Twitter)
+                    </a>
+                    <a href="https://dev.to/SanskarCodes" target="_blank" class="social-btn">
+                        <i class="fa-brands fa-dev"></i> Dev.to
+                    </a>
+                    <a href="https://SanskarCodes.bsky.social" target="_blank" class="social-btn">
+                        <i class="fa-solid fa-cloud" style="color: #0285ff;"></i> Bluesky
+                    </a>
+                    <a href="https://instagram.com/SanskarCode" target="_blank" class="social-btn">
+                        <i class="fa-brands fa-instagram" style="color: #e1306c;"></i> Instagram
+                    </a>
+                    <a href="https://threads.com/SanskarCode" target="_blank" class="social-btn">
+                        <i class="fa-brands fa-threads"></i> Threads
+                    </a>
+                </div>
+
+                <h4 style="margin-top: 1.5rem; font-family: var(--font-heading);">Support & Sponsorship</h4>
+                <div class="support-cluster">
+                    <a href="https://buymeacoffee.com/SanskarCodes" target="_blank" class="support-btn-bmc">
+                        <img src="bmc-logo.jpg" alt="BMC" style="width:20px;height:20px;border-radius:4px;"> Support via Buy Me a Coffee
+                    </a>
+                    <a href="https://razorpay.me/@SanskarCodes" target="_blank" class="support-btn-rzp">
+                        <i class="fa-solid fa-bolt"></i> Support via Razorpay
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right Column: Interactive Contact Form -->
+            <div class="card">
+                <h3><i class="fa-solid fa-paper-plane" style="color: var(--accent2);"></i> Send a Message</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.95rem;">
+                    Fill out the form below to construct your email or direct query.
+                </p>
+
+                <form class="contact-form" id="contactForm" onsubmit="handleFormSubmit(event)">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" placeholder="e.g. John Doe" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Your Email</label>
+                        <input type="email" id="email" placeholder="e.g. john@example.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Topic / Subject</label>
+                        <select id="subject" required>
+                            <option value="Collaboration Proposal">Collaboration Proposal</option>
+                            <option value="LangSteps Feedback or Question">LangSteps Feedback or Question</option>
+                            <option value="Mentorship Inquiry">Mentorship Inquiry</option>
+                            <option value="Sponsorship Opportunity">Sponsorship Opportunity</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" rows="5" placeholder="Write your message here..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn" id="submitBtn">
+                        <i class="fa-solid fa-paper-plane"></i> Send via Outlook / Email Client
+                    </button>
+                    <div id="formFeedback" style="display:none; padding:10px; border-radius:8px; font-size:0.9rem; text-align:center;"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>⚡ LangSteps</h4>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                        High-fidelity polyglot programming mastery platform engineered by Sanskar Yadav.
+                    </p>
+                </div>
+                <div class="footer-col">
+                    <h5>Ecosystem</h5>
+                    <ul>
+                        <li><a href="https://sanskarin.github.io/about" target="_blank">👤 About Sanskar</a></li>
+                        <li><a href="https://sanskarin.github.io/contact" target="_blank">📬 Contact Page</a></li>
+                        <li><a href="https://sanskarin.github.io/projects" target="_blank">🚀 All Projects</a></li>
+                        <li><a href="https://sanskarin.github.io/blog" target="_blank">✍️ Tech Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Quick Links</h5>
+                    <ul>
+                        <li><a href="index.html">Hub Home</a></li>
+                        <li><a href="quiz.html">Polyglot Quiz</a></li>
+                        <li><a href="playground.html">Code Playground</a></li>
+                        <li><a href="Follow-Sanskar.html">Follow Sanskar</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Support Creator</h5>
+                    <div style="display:flex; flex-direction:column; gap:8px;">
+                        <a href="https://buymeacoffee.com/SanskarCodes" target="_blank" style="color: #FFDD00; font-weight: 600;">☕ Buy Me a Coffee</a>
+                        <a href="https://razorpay.me/@SanskarCodes" target="_blank" style="color: var(--accent2); font-weight: 600;">⚡ Razorpay</a>
+                        <a href="https://github.com/sanskarIN" target="_blank" style="color: var(--text-secondary);">🐙 GitHub @sanskarIN</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2026 Sanskar Yadav. All Rights Reserved. | <a href="https://sanskarin.github.io/LangSteps" style="color:inherit;">LangSteps</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme Management
+        const themeToggleBtn = document.getElementById('themeToggle');
+        const htmlEl = document.documentElement;
+        const THEME_KEY = 'hubMasteryTheme';
+
+        function initTheme() {
+            const savedTheme = localStorage.getItem(THEME_KEY) || 'dark';
+            htmlEl.setAttribute('data-theme', savedTheme);
+            themeToggleBtn.textContent = savedTheme === 'dark' ? '🌙' : '☀️';
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            const currentTheme = htmlEl.getAttribute('data-theme');
+            const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            htmlEl.setAttribute('data-theme', nextTheme);
+            localStorage.setItem(THEME_KEY, nextTheme);
+            themeToggleBtn.textContent = nextTheme === 'dark' ? '🌙' : '☀️';
+        });
+
+        initTheme();
+
+        // Contact Form Handler
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value.trim();
+
+            const mailtoUrl = `mailto:sanskarin@outlook.in?subject=${encodeURIComponent(`[LangSteps] ${subject} - from ${name}`)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\nTopic: ${subject}\n\nMessage:\n${message}`)}`;
+
+            const feedback = document.getElementById('formFeedback');
+            feedback.style.display = 'block';
+            feedback.style.background = 'rgba(62, 207, 207, 0.15)';
+            feedback.style.color = '#3ecfcf';
+            feedback.textContent = 'Opening your email client to send to sanskarin@outlook.in...';
+
+            window.location.href = mailtoUrl;
+        }
+    </script>
+</body>
+
+</html>
