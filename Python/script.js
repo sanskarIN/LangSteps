@@ -531,6 +531,46 @@ const TAGS = [
     "emoji": "\u26a1",
     "defaultCode": "# from fastapi import FastAPI\n# app = FastAPI(title='DevForge API')\n# @app.get('/items/{item_id}')\n# async def read_item(item_id: int, q: str = None):\n#     return {'item_id': item_id, 'q': q}\nprint('FastAPI delivers high-performance async APIs with automatic OpenAPI docs')",
     "content": "<h3>\ud83d\udccc Deep Dive: Modern FastAPI Architecture</h3><p>FastAPI is a high-performance web framework based on Starlette and Pydantic, supporting asynchronous concurrency and automatic OpenAPI / Swagger documentation.</p><h4>\u2699\ufe0f Under the Hood</h4><p>FastAPI uses Python type annotations to validate request bodies, parse query parameters, and serialize responses with minimal CPU overhead.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Define endpoints as <code>async def</code> for asynchronous I/O operations, or regular <code>def</code> if using blocking legacy database drivers.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\"># Pydantic schema validation\nfrom pydantic import BaseModel\nclass Item(BaseModel):\n    name: str\n    price: float\n    in_stock: bool = True\nitem = Item(name='Laptop', price=999.99)\nprint(item.model_dump())</code></pre>"
+  },
+  {
+    "id": "py-66",
+    "title": "Flask Microframework Fundamentals",
+    "badge": "FRAMEWORKS",
+    "emoji": "\ud83c\udf76",
+    "defaultCode": "# from flask import Flask, jsonify\n# app = Flask(__name__)\n# @app.route('/api/health')\n# def health(): return jsonify({'status': 'ok'})\nprint('Flask is lightweight, extensible, and ideal for microservices')",
+    "content": "<h3>\ud83d\udccc Deep Dive: Flask Fundamentals</h3><p>Flask is a lightweight WSGI web microframework designed around simplicity and extensibility, providing routing, templates (Jinja2), and request handling.</p><h4>\u2699\ufe0f Under the Hood</h4><p>Flask utilizes Werkzeug's routing tree and thread-local (or context-local) proxies like <code>request</code> and <code>g</code> to isolate per-request data.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Use the Application Factory pattern (<code>create_app()</code>) to make your Flask application easily testable and configurable.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\"># Application factory structure\ndef create_app(config_name='default'):\n    # app = Flask(__name__)\n    # register blueprints\n    return 'Flask App Instance'</code></pre>"
+  },
+  {
+    "id": "py-67",
+    "title": "Flask Blueprints, Jinja2 & Middleware",
+    "badge": "FRAMEWORKS",
+    "emoji": "\ud83e\udde9",
+    "defaultCode": "# from flask import Blueprint\n# auth_bp = Blueprint('auth', __name__, url_prefix='/auth')\n# @auth_bp.route('/login')\n# def login(): return 'Login Page'\nprint('Blueprints organize large Flask applications into modular components')",
+    "content": "<h3>\ud83d\udccc Deep Dive: Flask Blueprints & Architecture</h3><p>Blueprints allow developers to organize large Flask applications into reusable, modular sub-applications with independent views, templates, and static assets.</p><h4>\u2699\ufe0f Under the Hood</h4><p>Blueprints record operations to be performed when subsequently registered on the application instance (e.g. <code>app.register_blueprint(auth_bp)</code>).</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Organize blueprints by functional domain (e.g., users, billing, products) rather than by technical layer.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\"># Jinja2 template rendering\nfrom jinja2 import Template\nt = Template('Hello {{ name }}!')\nprint(t.render(name='DevForge Learner'))</code></pre>"
+  },
+  {
+    "id": "py-68",
+    "title": "Django Architecture: The MVT Pattern",
+    "badge": "FRAMEWORKS",
+    "emoji": "\ud83c\udfb8",
+    "defaultCode": "# Django structure:\n# Model (Data/DB) <-> View (Logic/Controller) <-> Template (Presentation/HTML)\nprint('Django: The batteries-included web framework for perfectionists with deadlines')",
+    "content": "<h3>\ud83d\udccc Deep Dive: Django Architecture (MVT)</h3><p>Django follows the Model-View-Template pattern, providing an ORM, admin portal, authentication, security middleware, and template engine out of the box.</p><h4>\u2699\ufe0f Under the Hood</h4><p>Incoming HTTP requests pass through the middleware pipeline, are matched by URL resolvers, dispatched to view functions/classes, query the ORM, and render templates.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Leverage Class-Based Views (CBVs) like <code>ListView</code> and <code>DetailView</code> to minimize repetitive CRUD code.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\"># Example Django view function structure\ndef user_profile(request, username):\n    # user = get_object_or_404(User, username=username)\n    # return render(request, 'profile.html', {'user': user})\n    return f'Profile for {username}'</code></pre>"
+  },
+  {
+    "id": "py-69",
+    "title": "Django ORM: Models, Fields & Migrations",
+    "badge": "DATABASES",
+    "emoji": "\ud83d\uddc4\ufe0f",
+    "defaultCode": "# from django.db import models\n# class Course(models.Model):\n#     title = models.CharField(max_length=200)\n#     published = models.DateTimeField(auto_now_add=True)\nprint('Django ORM generates database tables and handles automated migrations')",
+    "content": "<h3>\ud83d\udccc Deep Dive: Django ORM</h3><p>Django's Object-Relational Mapper maps Python classes to relational database tables, offering query construction, migrations, and relationship management.</p><h4>\u2699\ufe0f Under the Hood</h4><p>Django queries are lazy. A <code>QuerySet</code> does not execute SQL against the database until the data is evaluated (iterated, sliced, or evaluated in a conditional).</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Use <code>select_related()</code> for single-valued relationships (ForeignKey) and <code>prefetch_related()</code> for multi-valued relationships (ManyToMany) to eliminate N+1 query performance problems.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\"># Filter, chaining, and querysets\n# active_courses = Course.objects.filter(is_active=True).order_by('-published')</code></pre>"
+  },
+  {
+    "id": "py-70",
+    "title": "SQLAlchemy: Core & Declarative ORM",
+    "badge": "DATABASES",
+    "emoji": "\ud83d\udee2\ufe0f",
+    "defaultCode": "# from sqlalchemy import create_engine, Column, Integer, String\n# from sqlalchemy.orm import declarative_base, sessionmaker\n# Base = declarative_base()\n# class User(Base): __tablename__ = 'users'; id = Column(Integer, primary_key=True)\nprint('SQLAlchemy is the premier database toolkit and ORM for Python')",
+    "content": "<h3>\ud83d\udccc Deep Dive: SQLAlchemy Toolkit</h3><p>SQLAlchemy provides two layers: SQLAlchemy Core (SQL abstraction, connection pooling, expressions) and SQLAlchemy ORM (unit of work, identity mapping).</p><h4>\u2699\ufe0f Under the Hood</h4><p>The ORM uses the Unit of Work pattern to track all dirty, new, and deleted objects in a Session, flushing them in a single optimized database transaction.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>In SQLAlchemy 2.0+, use the modern <code>select(User).where(...)</code> syntax instead of legacy <code>session.query(User)</code>.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\"># Database connection string formats\nsqlite_dsn = 'sqlite:///devforge.db'\npg_dsn = 'postgresql+psycopg2://user:pass@localhost:5432/mydb'</code></pre>"
   }
 ];
 
