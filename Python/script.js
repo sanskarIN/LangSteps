@@ -331,6 +331,46 @@ const TAGS = [
     "emoji": "\ud83d\udd22",
     "defaultCode": "from decimal import Decimal\nfrom fractions import Fraction\nimport math, secrets\n# Avoiding floating point inaccuracy\nval = Decimal('0.1') + Decimal('0.2')\nprint(f'Decimal exact: {val}')  # 0.3, not 0.30000000000000004\nprint('Cryptographic token:', secrets.token_hex(8))",
     "content": "<h3>\ud83d\udccc Deep Dive: High-Precision Math & Cryptography</h3><p>Standard float operations suffer from IEEE-754 binary floating point precision limits. Financial calculations must use <code>decimal.Decimal</code>.</p><h4>\u2699\ufe0f Under the Hood</h4><p>The <code>random</code> module uses the Mersenne Twister algorithm (pseudo-random, predictable). Security credentials, salts, and tokens must use the <code>secrets</code> module.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Always initialize <code>Decimal</code> using string arguments (e.g. <code>Decimal('0.1')</code>), NOT floating point numbers (<code>Decimal(0.1)</code>).</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\">f1 = Fraction(3, 4)\nf2 = Fraction(1, 8)\nprint(f'{f1} + {f2} = {f1 + f2}')  # 7/8</code></pre>"
+  },
+  {
+    "id": "py-41",
+    "title": "Regular Expressions & Pattern Matching (re module)",
+    "badge": "LIBRARIES",
+    "emoji": "\ud83d\udd0d",
+    "defaultCode": "import re\ntext = 'Contact: sanskarin@outlook.in, supportramsandesh@gmail.com'\npattern = r'[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+'\nemails = re.findall(pattern, text)\nprint('Extracted emails:', emails)",
+    "content": "<h3>\ud83d\udccc Deep Dive: Regular Expressions</h3><p>The <code>re</code> module provides Perl-style regular expression pattern matching, searching, splitting, and string replacement.</p><h4>\u2699\ufe0f Under the Hood</h4><p>CPython compiles regex patterns into specialized bytecode executed by an internal backtracking NFA (Nondeterministic Finite Automaton) engine.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Compile repeated patterns using <code>re.compile(pattern)</code> outside loops for optimal performance.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\">clean = re.sub(r'\\s+', ' ', 'Too   many     spaces').strip()\nprint('Normalized:', clean)</code></pre>"
+  },
+  {
+    "id": "py-42",
+    "title": "Specialized Containers (collections Module)",
+    "badge": "LIBRARIES",
+    "emoji": "\ud83d\uddc3\ufe0f",
+    "defaultCode": "from collections import Counter, defaultdict, deque\ncounts = Counter('devforge_python_mastery')\nprint('Top 3 characters:', counts.most_common(3))\n# Fast double-ended queue\nq = deque([1, 2, 3])\nq.appendleft(0)\nq.pop()\nprint('Deque:', q)",
+    "content": "<h3>\ud83d\udccc Deep Dive: collections Module</h3><p>The <code>collections</code> module offers high-performance alternatives to Python's general-purpose dict, list, set, and tuple types.</p><h4>\u2699\ufe0f Under the Hood</h4><p><code>deque</code> is implemented as a doubly linked list of blocks, providing O(1) appends and pops from both ends (compared to O(n) for list front operations).</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Use <code>defaultdict(list)</code> or <code>defaultdict(int)</code> to completely eliminate <code>if key not in d: d[key] = ...</code> boilerplate.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\">grouped = defaultdict(list)\nwords = ['apple', 'avocado', 'banana', 'blueberry']\nfor w in words: grouped[w[0]].append(w)\nprint(dict(grouped))</code></pre>"
+  },
+  {
+    "id": "py-43",
+    "title": "Iterator Building with itertools",
+    "badge": "LIBRARIES",
+    "emoji": "\u2699\ufe0f",
+    "defaultCode": "import itertools\n# Infinite cycle\nranks = itertools.islice(itertools.cycle(['Novice', 'Pro', 'Master']), 6)\nprint('Cycle:', list(ranks))\n# Cartesian product\ncombos = list(itertools.product(['Dark', 'Light'], ['Red', 'Blue']))\nprint('Combos:', combos)",
+    "content": "<h3>\ud83d\udccc Deep Dive: The itertools Module</h3><p><code>itertools</code> provides fast, memory-efficient building blocks for creating complex iterators inspired by APL, Haskell, and SML.</p><h4>\u2699\ufe0f Under the Hood</h4><p>Functions in <code>itertools</code> are written in pure C for maximum execution velocity. They stream data one element at a time without allocating full lists in memory.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Use <code>itertools.chain.from_iterable()</code> to flatten nested iterables with minimal memory consumption.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\">items = [1, 2, 3]\npermutations = list(itertools.permutations(items, 2))\nprint('Permutations of 2:', permutations)</code></pre>"
+  },
+  {
+    "id": "py-44",
+    "title": "Functional Utilities with functools (lru_cache)",
+    "badge": "LIBRARIES",
+    "emoji": "\ud83e\udde0",
+    "defaultCode": "from functools import lru_cache, partial\n\n@lru_cache(maxsize=128)\ndef compute_fib(n):\n    if n < 2: return n\n    return compute_fib(n - 1) + compute_fib(n - 2)\n\nprint(f'Fib(35) = {compute_fib(35)}')\nprint('Cache info:', compute_fib.cache_info())",
+    "content": "<h3>\ud83d\udccc Deep Dive: The functools Module</h3><p><code>functools</code> provides higher-order functions that act on or return other functions, including memoization, partial application, and method dispatch.</p><h4>\u2699\ufe0f Under the Hood</h4><p><code>@lru_cache</code> stores function arguments and results in an internal doubly-linked hash map, turning exponential O(2^n) recursive algorithms into linear O(n) computations.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Use <code>functools.partial</code> to freeze function arguments and create simpler specialized function signatures.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\"># Partial application\nbase_log = partial(print, '[DEVFORGE-LOG]')\nbase_log('Server started successfully')</code></pre>"
+  },
+  {
+    "id": "py-45",
+    "title": "Type Hinting, Annotations & Static Analysis",
+    "badge": "TYPING",
+    "emoji": "\ud83c\udff7\ufe0f",
+    "defaultCode": "from typing import Optional, Union, Callable\n\ndef calculate_discount(price: float, rate: float = 0.1) -> float:\n    '''Calculates discounted price'''\n    return price * (1.0 - rate)\n\nprint(f'Discounted: ${calculate_discount(150.0):.2f}')",
+    "content": "<h3>\ud83d\udccc Deep Dive: Type Hinting (PEP 484)</h3><p>Type hints allow static type checkers (Mypy, Pyright) and IDEs to catch bugs, provide autocomplete, and document API contracts without impacting runtime speed.</p><h4>\u2699\ufe0f Under the Hood</h4><p>Type annotations do not affect runtime behavior or enforce types dynamically in standard Python. They are stored in <code>__annotations__</code> for introspection.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>In Python 3.10+, use native union syntax <code>int | str</code> instead of <code>Union[int, str]</code> for cleaner code.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\">def fetch_user(uid: int) -> dict[str, str | int] | None:\n    if uid == 1: return {'id': 1, 'name': 'Sanskar'}\n    return None\nprint(fetch_user(1))</code></pre>"
   }
 ];
 
