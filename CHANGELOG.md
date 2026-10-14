@@ -35,7 +35,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   - `GET /api/profile/ecosystem`: Canonical ecosystem URLs.
   - `GET /api/stats/summary`: Platform summary metrics across all languages.
 - **Interactive Execution Runner**:
-  - `POST /api/playground/execute`: Sandboxed execution simulation for Python, JavaScript, and C#.
+### 🦀 Rust Systems Mastery — Full Curriculum & Diagnostics (NEW)
+- **35 In-Depth Systems Concepts**: Completely replaced generic placeholders with 35 authentic, detailed concepts across 6 pedagogical tracks: Basics & Control Flow, Memory & Ownership, Data Modeling, Functional Idioms, Concurrency & Async, and Systems & Macros.
+- **Compiler & Borrow Checker Diagnostics**: Implemented simulated `rustc` diagnostics in both TypeScript and ASP.NET Core, detecting moved value usage (`error[E0382]`) and multiple mutable borrows (`error[E0499]`) with ASCII code frame formatting.
+- **Cross-Module Navigation & Categories**: Upgraded `Rust/index.html` with cross-module bar to all 10 platform modules, direct link to Rust Quiz (`quiz.html?lang=rust`), category filter pills, sample loader, and 25 theme presets.
+- **Fixed Cross-Module Links**: Corrected legacy broken `../JS/` links to `../JavaScript/` in `React/developer.html`, `Go/index.html`, and `CSharp/index.html`.
 
 ---
 
