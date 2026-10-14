@@ -880,23 +880,6 @@
     </style>
   </dialog>
 
-  <!-- Welcome Notification Banner -->
-  <div id="welcomeBanner"
-    style="position:fixed;bottom:20px;right:20px;background:var(--bg2);border:1px solid var(--accent);border-radius:12px;padding:20px;max-width:350px;box-shadow:0 10px 25px rgba(0,0,0,0.5);transform:translateX(120%);transition:transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);z-index:9999;">
-    <button onclick="dismissBanner()"
-      style="position:absolute;top:10px;right:10px;background:none;border:none;color:var(--text3);cursor:pointer;font-size:18px;">&times;</button>
-    <div style="display:flex;gap:15px;align-items:flex-start;">
-      <div
-        style="font-size:24px;background:var(--bg);width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:50%;flex-shrink:0;">
-        👋</div>
-      <div>
-        <h4 style="margin:0 0 5px 0;color:var(--text);font-size:16px;">Welcome!</h4>
-        <p style="margin:0;color:var(--text2);font-size:13px;line-height:1.5;">I'm Sanskar. I've curated these 100
-          JavaScript concepts to help you master the language. Enjoy the interactive sandbox!</p>
-      </div>
-    </div>
-  </div>
-
   <!-- Reading Tracker & Scroll to Top -->
   <div id="readingTracker"
     style="position:fixed;bottom:30px;right:30px;width:50px;height:50px;border-radius:50%;background:var(--bg2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;visibility:hidden;transition:all 0.3s;z-index:9000;box-shadow:0 4px 12px rgba(0,0,0,0.3);"
@@ -930,18 +913,6 @@
   </div>
 
   <script>
-    // Show welcome banner after delay
-    setTimeout(() => {
-      if (!localStorage.getItem('jsBannerDismissed')) {
-        document.getElementById('welcomeBanner').style.transform = 'translateX(0)';
-      }
-    }, 5000);
-
-    function dismissBanner() {
-      document.getElementById('welcomeBanner').style.transform = 'translateX(120%)';
-      localStorage.setItem('jsBannerDismissed', 'true');
-    }
-
     // Donate Modal Functions
     function openDonate() {
       const overlay = document.getElementById('donate-overlay');

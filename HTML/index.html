@@ -759,27 +759,7 @@
   <script src="script.js"
     onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/sanskarIN/LangSteps@main/HTML/script.js';"></script>
 
-  <!-- NON-BLOCKING WELCOME NOTIFICATION (replaces blocking alerts for Lighthouse performance) -->
-  <div class="notification-banner" id="welcomeBanner" role="alert" aria-live="polite">
-    <div class="nb-text">
-      👋 <strong>Hi! I'm Sanskar.</strong> I've written 100 important HTML tags with detailed explanations,
-      examples & outputs. I hope you enjoy it! Your feedback is welcome.
-    </div>
-    <button class="nb-close" onclick="document.getElementById('welcomeBanner').classList.remove('show')"
-      aria-label="Dismiss notification">Got it!</button>
-  </div>
   <script>
-    // Show banner after a short delay (non-blocking)
-    setTimeout(function () {
-      var banner = document.getElementById('welcomeBanner');
-      if (banner && !localStorage.getItem('welcomeBannerDismissed')) {
-        banner.classList.add('show');
-        banner.querySelector('.nb-close').addEventListener('click', function () {
-          localStorage.setItem('welcomeBannerDismissed', 'true');
-        });
-      }
-    }, 1500);
-
     // Update progress bar aria-valuenow on scroll
     window.addEventListener('scroll', function () {
       var bar = document.getElementById('progress-bar');

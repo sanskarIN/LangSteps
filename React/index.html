@@ -825,27 +825,7 @@
 
   <script src="script.js"></script>
 
-  <!-- NON-BLOCKING WELCOME NOTIFICATION -->
-  <div class="notification-banner" id="welcomeBanner" role="alert" aria-live="polite">
-    <div class="nb-text">
-      👋 <strong>Hi! I'm Sanskar.</strong> I've written 100 important React concepts with detailed explanations,
-      live sandbox examples & interactive code. I hope you enjoy it! Your feedback is welcome.
-    </div>
-    <button class="nb-close" onclick="document.getElementById('welcomeBanner').classList.remove('show')"
-      aria-label="Dismiss notification">Got it!</button>
-  </div>
   <script>
-    // Show banner after a short delay (non-blocking)
-    setTimeout(function () {
-      var banner = document.getElementById('welcomeBanner');
-      if (banner && !localStorage.getItem('reactWelcomeBannerDismissed')) {
-        banner.classList.add('show');
-        banner.querySelector('.nb-close').addEventListener('click', function () {
-          localStorage.setItem('reactWelcomeBannerDismissed', 'true');
-        });
-      }
-    }, 1500);
-
     // Update progress bar aria-valuenow on scroll
     window.addEventListener('scroll', function () {
       var bar = document.getElementById('progress-bar');
