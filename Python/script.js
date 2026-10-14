@@ -451,6 +451,46 @@ const TAGS = [
     "emoji": "\u2699\ufe0f",
     "defaultCode": "import os\n# Simulate environment variable\nos.environ['PORT'] = '8080'\nos.environ['DATABASE_URL'] = 'postgresql://localhost/dev'\nport = int(os.environ.get('PORT', 3000))\nprint(f'Server configured for port: {port}')",
     "content": "<h3>\ud83d\udccc Deep Dive: Configuration & 12-Factor Apps</h3><p>Store configuration in the environment, not in code. Use <code>.env</code> files for local development and inject environment variables in production.</p><h4>\u2699\ufe0f Under the Hood</h4><p>Libraries like <code>pydantic-settings</code> validate types, verify required secrets, and map nested configs automatically from environment variables at startup.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Always add <code>.env</code> to your <code>.gitignore</code> to prevent committing API keys, tokens, or database credentials to version control.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\">def get_config(key, default=None):\n    val = os.getenv(key, default)\n    if val is None:\n        raise ValueError(f'Missing required env var: {key}')\n    return val\nprint('Port:', get_config('PORT'))</code></pre>"
+  },
+  {
+    "id": "py-56",
+    "title": "Unit Testing with unittest",
+    "badge": "TESTING",
+    "emoji": "\ud83e\uddea",
+    "defaultCode": "import unittest\ndef add(a, b): return a + b\n\nclass TestMath(unittest.TestCase):\n    def test_add(self):\n        self.assertEqual(add(10, 5), 15)\n        self.assertTrue(add(-1, 1) == 0)\n\n# Run test suite\nsuite = unittest.TestLoader().loadTestsFromTestCase(TestMath)\nunittest.TextTestRunner(verbosity=2).run(suite)",
+    "content": "<h3>\ud83d\udccc Deep Dive: unittest Framework</h3><p>The standard <code>unittest</code> module, inspired by JUnit, provides test case classes, assertions, fixtures, and test runners built directly into Python.</p><h4>\u2699\ufe0f Under the Hood</h4><p>Test classes subclass <code>unittest.TestCase</code>. Test methods must start with the prefix <code>test_</code> to be automatically discovered by test loaders.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Use <code>setUp()</code> and <code>tearDown()</code> methods for managing per-test state and database cleanup.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\">class TestExceptions(unittest.TestCase):\n    def test_zero_div(self):\n        with self.assertRaises(ZeroDivisionError):\n            _ = 10 / 0</code></pre>"
+  },
+  {
+    "id": "py-57",
+    "title": "Modern Testing with pytest",
+    "badge": "TESTING",
+    "emoji": "\ud83c\udfaf",
+    "defaultCode": "# pytest test sample:\n# def test_addition():\n#     assert 2 + 2 == 4\n# @pytest.mark.parametrize('inp, expected', [(1, 2), (2, 4)])\n# def test_double(inp, expected):\n#     assert inp * 2 == expected\nprint('pytest provides concise assertions and powerful fixtures')",
+    "content": "<h3>\ud83d\udccc Deep Dive: pytest Mastery</h3><p><code>pytest</code> is the most widely adopted testing framework in the Python ecosystem, replacing verbose boilerplate with standard Python <code>assert</code> statements.</p><h4>\u2699\ufe0f Under the Hood</h4><p>pytest uses AST (Abstract Syntax Tree) bytecode rewriting to provide detailed failure explanations without requiring assertion helper methods.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Leverage <code>@pytest.fixture</code> with scopes (function, class, module, session) for clean dependency injection in test suites.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\"># Fixture pattern demonstration\ndef mock_user(): return {'id': 1, 'role': 'admin'}\ndef test_admin_access():\n    user = mock_user()\n    assert user['role'] == 'admin'</code></pre>"
+  },
+  {
+    "id": "py-58",
+    "title": "Mocking & Monkeypatching (unittest.mock)",
+    "badge": "TESTING",
+    "emoji": "\ud83c\udfad",
+    "defaultCode": "from unittest.mock import MagicMock\nmock_api = MagicMock()\nmock_api.get_user.return_value = {'name': 'Sanskar', 'status': 200}\n\nres = mock_api.get_user(42)\nprint('Mocked result:', res)\nmock_api.get_user.assert_called_once_with(42)",
+    "content": "<h3>\ud83d\udccc Deep Dive: Mocking & Patching</h3><p>The <code>unittest.mock</code> module allows replacing system dependencies, external HTTP APIs, and databases with programmable mock objects during unit tests.</p><h4>\u2699\ufe0f Under the Hood</h4><p><code>MagicMock</code> dynamically synthesizes attributes and dunder methods on access, recording all call arguments and invocation counts.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Use <code>@patch('module.function')</code> as a context manager or decorator to safely restore original functions after tests finish.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\">from unittest.mock import patch\nwith patch('os.path.exists', return_value=True):\n    import os\n    print('Mocked exists:', os.path.exists('ghost_file.txt'))</code></pre>"
+  },
+  {
+    "id": "py-59",
+    "title": "Profiling & Benchmarking (cProfile & timeit)",
+    "badge": "OPTIMIZATION",
+    "emoji": "\u23f1\ufe0f",
+    "defaultCode": "import cProfile, timeit\ndef slow_calc():\n    return sum(x ** 2 for x in range(10000))\n\ncProfile.run('slow_calc()')\nt = timeit.timeit('\"-\".join(str(n) for n in range(100))', number=1000)\nprint(f'timeit elapsed: {t:.4f}s')",
+    "content": "<h3>\ud83d\udccc Deep Dive: Profiling & Performance Analysis</h3><p>Never guess where performance bottlenecks are\u2014measure them. <code>cProfile</code> measures execution time and call counts; <code>timeit</code> benchmarks isolated snippets.</p><h4>\u2699\ufe0f Under the Hood</h4><p><code>cProfile</code> is implemented as a C extension that hooks into interpreter function calls to track exact cumulative time and per-call durations.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Combine <code>cProfile</code> with visualization tools like <code>snakeviz</code> to view interactive flame graphs of call stacks.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\"># Comparing comprehension vs generator timing\nt1 = timeit.timeit('[x for x in range(1000)]', number=5000)\nt2 = timeit.timeit('list(range(1000))', number=5000)\nprint(f'Comp: {t1:.3f}s vs list(range): {t2:.3f}s')</code></pre>"
+  },
+  {
+    "id": "py-60",
+    "title": "Interactive Debugging with pdb & breakpoint()",
+    "badge": "TOOLING",
+    "emoji": "\ud83d\udc1b",
+    "defaultCode": "# In Python 3.7+:\n# def process_payment(amount):\n#     breakpoint()  # Drops into interactive PDB session\n#     return amount > 0\nprint('breakpoint() pauses execution and opens the PDB debugger')",
+    "content": "<h3>\ud83d\udccc Deep Dive: Debugging with pdb</h3><p>The Python debugger (<code>pdb</code>) provides step-by-step code execution, variable inspection, stack exploration, and dynamic code evaluation.</p><h4>\u2699\ufe0f Under the Hood</h4><p>The built-in <code>breakpoint()</code> function calls <code>sys.breakpointhook()</code>, which defaults to launching <code>pdb.set_trace()</code>. Set <code>PYTHONBREAKPOINT=0</code> in your environment to disable all breakpoints in production without code modifications.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Key pdb commands: <code>n</code> (next line), <code>s</code> (step into function), <code>c</code> (continue), <code>p variable</code> (print), <code>q</code> (quit).</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\">import pdb\ndef debug_example(a, b):\n    # pdb.set_trace() can be used in older scripts\n    return a + b\nprint('Result:', debug_example(5, 10))</code></pre>"
   }
 ];
 
