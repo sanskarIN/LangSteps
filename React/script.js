@@ -2079,6 +2079,14 @@ function loadTag(id) {
     currentTag = TAGS.find(t => t.id === id);
     if (!currentTag) return;
 
+    // Auto-close sidebar on smaller screens so the content is visible immediately
+    if (window.innerWidth < 1024) {
+        const sidebar = document.getElementById('sidebar');
+        if (sidebar && sidebar.classList.contains('open')) {
+            toggleSidebar();
+        }
+    }
+
     // Update sidebar active state
     document.querySelectorAll('.sb-tag').forEach(el => {
         el.classList.remove('active');
