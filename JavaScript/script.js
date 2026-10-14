@@ -9223,7 +9223,7 @@ function showMasteryTab(tab) {
                      style="background:var(--bg-secondary);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:16px;cursor:pointer;transition:0.2s;">
                     <h3 style="color:var(--text);margin-bottom:8px;">${t.emoji || '⚡'} What is ${t.title}?</h3>
                     <div class="fc-answer" style="display:none;margin-top:12px;padding-top:12px;border-top:1px solid var(--border);color:var(--text-muted);font-size:0.9rem;line-height:1.6;">
-                        ${t.description || t.title + ' is a core JavaScript concept used in modern web development.'}
+                        ${t.description || t.title + ' is a core JavaScript concept used in modern software engineering.'}
                     </div>
                 </div>
             `).join('');
