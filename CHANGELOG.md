@@ -4,6 +4,43 @@ All notable changes to **LangSteps** will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [5.3.0] — 2026-10-14
+
+### 🚀 LangSteps Rebrand & Platform Unification
+- **Full Platform Rebrand**: Renamed project to **LangSteps** (`https://github.com/sanskarIN/LangSteps`) across all 101 core repository files, HTML tags, headers, documentation, manifests, and meta tags.
+- **Unified Navigation**: Synchronized cross-module navigation bar linking HTML, CSS, JavaScript, React, Python, TypeScript, Rust, Go, SQL, C#, and Quiz Hub across modules.
+
+### 🐍 Python Module — Full HTML/CSS Quality Alignment
+- **Matching Glassmorphic UI**: Updated `Python/index.html` and `Python/style.css` to match the exact layout, visual fidelity, and statistics of HTML/CSS modules.
+- **Comprehensive Header Stats**: Added 100 Concepts counter, Mastery Level (1-10), Mastered count, Favorites, Min Read, Rank, and Donate triggers.
+- **Concept of the Day**: Added daily rotating concept card with instant deep-link jump.
+- **Sidebar & Category Select**: Searchable concept list, category dropdown filter (`#sbFilter`), export/import progress buttons, and font size adjustment.
+- **Interactive Python Sandbox**: Enhanced simulated interpreter with print statement regex parsing, variables, f-string interpolation, and execution status.
+- **25+ Curated Themes**: Extended `PRESET_THEMES` to 25 hand-crafted palettes (Midnight Dark, Cyberpunk, Synthwave, Dracula, Nord, Monokai, Ocean, Gruvbox, Tokyo Night, Matrix, Emerald, Solarized, and more).
+
+### 🔷 TypeScript Client Infrastructure (NEW)
+- **Modular TypeScript Architecture**: Implemented full `src/` codebase with strict types and compilation pipeline:
+  - `src/types/index.ts`: Strongly typed interfaces for `Theme`, `Concept`, `ModuleInfo`, `QuizQuestion`, `QuizSubmission`, `QuizResult`, and `UserProgress`.
+  - `src/core/themeEngine.ts`: Type-safe theme switching, 25 preset theme registry, and DOM CSS custom property injector.
+  - `src/core/progressManager.ts`: LocalStorage persistence, XP mechanics, level/rank calculation, and JSON export/import.
+  - `src/core/quizEngine.ts`: Pure scoring engine, speed bonus calculations, performance tier badge assignment, and question reviews.
+  - `src/core/apiClient.ts`: Strongly typed API client connecting to ASP.NET Core backend with automatic offline fallback.
+  - `src/index.ts`: Application bootstrap and public API.
+- **Build Scripts**: Added `"build": "tsc"`, `"watch": "tsc --watch"`, and `"typecheck": "tsc --noEmit"` to `package.json`.
+
+### 🎯 ASP.NET Core Web API Backend (NEW)
+- **Enterprise C# Server**: Created `server/LangSteps.Server` targeting `.NET 10.0` Minimal APIs.
+- **Full Static Site & API Hosting**: Serves the entire LangSteps static frontend alongside REST endpoints when launched via `dotnet run`.
+- **REST Endpoints**:
+  - `GET /api/health`: Platform status, version, runtime details, and catalog counts.
+  - `GET /api/modules`: Complete 10-module catalog with concept and category counts.
+  - `GET /api/modules/{id}`: Detailed metadata for a specific language module.
+  - `GET /api/quiz/{language}`: Curated educational quiz question sets.
+  - `POST /api/quiz/submit`: Validates answers, awards speed bonuses, assigns tiers, and returns explanations.
+  - `GET /api/leaderboard`: Returns top 10 global learners.
+  - `POST /api/leaderboard`: Submits new learner high scores.
+- **Cross-Origin Resource Sharing (CORS)**: Configured to support remote frontend integration and GitHub Pages hosting.
+
 ---
 
 ## [5.2.0] — 2026-10-14

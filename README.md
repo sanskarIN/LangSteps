@@ -6,14 +6,21 @@ A premium, state-of-the-art interactive learning platform designed to help devel
 
 This platform requires **no compilation, no server setup, and no dependencies**. It operates entirely in the client browser using vanilla technologies (HTML5, JavaScript, CSS3), making it lightweight, easily shareable, and highly responsive.
 
-## ✨ Live Modules
+## ✨ Live Modules & Interactive Curricula
 
 | Module | Concepts | Features | Accent Color |
 |--------|----------|----------|-------------|
-| 🌐 **HTML Mastery** | 100+ Tags | Live Preview, Sidebar, Quiz, Cheat Sheet | `#f97316` Orange |
-| 🎨 **CSS Mastery** | 200 Properties | Live Preview, Property Explorer, Mastery Center | `#3b82f6` Blue |
-| ⚡ **JavaScript Mastery** | 100 Concepts | Live Sandbox, Console Output, Code Editor | `#eab308` Gold |
-| ⚛️ **React Mastery** | 100+ Concepts | Live Sandbox, Component Architecture | `#61dafb` Cyan |
+| 🌐 **HTML Mastery** | 100+ Tags | Live Preview, Tag Explorer, Quiz, Cheat Sheet | `#6c63ff` Purple |
+| 🎨 **CSS Mastery** | 200 Properties | Live Preview, Property Explorer, Mastery Center | `#3ecfcf` Cyan |
+| ⚡ **JavaScript Mastery** | 100 Concepts | Live Sandbox, Console Output, Code Editor | `#f97316` Orange |
+| ⚛️ **React Mastery** | 100+ Concepts | Live Sandbox, Hooks, Component Architecture | `#bf5af2` Violet |
+| 🐍 **Python Mastery** | 100 Concepts | Core to Asyncio, Django, FastAPI, NumPy, Pandas | `#3776ab` Blue & Yellow |
+| 🔷 **TypeScript Mastery** | 50 Concepts | Generics, Conditional Types, Utility Types | `#3178c6` TS Blue |
+| 🦀 **Rust Mastery** | 30 Concepts | Ownership, Borrowing, Lifetimes, Concurrency | `#dea584` Rust Orange |
+| 🐹 **Go Mastery** | 30 Concepts | Goroutines, Channels, Interfaces, Tooling | `#00add8` Go Cyan |
+| 🗄️ **SQL Mastery** | 30 Concepts | DDL, DML, Joins, Window Functions, ACID | `#336791` SQL Blue |
+| 🎯 **C# / .NET Mastery** | 40 Concepts | Modern C# 13, LINQ, Async/Await, ASP.NET Core | `#512bd4` .NET Purple |
+| 🎯 **Master Quiz Hub** | 200 Questions | Multi-language testing, 10 languages, leaderboard | Multi-tier Gold |
 
 ## 🎯 Key Features
 
@@ -87,8 +94,46 @@ The project does not rely on bundlers (Webpack, Vite, Rollup) or runtime environ
 - **Code Execution**: The live playground runs custom user code inside an isolated `<iframe>` environment, dynamically writing code via the `srcdoc` attribute and intercepting console actions through postMessage communication.
 - **Theme Manipulation**: A central theme engine sets CSS variables on the `:root` element, dynamically updating the visual state of all elements on the page without requiring style recalculations or re-rendering.
 
-### File Separation Strategy
-To maintain developer productivity, the codebase is split into specific, isolated files. Because single-file applications are easy to distribute, the project includes automation scripts (`split_files.js` and `split_files.ps1`) that allow the code to be kept in a split state for development (making it easy to write Javascript and CSS in dedicated editors) and easily packaged when needed.
+### 🔷 TypeScript Client Architecture (`src/`)
+LangSteps incorporates a fully typed, modern TypeScript subsystem that provides type-safety, engine modularity, and reusable services:
+- **`src/types/index.ts`**: Strict types for `Theme`, `Concept`, `ModuleInfo`, `QuizQuestion`, `QuizSubmission`, `QuizResult`, and `UserProgress`.
+- **`src/core/themeEngine.ts`**: Comprehensive theme engine with 25+ hand-crafted palettes, custom CSS variable injection, and persistence.
+- **`src/core/progressManager.ts`**: LocalStorage-backed progress manager tracking XP, levels (1-10), rank tiers (Novice to Grandmaster), and export/import.
+- **`src/core/quizEngine.ts`**: Scoring state machine, speed bonus calculations, performance tiers, and answer review generator.
+- **`src/core/apiClient.ts`**: Type-safe HTTP client connecting to the ASP.NET Core backend with zero-latency offline fallbacks.
+- **`src/index.ts`**: Unified entry point exposing the `LangStepsApp` bootstrapping API.
+
+```bash
+# Build TypeScript to dist/
+npm run build
+
+# Watch mode for TypeScript development
+npm run watch
+
+# Check types without emitting code
+npm run typecheck
+```
+
+### 🎯 ASP.NET Core Web API Backend (`server/LangSteps.Server/`)
+For enterprise deployments, production microservices, or local full-stack hosting, LangSteps provides an **ASP.NET Core Web API** server written in modern **C# (.NET 10)**:
+- **Integrated Static File Hosting**: When running the server, ASP.NET Core automatically hosts the complete LangSteps frontend alongside the REST API from the root directory.
+- **CORS Enabled**: Configured for seamless cross-origin communication from GitHub Pages, local dev environments, or custom clients.
+- **Minimal API Endpoints**:
+  - `GET /api/health` — Platform status, version, server timestamp, runtime details, and catalog counts.
+  - `GET /api/modules` — Complete catalog of all 10 language modules with metadata and category tags.
+  - `GET /api/modules/{id}` — Lookup module by identifier (e.g. `python`, `html`, `css`, `csharp`).
+  - `GET /api/quiz/{language}` — Curated educational quiz question sets for any supported language.
+  - `POST /api/quiz/submit` — Validates submissions, computes accuracy percentage, awards time bonuses, and returns detailed question explanations.
+  - `GET /api/leaderboard` — Retrieves top 10 global learners ranked by XP and mastery.
+  - `POST /api/leaderboard` — Submits new learner high scores.
+
+```bash
+# Run the ASP.NET Core server (hosts both frontend and REST APIs)
+dotnet run --project server/LangSteps.Server --urls "http://localhost:5055"
+
+# Build the ASP.NET Core server project
+dotnet build server/LangSteps.Server
+```
 
 ---
 
