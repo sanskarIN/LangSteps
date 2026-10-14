@@ -125,3 +125,6 @@ export interface ApiHealthResponse {
   timestamp: string;
   serverTime: string;
 }
+
+export * from './profile.js';
+
