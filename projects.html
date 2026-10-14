@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="canonical" href="https://sanskarin.github.io/LangSteps/projects.html">
+    <link rel="canonical" href="https://sanskarin.github.io/projects">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Dev Projects</title>
+    <meta name="description" content="Projects Portfolio & Coding Challenges — Web Development, Python, TypeScript, and Full-Stack Systems by Sanskar.">
+    <title>Projects Portfolio & Challenges | LangSteps</title>
     <link rel="icon" type="image/png" href="splash.png">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --bg: #0b0f19;
+            --bg-secondary: #121826;
             --text: #f8fafc;
+            --text-secondary: #94a3b8;
             --accent1: #6c63ff;
             --accent2: #3ecfcf;
             --card-bg: rgba(255, 255, 255, 0.05);
@@ -18,6 +22,7 @@
             --beginner: #4ade80;
             --intermediate: #facc15;
             --advanced: #f87171;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         body {
             margin: 0;
@@ -27,18 +32,99 @@
             color: var(--text);
             min-height: 100vh;
         }
+        /* Navbar */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(11, 15, 25, 0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--card-border);
+            padding: 0 20px;
+        }
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 65px;
+        }
+        .nav-brand {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--accent2);
+        }
         header {
-            padding: 40px 20px;
+            padding: 40px 20px 20px;
             text-align: center;
-            background: linear-gradient(135deg, rgba(11, 15, 25, 0.9), rgba(62, 207, 207, 0.2));
+            background: linear-gradient(135deg, rgba(11, 15, 25, 0.9), rgba(62, 207, 207, 0.15));
             border-bottom: 1px solid var(--card-border);
         }
-        h1 { margin: 0 0 10px 0; color: var(--accent2); }
+        h1 {
+            font-family: 'Outfit', sans-serif;
+            margin: 0 0 10px 0;
+            color: var(--accent2);
+            font-size: clamp(2rem, 4vw, 2.8rem);
+        }
+        /* Canonical Banner */
+        .canonical-banner-container {
+            max-width: 1200px;
+            margin: 25px auto 10px;
+            padding: 0 20px;
+        }
+        .canonical-banner {
+            background: linear-gradient(135deg, rgba(108, 99, 255, 0.18), rgba(62, 207, 207, 0.18));
+            border: 1px solid rgba(62, 207, 207, 0.4);
+            border-radius: 14px;
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .canonical-banner a.banner-btn {
+            background: var(--accent2);
+            color: #0b0f19;
+            font-weight: 700;
+            padding: 10px 22px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.92rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+        .canonical-banner a.banner-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(62, 207, 207, 0.4);
+        }
         .filters {
             display: flex;
             justify-content: center;
             gap: 15px;
-            margin: 30px 20px;
+            margin: 25px 20px 30px;
             flex-wrap: wrap;
         }
         select {
@@ -49,46 +135,47 @@
             color: var(--text);
             font-family: inherit;
             cursor: pointer;
+            font-size: 0.9rem;
         }
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 20px;
-            padding: 20px;
+            padding: 0 20px 40px;
             max-width: 1200px;
             margin: 0 auto;
         }
         .project-card {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
-            border-radius: 12px;
-            padding: 20px;
+            border-radius: 14px;
+            padding: 22px;
             backdrop-filter: blur(10px);
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
             display: flex;
             flex-direction: column;
         }
         .project-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
             border-color: var(--accent1);
         }
         .card-header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
         .difficulty {
-            font-size: 0.8rem;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-weight: 600;
+            font-size: 0.75rem;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-weight: 700;
         }
         .diff-Beginner { background: rgba(74, 222, 128, 0.2); color: var(--beginner); }
         .diff-Intermediate { background: rgba(250, 204, 21, 0.2); color: var(--intermediate); }
         .diff-Advanced { background: rgba(248, 113, 113, 0.2); color: var(--advanced); }
-        h3 { margin: 0; font-size: 1.2rem; }
+        h3 { margin: 0; font-size: 1.25rem; font-family: 'Outfit', sans-serif; }
         .desc { font-size: 0.95rem; color: #cbd5e1; flex-grow: 1; margin-bottom: 15px; }
         .tags {
             display: flex;
@@ -98,9 +185,10 @@
         }
         .tag {
             font-size: 0.75rem;
-            background: rgba(255,255,255,0.1);
-            padding: 4px 8px;
-            border-radius: 4px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 4px 10px;
+            border-radius: 6px;
         }
         .meta {
             display: flex;
@@ -112,18 +200,87 @@
             padding-top: 15px;
         }
         a.btn {
-            color: var(--accent1);
+            color: var(--accent2);
             text-decoration: none;
             font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: var(--transition);
         }
-        a.btn:hover { text-decoration: underline; }
+        a.btn:hover {
+            color: var(--accent1);
+            transform: translateX(3px);
+        }
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--card-border);
+            background: #090c14;
+            padding: 40px 20px 20px;
+            margin-top: 40px;
+        }
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 30px;
+        }
+        @media (max-width: 768px) {
+            .footer-inner {
+                grid-template-columns: 1fr;
+            }
+        }
+        .footer-col h4, .footer-col h5 {
+            font-family: 'Outfit', sans-serif;
+            margin: 0 0 15px;
+            font-size: 1.1rem;
+        }
+        .footer-col ul { list-style: none; padding: 0; margin: 0; }
+        .footer-col li { margin-bottom: 8px; }
+        .footer-col a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; }
+        .footer-col a:hover { color: var(--accent2); }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 25px;
+            margin-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: #64748b;
+            font-size: 0.85rem;
+        }
     </style>
 </head>
 <body>
+    <nav>
+        <div class="nav-inner">
+            <a href="index.html" class="nav-brand">⚡ LangSteps</a>
+            <div class="nav-links">
+                <a href="index.html">Hub</a>
+                <a href="https://sanskarin.github.io/about" target="_blank">About Sanskar</a>
+                <a href="projects.html" class="active">Projects</a>
+                <a href="blog.html">Blog</a>
+                <a href="contact.html">Contact</a>
+                <a href="quiz.html">Quiz</a>
+            </div>
+        </div>
+    </nav>
+
     <header>
-        <h1>Project Ideas & Templates</h1>
-        <p>Build these 25+ projects to master web development.</p>
+        <h1>Project Ideas, Blueprints & Templates</h1>
+        <p>Build 30+ hands-on projects across HTML, CSS, JavaScript, React, Python, TypeScript, and C#.</p>
     </header>
+
+    <div class="canonical-banner-container">
+        <div class="canonical-banner">
+            <div>
+                <strong style="color: var(--accent2); font-size: 1.15rem;"><i class="fa-solid fa-rocket"></i> Looking for Sanskar's Complete Project Portfolio?</strong>
+                <p style="margin: 4px 0 0 0; color: #cbd5e1; font-size: 0.92rem;">Explore full-stack production applications, open-source repositories, and developer utilities at sanskarin.github.io/projects.</p>
+            </div>
+            <a href="https://sanskarin.github.io/projects" target="_blank" class="banner-btn">
+                Visit All Projects <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+        </div>
+    </div>
 
     <div class="filters">
         <select id="diffFilter">
@@ -136,7 +293,10 @@
             <option value="All">All Technologies</option>
             <option value="HTML/CSS">HTML/CSS</option>
             <option value="JavaScript">JavaScript</option>
+            <option value="TypeScript">TypeScript</option>
+            <option value="Python">Python</option>
             <option value="React">React</option>
+            <option value="C# / ASP.NET">C# / ASP.NET</option>
         </select>
     </div>
 
@@ -144,35 +304,80 @@
         <!-- populated by JS -->
     </div>
 
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-col">
+                <h4>⚡ LangSteps</h4>
+                <p style="color: #94a3b8; font-size: 0.9rem;">
+                    Engineered by Sanskar Yadav. Empowering developers through structured interactive polyglot pathways.
+                </p>
+            </div>
+            <div class="footer-col">
+                <h5>Ecosystem</h5>
+                <ul>
+                    <li><a href="https://sanskarin.github.io/about" target="_blank">👤 About Sanskar</a></li>
+                    <li><a href="https://sanskarin.github.io/contact" target="_blank">📬 Contact Page</a></li>
+                    <li><a href="https://sanskarin.github.io/projects" target="_blank">🚀 All Projects</a></li>
+                    <li><a href="https://sanskarin.github.io/blog" target="_blank">✍️ Tech Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Practice Hub</h5>
+                <ul>
+                    <li><a href="quiz.html">Polyglot Quiz</a></li>
+                    <li><a href="playground.html">Code Playground</a></li>
+                    <li><a href="challenges.html">Code Challenges</a></li>
+                    <li><a href="Follow-Sanskar.html">Follow Sanskar</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Support & Socials</h5>
+                <ul>
+                    <li><a href="https://buymeacoffee.com/SanskarCodes" target="_blank" style="color:#FFDD00;">☕ Buy Me a Coffee</a></li>
+                    <li><a href="https://razorpay.me/@SanskarCodes" target="_blank" style="color:var(--accent2);">⚡ Razorpay</a></li>
+                    <li><a href="https://linkedin.com/in/SanskarCodes" target="_blank">💼 LinkedIn @SanskarCodes</a></li>
+                    <li><a href="https://x.com/SanskarCodes" target="_blank">🐦 X @SanskarCodes</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Sanskar Yadav. All Rights Reserved. | <a href="https://sanskarin.github.io/LangSteps" style="color:inherit;">LangSteps</a>
+        </div>
+    </footer>
+
     <script>
         const projects = [
-            { title: "Personal Portfolio", diff: "Beginner", desc: "A static portfolio website to showcase your skills and projects.", time: "2-4 hours", tags: ["HTML/CSS"], link: "#" },
-            { title: "Landing Page", diff: "Beginner", desc: "A product landing page with a hero section, features, and CTA.", time: "3 hours", tags: ["HTML/CSS"], link: "#" },
-            { title: "Registration Form", diff: "Beginner", desc: "A styled HTML form with various input types and validation.", time: "2 hours", tags: ["HTML/CSS"], link: "#" },
-            { title: "CSS Grid Gallery", diff: "Beginner", desc: "A responsive image gallery utilizing CSS Grid and Flexbox.", time: "2 hours", tags: ["HTML/CSS"], link: "#" },
-            { title: "Digital Clock", diff: "Beginner", desc: "A real-time clock displaying hours, minutes, and seconds.", time: "1 hour", tags: ["JavaScript"], link: "#" },
-            { title: "To-Do List", diff: "Beginner", desc: "Add, complete, and delete tasks. Store in localStorage.", time: "3 hours", tags: ["JavaScript"], link: "#" },
-            { title: "Random Quote Generator", diff: "Beginner", desc: "Fetch and display random quotes from a free API.", time: "2 hours", tags: ["JavaScript", "API"], link: "#" },
-            { title: "Color Flipper", diff: "Beginner", desc: "Click a button to change background color randomly.", time: "1 hour", tags: ["JavaScript"], link: "#" },
-            { title: "Counter App", diff: "Beginner", desc: "Increment, decrement, and reset a counter value.", time: "1 hour", tags: ["JavaScript"], link: "#" },
-            { title: "Simple Calculator", diff: "Beginner", desc: "Basic arithmetic calculator with UI.", time: "3 hours", tags: ["JavaScript"], link: "#" },
+            // HTML/CSS
+            { title: "Personal Portfolio", diff: "Beginner", desc: "A static portfolio website to showcase your skills and projects.", time: "2-4 hours", tags: ["HTML/CSS"], link: "https://sanskarin.github.io/about" },
+            { title: "Landing Page", diff: "Beginner", desc: "A modern SaaS product landing page with hero, features, and CTA.", time: "3 hours", tags: ["HTML/CSS"], link: "index.html" },
+            { title: "Registration Form", diff: "Beginner", desc: "A styled HTML form with floating labels and client-side validation.", time: "2 hours", tags: ["HTML/CSS"], link: "contact.html" },
+            { title: "CSS Grid Gallery", diff: "Beginner", desc: "A responsive image and photo gallery utilizing CSS Grid & Flexbox.", time: "2 hours", tags: ["HTML/CSS"], link: "index.html" },
             
-            { title: "Weather App", diff: "Intermediate", desc: "Fetch real-time weather data based on city input.", time: "5 hours", tags: ["JavaScript", "API"], link: "#" },
-            { title: "Movie Search App", diff: "Intermediate", desc: "Search OMDB API for movies and display results in cards.", time: "6 hours", tags: ["JavaScript", "API"], link: "#" },
-            { title: "Quiz App", diff: "Intermediate", desc: "Multiple choice quiz with score tracking and timer.", time: "5 hours", tags: ["JavaScript"], link: "#" },
-            { title: "Memory Card Game", diff: "Intermediate", desc: "Grid of cards to flip and find matching pairs.", time: "6 hours", tags: ["JavaScript"], link: "#" },
-            { title: "Expense Tracker", diff: "Intermediate", desc: "Track income and expenses, calculate total balance.", time: "5 hours", tags: ["JavaScript"], link: "#" },
-            { title: "Markdown Previewer", diff: "Intermediate", desc: "Type markdown and see HTML preview in real-time.", time: "4 hours", tags: ["React"], link: "#" },
-            { title: "Pomodoro Timer", diff: "Intermediate", desc: "25min work / 5min break timer with sound alerts.", time: "4 hours", tags: ["React"], link: "#" },
-            { title: "Recipe App", diff: "Intermediate", desc: "Search for recipes and view ingredients.", time: "6 hours", tags: ["React", "API"], link: "#" },
-            { title: "Shopping Cart", diff: "Intermediate", desc: "E-commerce cart functionality with state management.", time: "8 hours", tags: ["React"], link: "#" },
-            { title: "Note Taking App", diff: "Intermediate", desc: "Create, edit, delete notes. Save to local storage.", time: "5 hours", tags: ["React"], link: "#" },
+            // JavaScript
+            { title: "Digital Clock", diff: "Beginner", desc: "A real-time clock displaying hours, minutes, seconds, and timezones.", time: "1 hour", tags: ["JavaScript"], link: "playground.html" },
+            { title: "To-Do List", diff: "Beginner", desc: "Add, filter, complete, and delete tasks. Persisted in localStorage.", time: "3 hours", tags: ["JavaScript"], link: "playground.html" },
+            { title: "Random Quote Generator", diff: "Beginner", desc: "Fetch and display inspiring developer quotes from a public API.", time: "2 hours", tags: ["JavaScript"], link: "playground.html" },
+            { title: "Weather App", diff: "Intermediate", desc: "Fetch real-time weather forecasts and conditions based on city input.", time: "5 hours", tags: ["JavaScript"], link: "playground.html" },
+            { title: "Quiz Platform", diff: "Intermediate", desc: "Interactive multi-language quiz engine with timers, XP, and badges.", time: "6 hours", tags: ["JavaScript"], link: "quiz.html" },
+            
+            // TypeScript
+            { title: "TypeScript State Engine", diff: "Intermediate", desc: "Type-safe immutable store with actions, reducers, and subscription listeners.", time: "6 hours", tags: ["TypeScript"], link: "playground.html" },
+            { title: "Type-Safe REST Client", diff: "Intermediate", desc: "Generic HTTP client with interceptors, retry mechanisms, and schemas.", time: "5 hours", tags: ["TypeScript"], link: "developer.html" },
+            { title: "Interactive Code Runner", diff: "Advanced", desc: "In-browser simulation engine with syntax checking and output streaming.", time: "10 hours", tags: ["TypeScript"], link: "playground.html" },
 
-            { title: "Social Media Dashboard", diff: "Advanced", desc: "Dashboard displaying stats with dark/light mode toggle.", time: "10 hours", tags: ["React", "CSS"], link: "#" },
-            { title: "E-commerce Storefront", diff: "Advanced", desc: "Full frontend for a store, product pages, cart, checkout.", time: "20+ hours", tags: ["React", "State Mgt"], link: "#" },
-            { title: "Chat Application", diff: "Advanced", desc: "Real-time chat using WebSockets or Firebase.", time: "15 hours", tags: ["React", "Firebase"], link: "#" },
-            { title: "Kanban Board", diff: "Advanced", desc: "Trello clone with drag-and-drop functionality.", time: "15 hours", tags: ["React", "DnD"], link: "#" },
-            { title: "Spotify Clone", diff: "Advanced", desc: "Music player interface consuming the Spotify API.", time: "25+ hours", tags: ["React", "API"], link: "#" }
+            // Python
+            { title: "CLI Expense Tracker", diff: "Beginner", desc: "Manage transactions, calculate categories, and export CSV reports in Python.", time: "3 hours", tags: ["Python"], link: "playground.html" },
+            { title: "Web Scraper & Analyzer", diff: "Intermediate", desc: "Extract structured data from web pages using BeautifulSoup and requests.", time: "5 hours", tags: ["Python"], link: "playground.html" },
+            { title: "Async Task Pipeline", diff: "Advanced", desc: "Concurrent worker queue utilizing asyncio and context managers.", time: "8 hours", tags: ["Python"], link: "playground.html" },
+
+            // React
+            { title: "Markdown Previewer", diff: "Intermediate", desc: "Type markdown and view live rendered GitHub-flavored HTML preview.", time: "4 hours", tags: ["React"], link: "playground.html" },
+            { title: "Shopping Cart & Checkout", diff: "Intermediate", desc: "E-commerce state management with cart persistence and total computation.", time: "8 hours", tags: ["React"], link: "projects.html" },
+            { title: "Kanban Board", diff: "Advanced", desc: "Drag-and-drop productivity board with swimlanes and local persistence.", time: "15 hours", tags: ["React"], link: "projects.html" },
+
+            // C# / ASP.NET
+            { title: "Minimal Web API Service", diff: "Intermediate", desc: "High-throughput REST API with ASP.NET Core, CORS, and DI services.", time: "6 hours", tags: ["C# / ASP.NET"], link: "developer.html" },
+            { title: "Code Execution Sandbox API", diff: "Advanced", desc: "Backend runner analyzing code safety, memory, and stdout execution.", time: "12 hours", tags: ["C# / ASP.NET"], link: "developer.html" }
         ];
 
         const grid = document.getElementById('grid');
@@ -195,7 +400,7 @@
                     </div>
                     <div class="meta">
                         <span>⏱️ ${p.time}</span>
-                        <a href="${p.link}" class="btn">View Template &rarr;</a>
+                        <a href="${p.link}" class="btn">Explore &rarr;</a>
                     </div>
                 `;
                 grid.appendChild(card);
