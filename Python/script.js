@@ -371,6 +371,46 @@ const TAGS = [
     "emoji": "\ud83c\udff7\ufe0f",
     "defaultCode": "from typing import Optional, Union, Callable\n\ndef calculate_discount(price: float, rate: float = 0.1) -> float:\n    '''Calculates discounted price'''\n    return price * (1.0 - rate)\n\nprint(f'Discounted: ${calculate_discount(150.0):.2f}')",
     "content": "<h3>\ud83d\udccc Deep Dive: Type Hinting (PEP 484)</h3><p>Type hints allow static type checkers (Mypy, Pyright) and IDEs to catch bugs, provide autocomplete, and document API contracts without impacting runtime speed.</p><h4>\u2699\ufe0f Under the Hood</h4><p>Type annotations do not affect runtime behavior or enforce types dynamically in standard Python. They are stored in <code>__annotations__</code> for introspection.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>In Python 3.10+, use native union syntax <code>int | str</code> instead of <code>Union[int, str]</code> for cleaner code.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\">def fetch_user(uid: int) -> dict[str, str | int] | None:\n    if uid == 1: return {'id': 1, 'name': 'Sanskar'}\n    return None\nprint(fetch_user(1))</code></pre>"
+  },
+  {
+    "id": "py-46",
+    "title": "Concurrency: Threading & the GIL",
+    "badge": "CONCURRENCY",
+    "emoji": "\ud83e\uddf5",
+    "defaultCode": "import threading, time\ndef task(name):\n    time.sleep(0.1)\n    print(f'Thread {name} finished')\n\nt1 = threading.Thread(target=task, args=('Alpha',))\nt2 = threading.Thread(target=task, args=('Beta',))\nt1.start(); t2.start()\nt1.join(); t2.join()",
+    "content": "<h3>\ud83d\udccc Deep Dive: Threading & The GIL</h3><p>Python threads are real OS threads, but CPython enforces the Global Interpreter Lock (GIL), allowing only one thread to execute Python bytecode at a time.</p><h4>\u2699\ufe0f Under the Hood</h4><p>Threading is highly effective for I/O-bound tasks (network requests, disk access) because the GIL is released during system calls. For CPU-bound tasks, threading offers no speedup.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Python 3.13 introduces experimental free-threaded mode (no-GIL), enabling true multicore CPU scaling with threads.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\"># Thread-safe synchronization with Locks\nlock = threading.Lock()\ncounter = 0\ndef increment():\n    global counter\n    with lock: counter += 1</code></pre>"
+  },
+  {
+    "id": "py-47",
+    "title": "Concurrency: Multiprocessing & Shared Memory",
+    "badge": "CONCURRENCY",
+    "emoji": "\u26a1",
+    "defaultCode": "import multiprocessing as mp\ndef square(num, queue):\n    queue.put(num * num)\n\nif __name__ == '__main__':\n    q = mp.Queue()\n    p = mp.Process(target=square, args=(12, q))\n    p.start()\n    print('Square from process:', q.get())\n    p.join()",
+    "content": "<h3>\ud83d\udccc Deep Dive: Multiprocessing</h3><p>The <code>multiprocessing</code> module bypasses the GIL by spawning separate OS processes, each with its own independent Python interpreter and memory space.</p><h4>\u2699\ufe0f Under the Hood</h4><p>Processes communicate via IPC (Inter-Process Communication) mechanisms like pipes, queues, and shared memory (<code>multiprocessing.shared_memory</code>).</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Always wrap process spawning inside <code>if __name__ == '__main__':</code> to prevent infinite fork bombs on Windows.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\"># Multiprocessing Pool\nwith mp.Pool(processes=2) as pool:\n    results = pool.map(abs, [-1, -2, -3, 4])\n    print('Pool results:', results)</code></pre>"
+  },
+  {
+    "id": "py-48",
+    "title": "Asynchronous Programming: asyncio & async/await",
+    "badge": "ASYNC",
+    "emoji": "\u23f3",
+    "defaultCode": "import asyncio\nasync def fetch_data(source):\n    print(f'Fetching from {source}...')\n    await asyncio.sleep(0.1)\n    return f'Data from {source}'\n\nasync def main():\n    res = await fetch_data('DevForge API')\n    print(res)\n\nasyncio.run(main())",
+    "content": "<h3>\ud83d\udccc Deep Dive: Asynchronous Programming (asyncio)</h3><p><code>asyncio</code> provides single-threaded concurrent programming using cooperative multitasking, coroutines, and an event loop.</p><h4>\u2699\ufe0f Under the Hood</h4><p>An event loop maintains a queue of ready tasks. When a coroutine hits <code>await</code> on an I/O operation, it yields control back to the loop, which schedules other pending tasks.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Never call blocking functions (like <code>time.sleep()</code> or synchronous <code>requests.get()</code>) inside async coroutines; they freeze the entire event loop.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\"># Gathering multiple async coroutines concurrently\nasync def fetch_all():\n    results = await asyncio.gather(\n        fetch_data('Endpoint 1'),\n        fetch_data('Endpoint 2')\n    )\n    print('Gathered:', results)\nasyncio.run(fetch_all())</code></pre>"
+  },
+  {
+    "id": "py-49",
+    "title": "High-Level Thread & Process Pools (concurrent.futures)",
+    "badge": "CONCURRENCY",
+    "emoji": "\ud83c\udfca",
+    "defaultCode": "from concurrent.futures import ThreadPoolExecutor\ndef ping(host):\n    return f'{host}: Online'\n\nwith ThreadPoolExecutor(max_workers=3) as executor:\n    hosts = ['api.github.com', 'python.org', 'sanskarin.github.io']\n    for res in executor.map(ping, hosts):\n        print(res)",
+    "content": "<h3>\ud83d\udccc Deep Dive: concurrent.futures</h3><p>The <code>concurrent.futures</code> module provides a clean, unified high-level interface for asynchronously executing callables via thread or process worker pools.</p><h4>\u2699\ufe0f Under the Hood</h4><p>Executors manage worker lifecycles and return <code>Future</code> objects representing pending results, supporting callbacks, cancellation, and timeout management.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Use <code>ThreadPoolExecutor</code> for I/O tasks and seamlessly swap with <code>ProcessPoolExecutor</code> for CPU-heavy tasks without rewriting your logic.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\">with ThreadPoolExecutor() as ex:\n    future = ex.submit(pow, 2, 10)\n    print('Result:', future.result())</code></pre>"
+  },
+  {
+    "id": "py-50",
+    "title": "Web Scraping & HTML Parsing (BeautifulSoup4)",
+    "badge": "WEB",
+    "emoji": "\ud83d\udd78\ufe0f",
+    "defaultCode": "from bs4 import BeautifulSoup\nhtml = '<div class=\"hero\"><h1>DevForge</h1><p class=\"tagline\">Learn Code</p></div>'\nsoup = BeautifulSoup(html, 'html.parser')\nprint('Title:', soup.find('h1').text)\nprint('Tagline:', soup.find('p', class_='tagline').text)",
+    "content": "<h3>\ud83d\udccc Deep Dive: Web Scraping</h3><p>Web scraping extracts structured data from HTML web pages using parsers like BeautifulSoup and HTTP fetchers.</p><h4>\u2699\ufe0f Under the Hood</h4><p>BeautifulSoup parses messy HTML into a navigable Python object tree of tags, attributes, and text nodes.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Always respect site <code>robots.txt</code> files, set a descriptive <code>User-Agent</code> header, and apply rate limiting to prevent overwhelming servers.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\"># Finding all links in a document\nhtml_doc = '<a href=\"/docs\">Docs</a><a href=\"/blog\">Blog</a>'\ns = BeautifulSoup(html_doc, 'html.parser')\nlinks = [a['href'] for a in s.find_all('a')]\nprint('Extracted links:', links)</code></pre>"
   }
 ];
 
