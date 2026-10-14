@@ -411,6 +411,46 @@ const TAGS = [
     "emoji": "\ud83d\udd78\ufe0f",
     "defaultCode": "from bs4 import BeautifulSoup\nhtml = '<div class=\"hero\"><h1>DevForge</h1><p class=\"tagline\">Learn Code</p></div>'\nsoup = BeautifulSoup(html, 'html.parser')\nprint('Title:', soup.find('h1').text)\nprint('Tagline:', soup.find('p', class_='tagline').text)",
     "content": "<h3>\ud83d\udccc Deep Dive: Web Scraping</h3><p>Web scraping extracts structured data from HTML web pages using parsers like BeautifulSoup and HTTP fetchers.</p><h4>\u2699\ufe0f Under the Hood</h4><p>BeautifulSoup parses messy HTML into a navigable Python object tree of tags, attributes, and text nodes.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Always respect site <code>robots.txt</code> files, set a descriptive <code>User-Agent</code> header, and apply rate limiting to prevent overwhelming servers.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\"># Finding all links in a document\nhtml_doc = '<a href=\"/docs\">Docs</a><a href=\"/blog\">Blog</a>'\ns = BeautifulSoup(html_doc, 'html.parser')\nlinks = [a['href'] for a in s.find_all('a')]\nprint('Extracted links:', links)</code></pre>"
+  },
+  {
+    "id": "py-51",
+    "title": "Virtual Environments (venv, uv, virtualenv)",
+    "badge": "TOOLING",
+    "emoji": "\ud83d\udce6",
+    "defaultCode": "# Terminal commands:\n# python -m venv .venv\n# .venv\\Scripts\\activate (Windows)\n# source .venv/bin/activate (Linux/macOS)\nimport sys\nprint('Virtual env prefix:', sys.prefix)",
+    "content": "<h3>\ud83d\udccc Deep Dive: Virtual Environments</h3><p>Virtual environments isolate project-specific dependencies, preventing conflicting library versions and protecting the system Python installation.</p><h4>\u2699\ufe0f Under the Hood</h4><p>A virtual environment contains a copy or symlink of the Python executable and its own isolated <code>site-packages</code> directory. Activation scripts modify <code>PATH</code> to prioritize the venv.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Explore <code>uv</code> by Astral: an ultra-fast Rust-based Python package manager that creates environments in milliseconds.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\">import os\nis_venv = sys.prefix != sys.base_prefix\nprint(f'Running inside virtualenv: {is_venv}')</code></pre>"
+  },
+  {
+    "id": "py-52",
+    "title": "Pip & Dependency Management",
+    "badge": "TOOLING",
+    "emoji": "\ud83d\udd27",
+    "defaultCode": "# pip install -r requirements.txt\n# pip freeze > requirements.txt\n# pip install --upgrade requests\nprint('Manage project dependencies with pinned versions')",
+    "content": "<h3>\ud83d\udccc Deep Dive: Pip & Dependency Resolution</h3><p><code>pip</code> is the reference package installer for Python, downloading and installing wheels or source distributions from PyPI.</p><h4>\u2699\ufe0f Under the Hood</h4><p>Modern pip features a backtracking dependency resolver that satisfies complex transitive dependency constraints.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Always pin dependencies with exact versions (e.g., <code>requests==2.31.0</code>) or use lockfiles (<code>pip-compile</code>, <code>uv.lock</code>) for reproducible builds.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\"># Inspecting installed packages via code\nimport importlib.metadata\nprint('Installed pkgs sample:', list(importlib.metadata.distributions())[:3])</code></pre>"
+  },
+  {
+    "id": "py-53",
+    "title": "Modern Project Configuration (pyproject.toml)",
+    "badge": "TOOLING",
+    "emoji": "\ud83d\udcdc",
+    "defaultCode": "# pyproject.toml sample:\n# [project]\n# name = 'devforge'\n# version = '5.2.0'\n# dependencies = ['requests>=2.28.0']\nprint('pyproject.toml is the PEP 518/621 standard for Python packaging')",
+    "content": "<h3>\ud83d\udccc Deep Dive: pyproject.toml Configuration</h3><p><code>pyproject.toml</code> is the modern, unified configuration file for Python builds, linters (Ruff, Flake8), formatters (Black), and testing tools (pytest).</p><h4>\u2699\ufe0f Under the Hood</h4><p>Replaces legacy <code>setup.py</code>, <code>setup.cfg</code>, and <code>requirements.txt</code> with a declarative TOML structure standardized under PEP 517/518/621.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Centralize configurations for Black, Ruff, pytest, and mypy in a single <code>pyproject.toml</code> root file.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\">import tomllib  # Python 3.11+ standard library\ntoml_data = '[project]\\nname = \"DevForge\"\\nversion = \"5.2.0\"'\nparsed = tomllib.loads(toml_data)\nprint('Parsed TOML:', parsed['project'])</code></pre>"
+  },
+  {
+    "id": "py-54",
+    "title": "Application Logging (logging Module)",
+    "badge": "SYSTEM",
+    "emoji": "\ud83d\udcdd",
+    "defaultCode": "import logging\nlogging.basicConfig(level=logging.INFO, format='%(asctime)s [%(levelname)s] %(message)s')\nlogger = logging.getLogger('DevForge')\nlogger.info('System initialized successfully')\nlogger.warning('High memory usage detected')",
+    "content": "<h3>\ud83d\udccc Deep Dive: The logging Module</h3><p>The standard <code>logging</code> module provides thread-safe, hierarchical log levels (DEBUG, INFO, WARNING, ERROR, CRITICAL) with customizable handlers and formatters.</p><h4>\u2699\ufe0f Under the Hood</h4><p>Loggers are organized hierarchically by dot notation (e.g. <code>app.database</code> inherits configuration from <code>app</code>). Handlers route messages to consoles, rotating files, or network sockets.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Never use <code>print()</code> statements in production services; use <code>logging</code> to capture timestamps, severities, and stack traces.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\"># Logging exceptions with stack traces\ntry: 1 / 0\nexcept ZeroDivisionError:\n    logger.exception('Handled math fault')</code></pre>"
+  },
+  {
+    "id": "py-55",
+    "title": "Configuration Management: dotenv & pydantic-settings",
+    "badge": "SYSTEM",
+    "emoji": "\u2699\ufe0f",
+    "defaultCode": "import os\n# Simulate environment variable\nos.environ['PORT'] = '8080'\nos.environ['DATABASE_URL'] = 'postgresql://localhost/dev'\nport = int(os.environ.get('PORT', 3000))\nprint(f'Server configured for port: {port}')",
+    "content": "<h3>\ud83d\udccc Deep Dive: Configuration & 12-Factor Apps</h3><p>Store configuration in the environment, not in code. Use <code>.env</code> files for local development and inject environment variables in production.</p><h4>\u2699\ufe0f Under the Hood</h4><p>Libraries like <code>pydantic-settings</code> validate types, verify required secrets, and map nested configs automatically from environment variables at startup.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Always add <code>.env</code> to your <code>.gitignore</code> to prevent committing API keys, tokens, or database credentials to version control.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\">def get_config(key, default=None):\n    val = os.getenv(key, default)\n    if val is None:\n        raise ValueError(f'Missing required env var: {key}')\n    return val\nprint('Port:', get_config('PORT'))</code></pre>"
   }
 ];
 
