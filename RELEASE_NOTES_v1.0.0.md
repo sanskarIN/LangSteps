@@ -12,9 +12,9 @@
 
 ## 🌟 Executive Summary
 
-**LangSteps v1.0.0** is the first official, production-grade stable release of the LangSteps polyglot engineering and learning platform. Engineered from the ground up for modern web, systems, and backend development, LangSteps combines comprehensive interactive curricula across 10 programming languages with an enterprise dual-runtime architecture powered by **TypeScript** on the client and **C# / ASP.NET Core** on the server.
+**LangSteps v1.0.0** is the first official, production-grade stable release of the LangSteps polyglot engineering and learning platform. Engineered from the ground up for modern web, systems, and backend development, LangSteps delivers **7 fully developed, production-ready interactive curricula** (**HTML5**, **CSS3**, **JavaScript**, **React**, **Python 3.14**, **TypeScript 5.8**, and **Rust 2024 Edition**) backed by an enterprise dual-runtime architecture powered by **TypeScript** on the client and **C# / ASP.NET Core** on the server.
 
-Whether running completely offline in the browser or backed by a cloud-native microservice container, LangSteps delivers zero-latency execution, real-time diagnostics, gamified quiz modules, and verified pedagogical tracks.
+Incomplete modules (Go, SQL, and C#) have been decoupled and safely relocated to `E:\LearnSteps-some-module` for dedicated development targeting upcoming v1.1.0 milestones, ensuring v1.0.0 ships with 100% complete, verified, and polished educational content.
 
 ---
 
@@ -22,7 +22,7 @@ Whether running completely offline in the browser or backed by a cloud-native mi
 
 ### 1. 📑 Universal Footer & Sitemaps Architecture (`footer.html`)
 - Dedicated architectural ecosystem showcase: [`footer.html`](file:///E:/All_the_Projects_of_the-Sanskar/SANSKAR%20Folder/Web-Development-Mastery/footer.html).
-- Unified sitemaps across all 10 learning modules (HTML5, CSS3, JavaScript, React, Python, TypeScript, Rust, Go, SQL, C#).
+- Unified sitemaps across all active curricula and upcoming roadmap tracks.
 - Dynamic theme customizer with real-time palette preview (Dark Default, Slate Dim, Cyberpunk).
 - One-click copyable embed component for embedding consistent footers across any page.
 
