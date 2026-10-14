@@ -211,6 +211,46 @@ const TAGS = [
     "emoji": "\ud83d\udee1\ufe0f",
     "defaultCode": "class Vault:\n    def __init__(self, key):\n        self.public_id = 'V-100'\n        self._internal_salt = 's4lt'   # Protected by convention\n        self.__secret_key = key        # Private (name mangled)\n\nv = Vault('master_secret')\nprint(v.public_id, v._internal_salt)\n# Mangled access:\nprint(v._Vault__secret_key)",
     "content": "<h3>\ud83d\udccc Deep Dive: Encapsulation & Privacy</h3><p>Python does not enforce true private access modifiers like private/protected in C++ or Java. Instead, it relies on conventions and name mangling.</p><h4>\u2699\ufe0f Under the Hood</h4><p>Variables prefixed with double underscores (e.g. <code>__secret</code>) undergo name mangling by CPython, transforming into <code>_ClassName__secret</code> to prevent unintended overrides in subclasses.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Use a single leading underscore (<code>_name</code>) to indicate internal APIs for human programmers and tools. Reserve double underscores only to avoid subclass name clashes.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\"># Inspecting mangled keys in __dict__\nprint(list(v.__dict__.keys()))\n# ['public_id', '_internal_salt', '_Vault__secret_key']</code></pre>"
+  },
+  {
+    "id": "py-26",
+    "title": "Dunder Magic Methods (__str__, __repr__, __eq__)",
+    "badge": "OOP",
+    "emoji": "\u2728",
+    "defaultCode": "class Vector:\n    def __init__(self, x, y): self.x, self.y = x, y\n    def __repr__(self): return f'Vector({self.x}, {self.y})'\n    def __add__(self, other): return Vector(self.x + other.x, self.y + other.y)\n    def __eq__(self, other): return self.x == other.x and self.y == other.y\n\nv1, v2 = Vector(2, 3), Vector(5, 7)\nprint(v1 + v2, v1 == Vector(2, 3))",
+    "content": "<h3>\ud83d\udccc Deep Dive: Special (Dunder) Methods</h3><p>Dunder ('double underscore') methods allow user-defined classes to emulate native Python types, integrating with operators, built-ins, and iteration.</p><h4>\u2699\ufe0f Under the Hood</h4><p>Special methods are stored in type slots (e.g., <code>tp_as_number</code>) in CPython for fast C-level dispatch. <code>__repr__</code> should provide an unambiguous developer string; <code>__str__</code> provides a friendly user string.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Always implement <code>__repr__</code> first. If <code>__str__</code> is absent, Python automatically falls back to <code>__repr__</code>.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\"># Custom container protocol\nclass Deck:\n    cards = ['A', 'K', 'Q', 'J']\n    def __len__(self): return len(self.cards)\n    def __getitem__(self, idx): return self.cards[idx]\nd = Deck()\nprint(len(d), d[0], 'K' in d)</code></pre>"
+  },
+  {
+    "id": "py-27",
+    "title": "Property Decorators: @property, @setter & @deleter",
+    "badge": "OOP",
+    "emoji": "\ud83c\udff7\ufe0f",
+    "defaultCode": "class Temperature:\n    def __init__(self, celsius=0):\n        self._celsius = celsius\n    @property\n    def fahrenheit(self):\n        return (self._celsius * 9/5) + 32\n    @fahrenheit.setter\n    def fahrenheit(self, value):\n        self._celsius = (value - 32) * 5/9\n\nt = Temperature(25)\nprint(f'{t.fahrenheit}\u00b0F')\nt.fahrenheit = 98.6\nprint(f'{t._celsius:.1f}\u00b0C')",
+    "content": "<h3>\ud83d\udccc Deep Dive: Property Decorators</h3><p>The <code>@property</code> decorator allows methods to be accessed like attributes, providing validation, caching, and computed values without breaking public API contracts.</p><h4>\u2699\ufe0f Under the Hood</h4><p>Properties implement the descriptor protocol (<code>__get__</code>, <code>__set__</code>, <code>__delete__</code>). Accessing <code>obj.prop</code> invokes the descriptor's getter function under the hood.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Start with simple public attributes; refactor into <code>@property</code> only when validation or dynamic calculation becomes necessary.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\">class Circle:\n    def __init__(self, radius):\n        self.radius = radius\n    @property\n    def area(self):\n        import math\n        return math.pi * (self.radius ** 2)\nc = Circle(5)\nprint(f'Area: {c.area:.2f}')</code></pre>"
+  },
+  {
+    "id": "py-28",
+    "title": "Abstract Base Classes (ABC) & Interfaces",
+    "badge": "OOP",
+    "emoji": "\ud83d\udcd0",
+    "defaultCode": "from abc import ABC, abstractmethod\n\nclass DatabaseDriver(ABC):\n    @abstractmethod\n    def connect(self, dsn: str):\n        pass\n    @abstractmethod\n    def query(self, sql: str):\n        pass\n\nclass PostgresDriver(DatabaseDriver):\n    def connect(self, dsn): print(f'Connecting to {dsn}')\n    def query(self, sql): return [{'status': 'connected'}]",
+    "content": "<h3>\ud83d\udccc Deep Dive: Abstract Base Classes</h3><p>The <code>abc</code> module allows defining formal interfaces and abstract classes that require derived classes to implement specific methods.</p><h4>\u2699\ufe0f Under the Hood</h4><p>Instantiating a class that has unimplemented <code>@abstractmethod</code> decorators raises a <code>TypeError</code> at instantiation time before any constructor code executes.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>ABCs can register 'virtual subclasses' using <code>ABC.register(MyClass)</code>, allowing classes to pass <code>isinstance()</code> checks without inheriting.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\"># Validating interface implementation\ndriver = PostgresDriver()\ndriver.connect('postgresql://localhost/dev')\nprint(driver.query('SELECT 1'))</code></pre>"
+  },
+  {
+    "id": "py-29",
+    "title": "Dataclasses (@dataclass) & Modern Data Modeling",
+    "badge": "DATA STRUCTURES",
+    "emoji": "\ud83d\udce6",
+    "defaultCode": "from dataclasses import dataclass, field\n\n@dataclass(frozen=True)\nclass Project:\n    name: str\n    version: str = '1.0.0'\n    tags: list = field(default_factory=list)\n\np = Project('DevForge', tags=['python', 'web'])\nprint(p)",
+    "content": "<h3>\ud83d\udccc Deep Dive: Dataclasses (PEP 557)</h3><p>Introduced in Python 3.7, <code>@dataclass</code> automatically generates boilerplate methods like <code>__init__</code>, <code>__repr__</code>, <code>__eq__</code>, and <code>__hash__</code> based on class type annotations.</p><h4>\u2699\ufe0f Under the Hood</h4><p>The decorator inspects <code>__annotations__</code> and compiles standard Python methods dynamically into the class dictionary, avoiding runtime metaprogramming overhead.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Use <code>frozen=True</code> to create immutable, hashable records suitable for set members and dictionary keys.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\">from dataclasses import asdict\ndata_dict = asdict(p)\nprint('Serialized to dict:', data_dict)</code></pre>"
+  },
+  {
+    "id": "py-30",
+    "title": "NamedTuple, TypedDict & Lightweight Records",
+    "badge": "DATA STRUCTURES",
+    "emoji": "\ud83c\udff7\ufe0f",
+    "defaultCode": "from typing import NamedTuple, TypedDict\n\nclass Coordinate(NamedTuple):\n    lat: float\n    lon: float\n\nclass UserPayload(TypedDict):\n    username: str\n    email: str\n    is_active: bool\n\npos = Coordinate(28.6139, 77.2090)\nprint(f'{pos.lat=}, {pos[1]=}')",
+    "content": "<h3>\ud83d\udccc Deep Dive: NamedTuple and TypedDict</h3><p><code>NamedTuple</code> creates memory-efficient tuples with named field access. <code>TypedDict</code> provides static type hinting for regular dictionaries without changing runtime behavior.</p><h4>\u2699\ufe0f Under the Hood</h4><p><code>NamedTuple</code> instances inherit directly from tuple, retaining tuple immutability and low memory footprint. <code>TypedDict</code> is a pure type-checker construct; at runtime it produces regular dicts.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Use <code>TypedDict</code> when consuming external JSON APIs where you cannot change dictionary structure to classes.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\">user: UserPayload = {'username': 'sanskar', 'email': 'sanskarin@outlook.in', 'is_active': True}\nprint('TypedDict user:', user['email'])</code></pre>"
   }
 ];
 
