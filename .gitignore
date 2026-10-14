@@ -37,6 +37,10 @@ logs/
 # ── Build / Temp output ──────────────────────────────
 dist/
 build/
+bin/
+obj/
+**/bin/
+**/obj/
 .cache/
 tmp/
 temp/
