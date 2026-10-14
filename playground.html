@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="canonical" href="https://sanskarin.github.io/DevForge/playground.html">
+    <link rel="canonical" href="https://sanskarin.github.io/LangSteps/playground.html">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@Sanskar_in">
     <meta name="twitter:creator" content="@Sanskar_in">
@@ -75,7 +75,7 @@
                 <!DOCTYPE html>
                 <html>
                 <head>
-    <link rel="canonical" href="https://sanskarin.github.io/DevForge/playground.html">
+    <link rel="canonical" href="https://sanskarin.github.io/LangSteps/playground.html">
                     <style>${cssCode.value}</style>
                 </head>
                 <body>
@@ -89,7 +89,7 @@
 
         function downloadCode() {
             const content = `<!DOCTYPE html>\n<html>\n<head>
-    <link rel="canonical" href="https://sanskarin.github.io/DevForge/playground.html">\n<style>\n${cssCode.value}\n</style>\n</head>\n<body>\n${htmlCode.value}\n<script>\n${jsCode.value}\n<\/script>\n</body>\n</html>`;
+    <link rel="canonical" href="https://sanskarin.github.io/LangSteps/playground.html">\n<style>\n${cssCode.value}\n</style>\n</head>\n<body>\n${htmlCode.value}\n<script>\n${jsCode.value}\n<\/script>\n</body>\n</html>`;
             const blob = new Blob([content], { type: 'text/html' });
             const a = document.createElement('a');
             a.href = URL.createObjectURL(blob);

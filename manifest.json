@@ -1,7 +1,7 @@
 {
-  "name": "DevForge",
+  "name": "LangSteps",
   "short_name": "WDM",
-  "description": "DevForge Project",
+  "description": "LangSteps Project",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#0b0f19",

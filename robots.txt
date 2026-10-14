@@ -1,12 +1,12 @@
 # https://www.robotstxt.org/robotstxt.html
-# Robots.txt for DevForge
+# Robots.txt for LangSteps
 
 User-agent: *
 Allow: /
 Crawl-delay: 10
 
 # Sitemap location
-Sitemap: https://sanskarin.github.io/DevForge/sitemap.xml
+Sitemap: https://sanskarin.github.io/LangSteps/sitemap.xml
 
 # Allow all crawlers access to all content
 # This is an open-source educational platform

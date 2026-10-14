@@ -1,13 +1,13 @@
-# DevForge
+# LangSteps
 
-![GitHub stars](https://img.shields.io/github/stars/sanskarIN/DevForge?style=social)
-![GitHub forks](https://img.shields.io/github/forks/sanskarIN/DevForge?style=social)
-![GitHub issues](https://img.shields.io/github/issues/sanskarIN/DevForge)
-![GitHub license](https://img.shields.io/github/license/sanskarIN/DevForge)
+![GitHub stars](https://img.shields.io/github/stars/sanskarIN/LangSteps?style=social)
+![GitHub forks](https://img.shields.io/github/forks/sanskarIN/LangSteps?style=social)
+![GitHub issues](https://img.shields.io/github/issues/sanskarIN/LangSteps)
+![GitHub license](https://img.shields.io/github/license/sanskarIN/LangSteps)
 
 ## Overview
 
-Welcome to the **DevForge** repository! This project serves as a comprehensive guide and portfolio for mastering modern web technologies.
+Welcome to the **LangSteps** repository! This project serves as a comprehensive guide and portfolio for mastering modern web technologies.
 
 ## Technology Stack
 
@@ -25,6 +25,6 @@ Welcome to the **DevForge** repository! This project serves as a comprehensive g
 
 ## Contribution Stats
 
-![GitHub contributors](https://img.shields.io/github/contributors/sanskarIN/DevForge)
+![GitHub contributors](https://img.shields.io/github/contributors/sanskarIN/LangSteps)
 
 Thank you to all our contributors!

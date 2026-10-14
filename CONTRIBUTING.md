@@ -1,6 +1,6 @@
-# 🤝 Contributing to DevForge
+# 🤝 Contributing to LangSteps
 
-Thank you for your interest in contributing to **DevForge**! Every contribution helps make this free educational platform better for developers worldwide.
+Thank you for your interest in contributing to **LangSteps**! Every contribution helps make this free educational platform better for developers worldwide.
 
 ## 📋 Table of Contents
 
@@ -32,8 +32,8 @@ By participating in this project, you agree to maintain a respectful, inclusive 
 1. **Fork** this repository on GitHub
 2. **Clone** your fork locally:
    ```bash
-   git clone https://github.com/YOUR-USERNAME/DevForge.git
-   cd DevForge
+   git clone https://github.com/YOUR-USERNAME/LangSteps.git
+   cd LangSteps
    ```
 3. **Open** any HTML file directly in your browser to start testing
 4. Create a new branch for your changes:
@@ -71,7 +71,7 @@ By participating in this project, you agree to maintain a respectful, inclusive 
 ## 📂 Project Structure
 
 ```
-DevForge/
+LangSteps/
 ├── index.html              # Landing page (Hub)
 ├── HTML/                   # HTML Mastery module
 │   ├── index.html          # Main module page
@@ -252,4 +252,4 @@ We use **emoji-prefixed** commit messages for clarity:
 - **GitHub**: [@sanskarIN](https://github.com/sanskarIN)
 - **YouTube**: [@sanskarIN](https://youtube.com/@sanskarIN)
 
-Thank you for helping make DevForge better! 🚀
+Thank you for helping make LangSteps better! 🚀

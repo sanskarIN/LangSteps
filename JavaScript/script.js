@@ -9151,7 +9151,7 @@ function nextQuizQuestion() {
 }
 
 function shareScore() {
-    const text = '🎯 I scored ' + quizScore + '/' + quizQuestions.length + ' on the JavaScript Mastery Quiz! Try it: https://github.com/sanskarIN/DevForge';
+    const text = '🎯 I scored ' + quizScore + '/' + quizQuestions.length + ' on the JavaScript Mastery Quiz! Try it: https://github.com/sanskarIN/LangSteps';
     navigator.clipboard.writeText(text).then(() => alert('Score copied to clipboard!'));
 }
 

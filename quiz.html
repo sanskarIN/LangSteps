@@ -1,27 +1,27 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
-    <link rel="canonical" href="https://sanskarin.github.io/DevForge/quiz.html">
+    <link rel="canonical" href="https://sanskarin.github.io/LangSteps/quiz.html">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DevForge Quiz Hub — Test Your Knowledge Across 10 Languages</title>
+    <title>LangSteps Quiz Hub — Test Your Knowledge Across 10 Languages</title>
     <meta name="description" content="Challenge yourself with 200 curated questions across HTML, CSS, JavaScript, React, Python, TypeScript, Rust, Go, SQL, and C#. Interactive timer, instant explanations, and leaderboard.">
-    <meta name="keywords" content="Programming Quiz, Web Development Quiz, JavaScript Quiz, Python Quiz, Rust Quiz, React Quiz, DevForge, Sanskar Developer">
+    <meta name="keywords" content="Programming Quiz, Web Development Quiz, JavaScript Quiz, Python Quiz, Rust Quiz, React Quiz, LangSteps, Sanskar Developer">
     <meta name="author" content="Sanskar Yadav">
     <meta name="theme-color" content="#0b0f19">
 
     <!-- Open Graph -->
-    <meta property="og:title" content="DevForge Quiz Hub — Test Your Knowledge Across 10 Languages">
+    <meta property="og:title" content="LangSteps Quiz Hub — Test Your Knowledge Across 10 Languages">
     <meta property="og:description" content="Test your engineering skills with real questions in 10 programming languages with instant feedback and explanations.">
     <meta property="og:type" content="website">
     <meta property="og:image" content="splash.png">
-    <meta property="og:url" content="https://sanskarin.github.io/DevForge/quiz.html">
+    <meta property="og:url" content="https://sanskarin.github.io/LangSteps/quiz.html">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@Sanskar_in">
     <meta name="twitter:creator" content="@Sanskar_in">
-    <meta name="twitter:title" content="DevForge Quiz Hub — Test Your Knowledge Across 10 Languages">
+    <meta name="twitter:title" content="LangSteps Quiz Hub — Test Your Knowledge Across 10 Languages">
     <meta name="twitter:description" content="Test your programming knowledge with real-time feedback and leaderboard.">
     <meta name="twitter:image" content="splash.png">
 
@@ -39,7 +39,7 @@
     {
       "@context": "https://schema.org",
       "@type": "Quiz",
-      "name": "DevForge Programming Quiz Hub",
+      "name": "LangSteps Programming Quiz Hub",
       "description": "Comprehensive 10-language programming quiz platform covering HTML, CSS, JavaScript, React, Python, TypeScript, Rust, Go, SQL, and C#.",
       "educationalLevel": "Beginner to Advanced",
       "author": {
@@ -1336,8 +1336,8 @@
     <nav class="navbar">
         <div class="nav-container">
             <a href="index.html" class="nav-brand">
-                <img src="splash.png" alt="DevForge Logo" class="brand-logo-img">
-                <span class="brand-text">DevForge</span>
+                <img src="splash.png" alt="LangSteps Logo" class="brand-logo-img">
+                <span class="brand-text">LangSteps</span>
                 <span class="brand-badge">Quiz Hub</span>
             </a>
             <ul class="nav-links">
@@ -1363,7 +1363,7 @@
                     <span class="hero-pill-dot"></span>
                     Interactive Knowledge Assessments
                 </div>
-                <h1 class="hero-title">DevForge Quiz Hub</h1>
+                <h1 class="hero-title">LangSteps Quiz Hub</h1>
                 <p class="hero-subtitle">Test Your Knowledge Across 10 Languages — from core semantics and modern syntax to architecture, memory safety, and optimization.</p>
                 
                 <div class="hero-stats-row">
@@ -1464,7 +1464,7 @@
 
             <!-- Cross-Module Navigation -->
             <div class="modules-nav-section">
-                <h3 class="modules-nav-title">Explore DevForge Learning Modules</h3>
+                <h3 class="modules-nav-title">Explore LangSteps Learning Modules</h3>
                 <p class="modules-nav-subtitle">Deep dive into detailed tutorials, live playground environments, and syntax references</p>
                 <div class="modules-pill-grid">
                     <a href="HTML/index.html" class="module-nav-pill">🌐 HTML Module</a>
@@ -1595,8 +1595,8 @@
         <div class="footer-grid">
             <div class="footer-col">
                 <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
-                    <img src="splash.png" alt="DevForge Logo" style="width: 32px; height: 32px; border-radius: 8px;">
-                    <h4 style="margin-bottom: 0;">DevForge Learning Ecosystem</h4>
+                    <img src="splash.png" alt="LangSteps Logo" style="width: 32px; height: 32px; border-radius: 8px;">
+                    <h4 style="margin-bottom: 0;">LangSteps Learning Ecosystem</h4>
                 </div>
                 <p>The premier interactive, open-source engineering mastery hub. Test, build, and level up with 10 industry-standard languages and frameworks.</p>
                 <div style="display: flex; gap: 1rem; margin-top: 1.25rem;">
@@ -1662,7 +1662,7 @@
         </div>
 
         <div class="footer-bottom">
-            <span>© 2026 Sanskar Yadav. All Rights Reserved. DevForge is built with precision & ❤️ in India.</span>
+            <span>© 2026 Sanskar Yadav. All Rights Reserved. LangSteps is built with precision & ❤️ in India.</span>
             <span>Version 2.4.0 • Standalone Offline-Ready</span>
         </div>
     </footer>
@@ -1690,7 +1690,7 @@
         ];
 
         // Theme management
-        const THEME_KEY = 'devforge_theme';
+        const THEME_KEY = 'langsteps_theme';
         const themeToggleBtn = document.getElementById('themeToggleBtn');
         function initTheme() {
             const saved = localStorage.getItem(THEME_KEY) || 'dark';
@@ -4545,14 +4545,14 @@
         btnShareScore.addEventListener('click', async () => {
             const total = activeQuestions.length;
             const accuracy = Math.round((currentScore / total) * 100);
-            const shareText = `🚀 I just scored ${currentScore}/${total} (${accuracy}%) on the DevForge ${activeModule.name} Quiz! Test your developer skills here: https://sanskarin.github.io/DevForge/quiz.html`;
+            const shareText = `🚀 I just scored ${currentScore}/${total} (${accuracy}%) on the LangSteps ${activeModule.name} Quiz! Test your developer skills here: https://sanskarin.github.io/LangSteps/quiz.html`;
 
             if (navigator.share) {
                 try {
                     await navigator.share({
-                        title: `DevForge ${activeModule.name} Quiz Result`,
+                        title: `LangSteps ${activeModule.name} Quiz Result`,
                         text: shareText,
-                        url: 'https://sanskarin.github.io/DevForge/quiz.html'
+                        url: 'https://sanskarin.github.io/LangSteps/quiz.html'
                     });
                     showToast('Quiz score shared successfully!', '🎉');
                     return;

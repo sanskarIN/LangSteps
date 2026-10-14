@@ -1,6 +1,6 @@
 # 📝 Changelog
 
-All notable changes to **DevForge** will be documented in this file.
+All notable changes to **LangSteps** will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
@@ -13,7 +13,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - **Modern Interactive UI**: Added category filter pills (Basics, Data Structures, OOP, Async, Web, Data Science, Advanced, Modern Python), code playground with execution simulation, copy code, reset, and quick quiz shortcuts.
 - **Scaled Gamification**: Extended ranking progression through 100 concepts from *Python Novice* to *Python Grandmaster* with live XP counters.
 
-### 🎯 DevForge Quiz Hub (NEW)
+### 🎯 LangSteps Quiz Hub (NEW)
 - **Multi-Language Knowledge Testing**: Standalone quiz engine testing real-world engineering concepts across all 10 platform languages (HTML, CSS, JavaScript, React, Python, TypeScript, Rust, Go, SQL, C#).
 - **200 Curated Educational Questions**: 20 rigorous questions per language with 4 options, 30-second timers, instant explanations, and performance tier badges (Master, Expert, Advanced, Intermediate, Beginner).
 - **Interactive Landing Section**: Dedicated Quiz Hub showcase on the landing page with direct language selectors and deep-linking query support (`quiz.html?lang=...`).
@@ -78,11 +78,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [4.0.0] — 2026-09-28
 
-### 🎉 Major Rebrand — DevForge
-- Project renamed from "DevForge" to **DevForge**
+### 🎉 Major Rebrand — LangSteps
+- Project renamed from "LangSteps" to **LangSteps**
 - Updated all internal references, URLs, titles, and meta tags
-- New repository: `github.com/sanskarIN/DevForge`
-- New GitHub Pages URL: `sanskarin.github.io/DevForge`
+- New repository: `github.com/sanskarIN/LangSteps`
+- New GitHub Pages URL: `sanskarin.github.io/LangSteps`
 
 ### 🐍 Python Module (NEW)
 - Complete Python learning module with 30 concepts
@@ -92,8 +92,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Secondary pages: about, developer, privacy, support, terms, thanks, 404
 
 ### 🚀 GitHub Pages Deployment
-- Updated deployment workflow for DevForge
-- Live at: `https://sanskarin.github.io/DevForge/`
+- Updated deployment workflow for LangSteps
+- Live at: `https://sanskarin.github.io/LangSteps/`
 
 ### 🧭 Navigation
 - Added Python to cross-module navigation in all module index pages

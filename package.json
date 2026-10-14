@@ -1,5 +1,5 @@
 {
-  "name": "devforge",
+  "name": "langsteps",
   "version": "1.0.0",
   "description": "A premium, state-of-the-art interactive learning platform designed to help developers master **HTML** (100+ tags), **CSS** (200 properties), **JavaScript** (100 concepts), and **React** (100+ concepts) through in-depth explanations, real-time code execution, live sandboxes, persistent progress tracking, gamified mechanics, quiz systems, and premium dark UI with 25+ themes.",
   "main": "index.js",
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Sanskar-in/DevForge.git"
+    "url": "git+https://github.com/Sanskar-in/LangSteps.git"
   },
   "keywords": [],
   "type": "commonjs",
   "bugs": {
-    "url": "https://github.com/Sanskar-in/DevForge/issues"
+    "url": "https://github.com/Sanskar-in/LangSteps/issues"
   },
-  "homepage": "https://github.com/Sanskar-in/DevForge#readme",
+  "homepage": "https://github.com/Sanskar-in/LangSteps#readme",
   "devDependencies": {
     "eslint": "^10.10.0",
     "htmlhint": "^1.9.2",

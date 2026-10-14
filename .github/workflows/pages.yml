@@ -1,4 +1,4 @@
-name: Deploy DevForge to GitHub Pages
+name: Deploy LangSteps to GitHub Pages
 
 on:
   push:

@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <!-- Root Landing Page -->
     <url>
-        <loc>https://sanskarin.github.io/DevForge/index.html</loc>
+        <loc>https://sanskarin.github.io/LangSteps/index.html</loc>
         <lastmod>2026-09-21</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
@@ -10,19 +10,19 @@
 
     <!-- HTML Module -->
     <url>
-        <loc>https://sanskarin.github.io/DevForge/HTML/index.html</loc>
+        <loc>https://sanskarin.github.io/LangSteps/HTML/index.html</loc>
         <lastmod>2026-09-21</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://sanskarin.github.io/DevForge/HTML/about.html</loc>
+        <loc>https://sanskarin.github.io/LangSteps/HTML/about.html</loc>
         <lastmod>2026-09-21</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
     </url>
     <url>
-        <loc>https://sanskarin.github.io/DevForge/HTML/developer.html</loc>
+        <loc>https://sanskarin.github.io/LangSteps/HTML/developer.html</loc>
         <lastmod>2026-09-21</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
@@ -30,19 +30,19 @@
 
     <!-- CSS Module -->
     <url>
-        <loc>https://sanskarin.github.io/DevForge/CSS/index.html</loc>
+        <loc>https://sanskarin.github.io/LangSteps/CSS/index.html</loc>
         <lastmod>2026-09-21</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://sanskarin.github.io/DevForge/CSS/about.html</loc>
+        <loc>https://sanskarin.github.io/LangSteps/CSS/about.html</loc>
         <lastmod>2026-09-21</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
     </url>
     <url>
-        <loc>https://sanskarin.github.io/DevForge/CSS/developer.html</loc>
+        <loc>https://sanskarin.github.io/LangSteps/CSS/developer.html</loc>
         <lastmod>2026-09-21</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
@@ -50,19 +50,19 @@
 
     <!-- JavaScript Module -->
     <url>
-        <loc>https://sanskarin.github.io/DevForge/JavaScript/index.html</loc>
+        <loc>https://sanskarin.github.io/LangSteps/JavaScript/index.html</loc>
         <lastmod>2026-09-21</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://sanskarin.github.io/DevForge/JavaScript/about.html</loc>
+        <loc>https://sanskarin.github.io/LangSteps/JavaScript/about.html</loc>
         <lastmod>2026-09-21</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
     </url>
     <url>
-        <loc>https://sanskarin.github.io/DevForge/JavaScript/developer.html</loc>
+        <loc>https://sanskarin.github.io/LangSteps/JavaScript/developer.html</loc>
         <lastmod>2026-09-21</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
@@ -70,19 +70,19 @@
 
     <!-- React Module -->
     <url>
-        <loc>https://sanskarin.github.io/DevForge/React/index.html</loc>
+        <loc>https://sanskarin.github.io/LangSteps/React/index.html</loc>
         <lastmod>2026-09-21</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://sanskarin.github.io/DevForge/React/about.html</loc>
+        <loc>https://sanskarin.github.io/LangSteps/React/about.html</loc>
         <lastmod>2026-09-21</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
     </url>
     <url>
-        <loc>https://sanskarin.github.io/DevForge/React/developer.html</loc>
+        <loc>https://sanskarin.github.io/LangSteps/React/developer.html</loc>
         <lastmod>2026-09-21</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
@@ -90,43 +90,43 @@
 
     <!-- Secondary Pages -->
     <url>
-        <loc>https://sanskarin.github.io/DevForge/about.html</loc>
+        <loc>https://sanskarin.github.io/LangSteps/about.html</loc>
         <lastmod>2026-09-21</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://sanskarin.github.io/DevForge/developer.html</loc>
+        <loc>https://sanskarin.github.io/LangSteps/developer.html</loc>
         <lastmod>2026-09-21</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://sanskarin.github.io/DevForge/privacy.html</loc>
+        <loc>https://sanskarin.github.io/LangSteps/privacy.html</loc>
         <lastmod>2026-09-21</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.4</priority>
     </url>
     <url>
-        <loc>https://sanskarin.github.io/DevForge/support.html</loc>
+        <loc>https://sanskarin.github.io/LangSteps/support.html</loc>
         <lastmod>2026-09-21</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
     <url>
-        <loc>https://sanskarin.github.io/DevForge/terms.html</loc>
+        <loc>https://sanskarin.github.io/LangSteps/terms.html</loc>
         <lastmod>2026-09-21</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.4</priority>
     </url>
     <url>
-        <loc>https://sanskarin.github.io/DevForge/thanks.html</loc>
+        <loc>https://sanskarin.github.io/LangSteps/thanks.html</loc>
         <lastmod>2026-09-21</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
     </url>
     <url>
-        <loc>https://sanskarin.github.io/DevForge/Follow-Sanskar.html</loc>
+        <loc>https://sanskarin.github.io/LangSteps/Follow-Sanskar.html</loc>
         <lastmod>2026-09-21</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
@@ -134,199 +134,199 @@
 
     <!-- New v3.0 Pages -->
     <url>
-        <loc>https://sanskarin.github.io/DevForge/playground.html</loc>
+        <loc>https://sanskarin.github.io/LangSteps/playground.html</loc>
         <lastmod>2026-09-21</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://sanskarin.github.io/DevForge/quiz.html</loc>
+        <loc>https://sanskarin.github.io/LangSteps/quiz.html</loc>
         <lastmod>2026-09-21</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://sanskarin.github.io/DevForge/glossary.html</loc>
+        <loc>https://sanskarin.github.io/LangSteps/glossary.html</loc>
         <lastmod>2026-09-21</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://sanskarin.github.io/DevForge/cheatsheet.html</loc>
+        <loc>https://sanskarin.github.io/LangSteps/cheatsheet.html</loc>
         <lastmod>2026-09-21</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://sanskarin.github.io/DevForge/resources.html</loc>
+        <loc>https://sanskarin.github.io/LangSteps/resources.html</loc>
         <lastmod>2026-09-21</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://sanskarin.github.io/DevForge/bookmarks.html</loc>
+        <loc>https://sanskarin.github.io/LangSteps/bookmarks.html</loc>
         <lastmod>2026-09-21</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
     <url>
-        <loc>https://sanskarin.github.io/DevForge/progress-dashboard.html</loc>
+        <loc>https://sanskarin.github.io/LangSteps/progress-dashboard.html</loc>
         <lastmod>2026-09-21</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://sanskarin.github.io/DevForge/changelog-viewer.html</loc>
+        <loc>https://sanskarin.github.io/LangSteps/changelog-viewer.html</loc>
         <lastmod>2026-09-21</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
     </url>
     <url>
-        <loc>https://sanskarin.github.io/DevForge/compare.html</loc>
+        <loc>https://sanskarin.github.io/LangSteps/compare.html</loc>
         <lastmod>2026-09-21</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://sanskarin.github.io/DevForge/roadmap-detail.html</loc>
+        <loc>https://sanskarin.github.io/LangSteps/roadmap-detail.html</loc>
         <lastmod>2026-09-21</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://sanskarin.github.io/DevForge/snippets.html</loc>
+        <loc>https://sanskarin.github.io/LangSteps/snippets.html</loc>
         <lastmod>2026-09-21</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://sanskarin.github.io/DevForge/tips.html</loc>
+        <loc>https://sanskarin.github.io/LangSteps/tips.html</loc>
         <lastmod>2026-09-21</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
     <url>
-        <loc>https://sanskarin.github.io/DevForge/tools.html</loc>
+        <loc>https://sanskarin.github.io/LangSteps/tools.html</loc>
         <lastmod>2026-09-23</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://sanskarin.github.io/DevForge/interview.html</loc>
+        <loc>https://sanskarin.github.io/LangSteps/interview.html</loc>
         <lastmod>2026-09-23</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://sanskarin.github.io/DevForge/certificates.html</loc>
+        <loc>https://sanskarin.github.io/LangSteps/certificates.html</loc>
         <lastmod>2026-09-23</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://sanskarin.github.io/DevForge/challenges.html</loc>
+        <loc>https://sanskarin.github.io/LangSteps/challenges.html</loc>
         <lastmod>2026-09-23</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://sanskarin.github.io/DevForge/community.html</loc>
+        <loc>https://sanskarin.github.io/LangSteps/community.html</loc>
         <lastmod>2026-09-23</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
     <url>
-        <loc>https://sanskarin.github.io/DevForge/flashcards.html</loc>
+        <loc>https://sanskarin.github.io/LangSteps/flashcards.html</loc>
         <lastmod>2026-09-23</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://sanskarin.github.io/DevForge/shortcuts.html</loc>
+        <loc>https://sanskarin.github.io/LangSteps/shortcuts.html</loc>
         <lastmod>2026-09-23</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://sanskarin.github.io/DevForge/projects.html</loc>
+        <loc>https://sanskarin.github.io/LangSteps/projects.html</loc>
         <lastmod>2026-09-23</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://sanskarin.github.io/DevForge/accessibility-checker.html</loc>
+        <loc>https://sanskarin.github.io/LangSteps/accessibility-checker.html</loc>
         <lastmod>2026-09-23</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://sanskarin.github.io/DevForge/performance.html</loc>
+        <loc>https://sanskarin.github.io/LangSteps/performance.html</loc>
         <lastmod>2026-09-23</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://sanskarin.github.io/DevForge/design-patterns.html</loc>
+        <loc>https://sanskarin.github.io/LangSteps/design-patterns.html</loc>
         <lastmod>2026-09-28</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://sanskarin.github.io/DevForge/regex-tester.html</loc>
+        <loc>https://sanskarin.github.io/LangSteps/regex-tester.html</loc>
         <lastmod>2026-09-28</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://sanskarin.github.io/DevForge/color-converter.html</loc>
+        <loc>https://sanskarin.github.io/LangSteps/color-converter.html</loc>
         <lastmod>2026-09-28</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://sanskarin.github.io/DevForge/api-reference.html</loc>
+        <loc>https://sanskarin.github.io/LangSteps/api-reference.html</loc>
         <lastmod>2026-09-28</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://sanskarin.github.io/DevForge/animations.html</loc>
+        <loc>https://sanskarin.github.io/LangSteps/animations.html</loc>
         <lastmod>2026-09-28</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://sanskarin.github.io/DevForge/Python/index.html</loc>
+        <loc>https://sanskarin.github.io/LangSteps/Python/index.html</loc>
         <lastmod>2026-09-28</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://sanskarin.github.io/DevForge/TypeScript/index.html</loc>
+        <loc>https://sanskarin.github.io/LangSteps/TypeScript/index.html</loc>
         <lastmod>2026-10-02</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://sanskarin.github.io/DevForge/Rust/index.html</loc>
+        <loc>https://sanskarin.github.io/LangSteps/Rust/index.html</loc>
         <lastmod>2026-10-02</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://sanskarin.github.io/DevForge/Go/index.html</loc>
+        <loc>https://sanskarin.github.io/LangSteps/Go/index.html</loc>
         <lastmod>2026-10-02</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://sanskarin.github.io/DevForge/SQL/index.html</loc>
+        <loc>https://sanskarin.github.io/LangSteps/SQL/index.html</loc>
         <lastmod>2026-10-02</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://sanskarin.github.io/DevForge/CSharp/index.html</loc>
+        <loc>https://sanskarin.github.io/LangSteps/CSharp/index.html</loc>
         <lastmod>2026-10-05</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>

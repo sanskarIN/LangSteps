@@ -1670,7 +1670,7 @@ function nextQuizQuestion() {
 }
 
 function shareScore() {
-    const text = `🎯 I scored ${quizState.score}/${quizState.questions.length} on the React Mastery Quiz!\nTest your React knowledge: https://github.com/sanskarIN/DevForge`;
+    const text = `🎯 I scored ${quizState.score}/${quizState.questions.length} on the React Mastery Quiz!\nTest your React knowledge: https://github.com/sanskarIN/LangSteps`;
     navigator.clipboard.writeText(text).then(() => alert('Score copied to clipboard! 📋'));
 }
 
