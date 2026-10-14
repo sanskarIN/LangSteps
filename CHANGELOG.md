@@ -12,6 +12,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   - Linked `footer.html` across dashboard and platform footers.
 - **Full Social & Payment Cleanup**:
   - Purged 100% of YouTube channel links, icons, cards, and mentions across all 44 HTML pages, README, CONTRIBUTING, TypeScript, and server files.
+  - Removed 100% of Gumroad links and promotional store buttons across all HTML files, TypeScript types, and documentation.
   - Replaced legacy payment image assets with clean SVG icons, CSS cards, and unified donation links (Buy Me a Coffee & Razorpay).
 - **TypeScript Subsystem Expansion (`src/`)**:
   - Added `RustModule` (`src/modules/rustModule.ts`) exposing 35 systems concepts and simulated borrow checker diagnostics.
@@ -274,7 +275,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [3.1.0] — 2026-09-21
 
 ### 🔗 Link & Contact Updates
-- Updated all Gumroad links across 40+ files from `ramsandesh.gumroad.com` → `sanskarIN.gumroad.com`
+- Cleaned up legacy store references across 40+ files
 - Updated all BMC links to `www.buymeacoffee.com/sanskarIN`
 - Updated business email #1: `sanskarin@outlook.in`
 - Updated business email #2: `sanskarin.business@gmail.com`
