@@ -171,6 +171,46 @@ const TAGS = [
     "emoji": "\ud83d\udd10",
     "defaultCode": "def make_multiplier(factor):\n    # 'factor' is enclosed in the returned function\n    def multiplier(number):\n        return number * factor\n    return multiplier\n\ntriple = make_multiplier(3)\nprint(f'3 * 7 = {triple(7)}')\nprint('Closure cells:', triple.__closure__[0].cell_contents)",
     "content": "<h3>\ud83d\udccc Deep Dive: Closures & Lexical Scoping</h3><p>A closure is a function object that retains access to variables from its enclosing lexical scope even after that outer scope has finished executing.</p><h4>\u2699\ufe0f Under the Hood</h4><p>CPython captures free variables referenced in inner functions into <code>cell</code> objects within the <code>__closure__</code> tuple attribute. Modifying free variables requires the <code>nonlocal</code> keyword.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Closures form the theoretical and mechanical foundation of all Python decorators.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\">def make_counter(start=0):\n    count = start\n    def step():\n        nonlocal count\n        count += 1\n        return count\n    return step\nc = make_counter(10)\nprint(c(), c(), c())  # 11, 12, 13</code></pre>"
+  },
+  {
+    "id": "py-21",
+    "title": "Classes & Object-Oriented Fundamentals",
+    "badge": "OOP",
+    "emoji": "\ud83c\udfdb\ufe0f",
+    "defaultCode": "class Account:\n    bank_name = 'DevForge Bank'  # Class attribute\n    def __init__(self, owner, balance=0):\n        self.owner = owner          # Instance attribute\n        self.balance = balance\n\nacc = Account('Sanskar', 5000)\nprint(acc.bank_name, acc.owner, acc.balance)",
+    "content": "<h3>\ud83d\udccc Deep Dive: Classes & Instances</h3><p>Classes are blueprints for creating objects. They encapsulate state (attributes) and behavior (methods) into a coherent type.</p><h4>\u2699\ufe0f Under the Hood</h4><p>Every class in Python is an instance of the <code>type</code> metaclass. Instance attributes live inside the object's <code>__dict__</code> dictionary unless <code>__slots__</code> is declared.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Class attributes are shared across all instances; mutating a mutable class attribute affects every instance!</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\">class Bank:\n    rates = {}\n    def __init__(self, name):\n        self.name = name\nb1, b2 = Bank('B1'), Bank('B2')\nBank.rates['USD'] = 1.05\nprint(b1.rates, b2.rates)</code></pre>"
+  },
+  {
+    "id": "py-22",
+    "title": "The __init__ Constructor & self Parameter",
+    "badge": "OOP",
+    "emoji": "\ud83c\udfd7\ufe0f",
+    "defaultCode": "class Server:\n    def __init__(self, host, port=8080):\n        self.host = host\n        self.port = port\n        self.running = False\n    def start(self):\n        self.running = True\n        print(f'Server listening on {self.host}:{self.port}')\n\ns = Server('127.0.0.1')\ns.start()",
+    "content": "<h3>\ud83d\udccc Deep Dive: __init__ vs __new__</h3><p>The <code>__init__</code> method initializes an already created instance. The <code>self</code> parameter represents the specific instance being operated upon.</p><h4>\u2699\ufe0f Under the Hood</h4><p>Object construction occurs in two stages: <code>__new__(cls)</code> allocates the raw object, and <code>__init__(self)</code> initializes attributes. Python automatically passes the instance as the first argument when calling bound methods.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p><code>__init__</code> must always return <code>None</code>. Returning any other value raises a <code>TypeError</code>.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\"># Invoking bound vs unbound methods\ns = Server('localhost', 3000)\n# These two calls are identical in bytecode:\ns.start()\nServer.start(s)</code></pre>"
+  },
+  {
+    "id": "py-23",
+    "title": "Inheritance & Method Resolution Order (MRO)",
+    "badge": "OOP",
+    "emoji": "\ud83e\uddec",
+    "defaultCode": "class Animal:\n    def speak(self): return 'Sound'\n\nclass Dog(Animal):\n    def speak(self):\n        base = super().speak()\n        return f'{base} -> Woof!'\n\nd = Dog()\nprint(d.speak())\nprint('Dog MRO:', Dog.mro())",
+    "content": "<h3>\ud83d\udccc Deep Dive: Inheritance & super()</h3><p>Inheritance enables classes to derive attributes and methods from base classes, fostering code reuse and polymorphic hierarchies.</p><h4>\u2699\ufe0f Under the Hood</h4><p>Python calculates inheritance hierarchy using the C3 Linearization algorithm to determine Method Resolution Order (MRO). The <code>super()</code> call dynamically resolves the next class in the MRO, crucial for diamond multiple inheritance.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Always use <code>super().__init__(*args, **kwargs)</code> in cooperative multiple inheritance to avoid skipping base initializers.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\">class A: pass\nclass B(A): pass\nclass C(A): pass\nclass D(B, C): pass\nprint([cls.__name__ for cls in D.mro()])\n# ['D', 'B', 'C', 'A', 'object']</code></pre>"
+  },
+  {
+    "id": "py-24",
+    "title": "Polymorphism & Duck Typing",
+    "badge": "OOP",
+    "emoji": "\ud83e\udd86",
+    "defaultCode": "class JSONRenderer:\n    def render(self, data): return f'JSON: {data}'\n\nclass HTMLRenderer:\n    def render(self, data): return f'<div>{data}</div>'\n\ndef output_view(renderer, payload):\n    print(renderer.render(payload))\n\noutput_view(JSONRenderer(), {'status': 200})\noutput_view(HTMLRenderer(), 'Hello World')",
+    "content": "<h3>\ud83d\udccc Deep Dive: Duck Typing</h3><p>In Python: 'If it walks like a duck and quacks like a duck, it's a duck.' Polymorphism in Python relies on object protocols rather than explicit nominal inheritance.</p><h4>\u2699\ufe0f Under the Hood</h4><p>Python does not verify method existence at compile time; it dynamically looks up attribute names on the instance and its MRO at runtime.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Embrace EAFP ('Easier to Ask for Forgiveness than Permission') using <code>try/except AttributeError</code> instead of LBYL ('Look Before You Leap') with <code>isinstance()</code>.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\"># Anything implementing .read() can be treated as a file\nimport io\nstream = io.StringIO('mock file content')\nprint(stream.read())</code></pre>"
+  },
+  {
+    "id": "py-25",
+    "title": "Encapsulation, Private Members & Name Mangling",
+    "badge": "OOP",
+    "emoji": "\ud83d\udee1\ufe0f",
+    "defaultCode": "class Vault:\n    def __init__(self, key):\n        self.public_id = 'V-100'\n        self._internal_salt = 's4lt'   # Protected by convention\n        self.__secret_key = key        # Private (name mangled)\n\nv = Vault('master_secret')\nprint(v.public_id, v._internal_salt)\n# Mangled access:\nprint(v._Vault__secret_key)",
+    "content": "<h3>\ud83d\udccc Deep Dive: Encapsulation & Privacy</h3><p>Python does not enforce true private access modifiers like private/protected in C++ or Java. Instead, it relies on conventions and name mangling.</p><h4>\u2699\ufe0f Under the Hood</h4><p>Variables prefixed with double underscores (e.g. <code>__secret</code>) undergo name mangling by CPython, transforming into <code>_ClassName__secret</code> to prevent unintended overrides in subclasses.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Use a single leading underscore (<code>_name</code>) to indicate internal APIs for human programmers and tools. Reserve double underscores only to avoid subclass name clashes.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\"># Inspecting mangled keys in __dict__\nprint(list(v.__dict__.keys()))\n# ['public_id', '_internal_salt', '_Vault__secret_key']</code></pre>"
   }
 ];
 
