@@ -1,8 +1,8 @@
 # 🚀 DevForge — Complete Web Development Learning Platform
 
-### HTML · CSS · JavaScript · React · Python · TypeScript · Rust · Go · SQL · C# — 900+ Concepts | By Sanskar Developer
+### HTML · CSS · JavaScript · React · Python · TypeScript · Rust · Go · SQL · C# — 1,000+ Concepts | By Sanskar Developer
 
-A premium, state-of-the-art interactive learning platform designed to help developers master **HTML** (100+ tags), **CSS** (200+ properties), **JavaScript** (100+ concepts), **React** (100+ concepts), **Python** (50+ concepts), **TypeScript** (50+ concepts), **Rust** (30+ concepts), **Go** (30+ concepts), **SQL** (30+ concepts), and **C#** (40+ concepts) through in-depth explanations, real-time code execution, live sandboxes, persistent progress tracking, gamified mechanics, quiz systems, and premium dark UI with 25+ themes.
+A premium, state-of-the-art interactive learning platform designed to help developers master **HTML** (100+ tags), **CSS** (200+ properties), **JavaScript** (100+ concepts), **React** (100+ concepts), **Python** (100+ concepts), **TypeScript** (50+ concepts), **Rust** (30+ concepts), **Go** (30+ concepts), **SQL** (30+ concepts), and **C#** (40+ concepts) through in-depth explanations, real-time code execution, live sandboxes, persistent progress tracking, gamified mechanics, quiz systems, and premium dark UI with 25+ themes.
 
 This platform requires **no compilation, no server setup, and no dependencies**. It operates entirely in the client browser using vanilla technologies (HTML5, JavaScript, CSS3), making it lightweight, easily shareable, and highly responsive.
 
@@ -63,12 +63,13 @@ This platform requires **no compilation, no server setup, and no dependencies**.
 | 🎨 **Color Converter** | HEX/RGB/HSL converter, palette generator, WCAG contrast checker |
 | 📡 **Web APIs** | Quick reference for DOM, Fetch, Canvas, Storage, and 12+ browser APIs |
 | 🎬 **CSS Animations** | Live animation playground with presets, controls, and CSS output |
-| 🐍 **Python Module** | 50+ concepts: OOP, async, decorators, generators, pattern matching, and more |
+| 🐍 **Python Module** | 100 concepts: OOP, asyncio, Django, FastAPI, SQLAlchemy, NumPy, Pandas, Scikit-learn, Metaclasses, Optimization |
 | 🔷 **TypeScript Module** | 50+ concepts: Types, Interfaces, Generics, Utility Types, Decorators |
 | 🦀 **Rust Module** | 30+ concepts: Ownership, Borrowing, Lifetimes, Traits, Concurrency |
 | 🐹 **Go Module** | 30+ concepts: Goroutines, Channels, Interfaces, HTTP Server |
 | 🗄️ **SQL Module** | 30+ concepts: JOINs, Subqueries, Window Functions, Transactions |
 | 💜 **C# Module** | 40+ concepts: OOP, LINQ, ASP.NET Core, Entity Framework, Web API |
+| 🎯 **Quiz Hub** | 200 curated questions across all 10 languages with timer, scoring, and leaderboard |
 | ⚙️ **CI/CD** | GitHub Actions for deployment and linting |
 | ♿ **Accessibility** | ARIA labels, skip nav, heading hierarchy fixes |
 
