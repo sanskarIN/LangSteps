@@ -363,7 +363,7 @@ const TAGS = [
     "title": "Regular Expressions & Pattern Matching (re module)",
     "badge": "LIBRARIES",
     "emoji": "\ud83d\udd0d",
-    "defaultCode": "import re\ntext = 'Contact: sanskarin@outlook.in, supportramsandesh@gmail.com'\npattern = r'[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+'\nemails = re.findall(pattern, text)\nprint('Extracted emails:', emails)",
+    "defaultCode": "import re\ntext = 'Contact: sanskarin@outlook.in, sanskarin.business@gmail.com'\npattern = r'[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+'\nemails = re.findall(pattern, text)\nprint('Extracted emails:', emails)",
     "content": "<h3>\ud83d\udccc Deep Dive: Regular Expressions</h3><p>The <code>re</code> module provides Perl-style regular expression pattern matching, searching, splitting, and string replacement.</p><h4>\u2699\ufe0f Under the Hood</h4><p>CPython compiles regex patterns into specialized bytecode executed by an internal backtracking NFA (Nondeterministic Finite Automaton) engine.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Compile repeated patterns using <code>re.compile(pattern)</code> outside loops for optimal performance.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\">clean = re.sub(r'\\s+', ' ', 'Too   many     spaces').strip()\nprint('Normalized:', clean)</code></pre>"
   },
   {

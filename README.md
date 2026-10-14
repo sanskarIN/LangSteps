@@ -944,7 +944,7 @@ Visit Sanskar's official web presence and developer channels:
 Connect with Sanskar across social and developer platforms:
 - **Email**: [sanskarin@outlook.in](mailto:sanskarin@outlook.in)
 - **Business Email**: [sanskarin.business@gmail.com](mailto:sanskarin.business@gmail.com)
-- **Support Email**: [supportramsandesh@gmail.com](mailto:supportramsandesh@gmail.com)
+- **Contact Form**: [sanskarin.github.io/contact/#send-a-message](https://sanskarin.github.io/contact/#send-a-message)
 - **LinkedIn**: [@SanskarCodes](https://linkedin.com/in/SanskarCodes)
 - **X (Twitter)**: [@SanskarCodes](https://x.com/SanskarCodes)
 - **Dev.to**: [@SanskarCodes](https://dev.to/SanskarCodes)

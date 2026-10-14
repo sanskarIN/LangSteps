@@ -12,7 +12,7 @@ export const OFFICIAL_PROFILE: DeveloperProfile = {
   tagline: 'Full-Stack Developer, Open Source Creator & Engineering Educator',
   bio: 'Building LangSteps — a multi-language programming and software engineering mastery platform. Passionate about performant polyglot architectures, systems engineering, and interactive education.',
   email: 'sanskarin@outlook.in',
-  supportEmail: 'supportramsandesh@gmail.com',
+  supportEmail: 'sanskarin@outlook.in',
   businessEmail: 'sanskarin.business@gmail.com',
   ecosystem: {
     about: 'https://sanskarin.github.io/about',
@@ -34,7 +34,7 @@ export const OFFICIAL_PROFILE: DeveloperProfile = {
   support: {
     buymeacoffee: 'https://buymeacoffee.com/SanskarCodes',
     razorpay: 'https://razorpay.me/@SanskarCodes',
-    directEmail: 'supportramsandesh@gmail.com'
+    directEmail: 'sanskarin@outlook.in'
   }
 };
 
