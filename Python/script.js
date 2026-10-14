@@ -51,6 +51,46 @@ const TAGS = [
     "emoji": "\ud83d\udcd6",
     "defaultCode": "user = {'name': 'Sanskar', 'role': 'Admin', 'xp': 2500}\nuser['level'] = 10\nprint(user.get('country', 'India'))\nfor k, v in user.items():\n    print(f'{k}: {v}')",
     "content": "<h3>\ud83d\udccc Deep Dive: Dictionaries & Hash Tables</h3><p>Dictionaries are mapping structures associating hashable keys with arbitrary values. Since Python 3.7+, dictionaries are guaranteed to maintain insertion order.</p><h4>\u2699\ufe0f Under the Hood</h4><p>CPython dictionaries use a compact hash table design (Raymond Hettinger's architecture). An array of 8-bit hash indices points into a dense table of <code>(hash, key, value)</code> entries, saving 30-95% memory compared to legacy sparse hash tables while maintaining O(1) average-time lookups.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Always use <code>dict.get(key, default)</code> or <code>dict.setdefault()</code> instead of checking <code>if key in d:</code> to avoid redundant hashing lookups.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\">defaults = {'theme': 'dark', 'font': 'Plus Jakarta Sans', 'notifications': True}\ncustom = {'theme': 'cyberpunk', 'sound': False}\nsettings = defaults | custom  # Dictionary union operator (Python 3.9+)\nprint('Merged config:', settings)</code></pre>"
+  },
+  {
+    "id": "py-6",
+    "title": "Sets & Mathematical Set Operations",
+    "badge": "DATA STRUCTURES",
+    "emoji": "\u2b55",
+    "defaultCode": "frontend = {'HTML', 'CSS', 'JavaScript', 'React'}\nfullstack = {'JavaScript', 'Python', 'SQL', 'React'}\nprint('Common:', frontend & fullstack)\nprint('All technologies:', frontend | fullstack)\nprint('Frontend only:', frontend - fullstack)",
+    "content": "<h3>\ud83d\udccc Deep Dive: Sets & Set Theory</h3><p>Sets are mutable collections of unique, hashable objects. They excel at deduplication and membership testing.</p><h4>\u2699\ufe0f Under the Hood</h4><p>Sets are implemented as hash tables without values. Membership lookup <code>item in my_set</code> runs in O(1) average time compared to O(n) for lists and tuples.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Use <code>frozenset</code> if you need an immutable, hashable set that can be stored inside another set or used as a dictionary key.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\">a = {1, 2, 3, 4}\nb = {3, 4, 5, 6}\nprint('Symmetric difference:', a ^ b)\nprint('Is subset:', {1, 2}.issubset(a))</code></pre>"
+  },
+  {
+    "id": "py-7",
+    "title": "Type Casting & Dynamic Typing",
+    "badge": "BASICS",
+    "emoji": "\ud83d\udd04",
+    "defaultCode": "raw_input = '1048576'\nbyte_count = int(raw_input)\nmegabytes = byte_count / (1024 * 1024)\nprint(f'{megabytes:.1f} MB')\nprint(type(megabytes))",
+    "content": "<h3>\ud83d\udccc Deep Dive: Type Casting</h3><p>Python is strongly and dynamically typed. Types are associated with values, not variable names, and explicit conversions are required between incompatible types.</p><h4>\u2699\ufe0f Under the Hood</h4><p>Conversion functions like <code>int()</code>, <code>float()</code>, <code>str()</code> invoke the underlying CPython type constructor methods (<code>__int__</code>, <code>__float__</code>, <code>__str__</code>). If an object does not implement the protocol, a <code>TypeError</code> or <code>ValueError</code> is raised.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>When converting numerical strings from unknown inputs, catch both <code>ValueError</code> and <code>TypeError</code> to avoid unexpected crashes.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\">binary_val = '1101011'\ndecimal = int(binary_val, 2)\nprint(f'Binary {binary_val} = Decimal {decimal}')\nhex_val = hex(decimal)\nprint(f'Decimal {decimal} = Hex {hex_val}')</code></pre>"
+  },
+  {
+    "id": "py-8",
+    "title": "Booleans & Truth Value Testing",
+    "badge": "BASICS",
+    "emoji": "\u2696\ufe0f",
+    "defaultCode": "def authenticate(user_token):\n    if not user_token:\n        return 'Guest Access'\n    return 'Authenticated User'\n\nprint(authenticate(''))\nprint(authenticate('jwt_token_here'))",
+    "content": "<h3>\ud83d\udccc Deep Dive: Truth Value Testing</h3><p>In Python, every object has a boolean truth value. False values include <code>None</code>, <code>False</code>, zero of any numeric type (<code>0</code>, <code>0.0</code>), empty sequences (<code>''</code>, <code>()</code>, <code>[]</code>), and empty mappings (<code>{}</code>).</p><h4>\u2699\ufe0f Under the Hood</h4><p>Python checks truth value by first looking for <code>__bool__()</code> on the object. If <code>__bool__()</code> is not defined, CPython falls back to <code>__len__()</code> (returning True if non-zero).</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Prefer <code>if not my_list:</code> over <code>if len(my_list) == 0:</code> for idiomatic, Pythonic code.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\">config_host = None\nhost = config_host or '127.0.0.1'\nprint('Host selected:', host)</code></pre>"
+  },
+  {
+    "id": "py-9",
+    "title": "Operators: Arithmetic, Bitwise & Logical",
+    "badge": "BASICS",
+    "emoji": "\u2795",
+    "defaultCode": "a = 13  # 0b1101\nb = 7   # 0b0111\nprint('Bitwise AND:', bin(a & b))\nprint('Bitwise OR:', bin(a | b))\nprint('Bitwise XOR:', bin(a ^ b))\nprint('Floor division:', 22 // 7)",
+    "content": "<h3>\ud83d\udccc Deep Dive: Python Operators</h3><p>Python provides arithmetic, comparison, logical, bitwise, assignment, and identity/membership operators. Operators are syntactic sugar for magic methods.</p><h4>\u2699\ufe0f Under the Hood</h4><p>The expression <code>a + b</code> invokes <code>a.__add__(b)</code>. If <code>a</code> does not know how to handle <code>b</code>, CPython tries the reverse operator <code>b.__radd__(a)</code> before failing.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Bitwise operators (<code>&</code>, <code>|</code>, <code>^</code>, <code><<</code>, <code>>></code>) are invaluable for bitmasks, permissions, and high-performance flag checking.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\">READ, WRITE, EXECUTE = 1 << 0, 1 << 1, 1 << 2\nuser_perms = READ | WRITE\nprint('Can read?', bool(user_perms & READ))\nprint('Can execute?', bool(user_perms & EXECUTE))</code></pre>"
+  },
+  {
+    "id": "py-10",
+    "title": "Conditionals & Walrus Operator (:=)",
+    "badge": "CONTROL FLOW",
+    "emoji": "\ud83d\udd00",
+    "defaultCode": "import re\ntext = 'User Sanskar with id #4092'\nif (match := re.search(r'#(\\d+)', text)):\n    user_id = match.group(1)\n    print(f'Found user ID: {user_id}')",
+    "content": "<h3>\ud83d\udccc Deep Dive: Control Flow & Walrus Operator</h3><p>The assignment expression operator (<code>:=</code>), introduced in PEP 572, allows variable assignment inside expressions (while-loops, if-statements, comprehensions).</p><h4>\u2699\ufe0f Under the Hood</h4><p>The walrus operator evaluates the right-hand side, binds the value to the variable name in the enclosing scope, and returns the value to the outer expression without creating an extra bytecode instruction block.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Use the walrus operator when checking expensive computations or regex matches to avoid computing them twice.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\">sample_data = ['apple', 'banana', 'kiwi', 'strawberry']\nlong_names = [w for w in sample_data if (n := len(w)) > 5]\nprint('Words with length > 5:', long_names)</code></pre>"
   }
 ];
 
