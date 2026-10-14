@@ -7,6 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Register Core Services
 builder.Services.AddSingleton<IContentService, ContentService>();
 builder.Services.AddSingleton<IQuizService, QuizService>();
+builder.Services.AddSingleton<IProfileService, ProfileService>();
+builder.Services.AddSingleton<IExecutionService, ExecutionService>();
 
 // Enable CORS for frontend and GitHub Pages
 builder.Services.AddCors(options =>
@@ -47,7 +49,7 @@ app.MapGet("/api/health", (IContentService content, IQuizService quiz) =>
 {
     var response = new HealthStatusResponse(
         Status: "healthy",
-        Version: "5.3.0",
+        Version: "5.4.0",
         Platform: "LangSteps.Server (ASP.NET Core / C#)",
         Timestamp: DateTime.UtcNow.ToString("o"),
         ServerTime: DateTime.UtcNow.ToString("R"),
@@ -105,6 +107,44 @@ app.MapPost("/api/leaderboard", (LeaderboardSubmitRequest body, IQuizService qui
 
     var entry = quiz.AddLeaderboardEntry(body.Username, body.XpEarned, body.Language ?? "general");
     return Results.Ok(entry);
+});
+
+// 7. Developer Profile & Official Ecosystem Links
+app.MapGet("/api/profile", (IProfileService profileService) =>
+{
+    return Results.Ok(profileService.GetProfile());
+});
+
+app.MapGet("/api/profile/socials", (IProfileService profileService) =>
+{
+    return Results.Ok(profileService.GetSocials());
+});
+
+app.MapGet("/api/profile/ecosystem", (IProfileService profileService) =>
+{
+    return Results.Ok(profileService.GetEcosystem());
+});
+
+// 8. Interactive Code Playground Execution
+app.MapPost("/api/playground/execute", async (ExecutionRequest request, IExecutionService executionService) =>
+{
+    var result = await executionService.ExecuteAsync(request);
+    return Results.Ok(result);
+});
+
+// 9. Platform Summary Statistics
+app.MapGet("/api/stats/summary", (IContentService content, IQuizService quiz) =>
+{
+    var modules = content.GetAllModules();
+    var stats = new PlatformStatsResponse(
+        ModuleCount: modules.Count,
+        TotalQuestions: quiz.GetTotalQuestionCount(),
+        SupportedLanguages: modules.Select(m => m.Slug).ToArray(),
+        EcosystemLinksCount: 12,
+        Version: "5.4.0",
+        Timestamp: DateTime.UtcNow.ToString("o")
+    );
+    return Results.Ok(stats);
 });
 
 app.Run();
