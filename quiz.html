@@ -1754,29 +1754,2440 @@
         }
 
         // ==========================================
-        // QUIZ DATA CONTAINER (Placeholder for Phase 2)
+        // 200 CURATED QUIZ QUESTIONS ACROSS 10 MODULES
         // ==========================================
-        window.QUIZ_QUESTIONS = window.QUIZ_QUESTIONS || {};
+        const QUIZ_QUESTIONS = {
+  "html": [
+    {
+      "category": "HTML Standards & Parsing",
+      "question": "What is the primary technical purpose of the <!DOCTYPE html> declaration at the beginning of an HTML5 document?",
+      "options": [
+        "It instructs the browser to parse the document in standards mode rather than quirks mode",
+        "It imports the HTML5 core stylesheet and default reset styles from the W3C servers",
+        "It registers the document with the browser's JavaScript V8 compilation engine",
+        "It enables asynchronous server-sent events and WebSockets in modern browsers"
+      ],
+      "correct": 0,
+      "explanation": "<!DOCTYPE html> is a required preamble in HTML5 that prevents browsers from switching into 'quirks mode' or 'almost standards mode', ensuring consistent, standards-compliant CSS box model and layout rendering."
+    },
+    {
+      "category": "Semantic HTML",
+      "question": "Which semantic element is best suited to encapsulate content that is self-contained and could be syndicated or independently distributed (e.g., a blog post, forum thread, or product card)?",
+      "options": [
+        "<section>",
+        "<article>",
+        "<aside>",
+        "<div>"
+      ],
+      "correct": 1,
+      "explanation": "The <article> element represents a self-contained composition in a document, page, application, or site, which is intended to be independently distributable or reusable (e.g., in syndication)."
+    },
+    {
+      "category": "Semantic HTML & Accessibility",
+      "question": "What is the difference between <b>/<i> and <strong>/<em> in modern HTML?",
+      "options": [
+        "There is no difference; they are completely interchangeable aliases",
+        "<b> and <i> convey visual styling only, whereas <strong> and <em> convey semantic importance and verbal stress emphasis for screen readers",
+        "<strong> and <em> are deprecated in HTML5 in favor of CSS styling with <b> and <i>",
+        "<b> and <i> trigger hardware accelerated text rendering while <strong> and <em> do not"
+      ],
+      "correct": 1,
+      "explanation": "<b> and <i> are typographic elements representing stylized text without implying importance. <strong> indicates strong importance/urgency, and <em> conveys linguistic emphasis, both of which assistive tech and screen readers convey tonally."
+    },
+    {
+      "category": "Security & Hyperlinks",
+      "question": "When opening an external link with target=\"_blank\", why is adding rel=\"noopener noreferrer\" considered a vital security best practice?",
+      "options": [
+        "It prevents the new page from accessing window.opener to redirect or exploit the origin tab (reverse tabnabbing)",
+        "It encrypts the payload transmitted between the client and the destination server using TLS",
+        "It restricts the destination website from caching cookies on the user device",
+        "It forces cross-origin resource sharing (CORS) preflight checks on the URL"
+      ],
+      "correct": 0,
+      "explanation": "Without rel=\"noopener\", the newly opened page can access the originating page's window object via window.opener, enabling attackers to maliciously execute window.opener.location = 'phishing.html' (reverse tabnabbing)."
+    },
+    {
+      "category": "Forms & Validation",
+      "question": "Which HTML5 attribute allows you to validate an <input> against a custom regular expression pattern natively without JavaScript?",
+      "options": [
+        "regex=\"[A-Za-z]+\"",
+        "pattern=\"[A-Za-z]+\"",
+        "match=\"[A-Za-z]+\"",
+        "validate=\"[A-Za-z]+\""
+      ],
+      "correct": 1,
+      "explanation": "The pattern attribute specifies a regular expression that the <input> element's value is checked against upon form submission or validity check (:valid / :invalid CSS pseudo-classes)."
+    },
+    {
+      "category": "Tables & Accessibility",
+      "question": "In a data table, what is the purpose of the scope attribute on a <th> element?",
+      "options": [
+        "It specifies whether the table header applies to a row, a column, or a group of rows/columns for screen readers",
+        "It isolates table styles to prevent CSS inheritance from outer DOM nodes",
+        "It controls table cell pagination during PDF export and printing",
+        "It defines the variable lifetime of data within embedded WebAssembly modules"
+      ],
+      "correct": 0,
+      "explanation": "The scope attribute (with values 'col', 'row', 'colgroup', 'rowgroup') explicitly associates header cells with corresponding data cells, greatly assisting screen readers in navigating tabular data."
+    },
+    {
+      "category": "Responsive Media",
+      "question": "Which combination of elements and attributes allows serving different image resolutions and formats (e.g. AVIF, WebP, JPEG) based on media queries and browser support?",
+      "options": [
+        "<picture> containing multiple <source> elements with srcset, media, and type, plus a fallback <img>",
+        "<image> with multiple href attributes and media queries",
+        "<canvas> with srcset and auto-format detection",
+        "<video> using format-filter=\"auto\""
+      ],
+      "correct": 0,
+      "explanation": "The <picture> wrapper element contains zero or more <source> elements (defining type, media, and srcset) followed by a mandatory fallback <img> element, enabling responsive art direction and modern image format fallbacks."
+    },
+    {
+      "category": "Web Accessibility (A11y)",
+      "question": "How should a purely decorative background illustration image be marked up for optimal screen reader accessibility?",
+      "options": [
+        "Omit the alt attribute entirely: <img src=\"decor.png\">",
+        "Provide an empty alt attribute: <img src=\"decor.png\" alt=\"\"> or aria-hidden=\"true\"",
+        "Use alt=\"Decorative image\" to let assistive tech know it is decorative",
+        "Use alt=\"null\" or role=\"banner\""
+      ],
+      "correct": 1,
+      "explanation": "An empty alt attribute (alt=\"\") tells assistive technologies that the image is purely decorative and should be ignored. Omitting the alt attribute causes screen readers to redundantly read aloud the image filename URL."
+    },
+    {
+      "category": "Metadata & Responsive Viewport",
+      "question": "What is the primary function of <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">?",
+      "options": [
+        "It enables mobile browsers to render pages at the device's native screen width instead of zooming out on a desktop-sized canvas",
+        "It limits the maximum browser window size on widescreen monitors",
+        "It enables WebGL hardware acceleration on high-DPI retina mobile screens",
+        "It requests mobile push notification permissions upon initial page load"
+      ],
+      "correct": 0,
+      "explanation": "Without this meta viewport tag, mobile browsers default to a desktop virtual viewport (~980px) and scale down the whole page. Setting width=device-width and initial-scale=1.0 aligns layout pixels with CSS device-independent pixels."
+    },
+    {
+      "category": "Graphics & Canvas vs SVG",
+      "question": "What is the key architectural difference between HTML5 <canvas> and inline <svg>?",
+      "options": [
+        "<canvas> is immediate-mode pixel rasterization without DOM nodes for drawn shapes, while <svg> is retained-mode vector XML with accessible DOM nodes",
+        "<canvas> is scalable vector graphics while <svg> produces binary bitmap sprites",
+        "<canvas> can only be drawn using WebGL, while <svg> only supports software blitting",
+        "<svg> cannot be styled using CSS, whereas <canvas> requires pure CSS styling"
+      ],
+      "correct": 0,
+      "explanation": "<canvas> is an immediate-mode bitmap surface driven by procedural JS commands; once pixels are rendered, they have no individual DOM representation. <svg> is retained-mode XML vector graphic where each shape is a DOM element interactive with CSS and event listeners."
+    },
+    {
+      "category": "HTML5 Web Storage",
+      "question": "How does localStorage differ fundamentally from sessionStorage in HTML5 Web Storage?",
+      "options": [
+        "localStorage data persists indefinitely until explicitly cleared, while sessionStorage is wiped when the browser tab/session closes",
+        "sessionStorage can store up to 500MB while localStorage is capped at 4KB",
+        "localStorage is transmitted to the server with every HTTP request header while sessionStorage remains strictly client-side",
+        "sessionStorage requires HTTPS while localStorage works only over HTTP"
+      ],
+      "correct": 0,
+      "explanation": "localStorage data has no expiration date and persists across browser restarts. sessionStorage data is tied to the lifecycle of the specific browser tab and is cleared when that tab or session is terminated."
+    },
+    {
+      "category": "HTML5 Web Workers",
+      "question": "What can a dedicated HTML5 Web Worker NOT directly access from its background thread?",
+      "options": [
+        "The window object and the DOM (Document Object Model)",
+        "The fetch() API and XMLHttpRequest",
+        "IndexedDB and CacheStorage",
+        "Standard JavaScript data structures and setTimeout"
+      ],
+      "correct": 0,
+      "explanation": "Web Workers run in a separate global context (DedicatedWorkerGlobalScope) with no direct access to the DOM, window, document, or parent page elements, preventing race conditions and thread synchronization issues."
+    },
+    {
+      "category": "HTML5 Geolocation API",
+      "question": "Which browser method retrieves the user's current geographic coordinates once permission is granted?",
+      "options": [
+        "window.location.getCoordinates()",
+        "navigator.geolocation.getCurrentPosition(successCallback, errorCallback)",
+        "document.geolocation.fetchCoords()",
+        "navigator.gps.locateUser()"
+      ],
+      "correct": 1,
+      "explanation": "navigator.geolocation.getCurrentPosition() is the standard W3C Geolocation API method for fetching the device's latitude, longitude, and accuracy asynchronously."
+    },
+    {
+      "category": "HTML5 Dialog Element",
+      "question": "Which method on the HTML <dialog> element opens the dialog as a modal overlay with a backdrop and keyboard focus trap?",
+      "options": [
+        "dialog.open()",
+        "dialog.showModal()",
+        "dialog.launchModal()",
+        "dialog.display(true)"
+      ],
+      "correct": 1,
+      "explanation": "dialog.showModal() opens the dialog as a top-layer modal, trapping focus inside, rendering the native ::backdrop pseudo-element, and allowing dismissal via the Escape key, unlike dialog.show() which is non-modal."
+    },
+    {
+      "category": "Web Components & Templates",
+      "question": "What happens to the HTML markup placed inside a <template> element during initial page rendering?",
+      "options": [
+        "It is parsed into a DocumentFragment but NOT rendered visually or evaluated (scripts/images do not run or load) until cloned via JavaScript",
+        "It is rendered as hidden text with display: none applied by default",
+        "It is instantly compiled into a WebAssembly byte array",
+        "It is sent to the server as an asynchronous background payload"
+      ],
+      "correct": 0,
+      "explanation": "<template> contents are inactive when parsed: scripts do not execute, images do not download, and nodes are not rendered until JavaScript clones the template's .content property and inserts it into the active DOM."
+    },
+    {
+      "category": "Script Loading Strategies",
+      "question": "What is the difference between <script async> and <script defer> when loading external JavaScript files?",
+      "options": [
+        "async executes as soon as it is downloaded (potentially interrupting HTML parsing), while defer executes in document order only after HTML parsing completes",
+        "defer downloads synchronously blocking the parser while async downloads asynchronously in the background",
+        "async scripts preserve dependency execution order while defer scripts run in random order",
+        "defer only works for inline scripts while async is exclusively for external CDNs"
+      ],
+      "correct": 0,
+      "explanation": "Both download in the background without blocking HTML parsing. However, 'async' executes immediately upon download completion (potentially interrupting parser and out of order), whereas 'defer' executes strictly in document order right after HTML parsing finishes before DOMContentLoaded."
+    },
+    {
+      "category": "Structured Data & SEO",
+      "question": "Which standard format is recommended by Google and Schema.org for embedding structured semantic metadata inside HTML documents?",
+      "options": [
+        "JSON-LD in a <script type=\"application/ld+json\"> tag",
+        "XML-RPC inside the <head> tag",
+        "YAML embedded in HTML comments",
+        "SOAP envelopes in custom <meta> tags"
+      ],
+      "correct": 0,
+      "explanation": "JSON-LD (JavaScript Object Notation for Linked Data) placed inside a <script type=\"application/ld+json\"> block is the preferred, least error-prone format for modern search engine crawlers to parse structured rich snippets."
+    },
+    {
+      "category": "HTML Attributes",
+      "question": "Which global HTML attribute makes any standard element's text content directly editable by the user in the browser?",
+      "options": [
+        "editable=\"true\"",
+        "contenteditable=\"true\"",
+        "user-modify=\"read-write\"",
+        "input-mode=\"text\""
+      ],
+      "correct": 1,
+      "explanation": "The contenteditable global attribute (contenteditable=\"true\") transforms any HTML element (like div, p, or h1) into an interactive editable text area."
+    },
+    {
+      "category": "Custom Data Attributes",
+      "question": "If an element has data-user-role=\"admin\", how can this value be accessed in JavaScript via the DOM dataset API?",
+      "options": [
+        "element.dataset.userRole",
+        "element.dataset['data-user-role']",
+        "element.getData('userRole')",
+        "element.attributes.userRole"
+      ],
+      "correct": 0,
+      "explanation": "Custom data-* attributes are converted into camelCase properties on the element's HTMLElement.dataset object. Therefore, data-user-role maps to element.dataset.userRole."
+    },
+    {
+      "category": "HTML5 Drag and Drop API",
+      "question": "Which event must call event.preventDefault() to allow an element to receive a dropped item in the HTML5 Drag and Drop API?",
+      "options": [
+        "dragstart",
+        "dragover",
+        "dragleave",
+        "dragend"
+      ],
+      "correct": 1,
+      "explanation": "By default, browsers do not allow dropping elements onto other elements. To indicate a valid drop target, the listener for the 'dragover' event must invoke event.preventDefault()."
+    }
+  ],
+  "css": [
+    {
+      "category": "Box Model",
+      "question": "When setting box-sizing: border-box on an element, how does the browser calculate its total rendered width?",
+      "options": [
+        "The specified width includes content, padding, and border (margins remain outside)",
+        "The specified width only includes content; padding and border add to the total width",
+        "The specified width includes content, padding, border, and margin",
+        "The specified width is calculated solely from the client's screen viewport width"
+      ],
+      "correct": 0,
+      "explanation": "With box-sizing: border-box, the element's specified width and height cover the content box, padding, and border combined. Adding padding or border does not expand the element beyond its set width."
+    },
+    {
+      "category": "Specificity",
+      "question": "Which selector combination has the highest CSS specificity according to the W3C cascade specification?",
+      "options": [
+        "div#sidebar ul.nav li a:hover",
+        "#main-navigation",
+        "body div.wrapper section.content p",
+        "ul > li.active + li > a"
+      ],
+      "correct": 0,
+      "explanation": "div#sidebar ul.nav li a:hover has: 1 ID (#sidebar), 2 classes/pseudo-classes (.nav, :hover), and 4 elements/tags (div, ul, li, a), totaling a specificity of (1, 2, 4), which beats a lone ID (1, 0, 0)."
+    },
+    {
+      "category": "Flexbox Alignment",
+      "question": "In a flex container with flex-direction: row, which property aligns flex items along the cross axis (vertical direction)?",
+      "options": [
+        "justify-content",
+        "align-items",
+        "flex-direction",
+        "align-content"
+      ],
+      "correct": 1,
+      "explanation": "In a row-oriented flex container, the main axis is horizontal and controlled by justify-content. The cross axis is vertical and controlled by align-items (or align-self on individual items)."
+    },
+    {
+      "category": "Flexbox Shorthand",
+      "question": "What do the three values in the shorthand flex: 1 0 250px represent in order?",
+      "options": [
+        "flex-grow: 1, flex-shrink: 0, flex-basis: 250px",
+        "flex-basis: 1, flex-grow: 0, flex-shrink: 250px",
+        "flex-order: 1, flex-wrap: 0, flex-width: 250px",
+        "flex-shrink: 1, flex-grow: 0, flex-basis: 250px"
+      ],
+      "correct": 0,
+      "explanation": "The CSS flex shorthand syntax is flex: <flex-grow> <flex-shrink> <flex-basis>. Here, flex-grow is 1 (item can grow), flex-shrink is 0 (item will not shrink below 250px), and flex-basis is 250px."
+    },
+    {
+      "category": "CSS Grid Layout",
+      "question": "What is the result of using grid-template-columns: repeat(auto-fit, minmax(200px, 1fr))?",
+      "options": [
+        "A responsive grid with columns that are at least 200px wide, automatically wrapping and expanding to fill available track space without media queries",
+        "A rigid 2-column layout capped strictly at 200 pixels width",
+        "A column layout that fits exactly 1 item and hides overflowing siblings",
+        "An error because auto-fit cannot be combined with minmax()"
+      ],
+      "correct": 0,
+      "explanation": "repeat(auto-fit, minmax(200px, 1fr)) is the gold standard for responsive CSS grid columns: it creates as many columns as will fit with at least 200px width, expanding them equally (1fr) to fill remaining row space."
+    },
+    {
+      "category": "CSS Grid Units",
+      "question": "What does the fr unit represent in CSS Grid?",
+      "options": [
+        "A fraction of the leftover free space in the grid container after fixed tracks are allocated",
+        "A fixed resolution unit tied to device pixel ratio",
+        "A measurement equal to the root font size divided by 16",
+        "Frame rate refresh timing for CSS keyframe animations"
+      ],
+      "correct": 0,
+      "explanation": "The 'fr' unit represents a fraction of the available free space in the grid container. If two tracks are 1fr and 2fr, the second track gets twice the remaining space of the first."
+    },
+    {
+      "category": "Transitions vs Animations",
+      "question": "What is the primary difference between a CSS transition and a CSS keyframe animation?",
+      "options": [
+        "Transitions require an explicit state change (like :hover or class toggle) between two states, while keyframe animations can run automatically with multi-step intermediate keyframes",
+        "Transitions use GPU acceleration while keyframes are software rendered",
+        "Keyframes cannot loop indefinitely whereas transitions can",
+        "Transitions only apply to color properties while keyframes apply to layout"
+      ],
+      "correct": 0,
+      "explanation": "A transition smoothly interpolates between two states when triggered by an event (like hover or JS class change). An @keyframes animation can have multiple intermediate waypoint steps, run automatically on mount, and iterate infinitely."
+    },
+    {
+      "category": "Media Queries",
+      "question": "In modern mobile-first responsive web design, which media query structure is standard?",
+      "options": [
+        "@media (min-width: 768px) { ... } for progressively enhancing layouts on larger screens",
+        "@media (max-width: 768px) { ... } to override desktop styles for mobile",
+        "@media (orientation: static) { ... }",
+        "@media only screen and (resolution: 1x) { ... }"
+      ],
+      "correct": 0,
+      "explanation": "In a mobile-first paradigm, default CSS rules define the mobile layout, and @media (min-width: ...) queries progressively add styles as the screen gets wider (tablets, desktops, large screens)."
+    },
+    {
+      "category": "CSS Custom Properties",
+      "question": "How do you declare and consume a CSS Custom Property (variable) with a fallback?",
+      "options": [
+        "--brand-color: #6c63ff; color: var(--brand-color, #000);",
+        "$brand-color: #6c63ff; color: $$brand-color(#000);",
+        "@variable brand-color: #6c63ff; color: get(@brand-color);",
+        "const(--brand-color) = #6c63ff; color: var(--brand-color);"
+      ],
+      "correct": 0,
+      "explanation": "CSS variables must be prefixed with two dashes (--name). They are consumed using the var(--name, fallback) function, where the second argument acts as a fallback if the variable is undefined."
+    },
+    {
+      "category": "Pseudo-Classes vs Pseudo-Elements",
+      "question": "What is the distinction between a pseudo-class (e.g. :hover, :nth-child) and a pseudo-element (e.g. ::before, ::after)?",
+      "options": [
+        "A pseudo-class targets an element during a specific state, while a pseudo-element creates or styles an abstraction of a sub-part of an element",
+        "Pseudo-classes generate actual DOM nodes while pseudo-elements do not",
+        "Pseudo-elements only apply to input elements while pseudo-classes apply to links",
+        "There is no difference; the single or double colon is purely stylistic"
+      ],
+      "correct": 0,
+      "explanation": "A pseudo-class (single colon standard, like :focus) selects existing elements based on state or DOM hierarchy. A pseudo-element (double colon standard, like ::before) targets a specific structural sub-entity or inserts generated content."
+    },
+    {
+      "category": "Modern CSS Pseudo-Class Specificity",
+      "question": "What is the fundamental difference in specificity between :is(.classA, #idB) and :where(.classA, #idB)?",
+      "options": [
+        ":is() takes the specificity of its most specific argument, while :where() always has zero specificity (0,0,0)",
+        ":where() has higher specificity than :is() because it overrides global styles",
+        ":is() only works with tag names while :where() only works with classes",
+        "Both have identical specificity calculated by adding all arguments together"
+      ],
+      "correct": 0,
+      "explanation": ":is() adopts the specificity of the most specific selector in its argument list. :where() always computes to zero specificity, making it ideal for utility styles and CSS resets that are easy to override."
+    },
+    {
+      "category": "CSS Performance & Compositing",
+      "question": "Which CSS properties can modern browser rendering engines animate entirely on the GPU compositor thread without triggering layout or paint?",
+      "options": [
+        "transform and opacity",
+        "width, height, and margin",
+        "top, left, and color",
+        "display and padding"
+      ],
+      "correct": 0,
+      "explanation": "Changes to transform and opacity do not affect document layout or paint; they are handled directly by the GPU compositor layer, enabling fluid 60fps / 120fps animations without jank."
+    },
+    {
+      "category": "CSS Positioning",
+      "question": "What condition must be met for position: sticky to stick relative to its scrolling viewport?",
+      "options": [
+        "At least one directional threshold (top, bottom, left, or right) must be specified, and no ancestor element can have overflow: hidden or auto",
+        "The element must have display: inline-block and z-index: 9999",
+        "The element must be a direct child of <body>",
+        "The element must have a fixed width in pixels"
+      ],
+      "correct": 0,
+      "explanation": "position: sticky requires at least one directional offset (e.g., top: 0) to know where to stick. Furthermore, any parent ancestor with overflow: hidden, overflow: auto, or overflow: scroll will trap the sticky boundary."
+    },
+    {
+      "category": "Stacking Contexts & z-index",
+      "question": "Why does setting z-index: 9999 sometimes fail to bring an element above another element on the page?",
+      "options": [
+        "The element belongs to a stacking context whose parent has a lower z-index than the competing stacking context",
+        "z-index only supports numbers between 0 and 255",
+        "z-index requires browser vendor prefixes (-webkit-z-index)",
+        "The element does not have a background-color declared"
+      ],
+      "correct": 0,
+      "explanation": "Stacking contexts are hierarchical. If an element's ancestor creates a stacking context with z-index: 1, no child inside it (even with z-index: 999999) can ever render in front of a sibling stacking context with z-index: 2."
+    },
+    {
+      "category": "Visibility & Layout Triggers",
+      "question": "What is the difference between display: none and visibility: hidden?",
+      "options": [
+        "display: none removes the element entirely from the document layout flow, while visibility: hidden hides it but retains its physical space in the layout",
+        "visibility: hidden removes the element from the DOM completely",
+        "display: none allows children to remain visible if they have display: block",
+        "visibility: hidden prevents screen readers from accessing content while display: none does not"
+      ],
+      "correct": 0,
+      "explanation": "display: none causes the browser not to generate a render box at all (no space occupied). visibility: hidden hides the element visually, but its geometry/box still takes up space in the layout."
+    },
+    {
+      "category": "CSS Subgrid",
+      "question": "What does grid-template-columns: subgrid accomplish in nested CSS Grid structures?",
+      "options": [
+        "It allows a grid item that is also a grid container to adopt and align directly with the row or column tracks of its parent grid",
+        "It automatically generates responsive fallback tables for legacy browsers",
+        "It divides each grid cell into an isolated 12-column sub-grid",
+        "It renders an external SVG grid background behind the element"
+      ],
+      "correct": 0,
+      "explanation": "Subgrid allows a nested grid item to share the track sizing and alignments of its parent grid container, solving the classic problem of aligning cards with variable-height headers and footers across rows."
+    },
+    {
+      "category": "CSS Container Queries",
+      "question": "What problem do CSS Container Queries (@container) solve that Viewport Media Queries (@media) cannot?",
+      "options": [
+        "They style a component based on the size of its parent container rather than the browser window viewport",
+        "They allow CSS to inspect Docker containers and server environments",
+        "They enable CSS animations to run in background worker containers",
+        "They enforce sandboxed iframe styling security boundaries"
+      ],
+      "correct": 0,
+      "explanation": "Viewport media queries only check the browser window's dimensions. Container queries (@container) allow individual reusable components to adapt their layout dynamically depending on the width/height of their parent container."
+    },
+    {
+      "category": "Modern CSS Math Functions",
+      "question": "In CSS clamp(1.2rem, 3vw + 1rem, 2.5rem), how does the browser calculate the computed font-size?",
+      "options": [
+        "It uses 3vw + 1rem as the preferred size, but never drops below 1.2rem (minimum) and never exceeds 2.5rem (maximum)",
+        "It sums the three values together on viewport resize",
+        "It randomly alternates between the three values based on device DPI",
+        "It sets font-size to 1.2rem on mobile and 2.5rem on desktop strictly"
+      ],
+      "correct": 0,
+      "explanation": "clamp(min, preferred, max) enforces a value to stay between a minimum and maximum threshold. As the viewport changes, the preferred value is used until it hits either bounding limit, enabling fluid responsive typography."
+    },
+    {
+      "category": "CSS Cascade Layers",
+      "question": "What is the primary benefit of CSS Cascade Layers (@layer)?",
+      "options": [
+        "They allow developers to control the precedence order of style sheets regardless of selector specificity or source order",
+        "They enable multi-threaded rendering in the browser's style engine",
+        "They compress CSS files into binary bytecode layers",
+        "They create 3D parallax scrolling depth in pure CSS"
+      ],
+      "correct": 0,
+      "explanation": "Cascade layers (@layer) let authors structure styles into explicit tiers of priority (e.g. reset, framework, components, utilities). Rules in a higher-priority layer always beat rules in a lower layer, regardless of selector specificity."
+    },
+    {
+      "category": "Modern CSS Color",
+      "question": "What advantage does the modern oklch() color space have over standard sRGB hsl() in CSS?",
+      "options": [
+        "It is perceptually uniform, meaning changes in lightness look consistent across different hues without unintended perceived brightness shifts",
+        "It uses less memory in the browser's GPU frame buffer",
+        "It converts text into vector shapes automatically",
+        "It only works with HDR OLED monitors"
+      ],
+      "correct": 0,
+      "explanation": "oklch() is designed around human visual perception (perceptually uniform). Unlike hsl() where pure yellow appears much brighter to human eyes than pure blue at 50% lightness, oklch ensures consistent perceived brightness across all hues."
+    }
+  ],
+  "javascript": [
+    {
+      "category": "Variables & Scoping",
+      "question": "What is the fundamental scoping difference between var and let/const in JavaScript?",
+      "options": [
+        "var is function-scoped (or globally scoped) and hoisted with undefined initialization, while let and const are block-scoped with a Temporal Dead Zone (TDZ)",
+        "let and const are hoisted to the top of the window while var is never hoisted",
+        "var cannot be reassigned while let and const can be reassigned freely",
+        "var only works inside asynchronous generator functions"
+      ],
+      "correct": 0,
+      "explanation": "var declarations are function-scoped and hoisted initialized to undefined. let and const are block-scoped (respecting { ... } blocks) and remain uninitialized in the Temporal Dead Zone (TDZ) until execution reaches their declaration."
+    },
+    {
+      "category": "Data Types & Typeof",
+      "question": "What does the expression typeof null evaluate to in standard JavaScript?",
+      "options": [
+        "'object'",
+        "'null'",
+        "'undefined'",
+        "'boolean'"
+      ],
+      "correct": 0,
+      "explanation": "In JavaScript, typeof null evaluates to 'object'. This is a well-known legacy bug originating from JS's initial 1995 implementation, where values had type tags and 0 represented the object tag (null was represented as the NULL pointer 0x00)."
+    },
+    {
+      "category": "Closures & Lexical Scope",
+      "question": "What constitutes a closure in JavaScript?",
+      "options": [
+        "A function bundled together with references to its surrounding lexical environment, allowing it to access outer variables even after the outer function has returned",
+        "A method that closes a WebSocket or database connection automatically",
+        "An anonymous function with no return statement",
+        "A block of code wrapped in a try/finally statement"
+      ],
+      "correct": 0,
+      "explanation": "A closure is the combination of a function bundled together with references to its lexical environment. Even after an enclosing function finishes executing, inner functions retain access to variables in the enclosing scope."
+    },
+    {
+      "category": "Event Loop & Asynchrony",
+      "question": "In what order will the following console logs execute?",
+      "code": "console.log('1');\nsetTimeout(() => console.log('2'), 0);\nPromise.resolve().then(() => console.log('3'));\nconsole.log('4');",
+      "options": [
+        "1, 4, 3, 2",
+        "1, 2, 3, 4",
+        "1, 3, 4, 2",
+        "1, 4, 2, 3"
+      ],
+      "correct": 0,
+      "explanation": "Synchronous code runs first ('1', '4'). Next, the microtask queue (Promise.then callbacks) is drained completely before macrotasks, logging '3'. Finally, the timer macrotask callback is dequeued, logging '2'."
+    },
+    {
+      "category": "Promises & Concurrency",
+      "question": "How does Promise.allSettled() differ from Promise.all()?",
+      "options": [
+        "Promise.allSettled() waits for every promise to either resolve or reject and returns an array of outcome objects, whereas Promise.all() short-circuits immediately upon the first rejection",
+        "Promise.allSettled() cancels pending network requests if any reject",
+        "Promise.all() runs promises sequentially while allSettled() runs them in parallel",
+        "Promise.allSettled() returns only the fastest resolved value"
+      ],
+      "correct": 0,
+      "explanation": "Promise.all rejects immediately if any input promise rejects (fail-fast). In contrast, Promise.allSettled waits for all promises to finish and returns an array of {status: 'fulfilled', value} or {status: 'rejected', reason} objects."
+    },
+    {
+      "category": "Async / Await Error Handling",
+      "question": "How should rejected promises inside an async function be handled idiomatically without crashing unhandled?",
+      "options": [
+        "Wrapping the await expression in a try...catch block",
+        "Using a window.onerror fallback exclusively",
+        "Passing an error callback as the second argument to await",
+        "Async functions automatically discard all rejected promises"
+      ],
+      "correct": 0,
+      "explanation": "Because await pauses execution and unpacks a rejected promise into a thrown exception, surrounding the await call with a try...catch block is the idiomatic way to handle asynchronous errors."
+    },
+    {
+      "category": "Prototypes & Inheritance",
+      "question": "How does prototypal inheritance resolve property lookups in JavaScript?",
+      "options": [
+        "If an object lacks a requested property, JavaScript walks up its __proto__ chain until it finds the property or reaches null",
+        "It searches the global window object first, then queries child objects",
+        "It invokes the class constructor dynamically on every lookup",
+        "It queries the browser's IndexedDB prototype table"
+      ],
+      "correct": 0,
+      "explanation": "When accessing an object property, the engine first checks the instance itself. If not found, it traverses the internal prototype link ([[Prototype]] / __proto__) upwards step-by-step until either finding the property or encountering null at the top."
+    },
+    {
+      "category": "Function Execution Context & this",
+      "question": "How does the this keyword behave differently in an arrow function compared to a standard function declaration?",
+      "options": [
+        "Arrow functions do not bind their own this; they lexically inherit this from the enclosing execution scope",
+        "Arrow functions bind this to the global object exclusively in strict mode",
+        "Arrow functions bind this to the element being clicked",
+        "Arrow functions cannot be called with arguments"
+      ],
+      "correct": 0,
+      "explanation": "Standard functions bind this based on how they are invoked (caller context, apply, call, or bind). Arrow functions have no this binding of their own; they capture the this value of the enclosing lexical context."
+    },
+    {
+      "category": "ES6 Destructuring & Rest/Spread",
+      "question": "What is the output of the following array destructuring operation?",
+      "code": "const [head, ...tail] = [10, 20, 30, 40];\nconsole.log(head, tail);",
+      "options": [
+        "10 and [20, 30, 40]",
+        "[10] and [20, 30, 40]",
+        "10 and 20",
+        "undefined and [10, 20, 30, 40]"
+      ],
+      "correct": 0,
+      "explanation": "Array destructuring assigns the first element (10) to 'head', and the rest operator (...tail) collects all remaining elements into a new array [20, 30, 40]."
+    },
+    {
+      "category": "Array Functional Methods",
+      "question": "Which Array method transforms each element into an array and then flattens the result by 1 level in a single pass?",
+      "options": [
+        "flatMap()",
+        "map().flat(Infinity)",
+        "reduceRight()",
+        "filter()"
+      ],
+      "correct": 0,
+      "explanation": "flatMap() applies a mapping function to each element and then flattens the result by one level (equivalent to arr.map(...).flat(1)), which is both cleaner and more performant than running map followed by flat separately."
+    },
+    {
+      "category": "DOM Events & Propagation",
+      "question": "What is the difference between event.stopPropagation() and event.preventDefault()?",
+      "options": [
+        "stopPropagation() halts the event from bubbling or capturing further up/down the DOM tree, while preventDefault() prevents the browser's default action (e.g. following a link or submitting a form)",
+        "preventDefault() stops bubbling while stopPropagation() prevents default form submission",
+        "Both methods perform the exact same operation interchangeably",
+        "stopPropagation() removes the DOM element from memory"
+      ],
+      "correct": 0,
+      "explanation": "event.stopPropagation() halts the event from travelling further through DOM event phases (capturing/bubbling). event.preventDefault() cancels the browser's built-in default behavior for that event without affecting propagation."
+    },
+    {
+      "category": "DOM Querying Performance",
+      "question": "What is the difference between document.getElementById('item') and document.querySelector('#item')?",
+      "options": [
+        "getElementById is optimized directly for ID lookup in browser internal hash tables, returning an Element, while querySelector accepts any CSS selector string and parses it",
+        "querySelector returns an HTMLCollection while getElementById returns a NodeList",
+        "getElementById only works in XHTML mode",
+        "querySelector cannot query elements by ID"
+      ],
+      "correct": 0,
+      "explanation": "getElementById is a specialized, highly optimized native method that looks up an element directly via the document's ID table. querySelector invokes the full CSS selector engine, offering greater flexibility at slightly higher parsing overhead."
+    },
+    {
+      "category": "Memory Management & Weak References",
+      "question": "Why are WeakMap and WeakSet beneficial for preventing memory leaks in JavaScript?",
+      "options": [
+        "Their keys (or values in WeakSet) are weakly held objects; if there are no other references to an object key, it can be garbage collected even while remaining in the WeakMap",
+        "They store data on the client hard drive instead of RAM",
+        "They enforce compile-time type safety on object properties",
+        "They automatically clear their entries every 60 seconds"
+      ],
+      "correct": 0,
+      "explanation": "WeakMap holds weak references to its object keys. If no other strong references to a key object exist in memory, the garbage collector can reclaim the object and remove the key-value pair, avoiding leaks when caching metadata on DOM nodes."
+    },
+    {
+      "category": "JavaScript Modules (ESM vs CJS)",
+      "question": "What is a key difference between ES Modules (import/export) and CommonJS (require/module.exports)?",
+      "options": [
+        "ES Modules are statically analyzed at compile/parse time enabling tree-shaking, whereas CommonJS imports are evaluated dynamically at runtime",
+        "CommonJS is asynchronous by default while ESM is purely synchronous",
+        "ES Modules cannot be used in browser environments",
+        "CommonJS does not support passing objects between files"
+      ],
+      "correct": 0,
+      "explanation": "ES Modules use static import/export syntax analyzed before code execution, enabling tools to perform tree-shaking (dead code elimination). CommonJS require() is a dynamic synchronous runtime function."
+    },
+    {
+      "category": "Performance Optimization Patterns",
+      "question": "What is the functional difference between debouncing and throttling a function?",
+      "options": [
+        "Debouncing postpones execution until a specified delay has elapsed since the last event call; throttling guarantees execution at most once per specified time interval",
+        "Throttling cancels all calls; debouncing executes every call in reverse order",
+        "Debouncing is strictly for server requests; throttling is exclusively for CSS animations",
+        "There is no difference; they are synonymous performance wrappers"
+      ],
+      "correct": 0,
+      "explanation": "Debounce resets the countdown every time an event occurs, executing only after the user stops triggering events (e.g. typing in search). Throttle ensures the function runs at a regulated, steady cadence (e.g. scroll listener)."
+    },
+    {
+      "category": "Object Cloning & Immutability",
+      "question": "Which native browser API creates a true deep copy of complex JavaScript objects including circular references, Maps, Sets, and Dates?",
+      "options": [
+        "structuredClone(obj)",
+        "JSON.parse(JSON.stringify(obj))",
+        "Object.assign({}, obj)",
+        "{ ...obj }"
+      ],
+      "correct": 0,
+      "explanation": "structuredClone() is a standard browser and Node.js API that creates a true deep clone of objects, handling circular references, ArrayBuffers, Sets, Maps, and Date instances, which JSON.parse(JSON.stringify()) fails on."
+    },
+    {
+      "category": "Metaprogramming & Proxies",
+      "question": "What does a JavaScript Proxy object allow you to do?",
+      "options": [
+        "Intercept and customize fundamental operations on a target object (e.g. property lookup, assignment, enumeration, function invocation)",
+        "Encrypt all network requests sent through XMLHttpRequest",
+        "Bypass browser CORS restrictions automatically",
+        "Run JavaScript code inside an isolated sandboxed iframe"
+      ],
+      "correct": 0,
+      "explanation": "A Proxy wraps another target object and allows you to define traps (handlers) for low-level operations like get, set, deleteProperty, and has, which is how modern reactive state engines (like Vue 3) function."
+    },
+    {
+      "category": "Generators & Iterables",
+      "question": "What does calling next() on a generator function instance return?",
+      "options": [
+        "An object in the shape of { value: any, done: boolean }",
+        "A Promise that resolves to the next yielded expression",
+        "A raw integer tracking execution line numbers",
+        "The entire array of generator outputs"
+      ],
+      "correct": 0,
+      "explanation": "Generators conform to the Iterator Protocol: invoking .next() resumes execution until the next 'yield' expression and returns an object with { value: <yielded value>, done: <boolean> }."
+    },
+    {
+      "category": "Nullish Operators",
+      "question": "What is the difference between the Nullish Coalescing operator (??) and the Logical OR operator (||)?",
+      "options": [
+        "?? only falls back when the left operand is null or undefined, while || falls back on any falsy value (0, false, '', NaN)",
+        "|| only checks for null, while ?? checks for undefined",
+        "?? only works inside TypeScript interfaces",
+        "|| is asynchronous while ?? is synchronous"
+      ],
+      "correct": 0,
+      "explanation": "The logical OR operator (||) falls back for any falsy value (including 0, false, and empty string ''), which often causes unintended bugs when 0 or false are valid inputs. ?? only falls back if the left operand is null or undefined."
+    },
+    {
+      "category": "Optional Chaining",
+      "question": "What happens when evaluating user?.profile?.getName?.() if user.profile is null?",
+      "options": [
+        "It immediately short-circuits and returns undefined without throwing a TypeError",
+        "It throws an unhandled 'TypeError: Cannot read properties of null'",
+        "It returns null and logs a warning to the browser console",
+        "It restarts the current script execution loop"
+      ],
+      "correct": 0,
+      "explanation": "Optional chaining (?.) checks for nullish values (null or undefined) before property access or function invocation. If null or undefined is encountered, it short-circuits evaluation and safely returns undefined."
+    }
+  ],
+  "react": [
+    {
+      "category": "JSX Core & Compilation",
+      "question": "What does JSX syntax actually compile down to under the hood in modern React?",
+      "options": [
+        "Calls to React.createElement() or the new JSX runtime function jsx() / jsxs() that produce plain JavaScript virtual DOM objects",
+        "Direct document.createElement() calls that immediately append DOM nodes",
+        "A binary WebAssembly Abstract Syntax Tree",
+        "HTML strings parsed through element.innerHTML"
+      ],
+      "correct": 0,
+      "explanation": "JSX is syntactic sugar. Transpilers like Babel or SWC compile JSX into function calls (React.createElement or the react/jsx-runtime jsx() function), which return lightweight JavaScript object representations of UI elements."
+    },
+    {
+      "category": "Virtual DOM & Reconciliation",
+      "question": "What is React Fiber and what major architectural capability did it introduce to React's reconciliation engine?",
+      "options": [
+        "A complete rewrite of the reconciliation algorithm that broke rendering work into incremental units, enabling non-blocking, interruptible rendering with priority levels",
+        "A CSS-in-JS framework built directly into React core",
+        "A native WebSocket client for React Server Components",
+        "A memory cache for React Native images"
+      ],
+      "correct": 0,
+      "explanation": "React Fiber is React's internal reconciliation engine rewrite. Its key innovation is incremental rendering: the ability to pause, abort, or prioritize work across frames, making UI responsive even during heavy updates."
+    },
+    {
+      "category": "useState & Immutability",
+      "question": "Why should you never mutate state objects directly in React (e.g. state.user.name = 'Sanskar') before calling setState?",
+      "options": [
+        "React relies on shallow object reference equality (Object.is) to detect state changes; mutating the existing object keeps the reference identical and may skip re-rendering",
+        "Direct mutation throws an immediate fatal syntax error in strict mode",
+        "JavaScript does not allow modifying properties on objects returned by functions",
+        "It corrupts the browser's IndexedDB storage pool"
+      ],
+      "correct": 0,
+      "explanation": "React checks whether state changed by comparing previous and next references with Object.is. Mutating an object in place keeps the object reference unchanged, causing React to assume nothing changed and skip necessary DOM updates."
+    },
+    {
+      "category": "useEffect & Cleanup",
+      "question": "When does the cleanup function returned by a useEffect hook execute?",
+      "options": [
+        "Before the effect runs again on re-render, and when the component unmounts from the DOM",
+        "Only once when the entire browser window is refreshed",
+        "Directly before the component's initial render cycle",
+        "Continuously on every keystroke in input fields"
+      ],
+      "correct": 0,
+      "explanation": "The cleanup function returned by useEffect runs right before the effect re-runs (if dependencies change) to clean up subscriptions or timers from the previous render, and finally when the component unmounts."
+    },
+    {
+      "category": "useMemo vs useCallback",
+      "question": "What is the distinction between useMemo and useCallback?",
+      "options": [
+        "useMemo memoizes the computed result of invoking a function, while useCallback memoizes the function instance itself",
+        "useCallback memoizes values while useMemo is exclusively for server actions",
+        "useMemo is for class components while useCallback is for functional components",
+        "There is no difference; useCallback is an alias for useMemo"
+      ],
+      "correct": 0,
+      "explanation": "useMemo(() => computeValue(a, b), [a, b]) caches the calculated return value. useCallback(fn, deps) caches the function reference itself across renders, preventing unwanted child re-renders when passing callbacks."
+    },
+    {
+      "category": "useRef Hook",
+      "question": "What is a primary characteristic of the value stored in a useRef hook?",
+      "options": [
+        "Updating ref.current persists across renders without triggering a component re-render",
+        "Changing ref.current always forces an immediate synchronous re-render",
+        "useRef can only store references to HTML <input> elements",
+        "useRef values are automatically synchronized across all browser tabs"
+      ],
+      "correct": 0,
+      "explanation": "useRef returns a mutable object whose .current property persists for the entire lifetime of the component. Crucially, mutating .current does NOT trigger a re-render, making it ideal for DOM nodes, timer IDs, and previous values."
+    },
+    {
+      "category": "useContext & State Sharing",
+      "question": "What happens to child components that call useContext(MyContext) when MyContext.Provider's value changes?",
+      "options": [
+        "Every component consuming that context will re-render, even if wrapped in React.memo",
+        "Only the immediate direct child of the Provider will re-render",
+        "No components re-render unless they have an active useEffect dependency",
+        "The components are unmounted and re-mounted from scratch"
+      ],
+      "correct": 0,
+      "explanation": "When the value passed to a Context.Provider changes, all descendant components that read that context with useContext will re-render, bypassing React.memo optimizations on those consuming components."
+    },
+    {
+      "category": "useReducer Hook",
+      "question": "When is useReducer preferred over useState in React component architecture?",
+      "options": [
+        "When dealing with complex state logic where the next state depends on multiple sub-values or previous state, or when dispatching actions across deep component trees",
+        "When rendering lists containing more than 100 items",
+        "Only when communicating with Redux DevTools",
+        "When building class-based React components"
+      ],
+      "correct": 0,
+      "explanation": "useReducer is ideal for components with complex state requirements, state transitions governed by explicit action types, or when optimizing deep updates because 'dispatch' is guaranteed to have a stable reference across renders."
+    },
+    {
+      "category": "Rules of Hooks",
+      "question": "Why must React hooks only be called at the top level of functional components and never inside loops, conditions, or nested functions?",
+      "options": [
+        "React relies on the exact invocation order of hooks across renders to associate internal state slots with corresponding hook calls",
+        "Calling hooks inside conditions crashes JavaScript's call stack",
+        "Hooks are compiled into global window variables that cannot exist inside blocks",
+        "React enforces this purely for aesthetic code readability"
+      ],
+      "correct": 0,
+      "explanation": "React stores hook state in an internal linked list or array indexed by the order in which hooks are called. If a hook is called conditionally or inside a loop, the order shifts between renders, corrupting state alignment."
+    },
+    {
+      "category": "List Keys & Reconciliation",
+      "question": "Why is using array index as a key for dynamic lists considered an anti-pattern in React?",
+      "options": [
+        "If items are inserted, deleted, or reordered, matching keys by index confuses reconciliation, causing state bugs in child components and degrading performance",
+        "React throws a compile-time error whenever an index key is encountered",
+        "Indices cannot be converted into string attributes",
+        "Index keys disable CSS transitions on list items"
+      ],
+      "correct": 0,
+      "explanation": "React uses keys to identify which items have changed, been added, or been removed. Using array indices when list order can change causes React to misidentify items, leading to incorrect input state reuse and visual glitches."
+    },
+    {
+      "category": "Controlled vs Uncontrolled Components",
+      "question": "What distinguishes a controlled input component from an uncontrolled input component in React?",
+      "options": [
+        "A controlled component has its form value driven by React state via value and onChange, while an uncontrolled component lets the DOM handle its own state accessed via a ref",
+        "Controlled components can only accept numbers while uncontrolled components accept text",
+        "Uncontrolled components cannot be styled using CSS",
+        "Controlled components only render on the server"
+      ],
+      "correct": 0,
+      "explanation": "In a controlled component, form input data is handled by a React component state (single source of truth). In an uncontrolled component, form data is handled by the DOM itself and pulled on-demand using a ref."
+    },
+    {
+      "category": "React.memo Optimization",
+      "question": "What does wrapping a functional component in React.memo() accomplish?",
+      "options": [
+        "It performs a shallow comparison of incoming props and skips re-rendering the component if props have not changed",
+        "It stores the component in browser localStorage permanently",
+        "It turns the functional component into a Web Worker",
+        "It prevents parent components from re-rendering"
+      ],
+      "correct": 0,
+      "explanation": "React.memo is a higher order component that memoizes the rendered output. If props do not change (based on shallow Object.is equality), React skips rendering the component and reuses the last rendered result."
+    },
+    {
+      "category": "React Portals",
+      "question": "What is the primary use case for ReactDOM.createPortal()?",
+      "options": [
+        "Rendering child DOM elements into a different DOM subtree outside the parent component's DOM hierarchy (e.g. modals, tooltips, dropdowns)",
+        "Opening new browser windows and tabs asynchronously",
+        "Navigating between client-side routes without page reloads",
+        "Connecting React to third-party GraphQL databases"
+      ],
+      "correct": 0,
+      "explanation": "Portals allow you to render children into a DOM node that exists outside the DOM hierarchy of the parent component, allowing modals or overlays to break free of parent z-index and overflow: hidden constraints while keeping React event bubbling intact."
+    },
+    {
+      "category": "Error Boundaries",
+      "question": "Which lifecycle methods must a component implement to act as a React Error Boundary?",
+      "options": [
+        "static getDerivedStateFromError() and/or componentDidCatch() in a class component",
+        "useErrorBoundary() hook in a functional component",
+        "catchError() in standard JSX elements",
+        "window.addEventListener('unhandledrejection')"
+      ],
+      "correct": 0,
+      "explanation": "Error boundaries must currently be class components implementing static getDerivedStateFromError() (to render fallback UI) and/or componentDidCatch() (to log error information) when errors occur during rendering."
+    },
+    {
+      "category": "Code Splitting & Suspense",
+      "question": "How do you achieve route-based or component-level lazy loading in React?",
+      "options": [
+        "Using React.lazy(() => import('./MyComponent')) wrapped inside a <Suspense fallback={<Loading />}> boundary",
+        "Adding the async attribute to JSX component tags: <MyComponent async />",
+        "Configuring webpack splitChunks manually without React code changes",
+        "Wrapping components in requestIdleCallback()"
+      ],
+      "correct": 0,
+      "explanation": "React.lazy enables dynamic imports of components as separate bundles, and <Suspense> specifies a fallback loading UI to display while the lazy component's JavaScript is being fetched over the network."
+    },
+    {
+      "category": "React StrictMode",
+      "question": "Why does React StrictMode intentionally double-invoke component render functions and effects in development mode?",
+      "options": [
+        "To help identify side effects in render functions and ensure cleanup functions properly reset effects for upcoming concurrent features",
+        "To stress-test the user device's CPU and memory limits",
+        "Because development builds run on two separate worker threads",
+        "To verify that components have valid TypeScript typings"
+      ],
+      "correct": 0,
+      "explanation": "StrictMode double-invokes constructor, render, and effects in development to catch accidental side effects, detect deprecated APIs, and verify that components are resilient to being mounted, unmounted, and remounted gracefully."
+    },
+    {
+      "category": "React 18 Concurrent Features",
+      "question": "What does the startTransition API introduced in React 18 enable?",
+      "options": [
+        "It marks state updates as non-urgent transitions that can be interrupted by urgent user inputs like typing or clicking",
+        "It animates page route transitions using CSS keyframes automatically",
+        "It converts synchronous fetch calls into streaming WebSockets",
+        "It moves component calculations to a GPU shader"
+      ],
+      "correct": 0,
+      "explanation": "startTransition lets you distinguish between urgent updates (like typing in an input) and non-urgent transitions (like filtering a massive search list). If the user types again, React interrupts the transition render to keep input responsive."
+    },
+    {
+      "category": "useDeferredValue Hook",
+      "question": "How does useDeferredValue(value) help optimize performance during expensive list rendering?",
+      "options": [
+        "It accepts a value and returns a copy of that value that will defer updating until urgent renders finish, keeping the UI responsive",
+        "It delays rendering the component for a fixed 500ms timeout",
+        "It automatically compresses JSON payloads in memory",
+        "It prevents child components from unmounting"
+      ],
+      "correct": 0,
+      "explanation": "useDeferredValue creates a deferred version of a value that 'lags behind' during urgent updates. React renders the urgent update first with the old value, then updates the deferred value in the background once main-thread work clears."
+    },
+    {
+      "category": "Server Components vs Client Components",
+      "question": "What is a defining feature of React Server Components (RSC)?",
+      "options": [
+        "They execute exclusively on the server, have direct backend access, and send zero JavaScript bundle to the client browser",
+        "They replace Node.js servers with browser service workers",
+        "They cannot render HTML or accept props",
+        "They must include the 'use client' directive at the top of the file"
+      ],
+      "correct": 0,
+      "explanation": "React Server Components run exclusively on the server during the build or request time. Their code dependencies are not included in the client bundle, drastically reducing client JS overhead while allowing direct DB access."
+    },
+    {
+      "category": "Prop Drilling Solutions",
+      "question": "What is 'prop drilling' and which pattern solves it without bringing in external state libraries?",
+      "options": [
+        "Passing props through intermediate components that do not need them; solved using React Context or Component Composition (children/slots)",
+        "Mutating parent state from child props; solved with Object.freeze()",
+        "Fetching data inside nested useEffect hooks; solved by moving fetch to HTML",
+        "Overriding CSS variables in child components; solved with !important"
+      ],
+      "correct": 0,
+      "explanation": "Prop drilling occurs when data must pass through multiple layers of components that don't need the data themselves. It can be solved cleanly using React Context API or component composition (passing components as children or slots)."
+    }
+  ],
+  "python": [
+    {
+      "category": "Data Types & Mutability",
+      "question": "Which of the following built-in Python data types is immutable?",
+      "options": [
+        "tuple",
+        "list",
+        "dict",
+        "set"
+      ],
+      "correct": 0,
+      "explanation": "Tuples, integers, floats, strings, and frozensets are immutable in Python. Once instantiated, their contents cannot be altered in-place, unlike lists, dictionaries, and sets which are mutable."
+    },
+    {
+      "category": "Comprehensions",
+      "question": "What does the following dictionary comprehension produce?",
+      "code": "{x: x**2 for x in (1, 2, 3) if x % 2 != 0}",
+      "options": [
+        "{1: 1, 3: 9}",
+        "{1: 1, 2: 4, 3: 9}",
+        "{2: 4}",
+        "[1, 9]"
+      ],
+      "correct": 0,
+      "explanation": "The comprehension iterates over (1, 2, 3), filters for odd numbers (1 and 3), and creates keys mapped to their squares, yielding {1: 1, 3: 9}."
+    },
+    {
+      "category": "Function Arguments",
+      "question": "What do *args and **kwargs in a Python function definition allow?",
+      "options": [
+        "*args collects arbitrary positional arguments as a tuple; **kwargs collects arbitrary keyword arguments as a dictionary",
+        "*args enables pointer arithmetic; **kwargs allocates heap memory",
+        "*args passes arguments by reference; **kwargs passes arguments by value",
+        "*args limits arguments to numbers; **kwargs limits arguments to strings"
+      ],
+      "correct": 0,
+      "explanation": "*args unpacks positional arguments into a tuple, while **kwargs unpacks named keyword arguments into a standard Python dict, providing maximum flexibility in function signatures."
+    },
+    {
+      "category": "Decorators",
+      "question": "Why is @functools.wraps(fn) commonly applied inside a custom Python decorator?",
+      "options": [
+        "It preserves the original function's metadata, such as __name__, __doc__, and annotations on the wrapper function",
+        "It automatically executes the function on a separate background thread",
+        "It compiles the decorated function into C extension bytecode",
+        "It forces the decorated function to accept only keyword arguments"
+      ],
+      "correct": 0,
+      "explanation": "Decorators replace the original function with an inner wrapper. Using @functools.wraps(fn) copies over the original function's docstring, name, module, and signature, preserving introspection and debugging integrity."
+    },
+    {
+      "category": "Generators & Yield",
+      "question": "What is the primary memory efficiency benefit of using a generator with yield instead of returning a list?",
+      "options": [
+        "Generators produce items lazily one at a time on demand without storing the entire dataset in memory",
+        "Generators store items in the CPU L1 cache",
+        "Generators compress all values using gzip compression",
+        "Generators disable Python's reference counting garbage collector"
+      ],
+      "correct": 0,
+      "explanation": "Generators use lazy evaluation: they compute and yield items one by one on-demand via the iterator protocol, using O(1) memory regardless of whether streaming 10 items or 10 billion items."
+    },
+    {
+      "category": "Magic Methods & Dunder",
+      "question": "What is the difference between __str__ and __repr__ in Python classes?",
+      "options": [
+        "__str__ provides a readable, user-friendly string representation, while __repr__ provides an unambiguous representation primarily intended for developers and debugging",
+        "__repr__ is for integers while __str__ is for text",
+        "__str__ is called by print() while __repr__ is never executed",
+        "__repr__ cannot access instance attributes self"
+      ],
+      "correct": 0,
+      "explanation": "__repr__ aims to be unambiguous and, if possible, match valid Python code to recreate the object (useful for debugging). __str__ is designed to be human-readable and is invoked by print() and str()."
+    },
+    {
+      "category": "Context Managers",
+      "question": "Which two dunder methods must a Python class implement to support the with statement (context management)?",
+      "options": [
+        "__enter__() and __exit__()",
+        "__open__() and __close__()",
+        "__start__() and __stop__()",
+        "__init__() and __del__()"
+      ],
+      "correct": 0,
+      "explanation": "The context management protocol requires __enter__() (executed before entering the with-block, returning the target variable) and __exit__() (executed upon exiting the block, handling cleanup and exception suppression)."
+    },
+    {
+      "category": "Global Interpreter Lock (GIL)",
+      "question": "What is the Global Interpreter Lock (GIL) in CPython, and what is its primary effect?",
+      "options": [
+        "A mutex that allows only one thread to execute Python bytecode at a time, preventing multi-threaded CPU-bound speedups in CPython",
+        "A security firewall preventing unauthorized file writes",
+        "A lock that stops functions from accessing global variables",
+        "A compiler flag enabling SIMD vectorization"
+      ],
+      "correct": 0,
+      "explanation": "The GIL is a mutex in CPython that protects access to Python objects, preventing multiple native threads from executing Python bytecode simultaneously. It means multi-threading helps I/O-bound tasks, but CPU-bound tasks require multiprocessing."
+    },
+    {
+      "category": "Asyncio & Event Loop",
+      "question": "In Python's asyncio framework, what is the role of await?",
+      "options": [
+        "It suspends the execution of the coroutine until the awaited awaitable completes, allowing the event loop to run other tasks in the meantime",
+        "It creates a new OS thread to run the code synchronously",
+        "It pauses the entire operating system kernel",
+        "It converts a generator into a multiprocessing Process"
+      ],
+      "correct": 0,
+      "explanation": "await yields control back to the asyncio event loop while waiting for an asynchronous operation (like network I/O) to finish, allowing concurrent execution of other scheduled coroutines on a single thread."
+    },
+    {
+      "category": "Exception Handling",
+      "question": "When does the else block in a Python try...except...else...finally statement execute?",
+      "options": [
+        "Only when NO exceptions were raised inside the try block",
+        "Only when an exception was raised and caught",
+        "Always, right before the finally block",
+        "When the try block times out"
+      ],
+      "correct": 0,
+      "explanation": "The 'else' block in exception handling executes only if the code in the 'try' block completed successfully without raising any exceptions."
+    },
+    {
+      "category": "Object-Oriented Programming & MRO",
+      "question": "How does Python determine the search order for methods in multiple inheritance?",
+      "options": [
+        "Using the C3 Linearization algorithm to calculate the Method Resolution Order (MRO)",
+        "Depth-first search from left to right strictly without linearization",
+        "Random selection among parent classes",
+        "The class defined highest in the file always takes precedence"
+      ],
+      "correct": 0,
+      "explanation": "Python uses the C3 Linearization algorithm to compute the Method Resolution Order (MRO, accessible via Class.mro()), ensuring that subclasses precede parents and multiple inheritance hierarchies are traversed predictably."
+    },
+    {
+      "category": "Dataclasses",
+      "question": "What does the @dataclass decorator from Python's dataclasses module automatically generate?",
+      "options": [
+        "Special methods like __init__(), __repr__(), and __eq__() based on class attribute type annotations",
+        "A relational database table in SQLite",
+        "A REST API endpoint for serialization",
+        "A Cython C-extension module"
+      ],
+      "correct": 0,
+      "explanation": "The @dataclass decorator automatically inspects annotated attributes and writes standard boilerplate methods like __init__(), __repr__(), __eq__(), and optionally __hash__() and __lt__()."
+    },
+    {
+      "category": "Type Hints & Annotations",
+      "question": "In modern Python 3.10+, how can you annotate a variable that could be either an integer or None?",
+      "options": [
+        "int | None",
+        "int or None",
+        "Union(int, None)",
+        "Nullable<int>"
+      ],
+      "correct": 0,
+      "explanation": "Starting in Python 3.10 (PEP 604), the pipe operator (|) can be used for union types, allowing concise syntax like int | None (equivalent to typing.Optional[int] or typing.Union[int, None])."
+    },
+    {
+      "category": "Package Management",
+      "question": "What is the primary role of a Python virtual environment (e.g. created with python -m venv .venv)?",
+      "options": [
+        "To isolate project-specific dependencies and Python binaries, preventing package version conflicts with other projects or system packages",
+        "To sandbox Python code against hardware attacks",
+        "To emulate a Linux virtual machine on Windows",
+        "To compile Python scripts into standalone .exe files"
+      ],
+      "correct": 0,
+      "explanation": "Virtual environments provide isolated environments with their own site-packages folder and Python interpreter, allowing projects to have distinct dependencies without version collisions."
+    },
+    {
+      "category": "Lambda Functions",
+      "question": "What syntactic limitation do Python lambda expressions have?",
+      "options": [
+        "They are restricted to a single expression and cannot contain multi-line statements (like loops, assignments, or try blocks)",
+        "They cannot accept more than two arguments",
+        "They can only return integer values",
+        "They cannot be passed into higher-order functions like map or filter"
+      ],
+      "correct": 0,
+      "explanation": "Python lambdas are syntactically restricted to a single expression whose evaluated value is implicitly returned. They cannot contain statements, assignments, loops, or complex annotations."
+    },
+    {
+      "category": "Collections Module",
+      "question": "What happens when you access a non-existent key in a collections.defaultdict(list)?",
+      "options": [
+        "It automatically initializes the key with an empty list [] and returns it without raising a KeyError",
+        "It raises a KeyError just like a standard dictionary",
+        "It returns None and leaves the dictionary unmodified",
+        "It throws an unhandled AttributeError"
+      ],
+      "correct": 0,
+      "explanation": "defaultdict takes a factory function (here list) as an argument. When a missing key is accessed, it automatically calls the factory to insert a default value ([]), avoiding manual key existence checks."
+    },
+    {
+      "category": "Web Frameworks (Flask vs Django)",
+      "question": "What is the primary architectural difference between Flask and Django?",
+      "options": [
+        "Flask is a minimalist microframework giving developers freedom to choose ORM and tools, while Django is a 'batteries-included' full-stack framework with built-in ORM, admin panel, and auth",
+        "Django is exclusively for front-end rendering while Flask is only for background tasks",
+        "Flask does not support routing HTTP requests",
+        "Django cannot connect to PostgreSQL databases"
+      ],
+      "correct": 0,
+      "explanation": "Flask is a lightweight microframework providing routing and template rendering, leaving ORM and auth up to extensions. Django is a comprehensive batteries-included framework containing its own ORM, admin dashboard, migrations, and auth system."
+    },
+    {
+      "category": "NumPy & Performance",
+      "question": "Why is vectorization in NumPy orders of magnitude faster than standard Python for-loops?",
+      "options": [
+        "NumPy operations execute contiguous, homogeneous C memory buffers using compiled SIMD vector instructions, bypassing Python interpreter overhead",
+        "NumPy converts Python code into JavaScript V8 bytecode",
+        "NumPy runs computations across remote cloud clusters automatically",
+        "Python loops cannot perform mathematical division"
+      ],
+      "correct": 0,
+      "explanation": "NumPy arrays are contiguous blocks of homogeneous data in C. Vectorized operations run compiled C loops utilizing CPU SIMD vector instructions, eliminating type-checking and dynamic dispatch overhead of Python loops."
+    },
+    {
+      "category": "Identity vs Equality",
+      "question": "What is the difference between is and == in Python?",
+      "options": [
+        "is checks identity (whether both variables point to the exact same object in memory via id()), while == checks value equality",
+        "== checks memory address while is checks equality",
+        "There is no difference; they are identical operators",
+        "is is only for strings and == is only for numbers"
+      ],
+      "correct": 0,
+      "explanation": "The '==' operator checks whether the values of the two objects are equal (invoking __eq__). The 'is' operator checks identity—verifying whether two references point to the exact same memory address (id(a) == id(b))."
+    },
+    {
+      "category": "Itertools Module",
+      "question": "Which itertools function produces all possible r-length subsets of elements from an iterable without replacement and without regard to order?",
+      "options": [
+        "itertools.combinations(iterable, r)",
+        "itertools.permutations(iterable, r)",
+        "itertools.product(iterable, repeat=r)",
+        "itertools.cycle(iterable)"
+      ],
+      "correct": 0,
+      "explanation": "itertools.combinations(iterable, r) returns r-length tuples in sorted order where items are chosen without replacement and order does not matter. permutations() considers order distinct."
+    }
+  ],
+  "typescript": [
+    {
+      "category": "Compiler & Type Erasure",
+      "question": "What happens to TypeScript type annotations, interfaces, and type aliases when compiled into JavaScript?",
+      "options": [
+        "They are completely stripped away (type erasure), leaving clean standard JavaScript with zero runtime type-checking overhead",
+        "They are converted into runtime Object.defineProperty validations",
+        "They are encoded into HTML data attributes",
+        "They remain active as runtime metadata if strict mode is enabled"
+      ],
+      "correct": 0,
+      "explanation": "TypeScript uses type erasure: the TypeScript compiler (tsc) verifies types at build-time and strips all types, interfaces, and type aliases during emit, resulting in plain JavaScript with no runtime performance tax."
+    },
+    {
+      "category": "Interface vs Type Alias",
+      "question": "What is an important feature that TypeScript interfaces have which type aliases do NOT have?",
+      "options": [
+        "Declaration merging (interfaces with the same name in the same scope automatically merge their member definitions)",
+        "Support for object properties",
+        "Support for generic parameters",
+        "Compatibility with class implements clauses"
+      ],
+      "correct": 0,
+      "explanation": "Multiple interface declarations with the same name merge their definitions automatically (declaration merging), which is essential for augmenting third-party library types. Type aliases cannot be reopened once declared."
+    },
+    {
+      "category": "Top & Bottom Types",
+      "question": "What is the difference between any, unknown, and never in TypeScript?",
+      "options": [
+        "any disables type-checking entirely; unknown is a type-safe top type requiring narrowing before use; never represents values that can never occur (bottom type)",
+        "unknown cannot be assigned to any variable; any only accepts strings",
+        "never represents asynchronous promises; any is for synchronous values",
+        "They are all aliases for the JavaScript Object type"
+      ],
+      "correct": 0,
+      "explanation": "'any' turns off the type checker. 'unknown' is the type-safe counterpart where any value can be assigned to it, but you cannot perform operations until narrowing its type. 'never' represents unreachable code or impossible states."
+    },
+    {
+      "category": "Generics & Constraints",
+      "question": "How do you constrain a generic type parameter T so that it must contain an id property of type number?",
+      "options": [
+        "function getItem<T extends { id: number }>(item: T): T",
+        "function getItem<T : { id: number }>(item: T): T",
+        "function getItem<T implements { id: number }>(item: T): T",
+        "function getItem<T where id is number>(item: T): T"
+      ],
+      "correct": 0,
+      "explanation": "Generic constraints use the 'extends' keyword. Writing <T extends { id: number }> restricts callers from passing any argument that does not satisfy the required shape."
+    },
+    {
+      "category": "Enums & const enum",
+      "question": "What is the difference between a standard enum and a const enum in TypeScript?",
+      "options": [
+        "const enum values are inlined directly at their call sites at compile-time, emitting zero JavaScript object boilerplate",
+        "Standard enums only accept strings while const enums only accept numbers",
+        "const enums remain editable at runtime via Object.assign",
+        "Standard enums do not support reverse mappings"
+      ],
+      "correct": 0,
+      "explanation": "A standard enum generates a real JavaScript object with bidirectional lookups. A 'const enum' completely avoids emitting an object; the compiler inlines the raw literal values directly where referenced, reducing bundle size."
+    },
+    {
+      "category": "Type Guards & Predicates",
+      "question": "What is the return type of a custom user-defined type guard function that checks if an animal is a Dog?",
+      "options": [
+        "animal is Dog",
+        "animal as Dog",
+        "boolean<Dog>",
+        "typeof Dog"
+      ],
+      "correct": 0,
+      "explanation": "Custom type guards use the type predicate syntax 'paramName is Type' (e.g. animal is Dog) as their return type. When the function returns true, TypeScript narrows the type of the passed argument in subsequent blocks."
+    },
+    {
+      "category": "Utility Types: Partial & Required",
+      "question": "What does the utility type Partial<User> do?",
+      "options": [
+        "Constructs a type with all properties of User set to optional (? modifier)",
+        "Removes all properties that are null or undefined",
+        "Converts all properties into readonly getters",
+        "Creates a shallow copy containing only the first half of User's properties"
+      ],
+      "correct": 0,
+      "explanation": "Partial<T> is a mapped type that iterates over all keys of T and applies the optional modifier (?), making every property optional for updates or patches."
+    },
+    {
+      "category": "Utility Types: Pick & Omit",
+      "question": "Given interface User { id: number; name: string; email: string; role: string; }, how do you create a type containing only name and email?",
+      "options": [
+        "Pick<User, 'name' | 'email'>",
+        "Omit<User, 'id' | 'role'>",
+        "Both Pick<User, 'name' | 'email'> and Omit<User, 'id' | 'role'> produce equivalent types",
+        "Extract<User, 'name', 'email'>"
+      ],
+      "correct": 2,
+      "explanation": "Pick selects specified keys from an interface, while Omit excludes specified keys. Both Pick<User, 'name' | 'email'> and Omit<User, 'id' | 'role'> produce a type with { name: string; email: string; }."
+    },
+    {
+      "category": "Mapped Types",
+      "question": "What is the syntax for creating a mapped type that makes all properties of T readonly?",
+      "options": [
+        "type ReadonlyType<T> = { readonly [P in keyof T]: T[P]; }",
+        "type ReadonlyType<T> = { for P in T => readonly P; }",
+        "type ReadonlyType<T> = Map<keyof T, readonly T>",
+        "type ReadonlyType<T> = { [P of T]: readonly T[P]; }"
+      ],
+      "correct": 0,
+      "explanation": "Mapped types use the syntax [P in keyof T]: T[P]. Adding the 'readonly' prefix marks every mapped property as immutable, which is precisely how TypeScript's built-in Readonly<T> is implemented."
+    },
+    {
+      "category": "Conditional Types",
+      "question": "What is the syntax for a conditional type in TypeScript?",
+      "options": [
+        "T extends U ? X : Y",
+        "if (T instanceof U) { X } else { Y }",
+        "T === U ? X : Y",
+        "type Conditional<T, U> = T is U"
+      ],
+      "correct": 0,
+      "explanation": "Conditional types take the form 'T extends U ? X : Y', resembling the ternary operator. If the type T is assignable to U, the type resolves to X; otherwise it resolves to Y."
+    },
+    {
+      "category": "The infer Keyword",
+      "question": "What is the purpose of the infer keyword in TypeScript conditional types?",
+      "options": [
+        "It introduces a type variable within the extends clause to deduce/extract an unknown type from a structure (e.g. extracting return type or array element type)",
+        "It tells the compiler to infer JavaScript types from external JSON files",
+        "It turns off strict null checking for that expression",
+        "It overrides a type assertion at runtime"
+      ],
+      "correct": 0,
+      "explanation": "The 'infer' keyword is used within conditional type definitions to declare a type variable to be inferred on the fly, such as extracting the return type in type ReturnType<T> = T extends (...args: any[]) => infer R ? R : any."
+    },
+    {
+      "category": "Template Literal Types",
+      "question": "What does the template literal type type Event = `${'click' | 'hover'}Handler` resolve to?",
+      "options": [
+        "'clickHandler' | 'hoverHandler'",
+        "string",
+        "'click' | 'hover'",
+        "['clickHandler', 'hoverHandler']"
+      ],
+      "correct": 0,
+      "explanation": "Template literal types produce cross-product unions by expanding string literal types. Combining ${'click' | 'hover'} with Handler results in the union type 'clickHandler' | 'hoverHandler'."
+    },
+    {
+      "category": "Discriminated Unions",
+      "question": "What is a Discriminated (Tagged) Union in TypeScript?",
+      "options": [
+        "A union of object types that all share a common literal property (the discriminant) that TypeScript uses to narrow the union in switch or if statements",
+        "A union that rejects any type with private members",
+        "A union that can only contain strings or numbers",
+        "A deprecated pattern replaced by class inheritance"
+      ],
+      "correct": 0,
+      "explanation": "A discriminated union uses a common literal property (like kind: 'circle' | 'square') on each union member. Checking that property allows TypeScript to narrow the union to a specific type without manual casting."
+    },
+    {
+      "category": "Index Signatures",
+      "question": "How do you declare an interface that allows arbitrary string keys with number values?",
+      "options": [
+        "interface NumberDictionary { [key: string]: number; }",
+        "interface NumberDictionary { keys: string; values: number; }",
+        "interface NumberDictionary { Dictionary<string, number>; }",
+        "interface NumberDictionary { [string]: number; }"
+      ],
+      "correct": 0,
+      "explanation": "The index signature syntax [key: string]: number indicates that any string property key accessed on this object will return a value of type number."
+    },
+    {
+      "category": "Non-null Assertion",
+      "question": "What does the exclamation mark postfix operator (value!) do in TypeScript?",
+      "options": [
+        "It asserts to the compiler that value is neither null nor undefined (non-null assertion)",
+        "It negates the boolean value at runtime",
+        "It casts the value into a BigInt",
+        "It throws an exception if value is false"
+      ],
+      "correct": 0,
+      "explanation": "The non-null assertion operator (value!) tells the TypeScript type checker that the developer guarantees the operand is not null or undefined, stripping null and undefined from its type without emitting runtime checks."
+    },
+    {
+      "category": "Keyof & Typeof Operators",
+      "question": "What is the type of type K = keyof { id: number; name: string; }?",
+      "options": [
+        "'id' | 'name'",
+        "string | number",
+        "['id', 'name']",
+        "any"
+      ],
+      "correct": 0,
+      "explanation": "The keyof operator takes an object type and produces a string or numeric literal union of its keys. Here, keyof produces the union 'id' | 'name'."
+    },
+    {
+      "category": "as const Assertions",
+      "question": "What effect does appending as const have on an array literal const colors = ['red', 'green', 'blue'] as const?",
+      "options": [
+        "It makes the array readonly and narrows the element types to exact string literals ('red' | 'green' | 'blue') instead of string[]",
+        "It freezes the JavaScript object at runtime using Object.freeze()",
+        "It stores the array in WebAssembly memory",
+        "It forbids exporting the variable from the module"
+      ],
+      "correct": 0,
+      "explanation": "'as const' is a const assertion: it signals to TypeScript that all properties are deeply readonly and literal expressions should not be widened (e.g. 'red' stays 'red', not string, and the array becomes a readonly tuple)."
+    },
+    {
+      "category": "Ambient Declarations (.d.ts)",
+      "question": "What is the purpose of declare module 'my-lib' in a .d.ts ambient declaration file?",
+      "options": [
+        "It provides type information for a JavaScript library that lacks built-in types without emitting runtime JavaScript code",
+        "It dynamically downloads npm packages at runtime",
+        "It compiles C++ libraries for use in TypeScript",
+        "It configures tsconfig.json paths"
+      ],
+      "correct": 0,
+      "explanation": "Ambient declarations (declare module, .d.ts files) describe the shape of existing JavaScript libraries to the TypeScript compiler without generating any executable JavaScript code."
+    },
+    {
+      "category": "tsconfig.json Flags",
+      "question": "What does the strictNullChecks compiler flag enforce in tsconfig.json?",
+      "options": [
+        "null and undefined are not in the domain of every type and can only be assigned to their own types or union types (e.g. string | null)",
+        "Functions can never return null",
+        "All object properties must be initialized to empty strings",
+        "It replaces all nulls with undefined at runtime"
+      ],
+      "correct": 0,
+      "explanation": "When strictNullChecks is false, null and undefined can be assigned to any type (like number or string). When true, null and undefined have their own distinct types and must be explicitly handled via unions."
+    },
+    {
+      "category": "Function Overloads",
+      "question": "How are function overloads structured in TypeScript?",
+      "options": [
+        "One or more overload signature headers without bodies, followed by a single implementation signature with a body compatible with all overloads",
+        "Multiple distinct function declarations sharing the same name with different bodies",
+        "Passing an overload configuration object into the function decorator",
+        "TypeScript does not support function overloading"
+      ],
+      "correct": 0,
+      "explanation": "In TypeScript, you declare multiple overload signatures specifying argument and return types, followed by a single concrete implementation signature whose parameter types encompass all defined overloads."
+    }
+  ],
+  "rust": [
+    {
+      "category": "Ownership & Memory Safety",
+      "question": "What are the core ownership rules that govern memory management in Rust?",
+      "options": [
+        "Each value has an owner; there can only be one owner at a time; when the owner goes out of scope, the value is dropped",
+        "Values can have unlimited owners; memory is freed periodically by a mark-and-sweep garbage collector",
+        "Owners can only allocate on the heap; the stack is managed manually with free()",
+        "Ownership can only be transferred between functions using pointers"
+      ],
+      "correct": 0,
+      "explanation": "Rust's memory safety relies on three ownership rules: (1) each value has an owner, (2) there can only be one owner at a time, and (3) when the owner goes out of scope, the value is dropped automatically."
+    },
+    {
+      "category": "Borrowing & References",
+      "question": "What does the Rust borrow checker enforce regarding references at any given point in time?",
+      "options": [
+        "You can have any number of immutable references (&T) OR exactly one mutable reference (&mut T), but never both simultaneously",
+        "You can have unlimited mutable references as long as they are marked unsafe",
+        "Mutable references can only be created inside closures",
+        "Immutable references must be manually freed using drop()"
+      ],
+      "correct": 0,
+      "explanation": "To prevent data races at compile time, Rust enforces the aliasing XOR mutability rule: at any given time, you may have either any number of immutable references (&T) OR a single mutable reference (&mut T), never both."
+    },
+    {
+      "category": "Lifetimes",
+      "question": "What is the purpose of explicit lifetime annotations (e.g. 'a) in Rust?",
+      "options": [
+        "They inform the borrow checker how the lifetimes of different references relate to one another to guarantee no reference outlives the data it points to",
+        "They allocate memory for a specific duration in milliseconds",
+        "They force the garbage collector to keep an object alive",
+        "They speed up CPU cache line prefetching"
+      ],
+      "correct": 0,
+      "explanation": "Lifetime annotations ('a) do not change how long a value lives; they describe the relationships between the lifetimes of multiple references so the compiler can ensure no dangling references ever occur."
+    },
+    {
+      "category": "String vs &str",
+      "question": "What is the difference between String and &str in Rust?",
+      "options": [
+        "String is an owned, growable, heap-allocated UTF-8 buffer; &str is an immutable string slice borrowing a view into UTF-8 data",
+        "&str is allocated on the heap while String is always stack-allocated",
+        "String is null-terminated while &str uses a length prefix",
+        "&str is mutable while String is strictly immutable"
+      ],
+      "correct": 0,
+      "explanation": "String is an owned, heap-allocated, resizable buffer of UTF-8 bytes. &str is a borrowed slice consisting of a pointer to bytes and a length, pointing to a String, a string literal, or any UTF-8 data."
+    },
+    {
+      "category": "Pattern Matching",
+      "question": "What is a requirement of match expressions in Rust?",
+      "options": [
+        "Match expressions must be exhaustive; every possible value or variant of the matched type must be covered",
+        "Match arms must end with a break statement",
+        "Match can only compare integer values",
+        "Match cannot bind variables inside patterns"
+      ],
+      "correct": 0,
+      "explanation": "Match in Rust is exhaustive: the compiler guarantees that every possible pattern or enum variant is handled, or it will refuse to compile (unless a wildcard '_' catch-all arm is provided)."
+    },
+    {
+      "category": "Enums & Option/Result",
+      "question": "How does Rust handle values that might be absent without using null?",
+      "options": [
+        "Using the Option<T> enum with variants Some(T) and None",
+        "Using a null pointer of type *const T",
+        "Using the Nil primitive type",
+        "Functions return undefined if a value is missing"
+      ],
+      "correct": 0,
+      "explanation": "Rust has no null. Instead, optional values are represented by enum Option<T> { Some(T), None }, forcing developers to handle the None case explicitly before accessing the underlying value."
+    },
+    {
+      "category": "Error Handling & The ? Operator",
+      "question": "What does the ? operator do when applied to a Result<T, E> expression in a function returning Result?",
+      "options": [
+        "If Ok(v), it unwraps v; if Err(e), it immediately returns Err(From::from(e)) from the enclosing function",
+        "It suppresses any errors and returns a default value",
+        "It panics if the result is an Err",
+        "It turns the function into an asynchronous generator"
+      ],
+      "correct": 0,
+      "explanation": "The ? operator propagates errors ergonomically: if the Result is Ok(val), execution continues with val. If Err(err), it returns early from the current function, automatically converting the error via From::from."
+    },
+    {
+      "category": "Traits & Behavior",
+      "question": "What is a trait in Rust analogous to in languages like Java or TypeScript?",
+      "options": [
+        "An interface that defines a set of methods that a type must implement",
+        "A base class for multiple inheritance",
+        "A global macro definition",
+        "A dynamic union of primitive types"
+      ],
+      "correct": 0,
+      "explanation": "A trait in Rust defines functionality a type can share with other types (like an interface). Traits can provide abstract method signatures as well as default method implementations."
+    },
+    {
+      "category": "Monomorphization vs Dynamic Dispatch",
+      "question": "What is the difference between impl Trait (generics) and dyn Trait in Rust?",
+      "options": [
+        "impl Trait uses static dispatch via monomorphization at compile-time (zero-cost abstraction); dyn Trait uses dynamic dispatch via a vtable at runtime",
+        "dyn Trait compiles faster but uses more memory than impl Trait",
+        "impl Trait can only be used on primitive types",
+        "dyn Trait avoids heap allocations while impl Trait requires Box"
+      ],
+      "correct": 0,
+      "explanation": "Generics and impl Trait use static dispatch (monomorphization): the compiler generates specialized copies of the function for each concrete type. dyn Trait uses trait objects and vtables for dynamic runtime dispatch."
+    },
+    {
+      "category": "Structs & Memory Layout",
+      "question": "What is a tuple struct in Rust?",
+      "options": [
+        "A struct with fields that have types but no named identifiers (e.g. struct Color(i32, i32, i32);)",
+        "A struct that can only store two values",
+        "A struct that cannot implement traits",
+        "A struct whose fields are public by default"
+      ],
+      "correct": 0,
+      "explanation": "A tuple struct gives the struct a name, but its fields are anonymous and accessed by index (.0, .1), making it ideal for the newtype pattern to enforce type safety (e.g. struct Inches(i32);)."
+    },
+    {
+      "category": "Closures & Closure Traits",
+      "question": "Which closure trait (Fn, FnMut, FnOnce) represents a closure that can only be called once because it consumes captured variables by value?",
+      "options": [
+        "FnOnce",
+        "FnMut",
+        "Fn",
+        "FnDrop"
+      ],
+      "correct": 0,
+      "explanation": "FnOnce applies to closures that take ownership of captured variables. Because it moves captured variables out of its environment, it can only be invoked once."
+    },
+    {
+      "category": "Smart Pointers: Box",
+      "question": "What does Box<T> provide in Rust?",
+      "options": [
+        "A unique-ownership smart pointer that allocates value T on the heap and owns the allocation",
+        "A reference-counted thread-safe pointer",
+        "An interior mutability wrapper",
+        "A memory-mapped file reader"
+      ],
+      "correct": 0,
+      "explanation": "Box<T> is the simplest smart pointer in Rust: it allocates data on the heap rather than the stack, with single ownership. When the Box goes out of scope, the heap memory is deallocated."
+    },
+    {
+      "category": "Reference Counting: Rc vs Arc",
+      "question": "When should you use Arc<T> instead of Rc<T> in Rust?",
+      "options": [
+        "When sharing ownership of data across multiple threads (Arc stands for Atomically Reference Counted)",
+        "When you need to mutate data without a lock",
+        "When allocating data exclusively on the stack",
+        "When working with WebAssembly"
+      ],
+      "correct": 0,
+      "explanation": "Rc<T> is for single-threaded reference counting with non-atomic operations (avoiding atomic overhead). Arc<T> uses atomic operations for its reference count, making it safe to share across threads."
+    },
+    {
+      "category": "Interior Mutability",
+      "question": "What does RefCell<T> allow in Rust?",
+      "options": [
+        "Interior mutability by enforcing borrowing rules dynamically at runtime instead of compile time",
+        "Bypassing the need for lifetime annotations completely",
+        "Multi-threaded lockless concurrency",
+        "Allocating uninitialized memory safely"
+      ],
+      "correct": 0,
+      "explanation": "RefCell<T> represents interior mutability: it allows mutating data even through an immutable reference (&RefCell<T>) by enforcing Rust's borrowing rules at runtime (panicking if rules are violated)."
+    },
+    {
+      "category": "Concurrency Marker Traits",
+      "question": "What do the Send and Sync marker traits signify in Rust's type system?",
+      "options": [
+        "Send indicates ownership of the type can be transferred across threads; Sync indicates references (&T) can be shared safely between threads",
+        "Send handles network sockets; Sync handles disk I/O",
+        "Send compiles code for 32-bit systems; Sync is for 64-bit systems",
+        "Send means serializable; Sync means clonable"
+      ],
+      "correct": 0,
+      "explanation": "Send and Sync are foundational concurrency traits: Send means a type can be moved to another thread; Sync means it is safe to share references to the type across multiple threads (&T is Send if T is Sync)."
+    },
+    {
+      "category": "Message Passing Channels",
+      "question": "What kind of channel does std::sync::mpsc implement in Rust standard library?",
+      "options": [
+        "Multiple Producer, Single Consumer channel",
+        "Multi-Process Synchronous Communication",
+        "Single Producer, Multiple Consumer",
+        "Bidirectional WebSocket stream"
+      ],
+      "correct": 0,
+      "explanation": "mpsc stands for Multiple Producer, Single Consumer: it allows multiple transmitting clones (Sender) to send messages to a single receiver (Receiver)."
+    },
+    {
+      "category": "Cargo & Package Management",
+      "question": "In a Rust project, what is the file Cargo.lock used for?",
+      "options": [
+        "It records the exact resolved dependency versions used to produce reproducible builds",
+        "It encrypts the project source code with a password",
+        "It locks the git repository from concurrent commits",
+        "It prevents the compiler from running optimization flags"
+      ],
+      "correct": 0,
+      "explanation": "Cargo.lock contains the exact versions and hashes of all dependencies resolved for the project, guaranteeing deterministic, reproducible builds across different machines and environments."
+    },
+    {
+      "category": "Unsafe Rust",
+      "question": "Which of the following operations is permitted ONLY inside an unsafe block in Rust?",
+      "options": [
+        "Dereferencing a raw pointer (*const T or *mut T)",
+        "Allocating a large vector on the heap",
+        "Spawning a new thread with thread::spawn",
+        "Implementing the Display trait for a struct"
+      ],
+      "correct": 0,
+      "explanation": "Unsafe Rust grants specific superpowers: dereferencing raw pointers, calling unsafe functions or FFI, implementing unsafe traits, mutating mutable static variables, and accessing union fields."
+    },
+    {
+      "category": "Iterators & Adapters",
+      "question": "In Rust, why are iterator adapters like .map() and .filter() called 'lazy'?",
+      "options": [
+        "They do not do any work until a consuming method (like .collect(), .sum(), or a for loop) consumes the iterator",
+        "They execute at low CPU priority in the background",
+        "They only evaluate the first element",
+        "They only work when wrapped inside an async function"
+      ],
+      "correct": 0,
+      "explanation": "Rust iterators are lazy: calling .map(...) or .filter(...) merely constructs a new iterator adapter struct. No actual iteration or computation happens until a consumer like .collect() or .next() is called."
+    },
+    {
+      "category": "Macros in Rust",
+      "question": "What is the primary difference between declarative macros (macro_rules!) and procedural macros in Rust?",
+      "options": [
+        "Declarative macros match on syntax patterns and expand to code; procedural macros are written as Rust code that operates on AST token streams (custom derives, attributes, function-like)",
+        "Declarative macros execute at runtime while procedural macros run at compile-time",
+        "Procedural macros cannot generate structs",
+        "macro_rules! requires an external C compiler"
+      ],
+      "correct": 0,
+      "explanation": "macro_rules! defines pattern-matching syntax expansions. Procedural macros (derive, attribute, function-like) are full Rust programs running at compile-time that accept a TokenStream as input and emit a TokenStream."
+    }
+  ],
+  "go": [
+    {
+      "category": "Variable Declaration",
+      "question": "Where is the short variable declaration operator (:=) allowed in Go?",
+      "options": [
+        "Only inside function bodies; it cannot be used at package level",
+        "Anywhere, including global package scope",
+        "Only inside struct definitions",
+        "Only within init() functions"
+      ],
+      "correct": 0,
+      "explanation": "The short variable declaration syntax (name := value) can only be used inside functions. At package scope, variables must be declared using the 'var' keyword."
+    },
+    {
+      "category": "Slices vs Arrays",
+      "question": "What is the structural difference between an array and a slice in Go?",
+      "options": [
+        "An array has a fixed size defined at compile-time; a slice is a lightweight 3-word header containing a pointer to a backing array, a length, and a capacity",
+        "Arrays are dynamically sized; slices are fixed",
+        "Slices are allocated on the stack while arrays are always on the heap",
+        "Arrays can hold multiple types while slices cannot"
+      ],
+      "correct": 0,
+      "explanation": "In Go, arrays have a fixed length that is part of their type ([5]int != [10]int). Slices ([]int) are dynamic views over a backing array, represented internally as a struct with a pointer, length (len), and capacity (cap)."
+    },
+    {
+      "category": "Slice Append & Capacity",
+      "question": "What happens when append() exceeds a slice's current capacity in Go?",
+      "options": [
+        "Go allocates a new, larger backing array, copies existing elements over, and returns a new slice pointing to the new array",
+        "A runtime panic is thrown for index out of bounds",
+        "The slice truncates the extra appended elements",
+        "The program blocks until memory is freed"
+      ],
+      "correct": 0,
+      "explanation": "When append() needs more room than cap(s), the Go runtime allocates a new backing array (typically doubling capacity for smaller slices), copies existing elements, and returns an updated slice pointing to the new memory."
+    },
+    {
+      "category": "Goroutines",
+      "question": "How are Go goroutines different from operating system threads?",
+      "options": [
+        "Goroutines are lightweight userspace threads managed by the Go runtime with a tiny initial stack (~2KB) that grows and shrinks dynamically",
+        "Goroutines run directly in the GPU hardware registers",
+        "Goroutines require 1MB of stack memory per routine",
+        "Goroutines can only communicate through shared global variables"
+      ],
+      "correct": 0,
+      "explanation": "Goroutines are multiplexed onto OS threads by the Go M:N runtime scheduler. They start with a minimal ~2KB stack that expands and shrinks on demand, allowing millions of concurrent goroutines on a single machine."
+    },
+    {
+      "category": "Channels & Synchronization",
+      "question": "What happens when you send data to an unbuffered channel in Go (ch <- val)?",
+      "options": [
+        "The sending goroutine blocks until another goroutine receives the value from the channel (synchronous rendezvous)",
+        "The value is stored in an infinite queue and execution continues immediately",
+        "It drops the value if no receiver is active",
+        "It causes an immediate compile-time error"
+      ],
+      "correct": 0,
+      "explanation": "Unbuffered channels provide synchronization: sends and receives block until both sender and receiver are ready to exchange the value (a synchronous rendezvous)."
+    },
+    {
+      "category": "The select Statement",
+      "question": "What is the purpose of the select statement in Go?",
+      "options": [
+        "It lets a goroutine wait on multiple channel communication operations simultaneously, choosing one that is ready",
+        "It executes SQL SELECT queries against databases",
+        "It filters elements in slices using predicates",
+        "It selects which CPU core to execute the current function on"
+      ],
+      "correct": 0,
+      "explanation": "The select statement enables multiplexing on channels: it blocks until one of its channel cases can proceed. If multiple are ready, it selects one pseudo-randomly; if a default case exists, it executes without blocking."
+    },
+    {
+      "category": "Error Handling Idioms",
+      "question": "What is the standard, idiomatic error handling pattern in Go?",
+      "options": [
+        "Returning error as the last value from functions and checking if err != nil explicitly",
+        "Throwing exceptions with try...catch blocks",
+        "Assigning errors to an errno global variable",
+        "Calling panic() on every non-zero status code"
+      ],
+      "correct": 0,
+      "explanation": "Go does not use exceptions for control flow. The standard convention is returning an error as the final return value (val, err := fn()) and explicitly checking 'if err != nil'."
+    },
+    {
+      "category": "Interfaces & Duck Typing",
+      "question": "How does a Go struct implement an interface?",
+      "options": [
+        "Implicitly: if a type implements all methods declared by an interface, it automatically satisfies that interface without an 'implements' keyword",
+        "Explicitly: using the 'implements' keyword in the struct definition",
+        "By inheriting from the interface base class",
+        "By registering the struct in the package init() function"
+      ],
+      "correct": 0,
+      "explanation": "Go uses structural typing (duck typing): a type implements an interface simply by defining methods with matching signatures. There is no 'implements' keyword in Go."
+    },
+    {
+      "category": "Composition vs Inheritance",
+      "question": "How does Go achieve code reuse and polymorphism without class inheritance?",
+      "options": [
+        "Through struct embedding (composition) and interface satisfaction",
+        "Through virtual methods and abstract base classes",
+        "Through C++ style multiple inheritance",
+        "Through dynamic runtime monkey-patching"
+      ],
+      "correct": 0,
+      "explanation": "Go deliberately favors composition over inheritance. Structs can embed other structs or interfaces (promoting embedded fields and methods), achieving clean reuse without complex inheritance hierarchies."
+    },
+    {
+      "category": "Pointers & Value Semantics",
+      "question": "In Go, what does passing a pointer (*T) to a function achieve?",
+      "options": [
+        "It allows the function to mutate the original value and avoids copying large struct values",
+        "It converts the variable into a goroutine",
+        "It prevents memory garbage collection",
+        "It forces memory allocation on the CPU stack"
+      ],
+      "correct": 0,
+      "explanation": "Go is pass-by-value. Passing a pointer (*T) copies the memory address rather than the full struct, allowing functions to mutate the caller's value and avoiding copying overhead for large data structures."
+    },
+    {
+      "category": "The defer Statement",
+      "question": "In what order do multiple deferred function calls execute when returning from a function in Go?",
+      "options": [
+        "Last In, First Out (LIFO / reverse order of declaration)",
+        "First In, First Out (FIFO / declaration order)",
+        "Random order based on goroutine scheduling",
+        "Alphabetical order based on function name"
+      ],
+      "correct": 0,
+      "explanation": "Deferred function calls are pushed onto a per-goroutine call stack and executed in LIFO (Last In, First Out) order right when the surrounding function returns."
+    },
+    {
+      "category": "Maps & The Comma-Ok Idiom",
+      "question": "How do you distinguish between a missing map key and a key with the zero value in Go?",
+      "options": [
+        "val, ok := myMap[key]; if ok is true, the key exists in the map",
+        "if myMap[key] != null",
+        "if myMap.hasKey(key)",
+        "if key in myMap"
+      ],
+      "correct": 0,
+      "explanation": "Go maps support the comma-ok idiom: val, ok := myMap[key]. The second boolean return value ('ok') is true if the key is present in the map, and false otherwise."
+    },
+    {
+      "category": "Package Visibility Rules",
+      "question": "How does Go control identifier visibility (public vs private) across packages?",
+      "options": [
+        "Identifiers starting with a capital letter (e.g. User, DoWork) are exported/public; lowercase identifiers are unexported/package-private",
+        "Using the 'public' and 'private' keywords before declarations",
+        "Using an exports list in package.json",
+        "All identifiers are public unless marked with an underscore prefix"
+      ],
+      "correct": 0,
+      "explanation": "Go uses capitalization for access control: any top-level constant, variable, struct, field, or function starting with a capital letter is exported (public). Lowercase names are private to their package."
+    },
+    {
+      "category": "sync.WaitGroup",
+      "question": "What is the purpose of sync.WaitGroup in Go concurrent programming?",
+      "options": [
+        "It coordinates goroutines by allowing code to wait until a collection of spawned goroutines finishes execution",
+        "It locks a mutex so only one goroutine can write to a file",
+        "It limits the maximum memory consumption of goroutines",
+        "It cancels HTTP requests when a timeout occurs"
+      ],
+      "correct": 0,
+      "explanation": "sync.WaitGroup provides Add(n), Done(), and Wait() methods to wait for a set of goroutines to finish their work before proceeding."
+    },
+    {
+      "category": "sync.Mutex vs sync.RWMutex",
+      "question": "When is sync.RWMutex preferred over a standard sync.Mutex?",
+      "options": [
+        "When a resource is read frequently by many goroutines but written to infrequently, allowing multiple concurrent readers simultaneously",
+        "When writing to files across network sockets",
+        "When memory must be deallocated instantly",
+        "When running on single-core processors"
+      ],
+      "correct": 0,
+      "explanation": "RWMutex allows any number of concurrent readers (RLock) to hold the lock simultaneously as long as no writer is active, granting exclusive access (Lock) only during writes."
+    },
+    {
+      "category": "Context Package",
+      "question": "What is the primary role of context.Context in Go web servers and microservices?",
+      "options": [
+        "Carrying cancellation signals, deadlines, and request-scoped metadata across API boundaries and goroutines",
+        "Configuring dependency injection containers",
+        "Storing HTML session cookies in memory",
+        "Parsing command line flags"
+      ],
+      "correct": 0,
+      "explanation": "The context package allows propagation of deadlines, cancellation signals, and request-scoped values across API boundaries and goroutine call trees, enabling clean termination of downstream work when a client disconnects."
+    },
+    {
+      "category": "Panic & Recover",
+      "question": "How can a panicked Go program recover from a runtime panic and regain control?",
+      "options": [
+        "By calling recover() inside a deferred function",
+        "By wrapping the code in a try/catch block",
+        "By checking if panic == false",
+        "A panicked Go program cannot recover under any circumstance"
+      ],
+      "correct": 0,
+      "explanation": "recover() is a built-in function that regains control of a panicking goroutine. It is only useful when called directly inside a deferred function during the panic unwind."
+    },
+    {
+      "category": "Go Modules",
+      "question": "What is the purpose of the go.sum file in a Go module project?",
+      "options": [
+        "It contains cryptographic SHA-256 checksums of the specific dependency versions to ensure dependencies have not been tampered with",
+        "It lists all compile-time errors in the build",
+        "It tracks the total lines of code in the module",
+        "It records git commit timestamps"
+      ],
+      "correct": 0,
+      "explanation": "go.sum maintains an immutable record of cryptographic checksums for module contents and their go.mod files, ensuring integrity and security across team builds."
+    },
+    {
+      "category": "Type Assertions & Type Switches",
+      "question": "What is the syntax for a type switch on an interface{} value x in Go?",
+      "options": [
+        "switch v := x.(type) { case int: ... }",
+        "switch typeof(x) { case 'int': ... }",
+        "switch x as Type { case int: ... }",
+        "switch (int)x { default: ... }"
+      ],
+      "correct": 0,
+      "explanation": "A type switch uses the syntax 'switch v := x.(type)' to inspect the concrete dynamic type stored within an interface value and execute the matching case arm."
+    },
+    {
+      "category": "Garbage Collection Architecture",
+      "question": "What algorithm does Go's runtime garbage collector use?",
+      "options": [
+        "A concurrent, tri-color mark-and-sweep collector with sub-millisecond stop-the-world pauses",
+        "A reference counting collector with generational tiers",
+        "A manual compaction allocator",
+        "Go does not have a garbage collector; all memory is freed manually"
+      ],
+      "correct": 0,
+      "explanation": "Go utilizes a concurrent, tri-color mark-and-sweep garbage collector designed for low latency, achieving sub-millisecond STW (Stop The World) pause times by running concurrently with user goroutines."
+    }
+  ],
+  "sql": [
+    {
+      "category": "SELECT & Column Aliasing",
+      "question": "Which SQL clause assigns a temporary display alias to a calculated column in a query result?",
+      "options": [
+        "AS",
+        "INTO",
+        "LIKE",
+        "SET"
+      ],
+      "correct": 0,
+      "explanation": "The AS keyword assigns an alias to a column or table expression (e.g. SELECT salary * 1.1 AS adjusted_salary FROM employees)."
+    },
+    {
+      "category": "Filtering: WHERE vs HAVING",
+      "question": "What is the fundamental difference between the WHERE clause and the HAVING clause in SQL?",
+      "options": [
+        "WHERE filters individual rows before aggregation occurs; HAVING filters grouped rows after the GROUP BY clause and aggregate functions are applied",
+        "WHERE is only for numbers while HAVING is only for text strings",
+        "HAVING can only be used with subqueries",
+        "There is no difference; they are interchangeable"
+      ],
+      "correct": 0,
+      "explanation": "WHERE filters source rows before grouping and cannot evaluate aggregate functions (like SUM or COUNT). HAVING filters the aggregated groups after GROUP BY evaluation."
+    },
+    {
+      "category": "Table Joins",
+      "question": "What is the result of a LEFT OUTER JOIN between Table A and Table B?",
+      "options": [
+        "All rows from Table A are returned, along with matching rows from Table B; unmatched Table B columns are populated with NULL",
+        "Only rows with matching keys in both Table A and Table B are returned",
+        "All rows from Table B are returned, ignoring Table A",
+        "The Cartesian product (A x B) of all rows"
+      ],
+      "correct": 0,
+      "explanation": "A LEFT JOIN preserves every row from the left table (A). If a matching row exists in the right table (B), it is joined; if no match exists, NULLs fill the right table columns."
+    },
+    {
+      "category": "Aggregation & GROUP BY",
+      "question": "What rule must every non-aggregate column in the SELECT list satisfy when a GROUP BY clause is used?",
+      "options": [
+        "It must appear in the GROUP BY clause",
+        "It must have an index on the table",
+        "It must be of type VARCHAR",
+        "It must be sorted using ORDER BY"
+      ],
+      "correct": 0,
+      "explanation": "Standard SQL requires that any column in the SELECT list that is not wrapped in an aggregate function (e.g. SUM, AVG, MAX) must be explicitly listed in the GROUP BY clause."
+    },
+    {
+      "category": "Subqueries",
+      "question": "What is a correlated subquery in SQL?",
+      "options": [
+        "A subquery that references columns from the outer query, evaluating once for every candidate row evaluated by the outer query",
+        "A subquery that runs once before the outer query and caches its results",
+        "A subquery that creates a temporary table in memory",
+        "A subquery that cannot contain a WHERE clause"
+      ],
+      "correct": 0,
+      "explanation": "A correlated subquery depends on data from the outer query (e.g. referencing outer_table.id). Because its output depends on the current outer row, it must be evaluated repeatedly for each candidate row."
+    },
+    {
+      "category": "Key Constraints",
+      "question": "What is the difference between a PRIMARY KEY constraint and a UNIQUE constraint in relational databases?",
+      "options": [
+        "A PRIMARY KEY uniquely identifies a row and forbids NULL values (only one PK per table); UNIQUE enforces uniqueness but allows NULLs (tables can have multiple UNIQUE keys)",
+        "PRIMARY KEY can be assigned to multiple columns while UNIQUE is strictly single-column",
+        "UNIQUE keys cannot be referenced by FOREIGN KEYs",
+        "PRIMARY KEYs are never indexed"
+      ],
+      "correct": 0,
+      "explanation": "A table can have only one PRIMARY KEY, which strictly forbids NULLs. A table can have multiple UNIQUE constraints, and in most SQL engines, UNIQUE constraints allow one (or more) NULL entries."
+    },
+    {
+      "category": "Database Normalization",
+      "question": "What requirement must a database relation satisfy to achieve Third Normal Form (3NF)?",
+      "options": [
+        "It must be in 2NF and contain no transitive functional dependencies of non-key attributes on the primary key",
+        "It must store all related data in a single wide table",
+        "Every column must allow NULL values",
+        "All tables must have at least three columns"
+      ],
+      "correct": 0,
+      "explanation": "Third Normal Form (3NF) requires 2NF compliance plus the elimination of transitive dependencies: non-key columns must depend strictly on the primary key, the whole primary key, and nothing but the primary key."
+    },
+    {
+      "category": "Database Indexes",
+      "question": "What is the difference between a clustered index and a non-clustered index?",
+      "options": [
+        "A clustered index determines the physical storage order of rows in the table (one per table); a non-clustered index creates a separate B-tree structure pointing to row data",
+        "Non-clustered indexes are stored in RAM while clustered indexes are on disk",
+        "A table can have unlimited clustered indexes",
+        "Clustered indexes are slower for range queries than non-clustered indexes"
+      ],
+      "correct": 0,
+      "explanation": "A clustered index sorts and stores the actual physical data rows of the table in index key order (hence only one per table). Non-clustered indexes are secondary search structures whose leaf nodes hold pointers (or clustered keys) to rows."
+    },
+    {
+      "category": "ACID Properties",
+      "question": "What does the 'I' in ACID transaction properties stand for, and what does it guarantee?",
+      "options": [
+        "Isolation: concurrent transactions execute without interfering with one another, preventing dirty reads or inconsistent intermediate states",
+        "Integrity: ensures constraints cannot be dropped",
+        "Indexing: guarantees all foreign keys are indexed",
+        "Idempotency: repeating a query yields identical results"
+      ],
+      "correct": 0,
+      "explanation": "Isolation guarantees that concurrently executing transactions are isolated from each other. Changes made inside an uncommitted transaction are hidden from other transactions depending on the isolation level."
+    },
+    {
+      "category": "Transaction Isolation Levels",
+      "question": "Which ANSI SQL transaction isolation level prevents dirty reads, non-repeatable reads, AND phantom reads completely?",
+      "options": [
+        "SERIALIZABLE",
+        "REPEATABLE READ",
+        "READ COMMITTED",
+        "READ UNCOMMITTED"
+      ],
+      "correct": 0,
+      "explanation": "SERIALIZABLE is the highest isolation level. It emulates serial execution, guaranteeing full protection against dirty reads, non-repeatable reads, and phantom rows (typically using range locks or snapshot isolation)."
+    },
+    {
+      "category": "Window Functions",
+      "question": "What is the primary difference between ROW_NUMBER(), RANK(), and DENSE_RANK() window functions when encountering identical values (ties)?",
+      "options": [
+        "ROW_NUMBER assigns unique sequential integers; RANK leaves gaps in numbering after ties (e.g. 1, 2, 2, 4); DENSE_RANK assigns consecutive numbers without gaps (e.g. 1, 2, 2, 3)",
+        "DENSE_RANK only works on numeric data",
+        "RANK returns floating-point percentages",
+        "ROW_NUMBER ignores ORDER BY clauses"
+      ],
+      "correct": 0,
+      "explanation": "When encountering tied values: ROW_NUMBER arbitrarily assigns distinct sequential numbers (1, 2, 3). RANK assigns equal rank to ties and skips subsequent numbers (1, 2, 2, 4). DENSE_RANK assigns equal rank to ties without skipping (1, 2, 2, 3)."
+    },
+    {
+      "category": "Common Table Expressions (CTEs)",
+      "question": "What keyword defines a Common Table Expression (CTE) in SQL?",
+      "options": [
+        "WITH",
+        "DECLARE",
+        "CREATE CTE",
+        "VIRTUAL"
+      ],
+      "correct": 0,
+      "explanation": "The WITH clause defines a Common Table Expression (CTE), which acts as a temporary named result set accessible within the scope of a single SELECT, INSERT, UPDATE, or DELETE query."
+    },
+    {
+      "category": "UNION vs UNION ALL",
+      "question": "Why is UNION ALL generally faster than UNION?",
+      "options": [
+        "UNION ALL combines result sets directly without performing an expensive deduplication sort, while UNION filters out duplicate rows",
+        "UNION ALL compresses results into a binary format",
+        "UNION requires all tables to share identical primary keys",
+        "UNION ALL bypasses transaction logging"
+      ],
+      "correct": 0,
+      "explanation": "UNION performs an implicit DISTINCT operation, sorting results across tables to eliminate duplicate rows. UNION ALL simply concatenates result sets directly without deduplication overhead, making it significantly faster."
+    },
+    {
+      "category": "NULL Handling",
+      "question": "Why does the expression WHERE col = NULL fail to match rows where col is NULL?",
+      "options": [
+        "In three-valued logic (3VL), any equality comparison with NULL evaluates to UNKNOWN, not TRUE; you must use IS NULL instead",
+        "NULL is a reserved keyword that cannot be evaluated in WHERE clauses",
+        "The database automatically replaces NULL with 0",
+        "The '=' operator is only for string types"
+      ],
+      "correct": 0,
+      "explanation": "SQL uses three-valued logic (TRUE, FALSE, UNKNOWN). Because NULL represents an unknown value, comparing anything to NULL (col = NULL or NULL = NULL) yields UNKNOWN, which WHERE treats as non-matching. You must use 'IS NULL'."
+    },
+    {
+      "category": "SQL Security & Injection",
+      "question": "What is the most effective defense against SQL Injection vulnerabilities?",
+      "options": [
+        "Parameterized queries (prepared statements) that separate SQL code from untrusted user data inputs",
+        "Replacing all single quotes with double quotes in user input strings",
+        "Restricting database access to GET HTTP requests only",
+        "Running queries exclusively through stored procedures without parameters"
+      ],
+      "correct": 0,
+      "explanation": "Parameterized queries (prepared statements) send query structure and data parameters separately to the database engine. The engine treats parameters purely as literals, preventing injected SQL commands from altering the query structure."
+    },
+    {
+      "category": "Views vs Materialized Views",
+      "question": "What is the difference between a standard SQL VIEW and a MATERIALIZED VIEW?",
+      "options": [
+        "A standard VIEW is a virtual query executed on-the-fly when referenced; a MATERIALIZED VIEW physically stores the query results on disk and must be refreshed",
+        "Standard views can only contain one table; materialized views can contain many",
+        "Materialized views cannot be indexed",
+        "Standard views are stored in browser memory"
+      ],
+      "correct": 0,
+      "explanation": "A standard view is a saved query that re-executes whenever queried. A materialized view computes and writes the result set physically to disk like a table, speeding up analytical queries at the expense of needing periodic refreshes."
+    },
+    {
+      "category": "Stored Procedures vs Functions",
+      "question": "What is an important functional capability that a Stored Procedure has which a User-Defined Function (UDF) typically lacks in standard SQL?",
+      "options": [
+        "Stored procedures can execute transaction control statements (COMMIT / ROLLBACK) and modify database state freely",
+        "Stored procedures cannot accept input parameters",
+        "Functions can only be called from command-line terminals",
+        "Stored procedures are written exclusively in Java"
+      ],
+      "correct": 0,
+      "explanation": "Stored procedures can manage transactions (COMMIT / ROLLBACK) and perform complex data modifications. User-Defined Functions (UDFs) are designed to be called within SQL statements and are restricted from altering database state or controlling transactions."
+    },
+    {
+      "category": "Query Optimization & EXPLAIN",
+      "question": "What does running EXPLAIN ANALYZE on a SQL query show?",
+      "options": [
+        "The database query execution plan along with actual execution times and row counts for each step in the plan tree",
+        "The compile-time syntax errors in the query",
+        "The physical temperature of the database server CPU",
+        "The user permissions of the client executing the query"
+      ],
+      "correct": 0,
+      "explanation": "EXPLAIN produces the query optimizer's execution plan (showing sequential scans, index scans, join algorithms). EXPLAIN ANALYZE actually executes the query and reports real runtime elapsed time and row counts."
+    },
+    {
+      "category": "DELETE vs TRUNCATE vs DROP",
+      "question": "How does TRUNCATE TABLE differ from DELETE FROM table?",
+      "options": [
+        "TRUNCATE is a DDL operation that deallocates data pages rapidly without logging row-by-row deletes, resetting auto-increment counters; DELETE is DML that removes rows individually with transaction logging",
+        "DELETE removes the table schema from the database entirely",
+        "TRUNCATE supports WHERE clauses while DELETE does not",
+        "There is no difference; they are exact aliases"
+      ],
+      "correct": 0,
+      "explanation": "DELETE is a DML statement that logs each deleted row individually and fires DELETE triggers. TRUNCATE is a DDL operation that deallocates entire data pages, runs vastly faster, resets identity seeds, and cannot filter with WHERE."
+    },
+    {
+      "category": "Pattern Matching Operators",
+      "question": "In the SQL LIKE operator, what do the percent sign (%) and underscore (_) wildcards represent?",
+      "options": [
+        "% matches zero or more characters; _ matches exactly one single character",
+        "% matches any single character; _ matches any number of characters",
+        "% matches numeric digits only; _ matches letters only",
+        "Both wildcards perform identical regex matching"
+      ],
+      "correct": 0,
+      "explanation": "In standard SQL LIKE patterns: the percent wildcard (%) matches any sequence of zero or more characters, while the underscore wildcard (_) matches exactly one single character."
+    }
+  ],
+  "csharp": [
+    {
+      "category": "Value Types vs Reference Types",
+      "question": "In C#, where are value types (like struct, int) typically allocated compared to reference types (like class, string)?",
+      "options": [
+        "Value types are typically allocated on the stack (or inline in containing objects), while reference types are allocated on the managed heap with references on the stack",
+        "Reference types are allocated in the CPU L2 cache",
+        "All C# variables are allocated strictly on the stack",
+        "Value types cannot be passed into methods"
+      ],
+      "correct": 0,
+      "explanation": "Value types (primitives, structs) contain their data directly and are typically allocated on the stack or inline within their parent object. Reference types (classes, strings, delegates) store pointers on the stack pointing to objects on the managed heap."
+    },
+    {
+      "category": "Properties & Accessors",
+      "question": "What does the C# auto-implemented property public string Name { get; init; } enforce?",
+      "options": [
+        "The property can be read publicly, but can only be mutated during object initialization (via object initializers or constructor)",
+        "The property can never be read",
+        "The property must be recomputed on every access",
+        "The property is private to the assembly"
+      ],
+      "correct": 0,
+      "explanation": "The 'init' accessor (introduced in C# 9) allows a property to be set only during object creation (constructors or { prop = val } object initializers), enabling clean immutable object patterns."
+    },
+    {
+      "category": "Nullable Reference Types",
+      "question": "In modern C# with Nullable Reference Types enabled, what does the syntax string? represent?",
+      "options": [
+        "A reference type that is explicitly permitted to be null, prompting compiler static analysis warnings if accessed without null-checks",
+        "A nullable integer converted to string",
+        "A regular expression pattern string",
+        "An asynchronous string stream"
+      ],
+      "correct": 0,
+      "explanation": "Nullable reference types allow the compiler to distinguish between non-nullable references (string) and nullable references (string?). The compiler flags potential null dereferences before runtime."
+    },
+    {
+      "category": "Interfaces vs Abstract Classes",
+      "question": "What is a key difference between an interface and an abstract class in C#?",
+      "options": [
+        "A class can implement multiple interfaces, but can only inherit from a single abstract class",
+        "Interfaces cannot have default method implementations in modern C#",
+        "Abstract classes cannot contain field variables",
+        "Interfaces can be instantiated directly with the new keyword"
+      ],
+      "correct": 0,
+      "explanation": "C# supports single class inheritance: a class can inherit from only one class (abstract or concrete), but can implement any number of interfaces."
+    },
+    {
+      "category": "LINQ Operations",
+      "question": "What does the LINQ method SelectMany() do compared to Select()?",
+      "options": [
+        "It projects each element of a sequence to an IEnumerable and flattens the resulting sequences into a single sequence",
+        "It selects only elements that match a boolean condition",
+        "It orders the sequence in descending order",
+        "It selects elements from multiple remote database connections"
+      ],
+      "correct": 0,
+      "explanation": "Select transforms each element 1-to-1. SelectMany flattens nested collections (1-to-many), taking each element's inner collection and flattening them into a single linear sequence (like flatMap)."
+    },
+    {
+      "category": "LINQ Deferred Execution",
+      "question": "What does 'deferred execution' mean in LINQ queries?",
+      "options": [
+        "The query evaluation is delayed until the contents of the query variable are actually enumerated (e.g. by a foreach loop or .ToList() call)",
+        "The query runs in a separate background thread after 5 seconds",
+        "The query only runs when the computer is idle",
+        "The query results are permanently stored in database tables"
+      ],
+      "correct": 0,
+      "explanation": "LINQ operators on IEnumerable<T> (like Where, Select) are lazily evaluated: they do not execute immediately when the query is constructed, but only when items are requested via iteration, .ToList(), or .ToArray()."
+    },
+    {
+      "category": "Async / Await & Task",
+      "question": "In C#, what does the await keyword do when applied to a Task?",
+      "options": [
+        "It asynchronously pauses the execution of the current method without blocking the calling thread until the awaited Task completes",
+        "It blocks the calling thread synchronously until the task completes",
+        "It terminates the background task immediately",
+        "It converts the Task into an event delegate"
+      ],
+      "correct": 0,
+      "explanation": "The await keyword yields control back to the caller/thread pool without blocking the underlying thread. When the awaited task completes, execution resumes on an available thread (or captured synchronization context)."
+    },
+    {
+      "category": "Delegates, Action & Func",
+      "question": "What is the difference between Action<T> and Func<T, TResult> in C#?",
+      "options": [
+        "Action represents a delegate method that returns void; Func represents a delegate method that returns a value of type TResult",
+        "Func returns void while Action returns a value",
+        "Action is strictly for UI events while Func is for mathematical calculations",
+        "Func cannot accept generic parameters"
+      ],
+      "correct": 0,
+      "explanation": "Both are built-in generic delegates. Action represents a method that takes parameters and returns void. Func represents a method that takes parameters and returns a value of type TResult (specified by the last generic type parameter)."
+    },
+    {
+      "category": "Generics & Constraints",
+      "question": "What does the generic constraint where T : class, new() specify in C#?",
+      "options": [
+        "T must be a reference type and must have a public parameterless constructor",
+        "T must be a value type with a parameterized constructor",
+        "T cannot be instantiated",
+        "T must inherit from System.Exception"
+      ],
+      "correct": 0,
+      "explanation": "The 'class' constraint restricts T to reference types. The 'new()' constraint specifies that T must have a public, parameterless constructor so instances can be created using 'new T()'."
+    },
+    {
+      "category": "Pattern Matching",
+      "question": "What modern C# feature does the following snippet represent?",
+      "code": "string description = shape switch {\n    Circle { Radius: > 10 } => \"Large Circle\",\n    Circle => \"Standard Circle\",\n    Square s => $\"Square with side {s.Side}\",\n    _ => \"Unknown Shape\"\n};",
+      "options": [
+        "Switch expressions with property pattern matching and relational patterns",
+        "Dynamic reflection dispatch",
+        "Lambda recursion syntax",
+        "Anonymous method delegation"
+      ],
+      "correct": 0,
+      "explanation": "This demonstrates C# switch expressions combined with property patterns ({ Radius: > 10 }), type patterns (Square s), and the discard pattern (_)."
+    },
+    {
+      "category": "Records & Immutability",
+      "question": "What is the primary benefit of declaring a record class or record struct in C#?",
+      "options": [
+        "Built-in value-based equality semantics, concise positional syntax, and non-destructive mutation via the 'with' expression",
+        "Automatic thread synchronization and lock allocation",
+        "Bypassing garbage collection completely",
+        "Instant serialization to XML files only"
+      ],
+      "correct": 0,
+      "explanation": "Records provide value-based equality (two record instances with identical properties are considered equal), compiler-generated ToString() formatting, and support for non-destructive mutation using 'with' expressions."
+    },
+    {
+      "category": ".NET Garbage Collection",
+      "question": "How are objects categorized in the .NET generational garbage collector?",
+      "options": [
+        "Into Generations 0, 1, and 2, plus the Large Object Heap (LOH) for objects 85,000+ bytes",
+        "Into Stack, Heap, and Global segments",
+        "By alphanumeric class name in ascending order",
+        "Into synchronous and asynchronous buckets"
+      ],
+      "correct": 0,
+      "explanation": ".NET GC splits managed memory into Gen 0 (short-lived young objects), Gen 1 (buffer generation), and Gen 2 (long-lived objects), plus the Large Object Heap (LOH) for objects >= 85,000 bytes."
+    },
+    {
+      "category": "IDisposable & Using Statement",
+      "question": "What does the C# using statement (or using declaration using var stream = ...) guarantee?",
+      "options": [
+        "It guarantees that the object's Dispose() method will be called when exiting scope, even if an exception occurs",
+        "It imports a C++ DLL library into the application",
+        "It prevents memory allocations in the current thread",
+        "It forces the object to be cached in Redis"
+      ],
+      "correct": 0,
+      "explanation": "The 'using' statement wraps the usage in a try...finally block, guaranteeing that the target IDisposable object's Dispose() method is invoked to release unmanaged resources (file handles, sockets, database connections)."
+    },
+    {
+      "category": "Entity Framework Core",
+      "question": "What does the AsNoTracking() method do on an EF Core query?",
+      "options": [
+        "It tells EF Core not to track the entities in the DbContext ChangeTracker, improving query performance and reducing memory overhead for read-only scenarios",
+        "It disables SQL query logging to console",
+        "It executes the query without connecting to the database",
+        "It deletes entities that have no foreign keys"
+      ],
+      "correct": 0,
+      "explanation": "By default, EF Core tracks queried entities so changes can be written back via SaveChanges(). In read-only scenarios, AsNoTracking() bypasses tracking, reducing memory and snapshot creation overhead."
+    },
+    {
+      "category": "ASP.NET Core Dependency Injection",
+      "question": "In ASP.NET Core Dependency Injection, what is the lifetime of a service registered with AddScoped?",
+      "options": [
+        "A single instance is created per client HTTP request and shared across all components resolving it within that request",
+        "A new instance is created every single time it is requested",
+        "A single instance is created once and shared for the lifetime of the application",
+        "Instances are persisted in browser cookies"
+      ],
+      "correct": 0,
+      "explanation": "Scoped services (AddScoped) are created once per client request scope. Transient services (AddTransient) are instantiated every time they are requested, and Singleton services (AddSingleton) live for the entire app lifetime."
+    },
+    {
+      "category": "ASP.NET Core Middleware",
+      "question": "How does the execution pipeline work in ASP.NET Core middleware?",
+      "options": [
+        "Middleware components form a bi-directional pipeline: requests pass through middleware in registration order, and responses pass back through in reverse order",
+        "Middleware components execute in parallel on separate threads",
+        "Middleware only executes when an error occurs",
+        "The order in which middleware is registered in Program.cs does not matter"
+      ],
+      "correct": 0,
+      "explanation": "Middleware in ASP.NET Core forms a pipeline: each component can inspect/modify the incoming request, call the 'next' delegate, and then inspect/modify the outgoing response on its way back out."
+    },
+    {
+      "category": "Extension Methods",
+      "question": "How do you declare an extension method in C#?",
+      "options": [
+        "As a static method inside a static class, using the 'this' keyword on the first parameter type being extended",
+        "By implementing the IExtension interface",
+        "By using the @extend decorator on a class",
+        "By inheriting from System.Extension"
+      ],
+      "correct": 0,
+      "explanation": "Extension methods are declared as static methods within non-nested, non-generic static classes, using the 'this' modifier on the first parameter (e.g. public static bool IsEmpty(this string s))."
+    },
+    {
+      "category": "Attributes & Reflection",
+      "question": "What does C# Reflection allow a program to do at runtime?",
+      "options": [
+        "Inspect metadata about assemblies, modules, types, methods, and attributes, and dynamically invoke members or create instances",
+        "Encrypt compiled assemblies using SHA-256",
+        "Reflect desktop display output to external monitors",
+        "Convert C# code to JavaScript in real-time"
+      ],
+      "correct": 0,
+      "explanation": "Reflection (System.Reflection) provides objects that encapsulate assemblies, modules, and types, allowing dynamic type inspection, attribute reading, and member invocation at runtime."
+    },
+    {
+      "category": "Exception Filters",
+      "question": "What is the syntax and benefit of an exception filter in C# (introduced in C# 6)?",
+      "options": [
+        "catch (HttpRequestException ex) when (ex.StatusCode == 404): catches the exception only if the condition is met without unwinding the stack prematurely",
+        "catch (Exception ex) if (ex.Code == 404)",
+        "try ... filter (ex == 404)",
+        "catch ... where ex.IsHandled()"
+      ],
+      "correct": 0,
+      "explanation": "Exception filters use the 'when (condition)' clause. If the condition evaluates to false, the catch block is bypassed without unwinding the stack, preserving original crash dump state."
+    },
+    {
+      "category": "String Literals & Interpolation",
+      "question": "What is a raw string literal in C# 11+ and how is it declared?",
+      "options": [
+        "It starts and ends with at least three double quotes (\"\"\"), allowing unescaped quotes, backslashes, and multiline text",
+        "It is declared using backticks like in JavaScript",
+        "It is a string encrypted with base64 encoding",
+        "It is a string that cannot be modified at runtime"
+      ],
+      "correct": 0,
+      "explanation": "Raw string literals (starting with at least three double quotes: \"\"\" ... \"\"\") allow developers to write multiline text, JSON, HTML, or regex containing literal quotes and backslashes without messy escape sequences."
+    }
+  ]
+};
 
-        // Fallback generator for testing engine before 200 questions insertion
         function getQuestionsForModule(moduleId) {
-            if (window.QUIZ_QUESTIONS && window.QUIZ_QUESTIONS[moduleId] && window.QUIZ_QUESTIONS[moduleId].length > 0) {
-                return window.QUIZ_QUESTIONS[moduleId];
+            if (QUIZ_QUESTIONS && QUIZ_QUESTIONS[moduleId]) {
+                return QUIZ_QUESTIONS[moduleId];
             }
-            // Fallback starter questions
-            return Array.from({ length: 20 }, (_, i) => ({
-                question: `Sample Question ${i + 1} for ${moduleId.toUpperCase()}: What is the core characteristic of this concept?`,
-                code: i % 2 === 0 ? `// Code sample ${i + 1}\nconst assessment = "${moduleId}";` : '',
-                category: `${moduleId.toUpperCase()} Basics & Architecture`,
-                options: [
-                    `Correct architectural principle option A for Question ${i + 1}`,
-                    `Alternative behavior option B`,
-                    `Deprecated legacy pattern option C`,
-                    `Invalid syntax approach option D`
-                ],
-                correct: 0,
-                explanation: `Option A is the correct answer. It adheres to standard ${moduleId.toUpperCase()} conventions and specifications.`
-            }));
+            return [];
         }
 
         // ==========================================
