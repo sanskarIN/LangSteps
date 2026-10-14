@@ -571,6 +571,46 @@ const TAGS = [
     "emoji": "\ud83d\udee2\ufe0f",
     "defaultCode": "# from sqlalchemy import create_engine, Column, Integer, String\n# from sqlalchemy.orm import declarative_base, sessionmaker\n# Base = declarative_base()\n# class User(Base): __tablename__ = 'users'; id = Column(Integer, primary_key=True)\nprint('SQLAlchemy is the premier database toolkit and ORM for Python')",
     "content": "<h3>\ud83d\udccc Deep Dive: SQLAlchemy Toolkit</h3><p>SQLAlchemy provides two layers: SQLAlchemy Core (SQL abstraction, connection pooling, expressions) and SQLAlchemy ORM (unit of work, identity mapping).</p><h4>\u2699\ufe0f Under the Hood</h4><p>The ORM uses the Unit of Work pattern to track all dirty, new, and deleted objects in a Session, flushing them in a single optimized database transaction.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>In SQLAlchemy 2.0+, use the modern <code>select(User).where(...)</code> syntax instead of legacy <code>session.query(User)</code>.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\"># Database connection string formats\nsqlite_dsn = 'sqlite:///devforge.db'\npg_dsn = 'postgresql+psycopg2://user:pass@localhost:5432/mydb'</code></pre>"
+  },
+  {
+    "id": "py-71",
+    "title": "NumPy: The ndarray & Vectorization",
+    "badge": "DATA SCIENCE",
+    "emoji": "\ud83e\uddee",
+    "defaultCode": "import numpy as np\narr = np.array([1, 2, 3, 4, 5])\nprint('Vectorized multiply:', arr * 10)\nprint('Mean:', np.mean(arr), 'Std:', np.std(arr))",
+    "content": "<h3>\ud83d\udccc Deep Dive: NumPy & ndarrays</h3><p>NumPy is the foundational package for scientific computing in Python, providing multidimensional array objects (<code>ndarray</code>) and vectorized operations.</p><h4>\u2699\ufe0f Under the Hood</h4><p>NumPy arrays store contiguous homogeneous memory blocks in C, bypassing Python object overhead and leveraging SIMD CPU instructions for orders-of-magnitude speedups.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Avoid manual Python for-loops over arrays; always use vectorized operations and universal functions (ufuncs).</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\">matrix = np.arange(1, 10).reshape((3, 3))\nprint('Matrix:\\n', matrix)\nprint('Transpose:\\n', matrix.T)</code></pre>"
+  },
+  {
+    "id": "py-72",
+    "title": "NumPy: Indexing, Slicing & Broadcasting",
+    "badge": "DATA SCIENCE",
+    "emoji": "\ud83d\udcd0",
+    "defaultCode": "import numpy as np\na = np.array([[1, 2, 3], [4, 5, 6]])\nb = np.array([10, 20, 30])\n# Broadcasting stretches b across rows of a\nprint('Broadcasting result:\\n', a + b)",
+    "content": "<h3>\ud83d\udccc Deep Dive: Array Broadcasting</h3><p>Broadcasting describes how NumPy treats arrays with different shapes during arithmetic operations without making unnecessary data copies.</p><h4>\u2699\ufe0f Under the Hood</h4><p>Two dimensions are compatible when they are equal, or one of them is 1. NumPy conceptually stretches dimensions of size 1 by setting the stride to 0.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Use boolean masking (e.g. <code>arr[arr > 5]</code>) for instantaneous filtering without intermediate allocations.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\">data = np.array([15, 22, 8, 45, 12])\nfiltered = data[data > 20]\nprint('Values > 20:', filtered)</code></pre>"
+  },
+  {
+    "id": "py-73",
+    "title": "Pandas: Series, DataFrames & Ingestion",
+    "badge": "DATA SCIENCE",
+    "emoji": "\ud83d\udc3c",
+    "defaultCode": "import pandas as pd\ndf = pd.DataFrame({\n    'Name': ['Alice', 'Bob', 'Charlie'],\n    'Role': ['Dev', 'Designer', 'Manager'],\n    'Score': [95, 88, 92]\n})\nprint(df.describe())",
+    "content": "<h3>\ud83d\udccc Deep Dive: Pandas Data Analysis</h3><p>Pandas provides high-performance data structures: 1D <code>Series</code> and 2D tabular <code>DataFrame</code>, with tools for ingesting CSV, Excel, SQL, and Parquet.</p><h4>\u2699\ufe0f Under the Hood</h4><p>DataFrames are built on top of NumPy arrays, organizing columns into homogeneous blocks managed by a <code>BlockManager</code>.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Use <code>.loc[row_label, col_label]</code> for label-based indexing and <code>.iloc[row_idx, col_idx]</code> for integer position indexing to avoid chained assignment warnings.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\">print('Mean score:', df['Score'].mean())\nprint('High performers:\\n', df[df['Score'] >= 90])</code></pre>"
+  },
+  {
+    "id": "py-74",
+    "title": "Pandas: Data Cleaning & Missing Values",
+    "badge": "DATA SCIENCE",
+    "emoji": "\ud83e\uddf9",
+    "defaultCode": "import pandas as pd, numpy as np\nraw = pd.DataFrame({'val': [1.0, np.nan, 3.5, np.nan, 5.0]})\ncleaned = raw.fillna(raw['val'].median())\nprint('Imputed with median:\\n', cleaned)",
+    "content": "<h3>\ud83d\udccc Deep Dive: Data Cleaning & Wrangling</h3><p>Real-world datasets contain missing (NaN/null), duplicated, or malformed data. Pandas provides robust tools for detection, imputation, and type conversion.</p><h4>\u2699\ufe0f Under the Hood</h4><p>Pandas traditionally represented missing values using IEEE 754 floating point <code>NaN</code>, converting integers to floats. Modern nullable types (<code>Int64</code>, <code>boolean</code>) eliminate this quirk.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Use <code>df.drop_duplicates()</code> and <code>df.dropna(subset=['critical_column'])</code> early in ETL pipelines.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\"># Checking null counts per column\nprint('Null counts:\\n', raw.isna().sum())</code></pre>"
+  },
+  {
+    "id": "py-75",
+    "title": "Pandas: GroupBy, Aggregations & Pivot Tables",
+    "badge": "DATA SCIENCE",
+    "emoji": "\ud83d\udcca",
+    "defaultCode": "import pandas as pd\nsales = pd.DataFrame({\n    'Dept': ['Dev', 'Dev', 'Design', 'Design', 'Sales'],\n    'Revenue': [12000, 15000, 8000, 9500, 20000]\n})\nprint(sales.groupby('Dept')['Revenue'].agg(['count', 'mean', 'sum']))",
+    "content": "<h3>\ud83d\udccc Deep Dive: GroupBy & Aggregations</h3><p>The GroupBy mechanism follows the Split-Apply-Combine paradigm: split data into groups by key, apply aggregation functions, and combine results.</p><h4>\u2699\ufe0f Under the Hood</h4><p>Pandas indexes group keys into contiguous categorical codes for accelerated C-level reductions.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Use <code>.agg({'colA': 'mean', 'colB': 'sum'})</code> to compute different aggregations on different columns simultaneously.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\">pivot = sales.pivot_table(values='Revenue', index='Dept', aggfunc='sum')\nprint('Pivot:\\n', pivot)</code></pre>"
   }
 ];
 
