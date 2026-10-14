@@ -8916,10 +8916,23 @@ function toggleSidebar() {
     const ov = document.getElementById('overlay');
     const btn = document.getElementById('sbOpen');
     if (!sb) return;
-    sb.classList.toggle('open');
-    if (ov) ov.classList.toggle('active');
-    if (btn) btn.setAttribute('aria-expanded', sb.classList.contains('open'));
+    const isOpen = sb.classList.toggle('open');
+    if (ov) {
+        ov.classList.toggle('active', isOpen);
+        ov.classList.toggle('show', isOpen);
+    }
+    if (btn) btn.setAttribute('aria-expanded', isOpen);
 }
+
+// Global Escape listener to close drawer or modals
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        const sb = document.getElementById('sidebar');
+        if (sb && sb.classList.contains('open')) {
+            toggleSidebar();
+        }
+    }
+});
 
 // ===== GREETING =====
 function getGreeting() {
@@ -9434,6 +9447,12 @@ function buildContentArea() {
 function loadTag(id) {
     currentTag = TAGS.find(t => t.id === id);
     if (!currentTag) return;
+
+    // Dismiss sidebar drawer on selection so content is fully viewable
+    const sb = document.getElementById('sidebar');
+    if (sb && sb.classList.contains('open')) {
+        toggleSidebar();
+    }
 
     // Update sidebar active state
     document.querySelectorAll('.sb-item, .tag-item').forEach(el => {
