@@ -6,6 +6,25 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [5.2.0] — 2026-10-14
+
+### 🐍 Python Mastery — Expanded to Complete Curriculum (100 Concepts)
+- **100 In-Depth Engineering Concepts**: From fundamental syntax, memory references, dynamic arrays, and dictionaries to asyncio coroutines, multithreading, multiprocessing, Django, Flask, FastAPI, SQLAlchemy, NumPy, Pandas, Scikit-learn, Metaclasses, Descriptors, Garbage Collection, and CPython bytecode optimization.
+- **Modern Interactive UI**: Added category filter pills (Basics, Data Structures, OOP, Async, Web, Data Science, Advanced, Modern Python), code playground with execution simulation, copy code, reset, and quick quiz shortcuts.
+- **Scaled Gamification**: Extended ranking progression through 100 concepts from *Python Novice* to *Python Grandmaster* with live XP counters.
+
+### 🎯 DevForge Quiz Hub (NEW)
+- **Multi-Language Knowledge Testing**: Standalone quiz engine testing real-world engineering concepts across all 10 platform languages (HTML, CSS, JavaScript, React, Python, TypeScript, Rust, Go, SQL, C#).
+- **200 Curated Educational Questions**: 20 rigorous questions per language with 4 options, 30-second timers, instant explanations, and performance tier badges (Master, Expert, Advanced, Intermediate, Beginner).
+- **Interactive Landing Section**: Dedicated Quiz Hub showcase on the landing page with direct language selectors and deep-linking query support (`quiz.html?lang=...`).
+- **Persistent Leaderboard**: Tracks personal best scores per language and history across sessions using localStorage.
+
+### 📊 Platform Milestone
+- **1,000+ Total Engineering Concepts** across 10 modules
+- **610+ Atomic Commits** maintaining clean documentation and individual git histories
+
+---
+
 ## [5.1.0] — 2026-10-05
 
 ### 🔷 TypeScript Module — Enhanced (50 Concepts)
