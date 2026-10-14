@@ -9,6 +9,9 @@ builder.Services.AddSingleton<IContentService, ContentService>();
 builder.Services.AddSingleton<IQuizService, QuizService>();
 builder.Services.AddSingleton<IProfileService, ProfileService>();
 builder.Services.AddSingleton<IExecutionService, ExecutionService>();
+builder.Services.AddSingleton<IRustService, RustService>();
+builder.Services.AddSingleton<IStatsService, StatsService>();
+builder.Services.AddSingleton<IFeedbackService, FeedbackService>();
 
 // Enable CORS for frontend and GitHub Pages
 builder.Services.AddCors(options =>
@@ -141,11 +144,40 @@ app.MapGet("/api/stats/summary", (IContentService content, IQuizService quiz) =>
         TotalQuestions: quiz.GetTotalQuestionCount(),
         SupportedLanguages: modules.Select(m => m.Slug).ToArray(),
         EcosystemLinksCount: 12,
-        Version: "5.4.0",
+        Version: "1.0.0-stable",
         Timestamp: DateTime.UtcNow.ToString("o")
     );
     return Results.Ok(stats);
 });
+
+// 10. Rust Systems Curriculum & Diagnostics
+app.MapGet("/api/rust/curriculum", (IRustService rust) => Results.Ok(rust.GetCurriculum()));
+
+app.MapGet("/api/rust/category/{category}", (string category, IRustService rust) =>
+    Results.Ok(rust.GetTopicsByCategory(category)));
+
+app.MapPost("/api/rust/diagnose", (RustDiagnoseRequest request, IRustService rust) =>
+{
+    if (string.IsNullOrWhiteSpace(request.ErrorCode))
+    {
+        return Results.BadRequest(new { error = "ErrorCode is required (e.g. E0382)." });
+    }
+    return Results.Ok(rust.DiagnoseError(request));
+});
+
+// 11. System Telemetry & Benchmark Suite
+app.MapGet("/api/stats/extended", (IStatsService stats) => Results.Ok(stats.GetTelemetry()));
+
+app.MapGet("/api/benchmark/suite", (IStatsService stats) => Results.Ok(stats.GetBenchmarkSuite()));
+
+// 12. User Feedback & Inquiries
+app.MapPost("/api/feedback/submit", (UserFeedbackRequest request, IFeedbackService feedback) =>
+{
+    var response = feedback.SubmitFeedback(request);
+    return response.Success ? Results.Ok(response) : Results.BadRequest(response);
+});
+
+app.MapGet("/api/feedback/all", (IFeedbackService feedback) => Results.Ok(feedback.GetAllFeedback()));
 
 app.Run();
 
