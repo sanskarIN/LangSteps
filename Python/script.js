@@ -291,6 +291,46 @@ const TAGS = [
     "emoji": "\ud83d\udcc4",
     "defaultCode": "import json\npayload = {'course': 'Python Mastery', 'modules': 10, 'complete': True}\njson_str = json.dumps(payload, indent=2)\nprint('JSON string:\\n', json_str)\nparsed = json.loads(json_str)\nprint('Parsed back:', parsed['course'])",
     "content": "<h3>\ud83d\udccc Deep Dive: JSON Processing</h3><p>The <code>json</code> standard library serializes Python dictionaries, lists, strings, numbers, booleans, and None to standard JSON strings and files.</p><h4>\u2699\ufe0f Under the Hood</h4><p>Non-standard objects (like <code>datetime</code> or custom classes) require a custom <code>json.JSONEncoder</code> subclass or a <code>default</code> serialization handler.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>For high-performance JSON operations in web servers, investigate C-accelerated alternatives like <code>orjson</code> or <code>ujson</code>.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\">from datetime import date\ndef json_serial(obj):\n    if isinstance(obj, date): return obj.isoformat()\n    raise TypeError('Type not serializable')\nprint(json.dumps({'today': date.today()}, default=json_serial))</code></pre>"
+  },
+  {
+    "id": "py-36",
+    "title": "Modules, Packages & __all__ Exports",
+    "badge": "ARCHITECTURE",
+    "emoji": "\ud83d\udce6",
+    "defaultCode": "# Module exports pattern\n__all__ = ['Calculator', 'add']\n\ndef add(a, b): return a + b\ndef _internal_helper(): return 'secret'\nclass Calculator: pass",
+    "content": "<h3>\ud83d\udccc Deep Dive: Python Modules & Packages</h3><p>A module is a single Python file (.py). A package is a directory containing modules and an <code>__init__.py</code> file.</p><h4>\u2699\ufe0f Under the Hood</h4><p>When imported, Python evaluates the module top-to-bottom once and caches the resulting module object in <code>sys.modules</code>. Subsequent imports simply return the cached reference.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Define <code>__all__ = ['public_func', 'PublicClass']</code> to explicitly declare public APIs and control what gets exported with <code>from module import *</code>.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\"># Dynamic importing\nimport importlib\nmath_mod = importlib.import_module('math')\nprint('Dynamic sqrt(16):', math_mod.sqrt(16))</code></pre>"
+  },
+  {
+    "id": "py-37",
+    "title": "The sys & os Modules for System Interaction",
+    "badge": "SYSTEM",
+    "emoji": "\ud83d\udcbb",
+    "defaultCode": "import sys, os\nprint(f'Python version: {sys.version.split()[0]}')\nprint(f'Platform: {sys.platform}')\nprint(f'Current PID: {os.getpid()}')\nprint('PATH entries:', len(os.environ.get('PATH', '').split(os.pathsep)))",
+    "content": "<h3>\ud83d\udccc Deep Dive: sys and os Modules</h3><p><code>sys</code> exposes Python runtime parameters (argv, path, stdin/stdout, memory). <code>os</code> provides operating system level interactions (environment variables, processes, directories).</p><h4>\u2699\ufe0f Under the Hood</h4><p><code>sys.path</code> is the list of directory strings searched for modules during import. Modifying <code>sys.path</code> allows dynamic package resolution.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Use <code>sys.exit(0)</code> for clean terminations and non-zero exit codes (e.g. <code>sys.exit(1)</code>) to notify shell scripts of errors.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\">print('Command args:', sys.argv)\nos.environ['DEVFORGE_ENV'] = 'production'\nprint('Env set:', os.environ.get('DEVFORGE_ENV'))</code></pre>"
+  },
+  {
+    "id": "py-38",
+    "title": "Modern Path Handling with pathlib.Path",
+    "badge": "SYSTEM",
+    "emoji": "\ud83d\uddfa\ufe0f",
+    "defaultCode": "from pathlib import Path\nbase_dir = Path.cwd()\nlog_file = base_dir / 'logs' / 'app.log'\nprint(f'Path: {log_file}')\nprint(f'Name: {log_file.name}, Suffix: {log_file.suffix}')\nprint(f'Parent: {log_file.parent}')",
+    "content": "<h3>\ud83d\udccc Deep Dive: Object-Oriented Paths (pathlib)</h3><p>Introduced in PEP 428, <code>pathlib.Path</code> replaces legacy <code>os.path</code> string manipulations with object-oriented cross-platform path manipulation.</p><h4>\u2699\ufe0f Under the Hood</h4><p>The forward slash <code>/</code> operator is overloaded to join paths natively on Windows and POSIX systems without worrying about backslashes.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Use <code>path.read_text(encoding='utf-8')</code> and <code>path.write_text(content, encoding='utf-8')</code> for concise one-line file reading and writing.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\"># Finding all python files in current directory\npy_files = list(Path('.').glob('*.py'))\nprint(f'Found {len(py_files)} Python files')</code></pre>"
+  },
+  {
+    "id": "py-39",
+    "title": "Dates, Times & Timezones (datetime & zoneinfo)",
+    "badge": "SYSTEM",
+    "emoji": "\u23f0",
+    "defaultCode": "from datetime import datetime, timezone, timedelta\nnow_utc = datetime.now(timezone.utc)\nprint('UTC now:', now_utc.isoformat())\nfuture = now_utc + timedelta(days=7, hours=12)\nprint('7.5 days later:', future.strftime('%Y-%m-%d %H:%M:%S'))",
+    "content": "<h3>\ud83d\udccc Deep Dive: Date and Time Handling</h3><p>Python's <code>datetime</code> module represents dates, times, and intervals. Always use timezone-aware datetime objects in production systems.</p><h4>\u2699\ufe0f Under the Hood</h4><p>Python 3.9+ includes the standard <code>zoneinfo</code> module using the system IANA time zone database (e.g. <code>ZoneInfo('Asia/Kolkata')</code>).</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Always store timestamps in databases in UTC. Convert to local user timezones only at the UI display layer.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\">try:\n    from zoneinfo import ZoneInfo\n    ist = now_utc.astimezone(ZoneInfo('Asia/Kolkata'))\n    print('India Standard Time:', ist)\nexcept Exception as e: print('ZoneInfo error:', e)</code></pre>"
+  },
+  {
+    "id": "py-40",
+    "title": "Math, Decimal, Fractions & Random Numbers",
+    "badge": "MATH",
+    "emoji": "\ud83d\udd22",
+    "defaultCode": "from decimal import Decimal\nfrom fractions import Fraction\nimport math, secrets\n# Avoiding floating point inaccuracy\nval = Decimal('0.1') + Decimal('0.2')\nprint(f'Decimal exact: {val}')  # 0.3, not 0.30000000000000004\nprint('Cryptographic token:', secrets.token_hex(8))",
+    "content": "<h3>\ud83d\udccc Deep Dive: High-Precision Math & Cryptography</h3><p>Standard float operations suffer from IEEE-754 binary floating point precision limits. Financial calculations must use <code>decimal.Decimal</code>.</p><h4>\u2699\ufe0f Under the Hood</h4><p>The <code>random</code> module uses the Mersenne Twister algorithm (pseudo-random, predictable). Security credentials, salts, and tokens must use the <code>secrets</code> module.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Always initialize <code>Decimal</code> using string arguments (e.g. <code>Decimal('0.1')</code>), NOT floating point numbers (<code>Decimal(0.1)</code>).</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\">f1 = Fraction(3, 4)\nf2 = Fraction(1, 8)\nprint(f'{f1} + {f2} = {f1 + f2}')  # 7/8</code></pre>"
   }
 ];
 
