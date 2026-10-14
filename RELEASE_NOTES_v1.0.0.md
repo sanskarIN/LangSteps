@@ -63,7 +63,7 @@ Incomplete modules (Go, SQL, and C#) have been decoupled and safely relocated to
 
 Connect with Sanskar and explore his open-source network:
 - 👤 **About Sanskar**: [https://sanskarin.github.io/about](https://sanskarin.github.io/about)
-- 📬 **Contact Hub**: [https://sanskarin.github.io/contact](https://sanskarin.github.io/contact)
+- 📬 **Contact Hub & Form**: [https://sanskarin.github.io/contact/#send-a-message](https://sanskarin.github.io/contact/#send-a-message)
 - 🚀 **Project Portfolio**: [https://sanskarin.github.io/projects](https://sanskarin.github.io/projects)
 - ✍️ **Tech Blog**: [https://sanskarin.github.io/blog](https://sanskarin.github.io/blog)
 - 🐙 **GitHub Profile**: [@sanskarIN](https://github.com/sanskarIN)

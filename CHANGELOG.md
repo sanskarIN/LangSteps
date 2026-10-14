@@ -35,7 +35,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### 🌐 Official Developer Ecosystem & Social Unification
 - **Canonical Ecosystem Links**:
   - Integrated canonical About page: [sanskarin.github.io/about](https://sanskarin.github.io/about) with prominent bridge banners.
-  - Integrated canonical Contact page: [sanskarin.github.io/contact](https://sanskarin.github.io/contact) and created dedicated `contact.html` bridge page with interactive email builder and direct channels.
+  - Integrated canonical Contact form: [sanskarin.github.io/contact/#send-a-message](https://sanskarin.github.io/contact/#send-a-message) and created dedicated `contact.html` bridge page with interactive email builder, web form anchor, and direct channels.
   - Integrated canonical Projects showcase: [sanskarin.github.io/projects](https://sanskarin.github.io/projects) and updated `projects.html` with polyglot project tracks (Python, TypeScript, C# / ASP.NET).
   - Integrated canonical Tech Blog: [sanskarin.github.io/blog](https://sanskarin.github.io/blog) and created `blog.html` tech blog showcase with Dev.to articles.
 - **Updated Social & Support Presence Across All 60+ Pages**:

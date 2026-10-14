@@ -20,6 +20,7 @@ public record SupportLinks(
 public record EcosystemUrls(
     string About,
     string Contact,
+    string ContactForm,
     string Projects,
     string Blog,
     string Repository,

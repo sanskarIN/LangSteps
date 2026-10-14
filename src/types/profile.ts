@@ -22,6 +22,7 @@ export interface SupportLinks {
 export interface EcosystemUrls {
   about: string;
   contact: string;
+  contactForm?: string;
   projects: string;
   blog: string;
   repo: string;

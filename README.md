@@ -933,7 +933,7 @@ node split_files.js
 
 Visit Sanskar's official web presence and developer channels:
 - 👤 **About Sanskar**: [sanskarin.github.io/about](https://sanskarin.github.io/about)
-- 📬 **Contact Portal**: [sanskarin.github.io/contact](https://sanskarin.github.io/contact)
+- 📬 **Contact Form & Hub**: [sanskarin.github.io/contact/#send-a-message](https://sanskarin.github.io/contact/#send-a-message)
 - 🚀 **All Projects Showcase**: [sanskarin.github.io/projects](https://sanskarin.github.io/projects)
 - ✍️ **Tech Blog**: [sanskarin.github.io/blog](https://sanskarin.github.io/blog)
 - 🐙 **GitHub Repository**: [github.com/sanskarIN/LangSteps](https://github.com/sanskarIN/LangSteps)

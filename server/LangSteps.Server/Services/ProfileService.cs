@@ -36,6 +36,7 @@ public class ProfileService : IProfileService
         var ecosystem = new EcosystemUrls(
             About: "https://sanskarin.github.io/about",
             Contact: "https://sanskarin.github.io/contact",
+            ContactForm: "https://sanskarin.github.io/contact/#send-a-message",
             Projects: "https://sanskarin.github.io/projects",
             Blog: "https://sanskarin.github.io/blog",
             Repository: "https://github.com/sanskarIN/LangSteps",

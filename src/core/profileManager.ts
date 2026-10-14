@@ -17,6 +17,7 @@ export const OFFICIAL_PROFILE: DeveloperProfile = {
   ecosystem: {
     about: 'https://sanskarin.github.io/about',
     contact: 'https://sanskarin.github.io/contact',
+    contactForm: 'https://sanskarin.github.io/contact/#send-a-message',
     projects: 'https://sanskarin.github.io/projects',
     blog: 'https://sanskarin.github.io/blog',
     repo: 'https://github.com/sanskarIN/LangSteps'
