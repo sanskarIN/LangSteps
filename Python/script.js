@@ -251,6 +251,46 @@ const TAGS = [
     "emoji": "\ud83c\udff7\ufe0f",
     "defaultCode": "from typing import NamedTuple, TypedDict\n\nclass Coordinate(NamedTuple):\n    lat: float\n    lon: float\n\nclass UserPayload(TypedDict):\n    username: str\n    email: str\n    is_active: bool\n\npos = Coordinate(28.6139, 77.2090)\nprint(f'{pos.lat=}, {pos[1]=}')",
     "content": "<h3>\ud83d\udccc Deep Dive: NamedTuple and TypedDict</h3><p><code>NamedTuple</code> creates memory-efficient tuples with named field access. <code>TypedDict</code> provides static type hinting for regular dictionaries without changing runtime behavior.</p><h4>\u2699\ufe0f Under the Hood</h4><p><code>NamedTuple</code> instances inherit directly from tuple, retaining tuple immutability and low memory footprint. <code>TypedDict</code> is a pure type-checker construct; at runtime it produces regular dicts.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Use <code>TypedDict</code> when consuming external JSON APIs where you cannot change dictionary structure to classes.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\">user: UserPayload = {'username': 'sanskar', 'email': 'sanskarin@outlook.in', 'is_active': True}\nprint('TypedDict user:', user['email'])</code></pre>"
+  },
+  {
+    "id": "py-31",
+    "title": "Exception Handling: try, except, else & finally",
+    "badge": "CONTROL FLOW",
+    "emoji": "\u26a0\ufe0f",
+    "defaultCode": "try:\n    val = int('123')\nexcept ValueError as err:\n    print(f'Parse failed: {err}')\nelse:\n    print(f'Success, value = {val}')\nfinally:\n    print('Cleanup executed unconditionally')",
+    "content": "<h3>\ud83d\udccc Deep Dive: Robust Exception Handling</h3><p>Exceptions provide structured error recovery. The <code>else</code> block runs when no exception occurs; the <code>finally</code> block runs unconditionally for cleanup.</p><h4>\u2699\ufe0f Under the Hood</h4><p>Exceptions in CPython are zero-cost in Python 3.11+. The interpreter no longer allocates exception tables unless an error is actually raised.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Never write bare <code>except:</code> or <code>except Exception: pass</code> as this silences bugs, KeyboardInterrupt, and SystemExit.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\"># Exception chaining with 'from'\ntry:\n    open('nonexistent.txt')\nexcept OSError as err:\n    raise RuntimeError('Application initialization failed') from err</code></pre>"
+  },
+  {
+    "id": "py-32",
+    "title": "Custom Exception Hierarchies",
+    "badge": "CONTROL FLOW",
+    "emoji": "\ud83d\uded1",
+    "defaultCode": "class DevForgeError(Exception):\n    '''Base error for DevForge'''\n\nclass AuthenticationError(DevForgeError):\n    '''Raised when auth fails'''\n\nclass PermissionDeniedError(AuthenticationError):\n    '''Raised when user lacks privileges'''\n\ntry:\n    raise PermissionDeniedError('Admin rights required')\nexcept DevForgeError as e:\n    print(f'Caught expected error: {e}')",
+    "content": "<h3>\ud83d\udccc Deep Dive: Custom Exception Hierarchies</h3><p>Libraries and enterprise systems should define a dedicated base exception so callers can catch all package errors with a single <code>except LibraryBaseError:</code> clause.</p><h4>\u2699\ufe0f Under the Hood</h4><p>Custom exceptions inherit from <code>Exception</code> (never <code>BaseException</code>, which is reserved for system exits like <code>KeyboardInterrupt</code>).</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Attach structured metadata (e.g. error codes, timestamps, requested resources) directly to the custom exception class.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\">class ValidationError(DevForgeError):\n    def __init__(self, field, msg):\n        super().__init__(f'{field}: {msg}')\n        self.field = field</code></pre>"
+  },
+  {
+    "id": "py-33",
+    "title": "File I/O: Reading, Writing & Encodings (UTF-8)",
+    "badge": "SYSTEM",
+    "emoji": "\ud83d\udcc1",
+    "defaultCode": "with open('example.txt', 'w', encoding='utf-8') as f:\n    f.write('DevForge Python Mastery \ud83d\ude80\\n')\n\nwith open('example.txt', 'r', encoding='utf-8') as f:\n    for line in f:\n        print(line.strip())",
+    "content": "<h3>\ud83d\udccc Deep Dive: File Operations & Encodings</h3><p>File I/O in Python should always specify explicit encodings (typically UTF-8) to avoid platform-dependent bugs across Windows, Linux, and macOS.</p><h4>\u2699\ufe0f Under the Hood</h4><p>The <code>open()</code> function wraps C-level file descriptors in buffered text or binary streams (<code>io.TextIOWrapper</code>, <code>io.BufferedReader</code>).</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Iterating directly over a file object (<code>for line in file:</code>) buffers lines lazily, allowing you to stream terabyte-sized logs without running out of RAM.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\">import os\nif os.path.exists('example.txt'):\n    os.remove('example.txt')\n    print('Cleaned up example file')</code></pre>"
+  },
+  {
+    "id": "py-34",
+    "title": "Context Managers: with & contextlib Mastery",
+    "badge": "SYSTEM",
+    "emoji": "\ud83d\udeaa",
+    "defaultCode": "from contextlib import contextmanager\n\n@contextmanager\ndef timer_span(label):\n    import time\n    start = time.perf_counter()\n    try:\n        yield\n    finally:\n        elapsed = time.perf_counter() - start\n        print(f'{label} took {elapsed * 1000:.2f}ms')\n\nwith timer_span('Calculation'):\n    sum(i * i for i in range(100000))",
+    "content": "<h3>\ud83d\udccc Deep Dive: Context Managers</h3><p>Context managers manage setup and teardown resources (files, database connections, locks). They implement <code>__enter__</code> and <code>__exit__</code>.</p><h4>\u2699\ufe0f Under the Hood</h4><p>The <code>with</code> statement guarantees execution of <code>__exit__(exc_type, exc_val, exc_tb)</code> even if exceptions, breaks, or returns occur inside the block.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Use <code>@contextlib.contextmanager</code> to convert generator functions into context managers without boilerplate class writing.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\">from contextlib import suppress\n# Suppress specific errors cleanly\nwith suppress(FileNotFoundError):\n    os.remove('ghost.txt')</code></pre>"
+  },
+  {
+    "id": "py-35",
+    "title": "JSON Serialization & Deserialization",
+    "badge": "SYSTEM",
+    "emoji": "\ud83d\udcc4",
+    "defaultCode": "import json\npayload = {'course': 'Python Mastery', 'modules': 10, 'complete': True}\njson_str = json.dumps(payload, indent=2)\nprint('JSON string:\\n', json_str)\nparsed = json.loads(json_str)\nprint('Parsed back:', parsed['course'])",
+    "content": "<h3>\ud83d\udccc Deep Dive: JSON Processing</h3><p>The <code>json</code> standard library serializes Python dictionaries, lists, strings, numbers, booleans, and None to standard JSON strings and files.</p><h4>\u2699\ufe0f Under the Hood</h4><p>Non-standard objects (like <code>datetime</code> or custom classes) require a custom <code>json.JSONEncoder</code> subclass or a <code>default</code> serialization handler.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>For high-performance JSON operations in web servers, investigate C-accelerated alternatives like <code>orjson</code> or <code>ujson</code>.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\">from datetime import date\ndef json_serial(obj):\n    if isinstance(obj, date): return obj.isoformat()\n    raise TypeError('Type not serializable')\nprint(json.dumps({'today': date.today()}, default=json_serial))</code></pre>"
   }
 ];
 
