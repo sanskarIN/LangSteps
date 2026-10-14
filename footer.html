@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universal Ecosystem Footer &amp; Sitemaps — LangSteps</title>
+    <link rel="canonical" href="https://sanskarin.github.io/LangSteps/footer.html">
+    <meta name="description" content="Complete architectural sitemap, official Sanskar developer portals, curricula directory, and embeddable footer component for LangSteps.">
+    <meta name="author" content="Sanskar Yadav">
+    <meta property="og:title" content="Universal Ecosystem Footer &amp; Sitemaps — LangSteps">
+    <meta property="og:description" content="Master sitemap, official developer channels, and open-source ecosystems by Sanskar Yadav.">
+    <meta property="og:url" content="https://sanskarin.github.io/LangSteps/footer.html">
+    <meta property="og:type" content="website">
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-body: #090d16;
+            --bg-surface: #0f172a;
+            --bg-card: rgba(30, 41, 59, 0.7);
+            --bg-card-hover: rgba(51, 65, 85, 0.85);
+            --border-color: rgba(148, 163, 184, 0.12);
+            --border-focus: rgba(99, 102, 241, 0.45);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --accent-primary: #6366f1;
+            --accent-secondary: #06b6d4;
+            --accent-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #06b6d4 100%);
+            --accent-success: #10b981;
+            --accent-warning: #f59e0b;
+            --font-main: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-mono: 'Fira Code', monospace;
+            --radius-sm: 8px;
+            --radius-md: 14px;
+            --radius-lg: 20px;
+            --shadow-glow: 0 0 35px rgba(99, 102, 241, 0.18);
+        }
+
+        [data-theme="dim"] {
+            --bg-body: #111827;
+            --bg-surface: #1f2937;
+            --bg-card: rgba(31, 41, 55, 0.8);
+            --border-color: rgba(156, 163, 175, 0.15);
+        }
+
+        [data-theme="cyberpunk"] {
+            --bg-body: #05050d;
+            --bg-surface: #0c0d21;
+            --bg-card: rgba(18, 16, 42, 0.85);
+            --accent-gradient: linear-gradient(135deg, #f43f5e 0%, #ec4899 50%, #06b6d4 100%);
+            --accent-primary: #f43f5e;
+            --border-color: rgba(244, 63, 94, 0.25);
+            --shadow-glow: 0 0 35px rgba(244, 63, 94, 0.25);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-primary);
+            font-family: var(--font-main);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        /* Top Nav */
+        .top-navbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(16px);
+            background: rgba(9, 13, 22, 0.82);
+            border-bottom: 1px solid var(--border-color);
+            padding: 16px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 800;
+            font-size: 1.25rem;
+            letter-spacing: -0.5px;
+        }
+
+        .brand-badge {
+            background: var(--accent-gradient);
+            color: #fff;
+            padding: 4px 10px;
+            border-radius: var(--radius-sm);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-cta {
+            background: var(--accent-gradient);
+            color: #fff !important;
+            padding: 8px 18px;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.45);
+        }
+
+        /* Hero */
+        .hero-section {
+            padding: 80px 24px 40px;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            border-radius: 999px;
+            background: rgba(99, 102, 241, 0.12);
+            border: 1px solid rgba(99, 102, 241, 0.28);
+            color: #a5b4fc;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .hero-title {
+            font-size: clamp(2.4rem, 5vw, 3.6rem);
+            font-weight: 900;
+            line-height: 1.15;
+            letter-spacing: -1.5px;
+            margin-bottom: 20px;
+            background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-desc {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            max-width: 720px;
+            margin: 0 auto 36px;
+        }
+
+        /* Controls bar */
+        .controls-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 20px 28px;
+            max-width: 1200px;
+            margin: 0 auto 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            box-shadow: var(--shadow-glow);
+        }
+
+        .controls-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .theme-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .theme-btn {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 8px 16px;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            font-size: 0.88rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .theme-btn.active, .theme-btn:hover {
+            color: #fff;
+            border-color: var(--accent-primary);
+            background: rgba(99, 102, 241, 0.15);
+        }
+
+        .copy-snippet-btn {
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: #34d399;
+            padding: 8px 18px;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: 0.88rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .copy-snippet-btn:hover {
+            background: #10b981;
+            color: #fff;
+        }
+
+        /* MASTER FOOTER SHOWCASE CONTAINER */
+        .master-footer-preview {
+            max-width: 1320px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .site-master-footer {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 64px 48px 32px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        .site-master-footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--accent-gradient);
+        }
+
+        /* Top Grid */
+        .footer-main-grid {
+            display: grid;
+            grid-template-columns: 1.6fr 1.1fr 1.2fr 1.1fr 1.1fr;
+            gap: 40px;
+            margin-bottom: 56px;
+        }
+
+        @media (max-width: 1150px) {
+            .footer-main-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 680px) {
+            .footer-main-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Col 1: Bio & Architect */
+        .col-architect {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .architect-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .architect-avatar-ring {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--accent-gradient);
+            padding: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .architect-avatar-inner {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: var(--bg-surface);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            color: #38bdf8;
+            font-weight: 800;
+        }
+
+        .architect-meta h3 {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .architect-meta p {
+            font-size: 0.85rem;
+            color: var(--accent-secondary);
+            font-weight: 500;
+        }
+
+        .architect-bio {
+            font-size: 0.92rem;
+            color: var(--text-secondary);
+            line-height: 1.65;
+        }
+
+        .version-pill-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 6px;
+        }
+
+        .badge-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.78rem;
+            font-family: var(--font-mono);
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 6px;
+            background: rgba(16, 185, 129, 0.12);
+            color: #34d399;
+            border: 1px solid rgba(16, 185, 129, 0.25);
+        }
+
+        .badge-version {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.78rem;
+            font-family: var(--font-mono);
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 6px;
+            background: rgba(99, 102, 241, 0.12);
+            color: #a5b4fc;
+            border: 1px solid rgba(99, 102, 241, 0.25);
+        }
+
+        /* Generic Column */
+        .footer-col h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-col h4 i {
+            color: var(--accent-primary);
+            font-size: 0.9rem;
+        }
+
+        .footer-links-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 11px;
+        }
+
+        .footer-links-list a {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .footer-links-list a:hover {
+            color: #fff;
+            transform: translateX(4px);
+        }
+
+        .badge-mini {
+            font-size: 0.68rem;
+            font-family: var(--font-mono);
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+        }
+
+        .badge-mini.hot {
+            background: rgba(244, 63, 94, 0.15);
+            color: #fb7185;
+            border-color: rgba(244, 63, 94, 0.3);
+        }
+
+        .badge-mini.new {
+            background: rgba(6, 182, 212, 0.15);
+            color: #38bdf8;
+            border-color: rgba(6, 182, 212, 0.3);
+        }
+
+        /* Support Banner inside Footer */
+        .footer-support-strip {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 22px 28px;
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .support-strip-text h5 {
+            font-size: 1.05rem;
+            color: #fff;
+            font-weight: 700;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .support-strip-text p {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+        }
+
+        .support-strip-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .action-bmc-btn {
+            background: #FFDD00;
+            color: #000000;
+            padding: 9px 18px;
+            border-radius: var(--radius-sm);
+            font-weight: 700;
+            font-size: 0.88rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 14px rgba(255, 221, 0, 0.3);
+        }
+
+        .action-bmc-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(255, 221, 0, 0.45);
+            color: #000;
+        }
+
+        .action-razorpay-btn {
+            background: #02042b;
+            color: #528FF0;
+            border: 1px solid rgba(82, 143, 240, 0.4);
+            padding: 9px 18px;
+            border-radius: var(--radius-sm);
+            font-weight: 700;
+            font-size: 0.88rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .action-razorpay-btn:hover {
+            background: #528FF0;
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        /* Social Hub Grid */
+        .social-pill-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 40px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .social-pill {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 8px 14px;
+            border-radius: var(--radius-sm);
+            font-size: 0.88rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .social-pill:hover {
+            background: var(--bg-card-hover);
+            color: #fff;
+            transform: translateY(-2px);
+            border-color: var(--border-focus);
+        }
+
+        .social-pill i {
+            font-size: 1rem;
+        }
+
+        /* Footer Bottom */
+        .footer-bottom-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .footer-legal-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-legal-links a {
+            color: var(--text-muted);
+        }
+
+        .footer-legal-links a:hover {
+            color: var(--text-primary);
+        }
+
+        /* Embed Code Section */
+        .embed-section {
+            max-width: 1320px;
+            margin: 60px auto 80px;
+            padding: 0 24px;
+        }
+
+        .embed-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 32px;
+        }
+
+        .embed-card h3 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .embed-code-wrap {
+            position: relative;
+            background: #050811;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-sm);
+            margin-top: 16px;
+            overflow: hidden;
+        }
+
+        .embed-code-wrap pre {
+            padding: 20px;
+            overflow-x: auto;
+            color: #e2e8f0;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
+        .btn-copy-code {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #fff;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-copy-code:hover {
+            background: var(--accent-primary);
+        }
+
+        /* Scroll Top */
+        .btn-scroll-top {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--accent-gradient);
+            border: none;
+            color: #fff;
+            font-size: 1.1rem;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(99, 102, 241, 0.4);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 99;
+            transition: all 0.2s ease;
+        }
+
+        .btn-scroll-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 22px rgba(99, 102, 241, 0.6);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <nav class="top-navbar">
+        <a href="index.html" class="brand-logo">
+            <span class="brand-badge">{ }</span>
+            <span>LangSteps</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html"><i class="fa-solid fa-house"></i> Hub</a></li>
+            <li><a href="Follow-Sanskar.html"><i class="fa-solid fa-star"></i> Architect</a></li>
+            <li><a href="#master-footer"><i class="fa-solid fa-layer-group"></i> Master Footer</a></li>
+            <li><a href="#embed-code"><i class="fa-solid fa-code"></i> Component Code</a></li>
+            <li><a href="https://sanskarin.github.io/about" target="_blank" class="nav-cta"><i class="fa-solid fa-arrow-up-right-from-square"></i> Sanskar Portfolio</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero -->
+    <header class="hero-section">
+        <div class="hero-tag">
+            <i class="fa-solid fa-compass"></i> SITEMAP &amp; COMPONENT ARCHITECTURE
+        </div>
+        <h1 class="hero-title">Universal Ecosystem Footer &amp; Directory</h1>
+        <p class="hero-desc">
+            The canonical source of truth for the LangSteps learning platform. Complete curriculum sitemaps, official Sanskar developer networks, support gateways, and verified open-source endpoints.
+        </p>
+    </header>
+
+    <!-- Customizer / Controls -->
+    <section class="controls-card">
+        <div class="controls-title">
+            <i class="fa-solid fa-sliders"></i>
+            <span>Preview Mode &amp; Palettes:</span>
+        </div>
+        <div class="theme-buttons">
+            <button class="theme-btn active" onclick="setTheme('default')">Dark Default</button>
+            <button class="theme-btn" onclick="setTheme('dim')">Slate Dim</button>
+            <button class="theme-btn" onclick="setTheme('cyberpunk')">Cyberpunk</button>
+        </div>
+        <button class="copy-snippet-btn" onclick="copySnippet()">
+            <i class="fa-regular fa-copy"></i>
+            <span id="copy-btn-text">Copy Component Snippet</span>
+        </button>
+    </section>
+
+    <!-- Master Footer Preview -->
+    <main class="master-footer-preview" id="master-footer">
+        <footer class="site-master-footer">
+            
+            <!-- Grid -->
+            <div class="footer-main-grid">
+                
+                <!-- Col 1: Architect & Platform -->
+                <div class="col-architect">
+                    <div class="architect-header">
+                        <div class="architect-avatar-ring">
+                            <div class="architect-avatar-inner">S</div>
+                        </div>
+                        <div class="architect-meta">
+                            <h3>Sanskar Yadav</h3>
+                            <p>Lead Architect &amp; Systems Engineer</p>
+                        </div>
+                    </div>
+                    <p class="architect-bio">
+                        Engineering free, high-performance educational software, compilers, and cloud-native architectures for the international engineering community.
+                    </p>
+                    <div class="version-pill-group">
+                        <span class="badge-status"><i class="fa-solid fa-circle-check"></i> v1.0.0 Stable</span>
+                        <span class="badge-version"><i class="fa-solid fa-microchip"></i> Dual-Runtime</span>
+                        <span class="badge-version"><i class="fa-solid fa-shield-halved"></i> 100% Offline Capable</span>
+                    </div>
+                </div>
+
+                <!-- Col 2: Web & UI Frameworks -->
+                <div class="footer-col">
+                    <h4><i class="fa-brands fa-html5"></i> Web Frontend</h4>
+                    <ul class="footer-links-list">
+                        <li><a href="HTML/index.html">HTML5 Semantic Mastery <span class="badge-mini">100+ Tags</span></a></li>
+                        <li><a href="CSS/index.html">CSS3 &amp; Modern Layouts <span class="badge-mini">Grid/Flex</span></a></li>
+                        <li><a href="JavaScript/index.html">JavaScript &amp; ESNext <span class="badge-mini">Async</span></a></li>
+                        <li><a href="React/index.html">React 19 &amp; Architecture <span class="badge-mini hot">Popular</span></a></li>
+                        <li><a href="developer.html">Web Developer Showcase</a></li>
+                        <li><a href="quiz.html">Interactive Knowledge Quiz</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Systems & Backend -->
+                <div class="footer-col">
+                    <h4><i class="fa-solid fa-server"></i> Systems &amp; Backend</h4>
+                    <ul class="footer-links-list">
+                        <li><a href="Python/index.html">Python 3.14 Deep Dive <span class="badge-mini">OOP/Async</span></a></li>
+                        <li><a href="TypeScript/index.html">TypeScript 5.8 Strict <span class="badge-mini new">Full Typings</span></a></li>
+                        <li><a href="Rust/index.html">Rust Systems &amp; Concurrency <span class="badge-mini new">v2024</span></a></li>
+                        <li><a href="Go/index.html">Go Microservices &amp; Concurrency</a></li>
+                        <li><a href="CSharp/index.html">C# 13 &amp; ASP.NET Core</a></li>
+                        <li><a href="SQL/index.html">SQL &amp; Database Internals</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Official Portals -->
+                <div class="footer-col">
+                    <h4><i class="fa-solid fa-globe"></i> Sanskar Portals</h4>
+                    <ul class="footer-links-list">
+                        <li><a href="https://sanskarin.github.io/about" target="_blank"><i class="fa-solid fa-user"></i> About Sanskar</a></li>
+                        <li><a href="https://sanskarin.github.io/projects" target="_blank"><i class="fa-solid fa-diagram-project"></i> Project Portfolio</a></li>
+                        <li><a href="https://sanskarin.github.io/blog" target="_blank"><i class="fa-solid fa-newspaper"></i> Technical Blog</a></li>
+                        <li><a href="https://sanskarin.github.io/contact" target="_blank"><i class="fa-solid fa-envelope"></i> Contact Page</a></li>
+                        <li><a href="Follow-Sanskar.html"><i class="fa-solid fa-heart"></i> Follow Directory</a></li>
+                        <li><a href="https://github.com/sanskarIN/LangSteps" target="_blank"><i class="fa-brands fa-github"></i> Repository</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 5: Legal & Governance -->
+                <div class="footer-col">
+                    <h4><i class="fa-solid fa-scale-balanced"></i> Governance</h4>
+                    <ul class="footer-links-list">
+                        <li><a href="terms.html"><i class="fa-solid fa-file-contract"></i> Terms of Service</a></li>
+                        <li><a href="privacy.html"><i class="fa-solid fa-shield"></i> Privacy Policy</a></li>
+                        <li><a href="support.html"><i class="fa-solid fa-circle-question"></i> Help &amp; Support</a></li>
+                        <li><a href="thanks.html"><i class="fa-solid fa-gift"></i> Backers &amp; Thanks</a></li>
+                        <li><a href="https://github.com/sanskarIN/LangSteps/blob/main/LICENSE" target="_blank"><i class="fa-solid fa-certificate"></i> MIT License</a></li>
+                        <li><a href="https://github.com/sanskarIN/LangSteps/blob/main/CONTRIBUTING.md" target="_blank"><i class="fa-solid fa-code-pull-request"></i> Contributing</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Support Strip -->
+            <div class="footer-support-strip">
+                <div class="support-strip-text">
+                    <h5>☕ Support Open-Source Independent Education</h5>
+                    <p>Free, accessible developer education without paywalls. 100% community and backer sustained.</p>
+                </div>
+                <div class="support-strip-actions">
+                    <a href="https://buymeacoffee.com/SanskarCodes" target="_blank" class="action-bmc-btn">
+                        <span>☕</span> Buy Me a Coffee
+                    </a>
+                    <a href="https://razorpay.me/@SanskarCodes" target="_blank" class="action-razorpay-btn">
+                        <span>⚡</span> Razorpay UPI
+                    </a>
+                </div>
+            </div>
+
+            <!-- Social Pill Directory -->
+            <div class="social-pill-row">
+                <a href="https://github.com/sanskarIN" target="_blank" class="social-pill">
+                    <i class="fa-brands fa-github"></i> GitHub (@sanskarIN)
+                </a>
+                <a href="https://linkedin.com/in/SanskarCodes" target="_blank" class="social-pill">
+                    <i class="fa-brands fa-linkedin"></i> LinkedIn (@SanskarCodes)
+                </a>
+                <a href="https://x.com/SanskarCodes" target="_blank" class="social-pill">
+                    <i class="fa-brands fa-x-twitter"></i> X (@SanskarCodes)
+                </a>
+                <a href="https://dev.to/SanskarCodes" target="_blank" class="social-pill">
+                    <i class="fa-brands fa-dev"></i> Dev.to (@SanskarCodes)
+                </a>
+                <a href="https://SanskarCodes.bsky.social" target="_blank" class="social-pill">
+                    <i class="fa-solid fa-cloud"></i> Bluesky (@SanskarCodes)
+                </a>
+                <a href="https://instagram.com/SanskarCode" target="_blank" class="social-pill">
+                    <i class="fa-brands fa-instagram"></i> Instagram (@SanskarCode)
+                </a>
+                <a href="https://threads.com/SanskarCode" target="_blank" class="social-pill">
+                    <i class="fa-brands fa-threads"></i> Threads (@SanskarCode)
+                </a>
+            </div>
+
+            <!-- Bottom Bar -->
+            <div class="footer-bottom-bar">
+                <p>&copy; 2026 <strong>LangSteps</strong> — Designed &amp; Crafted with precision by <strong>Sanskar Yadav</strong>. All rights reserved.</p>
+                <div class="footer-legal-links">
+                    <a href="privacy.html">Privacy</a>
+                    <span>&bull;</span>
+                    <a href="terms.html">Terms</a>
+                    <span>&bull;</span>
+                    <a href="support.html">Support</a>
+                    <span>&bull;</span>
+                    <a href="https://sanskarin.github.io/contact" target="_blank">Contact</a>
+                </div>
+            </div>
+
+        </footer>
+    </main>
+
+    <!-- Component Code Section -->
+    <section class="embed-section" id="embed-code">
+        <div class="embed-card">
+            <h3><i class="fa-solid fa-code"></i> Embeddable Footer Component (Reusable HTML/CSS)</h3>
+            <p style="color:var(--text-secondary); font-size:0.95rem;">
+                Drop this unified snippet directly into any new page, module, or sub-application across the LangSteps ecosystem to maintain 100% architectural and navigational consistency.
+            </p>
+            <div class="embed-code-wrap">
+                <button class="btn-copy-code" onclick="copyRawCode()">
+                    <i class="fa-regular fa-copy"></i> Copy Code
+                </button>
+                <pre><code id="raw-code">&lt;!-- LangSteps Universal Footer Component --&gt;
+&lt;footer class="langsteps-universal-footer"&gt;
+  &lt;div class="footer-container"&gt;
+    &lt;div class="footer-grid"&gt;
+      &lt;div class="footer-col-brand"&gt;
+        &lt;h3&gt;Sanskar Yadav&lt;/h3&gt;
+        &lt;p&gt;Lead Architect &amp; Systems Engineer behind LangSteps.&lt;/p&gt;
+        &lt;span class="badge"&gt;v1.0.0 Stable&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class="footer-col"&gt;
+        &lt;h4&gt;Curricula&lt;/h4&gt;
+        &lt;ul&gt;
+          &lt;li&gt;&lt;a href="HTML/index.html"&gt;HTML5 Mastery&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href="CSS/index.html"&gt;CSS3 Layouts&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href="JavaScript/index.html"&gt;JavaScript ESNext&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href="React/index.html"&gt;React 19&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href="Python/index.html"&gt;Python 3.14&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href="TypeScript/index.html"&gt;TypeScript 5.8&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href="Rust/index.html"&gt;Rust Systems&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/div&gt;
+      &lt;div class="footer-col"&gt;
+        &lt;h4&gt;Official Portals&lt;/h4&gt;
+        &lt;ul&gt;
+          &lt;li&gt;&lt;a href="https://sanskarin.github.io/about" target="_blank"&gt;About Sanskar&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href="https://sanskarin.github.io/contact" target="_blank"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href="https://sanskarin.github.io/projects" target="_blank"&gt;Projects&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href="https://sanskarin.github.io/blog" target="_blank"&gt;Blog&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/div&gt;
+      &lt;div class="footer-col"&gt;
+        &lt;h4&gt;Support&lt;/h4&gt;
+        &lt;ul&gt;
+          &lt;li&gt;&lt;a href="https://buymeacoffee.com/SanskarCodes" target="_blank"&gt;Buy Me a Coffee&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href="https://razorpay.me/@SanskarCodes" target="_blank"&gt;Razorpay&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="footer-bottom"&gt;
+      &lt;p&gt;&amp;copy; 2026 LangSteps &amp;mdash; Created by Sanskar Yadav.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/footer&gt;</code></pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scroll to Top -->
+    <button class="btn-scroll-top" id="scrollTopBtn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" aria-label="Scroll to Top">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <script>
+        function setTheme(theme) {
+            document.querySelectorAll('.theme-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            if (theme === 'default') {
+                document.documentElement.removeAttribute('data-theme');
+            } else {
+                document.documentElement.setAttribute('data-theme', theme);
+            }
+        }
+
+        function copySnippet() {
+            const code = document.getElementById('raw-code').innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                const btn = document.getElementById('copy-btn-text');
+                btn.innerText = 'Copied to Clipboard!';
+                setTimeout(() => { btn.innerText = 'Copy Component Snippet'; }, 2200);
+            });
+        }
+
+        function copyRawCode() {
+            const code = document.getElementById('raw-code').innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                const btn = document.querySelector('.btn-copy-code');
+                btn.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
+                setTimeout(() => { btn.innerHTML = '<i class="fa-regular fa-copy"></i> Copy Code'; }, 2200);
+            });
+        }
+
+        window.addEventListener('scroll', () => {
+            const scrollBtn = document.getElementById('scrollTopBtn');
+            if (window.scrollY > 300) {
+                scrollBtn.style.display = 'flex';
+            } else {
+                scrollBtn.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
