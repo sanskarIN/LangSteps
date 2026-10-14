@@ -250,6 +250,5 @@ We use **emoji-prefixed** commit messages for clarity:
 
 - **Email**: sanskarin@outlook.in
 - **GitHub**: [@sanskarIN](https://github.com/sanskarIN)
-- **YouTube**: [@sanskarIN](https://youtube.com/@sanskarIN)
 
 Thank you for helping make LangSteps better! 🚀

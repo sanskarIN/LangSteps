@@ -541,14 +541,14 @@ window.addEventListener("message", (event) => {
 <tr><td><strong>Preconnect</strong></td><td>Pre-establish connection to iframe origin before the iframe loads</td><td><code>&lt;link rel="preconnect" href="..."&gt;</code></td></tr>
 <tr><td><strong>Avoid excessive iframes</strong></td><td>Each iframe creates overhead (~2-5MB memory). Limit to 2-3 per page.</td><td>Use embeds only when necessary</td></tr></table>
 
-<div class="tip"><strong>💡 Facade Pattern for YouTube:</strong> Instead of loading a heavy YouTube iframe on page load (which downloads ~800KB of JS), show a thumbnail image. Replace it with the real iframe only when the user clicks play. This can improve page load by 2-3 seconds!</div>
+<div class="tip"><strong>💡 Facade Pattern for Video Embeds:</strong> Instead of loading a heavy video iframe on page load (which downloads ~800KB of JS), show a thumbnail image. Replace it with the real iframe only when the user clicks play. This can improve page load by 2-3 seconds!</div>
 
 <h3>♿ Accessibility Best Practices</h3>
 <ul>
-<li><strong>Always add <code>title</code></strong> — Screen readers announce: "iframe: YouTube video player" instead of just "iframe"</li>
-<li><strong>Make title descriptive</strong> — "YouTube video" is bad. "Tutorial: How to learn HTML in 10 minutes" is good.</li>
+<li><strong>Always add <code>title</code></strong> — Screen readers announce: "iframe: Video player" instead of just "iframe"</li>
+<li><strong>Make title descriptive</strong> — "Video embed" is bad. "Tutorial: How to learn HTML in 10 minutes" is good.</li>
 <li><strong>Keyboard navigation</strong> — Users can Tab into iframes. Ensure the iframe content is also keyboard-accessible.</li>
-<li><strong>Provide alternatives</strong> — For users who can't interact with embeds, provide a direct link: <code>&lt;a href="..."&gt;Watch on YouTube&lt;/a&gt;</code></li>
+<li><strong>Provide alternatives</strong> — For users who can't interact with embeds, provide a direct link: <code>&lt;a href="..."&gt;Watch video directly&lt;/a&gt;</code></li>
 <li><strong>Use <code>aria-hidden="true"</code></strong> for decorative iframes (like background animations) that add no content value</li>
 </ul>
 
@@ -562,10 +562,10 @@ window.addEventListener("message", (event) => {
 <tr><td>Web Components</td><td>Reusable custom elements with Shadow DOM</td><td>Partial (Shadow DOM CSS)</td><td>✅ Good</td></tr></table>
 
 <h3>💻 All Examples</h3>
-`+ codeBlock("iframe — All Uses", "html", `<!-- 1. Embed YouTube video -->
+`+ codeBlock("iframe — All Uses", "html", `<!-- 1. Embed video stream -->
 <iframe width="560" height="315"
-  src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-  title="YouTube video player"
+  src="https://video.example.com/embed/tutorial-intro"
+  title="Interactive video player"
   allow="accelerometer; autoplay; clipboard-write;
          encrypted-media; gyroscope; picture-in-picture"
   allowfullscreen
@@ -603,7 +603,7 @@ window.addEventListener("message", (event) => {
 <!-- 5. Responsive iframe (16:9 video) -->
 <div style="position:relative; padding-bottom:56.25%;
             height:0; overflow:hidden;">
-  <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+  <iframe src="https://video.example.com/embed/tutorial-intro"
     style="position:absolute; top:0; left:0;
            width:100%; height:100%; border:none;"
     title="Responsive video"
@@ -611,14 +611,13 @@ window.addEventListener("message", (event) => {
   </iframe>
 </div>
 
-<!-- 6. YouTube Facade (performance optimized) -->
-<div id="ytFacade" style="cursor:pointer; position:relative;"
-  onclick="this.innerHTML='<iframe src=&quot;https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&quot; width=&quot;100%&quot; height=&quot;315&quot; allowfullscreen style=&quot;border:none&quot;></iframe>'">
-  <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg"
-    alt="Click to play video" width="100%"
-    style="border-radius:12px;">
-  <div style="position:absolute;top:50%;left:50%;
-    transform:translate(-50%,-50%);font-size:60px;">▶️</div>
+<!-- 6. Video Facade (performance optimized) -->
+<div id="videoFacade" style="cursor:pointer; position:relative;"
+  onclick="this.innerHTML='<iframe src=&quot;https://video.example.com/embed/tutorial-intro?autoplay=1&quot; width=&quot;100%&quot; height=&quot;315&quot; allowfullscreen style=&quot;border:none&quot;></iframe>'">
+  <div style="background:#1e293b; color:#fff; padding:60px 20px; text-align:center; border-radius:12px;">
+    <div style="font-size:48px;">▶️</div>
+    <p style="margin-top:10px;font-weight:600;">Click to load video player</p>
+  </div>
 </div>`) + `
 
 <div class="demo"><h4>▶ Live Demo 1 — srcdoc iframe (self-contained)</h4>
@@ -647,7 +646,7 @@ window.addEventListener("message", (event) => {
 <tr><td>Embedding sites that block iframes</td><td>Shows blank/error — sites use X-Frame-Options or CSP frame-ancestors to block</td><td>Check if the site provides an embed URL</td></tr>
 <tr><td>Using <code>frameborder</code> attribute</td><td>Deprecated in HTML5</td><td>Use CSS: <code>border: none;</code></td></tr></table>
 
-<div class="tip"><strong>💡 Pro Tip — Responsive Embeds:</strong> YouTube gives you a fixed-size iframe. To make it responsive, wrap it in a container with <code>position: relative; padding-bottom: 56.25%;</code> (that's the 16:9 aspect ratio: 9÷16 = 0.5625). Then position the iframe absolutely to fill the container. This technique works for any video embed — Vimeo, Dailymotion, etc.!</div>
+<div class="tip"><strong>💡 Pro Tip — Responsive Embeds:</strong> Video providers often give fixed-size iframes. To make any iframe responsive, wrap it in a container with <code>position: relative; padding-bottom: 56.25%;</code> (that's the 16:9 aspect ratio: 9÷16 = 0.5625). Then position the iframe absolutely to fill the container. This technique works for any modern video or interactive canvas embed!</div>
 
 <div class="info"><strong>📝 X-Frame-Options & CSP:</strong> Websites can prevent being embedded in iframes via:<br>
 • <code>X-Frame-Options: DENY</code> — blocks all iframe embedding<br>
