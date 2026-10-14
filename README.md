@@ -57,7 +57,6 @@ This platform requires **no compilation, no server setup, and no dependencies**.
 | 💼 **Interview Prep** | 50+ questions with answers, filters by topic & difficulty |
 | 🏆 **Certificates** | Earn and download learning completion badges |
 | 🎯 **Coding Challenges** | 20+ challenges with difficulty levels |
-| 👥 **Community Hub** | Contributor highlights, open source stats |
 | 🐦 **Twitter Cards** | Rich social media previews across all pages |
 | ⚛️ **20 React Concepts** | React.memo, Suspense, Portals, Server Components, and more |
 | 🃏 **Flashcards** | 40+ interactive flip cards with keyboard nav and mastery tracking |

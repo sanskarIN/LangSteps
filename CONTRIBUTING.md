@@ -117,7 +117,6 @@ LangSteps/
 ├── interview.html          # Interview questions & answers
 ├── certificates.html       # Learning certificates & badges
 ├── challenges.html         # Coding challenges
-├── community.html          # Community hub
 ├── flashcards.html         # Interactive flashcard study
 ├── shortcuts.html          # Developer keyboard shortcuts
 ├── projects.html           # Project ideas gallery
