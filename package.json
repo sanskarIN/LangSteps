@@ -1,6 +1,6 @@
 {
   "name": "langsteps",
-  "version": "1.1.0",
+  "version": "1.0.0",
   "description": "LangSteps: Premium, state-of-the-art polyglot interactive learning platform for mastering Python, TypeScript, JavaScript, HTML, CSS, React, and ASP.NET Core with live code sandboxes, gamified quiz modules, and dual-runtime cloud & client execution.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

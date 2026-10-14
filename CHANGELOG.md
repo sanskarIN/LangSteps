@@ -4,7 +4,32 @@ All notable changes to **LangSteps** will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-## [5.4.0] — 2026-10-14
+## [1.0.0] — 2026-10-14
+
+### 🎉 LangSteps v1.0.0 — Official Stable Production Release
+- **Unified Sitemaps & Ecosystem Showcase**:
+  - Implemented dedicated `footer.html` page featuring comprehensive 10-module sitemaps, interactive theme previews (Dark, Slate Dim, Cyberpunk), and embeddable component code.
+  - Linked `footer.html` across dashboard and platform footers.
+- **Full Social & Payment Cleanup**:
+  - Purged 100% of YouTube channel links, icons, cards, and mentions across all 44 HTML pages, README, CONTRIBUTING, TypeScript, and server files.
+  - Replaced legacy payment image assets with clean SVG icons, CSS cards, and unified donation links (Buy Me a Coffee & Razorpay).
+- **TypeScript Subsystem Expansion (`src/`)**:
+  - Added `RustModule` (`src/modules/rustModule.ts`) exposing 35 systems concepts and simulated borrow checker diagnostics.
+  - Added `CSharpModule` (`src/modules/csharpModule.ts`) modeling modern C# 13, LINQ pipelines, and ASP.NET Core Minimal APIs.
+  - Added `BenchmarkEngine` (`src/modules/benchmarkEngine.ts`) for client micro-benchmarks with complexity estimation.
+  - Added `StateManager` (`src/core/stateManager.ts`) for reactive state persistence and listener subscriptions.
+  - Added `ApiGateway` (`src/services/apiGateway.ts`) connecting web clients with offline fallback simulation.
+- **ASP.NET Core Subsystem Expansion (`server/LangSteps.Server`)**:
+  - Added `ExtendedModels.cs` defining DTOs for Rust curriculum, telemetry, benchmarks, and feedback.
+  - Added `RustService.cs` providing Rust 2024 Edition curricula and borrow checker diagnostics (E0382, E0499, E0502, E0106).
+  - Added `StatsService.cs` calculating system telemetry, process memory, and benchmark suites.
+  - Added `FeedbackService.cs` collecting inquiries and feedback with validation.
+  - Added endpoints: `/api/rust/curriculum`, `/api/rust/category/{cat}`, `/api/rust/diagnose`, `/api/stats/extended`, `/api/benchmark/suite`, `/api/feedback/submit`.
+- **Rust Systems Mastery**:
+  - 35 comprehensive systems engineering concepts across 6 tracks.
+  - Interactive rustc borrow checker diagnostics and ASCII source annotations.
+  - Zero-broken cross-module navigation.
+
 
 ### 🌐 Official Developer Ecosystem & Social Unification
 - **Canonical Ecosystem Links**:
