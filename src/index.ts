@@ -10,15 +10,23 @@ export * from './core/themeEngine.js';
 export * from './core/progressManager.js';
 export * from './core/quizEngine.js';
 export * from './core/apiClient.js';
+export * from './core/profileManager.js';
+export * from './modules/playgroundEngine.js';
+export * from './modules/quizModule.js';
+export * from './modules/pythonModule.js';
 
 import { ThemeEngine } from './core/themeEngine.js';
 import { ProgressManager } from './core/progressManager.js';
 import { LangStepsApiClient } from './core/apiClient.js';
+import { ProfileManager } from './core/profileManager.js';
+import { PlaygroundEngine } from './modules/playgroundEngine.js';
 
 export class LangStepsApp {
   public theme: ThemeEngine;
   public progress: ProgressManager;
   public api: LangStepsApiClient;
+  public profile: typeof ProfileManager = ProfileManager;
+  public playground: typeof PlaygroundEngine = PlaygroundEngine;
 
   constructor(moduleName: string = 'python', apiBaseUrl: string = '') {
     this.theme = new ThemeEngine();
