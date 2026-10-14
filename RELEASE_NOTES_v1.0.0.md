@@ -49,9 +49,11 @@ Incomplete modules (Go, SQL, and C#) have been decoupled and safely relocated to
   - [`ExecutionService.cs`](file:///E:/All_the_Projects_of_the-Sanskar/SANSKAR%20Folder/Web-Development-Mastery/server/LangSteps.Server/Services/ExecutionService.cs): Polyglot runner supporting Python, JS, TS, C#, and Rust.
   - [`QuizService.cs`](file:///E:/All_the_Projects_of_the-Sanskar/SANSKAR%20Folder/Web-Development-Mastery/server/LangSteps.Server/Services/QuizService.cs): Gamified quiz scoring, evaluation, and leaderboard rankings.
 
-### 5. 🧹 Complete Social & Asset Purge
-- **100% YouTube Removal**: Purged every YouTube channel link, video embed, icon, card, and mention across all 44 HTML pages, README, CONTRIBUTING, TypeScript, and server files.
-- **Payment Asset Modernization**: Removed all local payment image files (`Payment-Ramsandesh.jpeg`, `bmc-logo.jpg`) from git, replacing them with clean CSS/SVG badges and emoji-based support buttons.
+### 5. 🧹 Complete Social, Sponsor & Asset Modernization
+- **100% YouTube & Gumroad Removal**: Purged all YouTube channel links, video embeds, Gumroad promotional links, and store banners across all 44 HTML pages, README, CONTRIBUTING, TypeScript, and server files.
+- **Payment & QR Code Purge**: Removed all QR code images, mock placeholders, and legacy UPI IDs from git and modals, replacing them with direct, secure **Buy Me a Coffee** and **Razorpay** action buttons.
+- **Official GitHub Sponsor Configuration**: Added Razorpay (`https://razorpay.me/@SanskarCodes`) and Buy Me a Coffee (`SanskarCodes`) directly to `.github/FUNDING.yml`.
+- **UI & UX Refinements**: Fixed duplicate overlapping scroll-to-top buttons, removed obsolete popups, resolved React viewport overflow with side-by-side responsive editor layouts, expanded the JavaScript curriculum to 20 foundational topics, and purged deprecated community links.
 
 ### 6. 🌐 Comprehensive Polyglot Rebranding & TypeScript Module Overhaul
 - **Global Brand Alignment**: Replaced legacy "Web Dev Mastery" references with **LangSteps** across all 44+ HTML pages, root landing layout, navigation, legal policies, documentation, and metadata to establish LangSteps as a premier multi-language learning platform.
