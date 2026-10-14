@@ -33,7 +33,6 @@ export const OFFICIAL_PROFILE: DeveloperProfile = {
   support: {
     buymeacoffee: 'https://buymeacoffee.com/SanskarCodes',
     razorpay: 'https://razorpay.me/@SanskarCodes',
-    gumroad: 'https://sanskarIN.gumroad.com',
     directEmail: 'supportramsandesh@gmail.com'
   }
 };

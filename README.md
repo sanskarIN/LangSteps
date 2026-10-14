@@ -961,7 +961,6 @@ Connect with Sanskar across social and developer platforms:
 If you find value in LangSteps, tutorials, or open-source projects, consider supporting:
 - ☕ **Buy Me a Coffee**: [buymeacoffee.com/SanskarCodes](https://buymeacoffee.com/SanskarCodes)
 - ⚡ **Razorpay**: [razorpay.me/@SanskarCodes](https://razorpay.me/@SanskarCodes)
-- 🛍️ **Gumroad Store**: [sanskarIN.gumroad.com](https://sanskarIN.gumroad.com)
 
 ---
 

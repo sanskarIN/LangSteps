@@ -16,7 +16,6 @@ export interface SocialLinks {
 export interface SupportLinks {
   buymeacoffee: string;
   razorpay: string;
-  gumroad: string;
   directEmail: string;
 }
 
