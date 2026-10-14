@@ -279,7 +279,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Updated all BMC links to `www.buymeacoffee.com/sanskarIN`
 - Updated business email #1: `sanskarin@outlook.in`
 - Updated business email #2: `sanskarin.business@gmail.com`
-- Support email: `supportramsandesh@gmail.com`
+- Support email: `sanskarin@outlook.in`
 
 ### ⚛️ React Module Enhancements (20 new concepts)
 - React.memo, React.lazy & Suspense, Error Boundaries, React Portals
