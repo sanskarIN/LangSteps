@@ -651,6 +651,46 @@ const TAGS = [
     "emoji": "\ud83c\udfaf",
     "defaultCode": "from sklearn.metrics import classification_report\ny_true = [0, 1, 0, 1, 1]\ny_pred = [0, 1, 0, 0, 1]\nprint('Classification metrics:\\n', classification_report(y_true, y_pred))",
     "content": "<h3>\ud83d\udccc Deep Dive: Machine Learning Metrics</h3><p>Accuracy can be misleading on imbalanced datasets. Model evaluation requires inspecting Precision, Recall, F1-Score, and ROC-AUC curves.</p><h4>\u2699\ufe0f Under the Hood</h4><p>K-Fold Cross-Validation partitions data into K folds, training on K-1 folds and validating on the remaining fold K times to measure model variance.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>For fraud detection or medical diagnosis where false negatives are dangerous, optimize for high Recall.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\">from sklearn.metrics import confusion_matrix\ncm = confusion_matrix(y_true, y_pred)\nprint('Confusion matrix:\\n', cm)</code></pre>"
+  },
+  {
+    "id": "py-81",
+    "title": "Command-Line Development with argparse",
+    "badge": "TOOLING",
+    "emoji": "\ud83d\udcbb",
+    "defaultCode": "import argparse\nparser = argparse.ArgumentParser(description='DevForge CLI')\nparser.add_argument('--port', type=int, default=8000, help='Port to listen on')\nparser.add_argument('--verbose', action='store_true', help='Enable debug logging')\n# In real scripts: args = parser.parse_args()\nprint('argparse parses arguments, generates help, and validates types')",
+    "content": "<h3>\ud83d\udccc Deep Dive: CLI Interfaces with argparse</h3><p>The standard <code>argparse</code> module provides production command-line parsing, automatic help generation (<code>--help</code>), and input validation.</p><h4>\u2699\ufe0f Under the Hood</h4><p>Processes <code>sys.argv[1:]</code>, converts string inputs to target types, and exits with descriptive errors on malformed arguments.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Use subparsers (<code>parser.add_subparsers()</code>) to build multi-command CLIs like git (e.g., <code>app run</code>, <code>app deploy</code>).</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\">subparsers = parser.add_subparsers(dest='command')\nstart_cmd = subparsers.add_parser('start', help='Start server')\nstart_cmd.add_argument('--daemon', action='store_true')</code></pre>"
+  },
+  {
+    "id": "py-82",
+    "title": "Modern CLI Apps with Click & Rich",
+    "badge": "TOOLING",
+    "emoji": "\u2728",
+    "defaultCode": "# import click\n# @click.command()\n# @click.option('--count', default=1, help='Number of greetings.')\n# def hello(count):\n#     for _ in range(count): click.echo('Hello DevForge!')\nprint('Rich and Click create visually stunning terminal interfaces')",
+    "content": "<h3>\ud83d\udccc Deep Dive: Modern Terminal UX</h3><p><code>Click</code> provides composable command decorators; <code>Rich</code> brings colors, tables, progress bars, and markdown formatting to terminal outputs.</p><h4>\u2699\ufe0f Under the Hood</h4><p>Rich parses ANSI escape sequences and queries terminal capabilities to render responsive tables and progress bars without terminal flickering.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Combine <code>Rich</code> with <code>typer</code> (built on Click) for type-hint driven modern CLI development.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\"># Rich table preview syntax\n# from rich.console import Console\n# from rich.table import Table\n# table = Table(title='Modules'); table.add_column('Name')</code></pre>"
+  },
+  {
+    "id": "py-83",
+    "title": "Security & Cryptography: hashlib, hmac & secrets",
+    "badge": "SECURITY",
+    "emoji": "\ud83d\udd12",
+    "defaultCode": "import hashlib, hmac, secrets\nsalt = secrets.token_bytes(16)\npassword = b'Mastery2026'\nhash_val = hashlib.sha256(password + salt).hexdigest()\nprint(f'Salted SHA-256: {hash_val[:32]}...')",
+    "content": "<h3>\ud83d\udccc Deep Dive: Cryptography & Security</h3><p>The <code>hashlib</code> and <code>hmac</code> modules provide cryptographic hashing algorithms (SHA-256, SHA-3, BLAKE2) and keyed-hash message authentication.</p><h4>\u2699\ufe0f Under the Hood</h4><p>Hash algorithms are one-way mathematical functions. For passwords, standard SHA-256 is too fast and vulnerable to GPU attacks; use salted key derivation functions like <code>hashlib.scrypt</code> or <code>bcrypt</code>.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Always use <code>hmac.compare_digest(a, b)</code> instead of <code>a == b</code> to protect against timing attacks when validating tokens and signatures.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\">token = secrets.token_urlsafe(32)\nprint('Secure CSRF token:', token)</code></pre>"
+  },
+  {
+    "id": "py-84",
+    "title": "Image Processing with Pillow (PIL)",
+    "badge": "LIBRARIES",
+    "emoji": "\ud83d\uddbc\ufe0f",
+    "defaultCode": "# from PIL import Image, ImageFilter\n# img = Image.new('RGB', (200, 200), color='#6c63ff')\n# img.save('preview.png')\nprint('Pillow handles image manipulation, resizing, filters, and formats')",
+    "content": "<h3>\ud83d\udccc Deep Dive: Image Processing</h3><p>Pillow is the friendly fork of PIL (Python Imaging Library), providing capabilities for opening, manipulating, compressing, and saving diverse image formats.</p><h4>\u2699\ufe0f Under the Hood</h4><p>Stores image data in raw memory buffers with coordinates, pixel formats, and color profiles, wrapping optimized C imaging routines.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Always resize images with <code>Image.Resampling.LANCZOS</code> for highest quality antialiased downsampling.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\"># Thumbnail generation pattern\n# img.thumbnail((128, 128))\n# img.save('thumb.webp', 'WEBP', quality=85)</code></pre>"
+  },
+  {
+    "id": "py-85",
+    "title": "PDF Generation & Manipulation",
+    "badge": "LIBRARIES",
+    "emoji": "\ud83d\udcd1",
+    "defaultCode": "# ReportLab or PyPDF pattern\n# from reportlab.lib.pagesizes import letter\n# from reportlab.pdfgen import canvas\nprint('Generate certificates, invoices, and reports dynamically with Python')",
+    "content": "<h3>\ud83d\udccc Deep Dive: Document Automation</h3><p>Libraries like ReportLab, WeasyPrint, and pypdf enable dynamic programmatic creation and manipulation of PDF documents for enterprise reporting.</p><h4>\u2699\ufe0f Under the Hood</h4><p>PDF engines build PostScript drawing commands, vector paths, embedded fonts, and xref tables according to the ISO 32000 specification.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>For complex layouts, use WeasyPrint: write standard HTML/CSS templates and render them directly into pixel-perfect PDFs.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\"># Certificate generation skeleton\ndef generate_pdf(filename, student_name):\n    # c = canvas.Canvas(filename, pagesize=letter)\n    # c.drawString(100, 750, f'Certificate of Mastery: {student_name}')\n    return filename</code></pre>"
   }
 ];
 
