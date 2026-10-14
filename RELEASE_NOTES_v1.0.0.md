@@ -53,6 +53,10 @@ Incomplete modules (Go, SQL, and C#) have been decoupled and safely relocated to
 - **100% YouTube Removal**: Purged every YouTube channel link, video embed, icon, card, and mention across all 44 HTML pages, README, CONTRIBUTING, TypeScript, and server files.
 - **Payment Asset Modernization**: Removed all local payment image files (`Payment-Ramsandesh.jpeg`, `bmc-logo.jpg`) from git, replacing them with clean CSS/SVG badges and emoji-based support buttons.
 
+### 6. 🌐 Comprehensive Polyglot Rebranding & TypeScript Module Overhaul
+- **Global Brand Alignment**: Replaced legacy "Web Dev Mastery" references with **LangSteps** across all 44+ HTML pages, root landing layout, navigation, legal policies, documentation, and metadata to establish LangSteps as a premier multi-language learning platform.
+- **TypeScript Module Overhaul**: Completely reconstructed `TypeScript/script.js` with 50 core-to-advanced concepts, relocated `<link rel="stylesheet">` into `<head>`, and restored the CodeMirror Pro sandbox with zero runtime exceptions.
+
 ---
 
 ## 🌐 Official Sanskar Developer Ecosystem
