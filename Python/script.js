@@ -131,6 +131,46 @@ const TAGS = [
     "emoji": "\u03bb",
     "defaultCode": "products = [\n    {'name': 'Laptop', 'price': 1200},\n    {'name': 'Mouse', 'price': 25},\n    {'name': 'Monitor', 'price': 300}\n]\nsorted_products = sorted(products, key=lambda p: p['price'])\nprint(sorted_products)",
     "content": "<h3>\ud83d\udccc Deep Dive: Lambda Expressions</h3><p>Lambdas are anonymous, single-expression inline functions defined with the <code>lambda</code> keyword. They cannot contain statements or annotations.</p><h4>\u2699\ufe0f Under the Hood</h4><p>A lambda creates a standard function object with <code>__name__ = '<lambda>'</code>. While useful for callbacks, list comprehensions and named functions often provide superior readability and stack traces.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>For dictionary sorting, prefer <code>operator.itemgetter('price')</code> over <code>lambda x: x['price']</code> for cleaner code and up to 2x faster execution in CPython.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\">from operator import itemgetter\nby_price = sorted(products, key=itemgetter('price'))\nprint('Fast sorted:', by_price)</code></pre>"
+  },
+  {
+    "id": "py-16",
+    "title": "List Comprehensions & Conditional Filtering",
+    "badge": "IDIOMS",
+    "emoji": "\u26a1",
+    "defaultCode": "matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]\nflattened = [val for row in matrix for val in row if val % 2 == 0]\nprint('Even numbers flattened:', flattened)",
+    "content": "<h3>\ud83d\udccc Deep Dive: List Comprehensions</h3><p>List comprehensions provide a concise syntax for creating new lists by transforming and filtering elements from existing iterables.</p><h4>\u2699\ufe0f Under the Hood</h4><p>In Python 3+, comprehensions run in their own dedicated scope, preventing loop variable leakage into the enclosing environment. Bytecode uses specialized <code>LIST_APPEND</code> instructions, making comprehensions noticeably faster than manual <code>for</code> loops with <code>.append()</code>.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>If a comprehension has more than two nested loops or multiple complicated conditions, refactor to a traditional for loop for readability.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\">names = ['alice', 'bob', 'charlie', 'david']\ntitled = [n.title() for n in names if len(n) > 3]\nprint('Titled:', titled)</code></pre>"
+  },
+  {
+    "id": "py-17",
+    "title": "Dictionary & Set Comprehensions",
+    "badge": "IDIOMS",
+    "emoji": "\ud83d\uddc2\ufe0f",
+    "defaultCode": "keys = ['id', 'user', 'role']\nvals = [101, 'sanskar', 'maintainer']\nrecord = {k: v for k, v in zip(keys, vals)}\nprint('Dict created:', record)\n# Set comprehension for unique extensions\nfiles = ['script.py', 'app.js', 'style.css', 'test.py']\nexts = {f.split('.')[-1] for f in files}\nprint('Unique file extensions:', exts)",
+    "content": "<h3>\ud83d\udccc Deep Dive: Dict & Set Comprehensions</h3><p>Dictionary and set comprehensions allow declarative creation of mappings and unique sets with expressive transformation logic.</p><h4>\u2699\ufe0f Under the Hood</h4><p>Set comprehensions use the <code>SET_ADD</code> bytecode instruction; dict comprehensions use <code>MAP_ADD</code>. Key collisions in dictionary comprehensions simply overwrite the previous entry, evaluating left-to-right.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Use dict comprehensions to easily invert a dictionary: <code>{v: k for k, v in d.items()}</code> (assuming values are unique and hashable).</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\"># Inverting a dictionary\ncountry_codes = {'US': 'United States', 'IN': 'India', 'JP': 'Japan'}\ninverted = {v: k for k, v in country_codes.items()}\nprint('Inverted map:', inverted)</code></pre>"
+  },
+  {
+    "id": "py-18",
+    "title": "Generator Functions & the yield Keyword",
+    "badge": "ITERATION",
+    "emoji": "\ud83c\udf3e",
+    "defaultCode": "def fibonacci_stream(limit):\n    a, b = 0, 1\n    while a < limit:\n        yield a\n        a, b = b, a + b\n\nfor num in fibonacci_stream(100):\n    print(num, end=' ')",
+    "content": "<h3>\ud83d\udccc Deep Dive: Generators & Lazy Evaluation</h3><p>Generators are functions that can pause execution and yield multiple values over time, preserving local variable state between invocations.</p><h4>\u2699\ufe0f Under the Hood</h4><p>When a function containing <code>yield</code> is called, CPython returns a generator iterator without executing the function body. Calling <code>next()</code> advances the frame to the next <code>yield</code> statement, storing the instruction pointer in a <code>PyFrameObject</code>.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Generators require O(1) memory regardless of how many millions of items they stream, making them essential for processing huge datasets or files.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\">def chunker(iterable, size):\n    for i in range(0, len(iterable), size):\n        yield iterable[i:i + size]\nprint(list(chunker([1, 2, 3, 4, 5, 6, 7], 3)))</code></pre>"
+  },
+  {
+    "id": "py-19",
+    "title": "Generator Expressions vs List Comprehensions",
+    "badge": "ITERATION",
+    "emoji": "\ud83d\udca1",
+    "defaultCode": "import sys\n# List comprehension (allocates all in memory)\nlist_comp = [x * 2 for x in range(100000)]\n# Generator expression (lazy streaming)\ngen_exp = (x * 2 for x in range(100000))\nprint(f'List RAM: {sys.getsizeof(list_comp)} bytes')\nprint(f'Gen RAM: {sys.getsizeof(gen_exp)} bytes')",
+    "content": "<h3>\ud83d\udccc Deep Dive: Generator Expressions</h3><p>Generator expressions have the syntax of list comprehensions but use parentheses instead of brackets. They evaluate lazily on-demand.</p><h4>\u2699\ufe0f Under the Hood</h4><p>A generator expression produces an anonymous generator object. Memory overhead is constant (typically ~100-200 bytes in CPython) whether the sequence contains 10 items or 10 billion items.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Pass generator expressions directly into reducer functions like <code>sum()</code>, <code>min()</code>, <code>max()</code>, or <code>any()</code> without double parentheses: <code>sum(x**2 for x in data)</code>.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\"># Check if any user is admin\nusers = [{'name': 'A', 'admin': False}, {'name': 'S', 'admin': True}]\nhas_admin = any(u['admin'] for u in users)\nprint('Admin present:', has_admin)</code></pre>"
+  },
+  {
+    "id": "py-20",
+    "title": "First-Class Functions & Closures",
+    "badge": "FUNCTIONS",
+    "emoji": "\ud83d\udd10",
+    "defaultCode": "def make_multiplier(factor):\n    # 'factor' is enclosed in the returned function\n    def multiplier(number):\n        return number * factor\n    return multiplier\n\ntriple = make_multiplier(3)\nprint(f'3 * 7 = {triple(7)}')\nprint('Closure cells:', triple.__closure__[0].cell_contents)",
+    "content": "<h3>\ud83d\udccc Deep Dive: Closures & Lexical Scoping</h3><p>A closure is a function object that retains access to variables from its enclosing lexical scope even after that outer scope has finished executing.</p><h4>\u2699\ufe0f Under the Hood</h4><p>CPython captures free variables referenced in inner functions into <code>cell</code> objects within the <code>__closure__</code> tuple attribute. Modifying free variables requires the <code>nonlocal</code> keyword.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Closures form the theoretical and mechanical foundation of all Python decorators.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\">def make_counter(start=0):\n    count = start\n    def step():\n        nonlocal count\n        count += 1\n        return count\n    return step\nc = make_counter(10)\nprint(c(), c(), c())  # 11, 12, 13</code></pre>"
   }
 ];
 
