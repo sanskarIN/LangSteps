@@ -731,6 +731,46 @@ const TAGS = [
     "emoji": "\ud83d\udd17",
     "defaultCode": "import weakref\nclass HeavyNode:\n    def __init__(self, name): self.name = name\n\nnode = HeavyNode('Root')\nref = weakref.ref(node)\nprint('Referenced object:', ref().name)\ndel node\nprint('After deletion, ref() is:', ref())",
     "content": "<h3>\ud83d\udccc Deep Dive: Weak References</h3><p>The <code>weakref</code> module allows referencing objects without increasing their reference count (<code>ob_refcnt</code>), preventing cyclic memory leaks.</p><h4>\u2699\ufe0f Under the Hood</h4><p>When the referenced object's strong reference count drops to zero, the object is immediately deallocated and the weak reference cleanly resolves to <code>None</code>.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Use <code>weakref.WeakValueDictionary</code> to build memory-safe in-memory object caches that automatically evict items when unreferenced elsewhere.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\">cache = weakref.WeakValueDictionary()\n# Cached items disappear automatically when deleted</code></pre>"
+  },
+  {
+    "id": "py-91",
+    "title": "Garbage Collection & Cycle Detection (gc module)",
+    "badge": "MEMORY",
+    "emoji": "\u267b\ufe0f",
+    "defaultCode": "import gc\nprint('GC enabled:', gc.isenabled())\nprint('Thresholds:', gc.get_threshold())\n# Manual collection\ncollections = gc.collect()\nprint('Objects collected:', collections)",
+    "content": "<h3>\ud83d\udccc Deep Dive: Garbage Collection Mechanics</h3><p>CPython's primary memory management is Reference Counting. The cyclical garbage collector runs in the background to detect and free unreachable reference cycles.</p><h4>\u2699\ufe0f Under the Hood</h4><p>The generational collector uses 3 generations (Gen 0, Gen 1, Gen 2). Young objects survive into older generations. Cycles are detected using double-linked list traversal.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>In high-throughput batch processing, you can temporarily disable the cyclical GC (<code>gc.disable()</code>) and run <code>gc.collect()</code> manually at milestone boundaries.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\"># Creating a reference cycle\na, b = {}, {}\na['b'], b['a'] = b, a\ndel a, b\n# Cyclic GC detects and cleans this cycle</code></pre>"
+  },
+  {
+    "id": "py-92",
+    "title": "Design Patterns: Creational (Singleton & Factory)",
+    "badge": "PATTERNS",
+    "emoji": "\ud83c\udfed",
+    "defaultCode": "class Singleton:\n    _instance = None\n    def __new__(cls):\n        if cls._instance is None:\n            cls._instance = super().__new__(cls)\n        return cls._instance\n\ns1, s2 = Singleton(), Singleton()\nprint('Same singleton instance?', s1 is s2)",
+    "content": "<h3>\ud83d\udccc Deep Dive: Creational Design Patterns</h3><p>Creational patterns abstract the instantiation process, making systems independent of how their objects are created, composed, and represented.</p><h4>\u2699\ufe0f Under the Hood</h4><p>In Python, modules are natural singletons. The Factory Pattern uses factory functions or class registries to return polymorphic object instances dynamically.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Prefer module-level singletons or dependency injection over rigid Singleton classes whenever possible.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\"># Factory method pattern\nclass FormatterFactory:\n    @staticmethod\n    def get_formatter(fmt):\n        if fmt == 'json': return lambda d: json.dumps(d)\n        return lambda d: str(d)</code></pre>"
+  },
+  {
+    "id": "py-93",
+    "title": "Design Patterns: Structural & Behavioral (Observer & Strategy)",
+    "badge": "PATTERNS",
+    "emoji": "\ud83c\udfad",
+    "defaultCode": "class EventEmitter:\n    def __init__(self): self._events = {}\n    def on(self, event, fn):\n        self._events.setdefault(event, []).append(fn)\n    def emit(self, event, *args):\n        for fn in self._events.get(event, []): fn(*args)\n\nemitter = EventEmitter()\nemitter.on('login', lambda u: print(f'User {u} logged in!'))\nemitter.emit('login', 'sanskarIN')",
+    "content": "<h3>\ud83d\udccc Deep Dive: Structural & Behavioral Patterns</h3><p>The Observer pattern defines a one-to-many subscription model. The Strategy pattern encapsulates interchangeable algorithms behind a common interface.</p><h4>\u2699\ufe0f Under the Hood</h4><p>Because Python treats functions as first-class objects, the Strategy pattern is frequently implemented simply by passing functions as arguments rather than creating heavy class hierarchies.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Use <code>dataclasses</code> or callables to make behavioral patterns lightweight and Pythonic.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\"># Strategy pattern using functions\ndef discount_vip(price): return price * 0.8\ndef discount_standard(price): return price * 0.95\ncheckout = lambda price, strat: strat(price)\nprint('VIP price:', checkout(100, discount_vip))</code></pre>"
+  },
+  {
+    "id": "py-94",
+    "title": "SOLID Design Principles in Python",
+    "badge": "ARCHITECTURE",
+    "emoji": "\ud83c\udfdb\ufe0f",
+    "defaultCode": "# S: Single Responsibility\n# O: Open/Closed (open for extension, closed for modification)\n# L: Liskov Substitution\n# I: Interface Segregation\n# D: Dependency Inversion\nprint('Writing scalable, maintainable Python using SOLID principles')",
+    "content": "<h3>\ud83d\udccc Deep Dive: SOLID Principles</h3><p>The SOLID principles guide developers in building modular, decoupled, testable, and maintainable object-oriented software.</p><h4>\u2699\ufe0f Under the Hood</h4><p>In Python, Dependency Inversion is easily achieved by injecting dependencies into <code>__init__</code> rather than instantiating concrete classes internally.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>Respect the Liskov Substitution Principle: subclasses should never weaken preconditions or strengthen postconditions of their base class.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\"># Dependency Inversion example\nclass NotificationService:\n    def __init__(self, sender):\n        self.sender = sender  # Injected dependency\n    def notify(self, msg): self.sender.send(msg)</code></pre>"
+  },
+  {
+    "id": "py-95",
+    "title": "C Extensions & ctypes / cffi Interoperability",
+    "badge": "INTERNALS",
+    "emoji": "\u26a1",
+    "defaultCode": "import ctypes\n# Call C standard library puts directly\nlibc = ctypes.CDLL(None) if sys.platform != 'win32' else ctypes.cdll.msvcrt\nprint('ctypes interface ready for foreign C function calls')",
+    "content": "<h3>\ud83d\udccc Deep Dive: Foreign Function Interoperability</h3><p>Python can invoke external compiled C, C++, or Rust shared libraries (.so / .dll) without writing complex C extensions using <code>ctypes</code> or <code>cffi</code>.</p><h4>\u2699\ufe0f Under the Hood</h4><p><code>ctypes</code> maps Python types to native C datatypes, prepares CPU call stacks according to target ABI calling conventions, and executes compiled machine code.</p><div class=\"cb\"><div class=\"cb-h\"><span>\ud83d\udca1 Pro Tip</span></div><div class=\"cb-b\"><p>For high-performance bindings, consider <code>cffi</code> or Rust's <code>PyO3</code> / <code>maturin</code> toolchain.</p></div></div><h4>\ud83d\udcbb Real-World Code Examples</h4><pre><code class=\"language-python\"># Using ctypes for C math function\nimport math\nprint('Native math vs C binding comparison ready')</code></pre>"
   }
 ];
 
