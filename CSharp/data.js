@@ -94,7 +94,7 @@ window.LANGSTEPS_COURSE = {
       "level": "Intermediate"
     },
     {
-      "id": "di",
+      "id": "dependency-injection",
       "category": "ASP.NET Core",
       "title": "Dependency injection",
       "summary": "Register services with explicit lifetimes.",
