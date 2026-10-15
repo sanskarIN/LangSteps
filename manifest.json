@@ -1,7 +1,7 @@
 {
-  "name": "LangSteps",
-  "short_name": "WDM",
-  "description": "LangSteps Project",
+  "name": "LangSteps — Programming Mastery",
+  "short_name": "LangSteps",
+  "description": "Free interactive programming lessons, exercises, examples, quizzes and local progress tracking.",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#0b0f19",
@@ -17,5 +17,6 @@
       "sizes": "512x512",
       "type": "image/png"
     }
-  ]
+  ],
+  "scope": "./"
 }
