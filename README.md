@@ -1,10 +1,16 @@
 # 🚀 LangSteps — Polyglot & Multi-Language Software Engineering Platform
 
-### HTML · CSS · JavaScript · React · Python · TypeScript · Rust · Go · SQL · C# — 1,000+ Concepts | By Sanskar Developer
+### HTML · CSS · JavaScript · React · Python · TypeScript · Rust · Go · SQL · C# — 10 Learning Paths | By Sanskar Developer
 
-A premium, state-of-the-art interactive learning platform designed to help developers master **HTML** (100+ tags), **CSS** (200+ properties), **JavaScript** (100+ concepts), **React** (100+ concepts), **Python** (100+ concepts), **TypeScript** (50+ concepts), **Rust** (30+ concepts), **Go** (30+ concepts), **SQL** (30+ concepts), and **C#** (40+ concepts) through in-depth explanations, real-time code execution, live sandboxes, persistent progress tracking, gamified mechanics, quiz systems, and premium dark UI with 25+ themes.
+A premium, state-of-the-art interactive learning platform designed to help developers master **HTML** (100+ tags), **CSS** (200+ properties), **JavaScript** (100+ concepts), **React** (100+ concepts), **Python** (100+ concepts), **TypeScript** (50+ concepts), **Rust** (30+ concepts), **Go** (15 guided lessons), **SQL** (15 guided lessons), and **C#** (15 guided lessons) through in-depth explanations, real-time code execution, live sandboxes, persistent progress tracking, gamified mechanics, quiz systems, and premium dark UI with 25+ themes.
 
 This platform requires **no compilation, no server setup, and no dependencies**. It operates entirely in the client browser using vanilla technologies (HTML5, JavaScript, CSS3), making it lightweight, easily shareable, and highly responsive.
+
+## 🆕 v1.1.0 — Three released curricula
+
+**Live in the v1.1.0 release branch:** [Go](Go/index.html), [SQL](SQL/index.html), and [C# 13 / ASP.NET Core](CSharp/index.html). Each includes 15 curated lessons, search, category filters, code examples, practice prompts, deep links, and browser-local completion tracking. For this release the new paths are reference and study material, not a remote code compiler.
+
+**Important:** GitHub Pages hosts the static lessons. The optional `server/LangSteps.Server` ASP.NET Core project needs independent HTTPS hosting. No production server URL or secure remote execution service is included in the static release. See [release notes](docs/releases/v1.1.0.md) for CI, known limitations and the release checklist.
 
 ## ✨ Live Modules & Interactive Curricula
 
@@ -17,9 +23,9 @@ This platform requires **no compilation, no server setup, and no dependencies**.
 | 🐍 **Python Mastery** | 100 Concepts | Core to Asyncio, Django, FastAPI, NumPy, Pandas | `#3776ab` Blue & Yellow |
 | 🔷 **TypeScript Mastery** | 50 Concepts | Generics, Conditional Types, Utility Types | `#3178c6` TS Blue |
 | 🦀 **Rust Mastery** | 35 Concepts | Ownership, Borrowing, Lifetimes, Concurrency, and Compiler Diagnostics | `#f74c00` Rust Orange |
-| 🐹 **Go Mastery** | 30 Concepts | Goroutines, Channels, Interfaces, Tooling | `#00add8` Go Cyan |
-| 🗄️ **SQL Mastery** | 30 Concepts | DDL, DML, Joins, Window Functions, ACID | `#336791` SQL Blue |
-| 🎯 **C# / .NET Mastery** | 40 Concepts | Modern C# 13, LINQ, Async/Await, ASP.NET Core | `#512bd4` .NET Purple |
+| 🐹 **Go Mastery** | 15 Lessons | Goroutines, Channels, Interfaces, Tooling | `#00add8` Go Cyan |
+| 🗄️ **SQL Mastery** | 15 Lessons | DDL, DML, Joins, Window Functions, ACID | `#336791` SQL Blue |
+| 🎯 **C# / .NET Mastery** | 15 Lessons | Modern C# 13, LINQ, Async/Await, ASP.NET Core | `#512bd4` .NET Purple |
 | 🎯 **Master Quiz Hub** | 200 Questions | Multi-language testing, 10 languages, leaderboard | Multi-tier Gold |
 
 ## 🎯 Key Features
