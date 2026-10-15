@@ -27,7 +27,7 @@ public class StatsService : IStatsService
             Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production",
             Environment.Version.ToString(),
             _content.GetAllModules().Count,
-            _content.GetAllModules().Sum(module => module.ConceptCount)
+            _content.GetAllModules().Sum(module => module.ConceptCount),
             memoryBytes,
             uptime,
             "Healthy (ASP.NET backend)"
