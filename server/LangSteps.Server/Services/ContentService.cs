@@ -67,6 +67,24 @@ public class ContentService : IContentService
             "Rust/index.html",
             35, 6,
             new[] { "Basics", "Ownership", "Modeling", "Functional", "Concurrency", "Systems" }
+        ),
+        new LanguageModule(
+            "go", "Go", "go", "🐹", "Go Mastery",
+            "Guided Go lessons: types, interfaces, concurrency, testing and APIs",
+            "Go/index.html", 15, 7,
+            new[] { "Foundations", "Collections", "Types", "Reliability", "Concurrency", "Tooling", "Web", "Advanced" }
+        ),
+        new LanguageModule(
+            "sql", "SQL", "sql", "🗄️", "SQL Mastery",
+            "Guided SQL lessons: querying, modeling, transactions and safe parameters",
+            "SQL/index.html", 15, 8,
+            new[] { "Foundations", "Queries", "Data changes", "Analytics", "Reliability", "Schema", "Performance", "Security" }
+        ),
+        new LanguageModule(
+            "csharp", "C#", "csharp", "💜", "C# 13 & ASP.NET Core",
+            "Guided C# 13 and .NET 9 lessons, async, Minimal APIs and DI",
+            "CSharp/index.html", 15, 4,
+            new[] { "C# basics", "Reliability", "ASP.NET Core", "Quality" }
         )
     };
 

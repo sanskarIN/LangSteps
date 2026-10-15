@@ -12,6 +12,9 @@ public interface IStatsService
 public class StatsService : IStatsService
 {
     private static readonly DateTime StartTime = DateTime.UtcNow;
+    private readonly IContentService _content;
+
+    public StatsService(IContentService content) => _content = content;
 
     public SystemTelemetryDto GetTelemetry()
     {
@@ -20,14 +23,14 @@ public class StatsService : IStatsService
         var uptime = DateTime.UtcNow - StartTime;
 
         return new SystemTelemetryDto(
-            "LangSteps v1.0.0-stable",
+            "LangSteps v1.1.0",
             Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production",
             Environment.Version.ToString(),
-            10, // 10 core curricula
-            485, // 485 comprehensive technical concepts
+            _content.GetAllModules().Count,
+            _content.GetAllModules().Sum(module => module.ConceptCount),
             memoryBytes,
             uptime,
-            "Healthy (Dual-Runtime Online)"
+            "Healthy (ASP.NET backend)"
         );
     }
 

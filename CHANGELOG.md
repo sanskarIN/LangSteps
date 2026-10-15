@@ -4,6 +4,28 @@ All notable changes to **LangSteps** will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [1.1.0] — Unreleased
+
+### Added
+- Released three new searchable learning paths: Go (15 guided lessons), SQL (15 guided lessons), and C# 13 / .NET 9 / ASP.NET Core (15 guided lessons).
+- Added local lesson completion tracking, category filters, URL deep links, copy-ready examples and practice exercises on new course pages.
+- Added actual Node regression tests and a GitHub Actions workflow for content, TypeScript and ASP.NET Core compilation.
+- Added `docs/releases/v1.1.0.md` with release title, target tag, checks and deployment limitations.
+
+### Changed
+- Enabled home page cards and links for all ten modules, and synchronized frontend/offline and ASP.NET Core catalogs.
+- Updated PWA cache paths to work under `/LangSteps/`, including precaching the new lesson assets.
+- Updated package and server metadata to v1.1.0 and calculated telemetry curriculum totals from the registered modules.
+
+### Security and reliability
+- Removed the publicly readable endpoint exposing user-submitted feedback from the optional backend.
+- Restricted allowed browser CORS origins on the backend.
+- Replaced simulated success responses from backend and TypeScript gateway with explicit execution-unavailable errors. Secure arbitrary-code execution is not included in this release.
+
+See [v1.1.0 release notes](docs/releases/v1.1.0.md) for setup, testing and known limitations.
+
+---
+
 ## [1.0.0] — 2026-10-14
 
 ### 🎉 LangSteps v1.0.0 — Official Stable Production Release

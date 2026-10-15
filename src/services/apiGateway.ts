@@ -2,7 +2,7 @@
  * LangSteps Enterprise API Gateway
  * Connects frontend clients to ASP.NET Core backend endpoints with offline fallback caching
  * Author: Sanskar <sanskarin@outlook.in>
- * Version: 1.0.0
+ * Version: 1.1.0
  */
 
 import type { ExecutionResult } from '../types/index.js';
@@ -22,38 +22,39 @@ export interface ExecutionPayload {
 export class ApiGateway {
   private baseUrl: string;
 
-  constructor(baseUrl: string = 'http://localhost:5000') {
-    this.baseUrl = baseUrl;
+  constructor(baseUrl: string = '') {
+    this.baseUrl = baseUrl.replace(/\/$/, '');
   }
 
   public async executeCode(payload: ExecutionPayload): Promise<ApiResponse<ExecutionResult>> {
     try {
-      const response = await fetch(`${this.baseUrl}/api/execute`, {
+      const response = await fetch(`${this.baseUrl}/api/playground/execute`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
       });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error ${response.status}`);
+      if (!response.ok) return { success: false, error: `HTTP ${response.status}` };
+      const result: {
+        success: boolean; output: string; error: string | null;
+        executionTimeMs: number; language: string;
+      } = await response.json();
+      if (!result.success) {
+        return { success: false, error: result.error || 'Execution unavailable' };
       }
-
-      const data = await response.json();
-      return { success: true, data };
-    } catch (err) {
-      // Offline simulation fallback
       return {
         success: true,
-        isOfflineFallback: true,
         data: {
-          language: payload.language,
-          stdout: `[Offline Local Runner]\nCode executed successfully in browser simulation.\nOutput: ${payload.code.substring(0, 40)}...`,
-          stderr: '',
-          exitCode: 0,
-          durationMs: 4.2,
-          hasErrors: false,
-          status: 'success'
+          language: result.language, stdout: result.output, stderr: '',
+          exitCode: 0, durationMs: result.executionTimeMs,
+          hasErrors: false, status: 'success'
         }
+      };
+    } catch {
+      // GitHub Pages is static; never fabricate successful compilation/execution.
+      return {
+        success: false,
+        isOfflineFallback: true,
+        error: 'The execution API is unavailable. Use a local compiler or a trusted sandbox.'
       };
     }
   }
