@@ -16,9 +16,9 @@ builder.Services.AddSingleton<IFeedbackService, FeedbackService>();
 // Enable CORS for frontend and GitHub Pages
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAll", policy =>
+    options.AddPolicy("SiteOrigins", policy =>
     {
-        policy.AllowAnyOrigin()
+        policy.WithOrigins("https://sanskarin.github.io", "http://localhost:3000", "http://localhost:5173")
               .AllowAnyMethod()
               .AllowAnyHeader();
     });
@@ -26,7 +26,7 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-app.UseCors("AllowAll");
+app.UseCors("SiteOrigins");
 
 // Serve frontend static files from the repository root if directory exists
 var repoRoot = Path.GetFullPath(Path.Combine(app.Environment.ContentRootPath, "..", ".."));
@@ -52,7 +52,7 @@ app.MapGet("/api/health", (IContentService content, IQuizService quiz) =>
 {
     var response = new HealthStatusResponse(
         Status: "healthy",
-        Version: "5.4.0",
+        Version: "1.1.0",
         Platform: "LangSteps.Server (ASP.NET Core / C#)",
         Timestamp: DateTime.UtcNow.ToString("o"),
         ServerTime: DateTime.UtcNow.ToString("R"),
@@ -144,7 +144,7 @@ app.MapGet("/api/stats/summary", (IContentService content, IQuizService quiz) =>
         TotalQuestions: quiz.GetTotalQuestionCount(),
         SupportedLanguages: modules.Select(m => m.Slug).ToArray(),
         EcosystemLinksCount: 12,
-        Version: "1.0.0-stable",
+        Version: "1.1.0",
         Timestamp: DateTime.UtcNow.ToString("o")
     );
     return Results.Ok(stats);
@@ -177,7 +177,7 @@ app.MapPost("/api/feedback/submit", (UserFeedbackRequest request, IFeedbackServi
     return response.Success ? Results.Ok(response) : Results.BadRequest(response);
 });
 
-app.MapGet("/api/feedback/all", (IFeedbackService feedback) => Results.Ok(feedback.GetAllFeedback()));
+// Feedback messages contain personal data. No anonymous read endpoint is exposed.
 
 app.Run();
 
