@@ -1,14 +1,15 @@
 {
   "name": "langsteps",
-  "version": "1.0.0",
-  "description": "LangSteps: Premium, state-of-the-art polyglot interactive learning platform for mastering Python, TypeScript, JavaScript, HTML, CSS, React, and ASP.NET Core with live code sandboxes, gamified quiz modules, and dual-runtime cloud & client execution.",
+  "version": "1.1.0",
+  "description": "Open-source programming lessons for HTML, CSS, JavaScript, React, Python, TypeScript, Rust, Go, SQL and C#, with an optional ASP.NET Core backend.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
     "watch": "tsc --watch",
     "typecheck": "tsc --noEmit",
-    "test": "echo \"Execution tests completed successfully\" && exit 0"
+    "test": "node --test tests/*.test.cjs",
+    "check": "npm run test && npm run typecheck"
   },
   "repository": {
     "type": "git",
@@ -31,7 +32,7 @@
     "interactive-learning",
     "langsteps"
   ],
-  "type": "commonjs",
+  "type": "module",
   "devDependencies": {
     "@types/node": "^26.6.5",
     "eslint": "^10.10.0",
