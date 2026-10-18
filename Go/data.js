@@ -148,8 +148,8 @@ window.LANGSTEPS_COURSE = {
       "category": "Web",
       "title": "HTTP server and JSON",
       "summary": "Expose an API with the standard library.",
-      "explanation": "net/http manages routing and response lifecycles. Always set an appropriate content type and handle errors in real services.",
-      "code": "package main\nimport (\"encoding/json\";\"net/http\")\nfunc main() {\n  http.HandleFunc(\"/api/health\", func(w http.ResponseWriter, r *http.Request) {\n    w.Header().Set(\"Content-Type\",\"application/json\")\n    json.NewEncoder(w).Encode(map[string]string{\"status\":\"ok\"})\n  })\n  http.ListenAndServe(\":8080\", nil)\n}",
+      "explanation": "net/http provides routing and response lifecycles. Set an appropriate content type, handle response encoding errors and report server startup failures; production services should also configure request timeouts.",
+      "code": "package main\nimport (\"encoding/json\"; \"log\"; \"net/http\")\nfunc main() {\n  http.HandleFunc(\"/api/health\", func(w http.ResponseWriter, r *http.Request) {\n    w.Header().Set(\"Content-Type\", \"application/json\")\n    if err := json.NewEncoder(w).Encode(map[string]string{\"status\": \"ok\"}); err != nil {\n      log.Printf(\"response failed: %v\", err)\n    }\n  })\n  log.Fatal(http.ListenAndServe(\":8080\", nil))\n}",
       "challenge": "Run it locally and request http://localhost:8080/api/health.",
       "level": "Advanced"
     }
