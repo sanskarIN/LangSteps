@@ -2,7 +2,7 @@
  * LangSteps Enterprise API Gateway
  * Connects frontend clients to ASP.NET Core backend endpoints with offline fallback caching
  * Author: Sanskar <sanskarin@outlook.in>
- * Version: 1.1.0
+ * Version: 1.1.1
  */
 
 import type { ExecutionResult } from '../types/index.js';
@@ -89,7 +89,7 @@ export class ApiGateway {
         success: true,
         isOfflineFallback: true,
         data: {
-          platform: 'LangSteps v1.0.0',
+          platform: 'LangSteps v1.1.1',
           activeCurricula: 10,
           totalConcepts: 480,
           status: 'Operational'
