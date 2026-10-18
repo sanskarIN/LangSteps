@@ -4,6 +4,31 @@ All notable changes to **LangSteps** will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [1.1.1] — Unreleased (maintenance branch)
+
+### Fixed
+- Prevented malformed lesson deep links from crashing the Go, SQL and C# curriculum viewer.
+- Eliminated duplicated lesson rendering during hash-based navigation; improved keyboard focus and copy feedback.
+- Added a code-selection fallback when clipboard access is unavailable.
+- Corrected C# record/model-binding examples and a complete ASP.NET Core CORS example.
+- Made the Go HTTP server tutorial report startup and JSON response errors.
+- Matched the Go server module category list with actual published lessons.
+
+### Improved
+- Preserved existing lesson completion storage keys across patch updates.
+- Prefer fresh HTML while online and cached lessons while offline; restrict service worker behavior to the LangSteps project scope.
+- Prevented deletion of unrelated applications' browser caches on a shared GitHub Pages host.
+- Removed fabricated leaderboard entries and disallowed arbitrary XP submissions to the optional API.
+- Validated quiz language, answers, elapsed time and username lengths in the optional ASP.NET Core backend.
+- Added browser-model curriculum tests and offline-cache boundary regressions.
+- Bumped package, frontend health, gateway and backend version metadata to `1.1.1`.
+- Retired the completed one-time v1.1.0 release publisher.
+
+### Release status
+Prepared for review on `release/v1.1.1`; **no v1.1.1 GitHub tag or release has been published**. See [release preparation](docs/releases/v1.1.1.md) and [public notes draft](docs/releases/v1.1.1-public.md).
+
+---
+
 ## [1.1.0] — Unreleased
 
 ### Added
