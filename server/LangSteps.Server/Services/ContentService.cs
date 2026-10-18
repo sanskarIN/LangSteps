@@ -72,7 +72,7 @@ public class ContentService : IContentService
             "go", "Go", "go", "🐹", "Go Mastery",
             "Guided Go lessons: types, interfaces, concurrency, testing and APIs",
             "Go/index.html", 15, 7,
-            new[] { "Foundations", "Collections", "Types", "Reliability", "Concurrency", "Tooling", "Web", "Advanced" }
+            new[] { "Foundations", "Collections", "Types", "Reliability", "Concurrency", "Tooling", "Web" }
         ),
         new LanguageModule(
             "sql", "SQL", "sql", "🗄️", "SQL Mastery",
