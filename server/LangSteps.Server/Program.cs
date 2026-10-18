@@ -86,9 +86,17 @@ app.MapGet("/api/quiz/{language}", (string language, IQuizService quiz) =>
 // 5. Submit Quiz & Calculate Results
 app.MapPost("/api/quiz/submit", (QuizSubmissionRequest request, IQuizService quiz) =>
 {
-    if (string.IsNullOrWhiteSpace(request.Language))
+    if (string.IsNullOrWhiteSpace(request.Language) || quiz.GetQuestions(request.Language).Count == 0)
     {
-        return Results.BadRequest(new { error = "Language is required in submission." });
+        return Results.BadRequest(new { error = "Choose a language with available quiz questions." });
+    }
+    if (request.Answers is null || request.TimeSpentSeconds < 0 || request.TimeSpentSeconds > 86400)
+    {
+        return Results.BadRequest(new { error = "Answers and a valid elapsed time (0-86400 seconds) are required." });
+    }
+    if (request.Username?.Trim().Length > 40)
+    {
+        return Results.BadRequest(new { error = "Username must be 40 characters or fewer." });
     }
 
     var result = quiz.Evaluate(request);
@@ -101,18 +109,10 @@ app.MapGet("/api/leaderboard", (IQuizService quiz) =>
     return Results.Ok(quiz.GetLeaderboard());
 });
 
-app.MapPost("/api/leaderboard", (LeaderboardSubmitRequest body, IQuizService quiz) =>
-{
-    if (string.IsNullOrWhiteSpace(body.Username))
-    {
-        return Results.BadRequest(new { error = "Username is required." });
-    }
+// Scores originate from evaluated quizzes; arbitrary XP submissions are not accepted.
+// This optional demo backend's leaderboard is in-memory and not identity-verified.
 
-    var entry = quiz.AddLeaderboardEntry(body.Username, body.XpEarned, body.Language ?? "general");
-    return Results.Ok(entry);
-});
-
-// 7. Developer Profile & Official Ecosystem Links
+// // 7. Developer Profile & Official Ecosystem Links
 app.MapGet("/api/profile", (IProfileService profileService) =>
 {
     return Results.Ok(profileService.GetProfile());
@@ -181,4 +181,3 @@ app.MapPost("/api/feedback/submit", (UserFeedbackRequest request, IFeedbackServi
 
 app.Run();
 
-public record LeaderboardSubmitRequest(string Username, int XpEarned, string? Language = null);
