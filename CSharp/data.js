@@ -29,7 +29,7 @@ window.LANGSTEPS_COURSE = {
       "title": "Records and immutability",
       "summary": "Represent value-like domain models with records.",
       "explanation": "Records generate useful equality and ToString behavior. The with expression makes a copy with selected properties changed.",
-      "code": "public record Student(string Name, int XP);\nvar original = new Student(\"Sam\", 10);\nvar improved = original with { XP = 20 };\nConsole.WriteLine(improved);",
+      "code": "var original = new Student(\"Sam\", 10);\nvar improved = original with { XP = 20 };\nConsole.WriteLine(improved);\n\npublic record Student(string Name, int XP);",
       "challenge": "Compare original and improved for equality.",
       "level": "Intermediate"
     },
@@ -119,7 +119,7 @@ window.LANGSTEPS_COURSE = {
       "title": "DTO validation and binding",
       "summary": "Separate request contracts from internal models.",
       "explanation": "Use request DTOs with validation to reject malformed inputs. Treat all client-provided data as untrusted, even in internal tools.",
-      "code": "record CreateNote(string Title);\nvar builder = WebApplication.CreateBuilder(args);\nvar app = builder.Build();\napp.MapPost(\"/notes\", (CreateNote note) =>\n  string.IsNullOrWhiteSpace(note.Title)\n    ? Results.BadRequest(new { error = \"Title required\" })\n    : Results.Created(\"/notes/1\", new { id = 1, note.Title }));\napp.Run();",
+      "code": "var builder = WebApplication.CreateBuilder(args);\nvar app = builder.Build();\napp.MapPost(\"/notes\", (CreateNote note) =>\n  string.IsNullOrWhiteSpace(note.Title)\n    ? Results.BadRequest(new { error = \"Title required\" })\n    : Results.Created(\"/notes/1\", new { id = 1, note.Title }));\napp.Run();\n\nrecord CreateNote(string Title);",
       "challenge": "Add a maximum-length check for the title.",
       "level": "Advanced"
     },
@@ -129,7 +129,7 @@ window.LANGSTEPS_COURSE = {
       "title": "CORS and authentication",
       "summary": "Distinguish browser origin rules from API authorization.",
       "explanation": "CORS controls which browser origins may read responses; it is not authentication. Protect sensitive data with authentication and authorization regardless of CORS.",
-      "code": "builder.Services.AddCors(options => options.AddPolicy(\"Site\", policy =>\n  policy.WithOrigins(\"https://example.github.io\")\n        .AllowAnyHeader().AllowAnyMethod()));\n// After app = builder.Build():\napp.UseCors(\"Site\");",
+      "code": "var builder = WebApplication.CreateBuilder(args);\nbuilder.Services.AddCors(options => options.AddPolicy(\"Site\", policy =>\n  policy.WithOrigins(\"https://example.github.io\")\n        .AllowAnyHeader()\n        .AllowAnyMethod()));\nvar app = builder.Build();\napp.UseCors(\"Site\");\napp.MapGet(\"/api/health\", () => Results.Ok(new { status = \"healthy\" }));\napp.Run();",
       "challenge": "Explain why AllowAnyOrigin does not secure private endpoints.",
       "level": "Advanced"
     },
