@@ -15,6 +15,7 @@ public class QuizService : IQuizService
 {
     private readonly Dictionary<string, List<QuizQuestionItem>> _questionsByLang = new(StringComparer.OrdinalIgnoreCase);
     private readonly List<LeaderboardEntryItem> _leaderboard = new();
+    private readonly object _leaderboardLock = new();
 
     public QuizService()
     {
@@ -106,11 +107,18 @@ public class QuizService : IQuizService
         );
     }
 
-    public IReadOnlyList<LeaderboardEntryItem> GetLeaderboard() =>
-        _leaderboard.OrderByDescending(x => x.TotalXP).Take(10).ToList();
+    public IReadOnlyList<LeaderboardEntryItem> GetLeaderboard()
+    {
+        lock (_leaderboardLock)
+        {
+            return _leaderboard.OrderByDescending(x => x.TotalXP).Take(10).ToList();
+        }
+    }
 
     public LeaderboardEntryItem AddLeaderboardEntry(string username, int xpEarned, string language)
     {
+        lock (_leaderboardLock)
+        {
         var existing = _leaderboard.FirstOrDefault(l => l.Username.Equals(username, StringComparison.OrdinalIgnoreCase));
         if (existing != null)
         {
@@ -146,6 +154,7 @@ public class QuizService : IQuizService
 
         _leaderboard.Add(entry);
         return entry;
+        }
     }
 
     private void InitializeQuestions()
