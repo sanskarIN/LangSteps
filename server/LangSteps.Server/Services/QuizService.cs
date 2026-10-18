@@ -19,7 +19,6 @@ public class QuizService : IQuizService
     public QuizService()
     {
         InitializeQuestions();
-        InitializeLeaderboard();
     }
 
     public IReadOnlyList<QuizQuestionItem> GetQuestions(string language)
@@ -224,12 +223,4 @@ public class QuizService : IQuizService
         };
     }
 
-    private void InitializeLeaderboard()
-    {
-        _leaderboard.Add(new LeaderboardEntryItem("lb-01", "sanskarIN", 12500, 15, 100, "LangSteps Grandmaster 👑", "sanskar", "2026-10-14"));
-        _leaderboard.Add(new LeaderboardEntryItem("lb-02", "AlexRivera", 9200, 11, 85, "Systems Engineer 🚀", "alex", "2026-10-13"));
-        _leaderboard.Add(new LeaderboardEntryItem("lb-03", "ElenaRostova", 7800, 9, 72, "Architecture Specialist 🏛️", "elena", "2026-10-12"));
-        _leaderboard.Add(new LeaderboardEntryItem("lb-04", "KenjiSato", 6400, 8, 60, "Architecture Specialist 🏛️", "kenji", "2026-10-11"));
-        _leaderboard.Add(new LeaderboardEntryItem("lb-05", "PriyaSharma", 5100, 6, 50, "Syntax Craftsman 🛠️", "priya", "2026-10-10"));
-    }
 }
