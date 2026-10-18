@@ -2,13 +2,17 @@
 
 ### HTML · CSS · JavaScript · React · Python · TypeScript · Rust · Go · SQL · C# — 10 Learning Paths | By Sanskar Developer
 
-A premium, state-of-the-art interactive learning platform designed to help developers master **HTML** (100+ tags), **CSS** (200+ properties), **JavaScript** (100+ concepts), **React** (100+ concepts), **Python** (100+ concepts), **TypeScript** (50+ concepts), **Rust** (30+ concepts), **Go** (15 guided lessons), **SQL** (15 guided lessons), and **C#** (15 guided lessons) through in-depth explanations, real-time code execution, live sandboxes, persistent progress tracking, gamified mechanics, quiz systems, and premium dark UI with 25+ themes.
+A premium, state-of-the-art interactive learning platform designed to help developers master **HTML** (100+ tags), **CSS** (200+ properties), **JavaScript** (100+ concepts), **React** (100+ concepts), **Python** (100+ concepts), **TypeScript** (50+ concepts), **Rust** (30+ concepts), **Go** (15 guided lessons), **SQL** (15 guided lessons), and **C#** (15 guided lessons) through in-depth explanations, interactive browser exercises and demos, persistent progress tracking, gamified mechanics, quizzes, and a dark UI with 25+ themes. Runtime support varies by module; the new Go, SQL and C# course examples are displayed for study rather than executed on GitHub Pages.
 
 This platform requires **no compilation, no server setup, and no dependencies**. It operates entirely in the client browser using vanilla technologies (HTML5, JavaScript, CSS3), making it lightweight, easily shareable, and highly responsive.
 
+## 🛠️ Preparing v1.1.1
+
+Maintenance fixes are in progress on [`release/v1.1.1`](https://github.com/sanskarIN/LangSteps/tree/release/v1.1.1). Improvements focus on navigation, clipboard fallback, PWA freshness, tutorial correctness, quiz input validation and removal of fictional leaderboard scores. Existing learner progress keys are preserved. This is **not yet a published release**; see the [v1.1.1 checklist](docs/releases/v1.1.1.md).
+
 ## 🆕 v1.1.0 — Three released curricula
 
-**Live in the v1.1.0 release branch:** [Go](Go/index.html), [SQL](SQL/index.html), and [C# 13 / ASP.NET Core](CSharp/index.html). Each includes 15 curated lessons, search, category filters, code examples, practice prompts, deep links, and browser-local completion tracking. For this release the new paths are reference and study material, not a remote code compiler.
+**Released in v1.1.0:** [Go](Go/index.html), [SQL](SQL/index.html), and [C# 13 / ASP.NET Core](CSharp/index.html). Each includes 15 curated lessons, search, category filters, code examples, practice prompts, deep links, and browser-local completion tracking. For this release the new paths are reference and study material, not a remote code compiler.
 
 **Important:** GitHub Pages hosts the static lessons. The optional `server/LangSteps.Server` ASP.NET Core project needs independent HTTPS hosting. No production server URL or secure remote execution service is included in the static release. See [release notes](docs/releases/v1.1.0.md) for CI, known limitations and the release checklist.
 
