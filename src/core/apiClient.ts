@@ -100,10 +100,7 @@ export class LangStepsApiClient {
       } catch {}
     }
 
-    return [
-      { id: 'lb-1', username: 'SanskarIN', totalXP: 10000, quizzesCompleted: 10, masteredCount: 100, rankTitle: 'LangSteps Grandmaster 👑', avatarSeed: 'sanskar', date: '2026-10-14' },
-      { id: 'lb-2', username: 'DevPioneer', totalXP: 8200, quizzesCompleted: 8, masteredCount: 82, rankTitle: 'Systems Engineer 🚀', avatarSeed: 'pioneer', date: '2026-10-13' },
-      { id: 'lb-3', username: 'AsyncCoder', totalXP: 6500, quizzesCompleted: 6, masteredCount: 65, rankTitle: 'Architecture Specialist 🏛️', avatarSeed: 'async', date: '2026-10-12' }
-    ];
+    // An offline user with no saved results has no verified leaderboard entries.
+    return [];
   }
 }
