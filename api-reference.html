@@ -89,26 +89,26 @@
 
         function renderApis(filtered) {
             const list = document.getElementById('apiList');
-            list.innerHTML = filtered.map((api, i) => \`
+            list.innerHTML = filtered.map((api, i) => `
                 <div class="accordion-item">
-                    <div class="accordion-header" onclick="toggleAcc(\${i})">
-                        <h2>\${api.name}</h2>
+                    <div class="accordion-header" onclick="toggleAcc(${i})">
+                        <h2>${api.name}</h2>
                         <div class="badges">
-                            \${api.support.map(s => \`<span class="badge">\${s}</span>\`).join('')}
+                            ${api.support.map(s => `<span class="badge">${s}</span>`).join('')}
                         </div>
                     </div>
-                    <div class="accordion-content" id="content-\${i}">
-                        <p><strong>Description:</strong> \${api.desc}</p>
-                        <pre><code>\${api.syntax}</code></pre>
+                    <div class="accordion-content" id="content-${i}">
+                        <p><strong>Description:</strong> ${api.desc}</p>
+                        <pre><code>${api.syntax}</code></pre>
                         <div class="use-cases">
                             <strong>Common Use Cases:</strong>
                             <ul>
-                                \${api.uses.map(u => \`<li>\${u}</li>\`).join('')}
+                                ${api.uses.map(u => `<li>${u}</li>`).join('')}
                             </ul>
                         </div>
                     </div>
                 </div>
-            \`).join('');
+            `).join('');
         }
 
         function filterApis() {
@@ -122,9 +122,9 @@
 
         let openIndex = null;
         function toggleAcc(index) {
-            const el = document.getElementById(\`content-\${index}\`);
+            const el = document.getElementById(`content-${index}`);
             if (openIndex !== null && openIndex !== index) {
-                document.getElementById(\`content-\${openIndex}\`).classList.remove('active');
+                document.getElementById(`content-${openIndex}`).classList.remove('active');
             }
             el.classList.toggle('active');
             openIndex = el.classList.contains('active') ? index : null;
