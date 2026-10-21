@@ -4,6 +4,23 @@ All notable changes to **LangSteps** will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [1.2.0] — In development (not released)
+
+### Added
+- Introduced a strict TypeScript curriculum runtime for browser-local mastery storage and lesson navigation.
+- Added Previous/Next lesson controls for the Go, SQL and C# learning paths.
+- Added automated test coverage for TypeScript progress persistence, URL parsing and guided navigation.
+- Added CI checks to ensure compiled browser assets match their TypeScript source before merging.
+
+### Changed
+- Reused existing v1.1.0 learner progress keys through a typed storage adapter, preserving completed lessons.
+- Added offline precaching for the new navigation and progress helper scripts.
+- Documented the incremental migration and validation plan in `docs/releases/v1.2.0.md`.
+
+**Status:** Work in progress on `release/v1.2.0`. v1.1.1 remains the latest stable GitHub release.
+
+---
+
 ## [1.1.1] — Unreleased (maintenance branch)
 
 ### Fixed
