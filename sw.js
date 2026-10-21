@@ -6,6 +6,7 @@ const CORE_ASSETS = [
   './manifest.json',
   './curriculum/learning.css',
   './curriculum/learning.js',
+  './curriculum/progress.js',
   './Go/index.html',
   './Go/data.js',
   './SQL/index.html',
