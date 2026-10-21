@@ -7,14 +7,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [1.2.0] — In development (not released)
 
 ### Added
-- Introduced a strict TypeScript curriculum runtime for browser-local mastery storage and lesson navigation.
+- Introduced a strict TypeScript curriculum runtime for browser-local mastery storage, lesson navigation and the complete lesson viewer.
+- Added an accessible shared TypeScript donation dialog controller with focus restoration and keyboard handling.
 - Added Previous/Next lesson controls for the Go, SQL and C# learning paths.
-- Added automated test coverage for TypeScript progress persistence, URL parsing and guided navigation.
+- Added automated test coverage for TypeScript progress persistence, URL parsing, guided navigation, donation dialog keyboard behavior and support link completeness.
 - Added CI checks to ensure compiled browser assets match their TypeScript source before merging.
 
 ### Changed
 - Reused existing v1.1.0 learner progress keys through a typed storage adapter, preserving completed lessons.
-- Added offline precaching for the new navigation and progress helper scripts.
+- Added offline precaching for typed navigation, progress, viewer and donation scripts using a v1.2 development cache.
+- Restored visible Razorpay, Buy Me a Coffee and PayPal choices in all ten root/course Privacy and Terms dialogs through stable-site hotfix PR #7.
 - Documented the incremental migration and validation plan in `docs/releases/v1.2.0.md`.
 
 **Status:** Work in progress on `release/v1.2.0`. v1.1.1 remains the latest stable GitHub release.
