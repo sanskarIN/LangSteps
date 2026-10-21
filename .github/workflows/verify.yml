@@ -29,7 +29,7 @@ jobs:
       - name: Check shared curriculum TypeScript
         run: npm run typecheck:curriculum
       - name: Compile browser curriculum module and verify tracked output
-        run: npm run build:curriculum && git diff --exit-code -- curriculum/progress.js curriculum/navigation.js curriculum/donation.js curriculum/learning.js
+        run: npm run build:curriculum && git diff --exit-code -- curriculum/progress.js curriculum/navigation.js curriculum/donation.js curriculum/learning.js curriculum/api-reference.js
       - name: Compile TypeScript
         run: npm run build
 
