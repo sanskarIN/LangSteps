@@ -24,7 +24,6 @@ public class ProfileService : IProfileService
             Devto: "https://dev.to/SanskarCodes",
             Bluesky: "https://SanskarCodes.bsky.social",
             Instagram: "https://instagram.com/SanskarCode",
-            Threads: "https://threads.com/SanskarCode",
             Github: "https://github.com/sanskarIN"
         );
 
