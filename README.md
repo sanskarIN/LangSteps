@@ -12,9 +12,11 @@ The [v1.2.0 development branch](https://github.com/sanskarIN/LangSteps/tree/rele
 
 This work is **not yet released**. The current stable release is [v1.1.1](https://github.com/sanskarIN/LangSteps/releases/tag/v1.1.1). See the [v1.2.0 development notes](docs/releases/v1.2.0.md).
 
-## 🛠️ Preparing v1.1.1
+## ✅ v1.1.1 — Stable release
 
-Maintenance fixes are in progress on [`release/v1.1.1`](https://github.com/sanskarIN/LangSteps/tree/release/v1.1.1). Improvements focus on navigation, clipboard fallback, PWA freshness, tutorial correctness, quiz input validation and removal of fictional leaderboard scores. Existing learner progress keys are preserved. The optional quiz API now omits answer keys from question downloads, validates submitted choices, and returns explanations only in scored reviews. CI runs a live backend quiz smoke test. This is **not yet a published release**; see the [v1.1.1 checklist](docs/releases/v1.1.1.md).
+[LangSteps v1.1.1](https://github.com/sanskarIN/LangSteps/releases/tag/v1.1.1) is published as a stable maintenance update. The release improves curriculum navigation, keyboard focus, offline freshness, Go/C# examples, quiz API validation and answer privacy while preserving existing learner progress keys.
+
+For the exact scope, see the [v1.1.1 public release notes](docs/releases/v1.1.1-public.md). New development work continues separately on `release/v1.2.0`.
 
 ## 🆕 v1.1.0 — Three released curricula
 
