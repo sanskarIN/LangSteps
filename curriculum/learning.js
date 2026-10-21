@@ -38,13 +38,7 @@
   }
 
   function hashId() {
-    // Hand-edited URLs can contain invalid percent escapes, e.g. #bad%ZZ.
-    const raw = window.location.hash.replace(/^#/, '');
-    try {
-      return decodeURIComponent(raw);
-    } catch {
-      return '';
-    }
+    return window.LangStepsNavigation.readHash(window.location.hash);
   }
 
   function filteredLessons() {
@@ -167,6 +161,18 @@
       mark.setAttribute('aria-pressed', String(learned.has(lesson.id)));
       renderList();
     });
+
+    const neighbors = window.LangStepsNavigation.neighbors(course.lessons.map(item => item.id), lesson.id);
+    if (neighbors.previous) {
+      const previous = element('button', '← Previous lesson', 'action secondary');
+      previous.type = 'button';
+      previous.addEventListener('click', () => navigate(neighbors.previous));
+    }
+    if (neighbors.next) {
+      const next = element('button', 'Next lesson →', 'action secondary');
+      next.type = 'button';
+      next.addEventListener('click', () => navigate(neighbors.next));
+    }
 
     renderList();
     if (focusHeading && typeof heading.focus === 'function') {
