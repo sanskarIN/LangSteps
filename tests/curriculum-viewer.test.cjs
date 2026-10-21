@@ -7,6 +7,7 @@ const vm = require('node:vm');
 
 const viewer = fs.readFileSync(path.join(__dirname, '../curriculum/learning.js'), 'utf8');
 const progressModule = fs.readFileSync(path.join(__dirname, '../curriculum/progress.js'), 'utf8');
+const navigationModule = fs.readFileSync(path.join(__dirname, '../curriculum/navigation.js'), 'utf8');
 
 class Element {
   constructor(tag = 'div') {
@@ -74,6 +75,7 @@ function mount({ hash = '', saved = '[]', storageDisabled = false, clipboard = n
   };
   const sandbox = { window: win, document: doc, localStorage: storage, navigator: { clipboard } };
   vm.runInNewContext(progressModule, sandbox, { timeout: 1000, filename: 'progress.js' });
+  vm.runInNewContext(navigationModule, sandbox, { timeout: 1000, filename: 'navigation.js' });
   vm.runInNewContext(viewer, sandbox, { timeout: 1000, filename: 'learning.js' });
   const content = elements['lesson-content'];
   return {
@@ -174,4 +176,20 @@ test('Completing a lesson updates the pressed state without detaching the focuse
   assert.equal(button.getAttribute('aria-pressed'), 'false');
   assert.equal(button.textContent, 'Mark lesson complete');
   assert.equal(app.elements['progress'].value, 0);
+});
+
+test('Guided navigation follows curriculum order and respects hash-based browser history', () => {
+  const app = mount({ hash: '#hello' });
+  const next = app.buttons().find(btn => btn.textContent === 'Next lesson →');
+  assert.ok(next, 'first lesson should offer a next button');
+  assert.equal(app.buttons().some(btn => btn.textContent === '← Previous lesson'), false);
+  next.click();
+  assert.equal(app.loc.hash, '#channels');
+  assert.match(app.content.textContent, /Channels/);
+  const previous = app.buttons().find(btn => btn.textContent === '← Previous lesson');
+  assert.ok(previous, 'last lesson should offer a previous button');
+  assert.equal(app.buttons().some(btn => btn.textContent === 'Next lesson →'), false);
+  previous.click();
+  assert.equal(app.loc.hash, '#hello');
+  assert.match(app.content.textContent, /Hello/);
 });
