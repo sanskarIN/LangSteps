@@ -129,7 +129,7 @@ test('Search and category filters update available lessons safely', () => {
   const app = mount();
   app.elements['lesson-search'].value = 'channels';
   app.elements['lesson-search'].dispatch('input');
-  assert.equal(app.elements['result-count'].textContent, '1 lessons');
+  assert.equal(app.elements['result-count'].textContent, '1 lesson');
   assert.equal(app.lessonButtons().length, 1);
   app.elements['lesson-category'].value = 'Foundations';
   app.elements['lesson-category'].dispatch('change');
@@ -152,4 +152,24 @@ test('When available, clipboard receives exact source text', async () => {
   await new Promise(resolve => setImmediate(resolve));
   assert.deepEqual(writes, ['fmt.Println("Hi")']);
   assert.match(app.content.textContent, /Example copied to clipboard/);
+});
+
+test('Completing a lesson updates the pressed state without detaching the focused button', () => {
+  const app = mount();
+  const button = app.buttons().find(btn => btn.textContent === 'Mark lesson complete');
+  const heading = app.content.children.find(el => el.tagName === 'h2');
+  button.focus();
+  button.click();
+  assert.equal(button.focusCount, 1);
+  assert.ok(app.buttons().includes(button), 'the focused button should remain mounted');
+  assert.ok(app.content.children.includes(heading), 'the displayed lesson should not be rebuilt');
+  assert.equal(button.getAttribute('aria-pressed'), 'true');
+  assert.match(button.textContent, /Completed/);
+  assert.equal(app.elements['progress'].value, 1);
+
+  button.click();
+  assert.ok(app.buttons().includes(button));
+  assert.equal(button.getAttribute('aria-pressed'), 'false');
+  assert.equal(button.textContent, 'Mark lesson complete');
+  assert.equal(app.elements['progress'].value, 0);
 });
