@@ -18,19 +18,11 @@
   const category = byId('lesson-category');
   const progress = byId('progress');
   const total = course.lessons.length;
-  const progressKey = 'langsteps:v1.1.0:mastery:' + course.slug;
+  const progressStore = window.LangStepsProgress.createStore(course.slug);
   const allowedIds = new Set(course.lessons.map(lesson => lesson.id));
   const lessonsById = new Map(course.lessons.map(lesson => [lesson.id, lesson]));
 
-  let learned = new Set();
-  try {
-    const saved = JSON.parse(localStorage.getItem(progressKey) || '[]');
-    if (Array.isArray(saved)) {
-      learned = new Set(saved.filter(id => typeof id === 'string' && allowedIds.has(id)));
-    }
-  } catch {
-    // Disabled, missing or corrupt storage must not break learning.
-  }
+  let learned = progressStore.read(allowedIds);
 
   let current = null;
   byId('course-title').textContent = course.title;
@@ -65,11 +57,7 @@
   }
 
   function saveProgress() {
-    try {
-      localStorage.setItem(progressKey, JSON.stringify([...learned]));
-    } catch {
-      // Private browsing / unavailable storage: progress remains usable this session.
-    }
+    progressStore.write(learned);
   }
 
   function updateProgress() {
