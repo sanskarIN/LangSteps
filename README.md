@@ -8,7 +8,7 @@ This platform requires **no compilation, no server setup, and no dependencies**.
 
 ## 🛠️ Preparing v1.1.1
 
-Maintenance fixes are in progress on [`release/v1.1.1`](https://github.com/sanskarIN/LangSteps/tree/release/v1.1.1). Improvements focus on navigation, clipboard fallback, PWA freshness, tutorial correctness, quiz input validation and removal of fictional leaderboard scores. Existing learner progress keys are preserved. This is **not yet a published release**; see the [v1.1.1 checklist](docs/releases/v1.1.1.md).
+Maintenance fixes are in progress on [`release/v1.1.1`](https://github.com/sanskarIN/LangSteps/tree/release/v1.1.1). Improvements focus on navigation, clipboard fallback, PWA freshness, tutorial correctness, quiz input validation and removal of fictional leaderboard scores. Existing learner progress keys are preserved. The optional quiz API now omits answer keys from question downloads, validates submitted choices, and returns explanations only in scored reviews. CI runs a live backend quiz smoke test. This is **not yet a published release**; see the [v1.1.1 checklist](docs/releases/v1.1.1.md).
 
 ## 🆕 v1.1.0 — Three released curricula
 
