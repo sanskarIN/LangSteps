@@ -9,5 +9,5 @@
     "noEmitOnError": true,
     "skipLibCheck": true
   },
-  "include": ["src/curriculum/progress.ts"]
+  "include": ["src/curriculum/*.ts"]
 }
