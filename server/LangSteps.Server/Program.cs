@@ -79,7 +79,10 @@ app.MapGet("/api/modules/{id}", (string id, IContentService content) =>
 // 4. Quiz Questions for Language
 app.MapGet("/api/quiz/{language}", (string language, IQuizService quiz) =>
 {
-    var questions = quiz.GetQuestions(language);
+    // Do not expose answer keys or explanations until a quiz has been submitted.
+    var questions = quiz.GetQuestions(language)
+        .Select(q => new PublicQuizQuestionItem(
+            q.Id, q.Language, q.Question, q.Options, q.Difficulty, q.CodeSnippet));
     return Results.Ok(questions);
 });
 
