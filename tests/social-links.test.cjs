@@ -32,6 +32,8 @@ function* projectSources(folder) {
 test('Project contains no Threads social links, icons or cards', () => {
   const offenders = [];
   for (const file of projectSources(root)) {
+    // This test contains the banned patterns as detection expressions.
+    if (file === __filename) continue;
     const source = fs.readFileSync(file, 'utf8');
     if (banned.some(rule => rule.test(source))) {
       offenders.push(path.relative(root, file).replaceAll(path.sep, '/'));
