@@ -60,4 +60,8 @@ reject_submission '{"language":"python","answers":{},"timeSpentSeconds":30}'
 reject_submission '{"language":"python","answers":{"999":0},"timeSpentSeconds":30}'
 reject_submission '{"language":"python","answers":{"1":99},"timeSpentSeconds":30}'
 
-echo "LangSteps API quiz smoke checks passed."
+# The public profile API must no longer advertise Threads.
+curl --silent --show-error --fail "$base_url/api/profile/socials" |
+  jq -e 'has("github") and (has("threads") | not)' >/dev/null
+
+echo "LangSteps API quiz and social profile smoke checks passed."
