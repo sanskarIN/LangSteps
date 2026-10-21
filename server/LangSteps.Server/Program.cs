@@ -102,6 +102,14 @@ app.MapPost("/api/quiz/submit", (QuizSubmissionRequest request, IQuizService qui
         return Results.BadRequest(new { error = "Username must be 40 characters or fewer." });
     }
 
+    var questions = quiz.GetQuestions(request.Language);
+    if (request.Answers.Count == 0 || request.Answers.Count > questions.Count ||
+        request.Answers.Any(answer => !questions.Any(q =>
+            q.Id == answer.Key && answer.Value >= 0 && answer.Value < q.Options.Length)))
+    {
+        return Results.BadRequest(new { error = "Submit at least one answer with a valid question ID and option index." });
+    }
+
     var result = quiz.Evaluate(request);
     return Results.Ok(result);
 });
