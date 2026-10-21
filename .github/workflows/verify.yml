@@ -26,6 +26,10 @@ jobs:
         run: npm install --ignore-scripts --no-audit --no-fund
       - name: Check TypeScript types
         run: npm run typecheck
+      - name: Check shared curriculum TypeScript
+        run: npm run typecheck:curriculum
+      - name: Compile browser curriculum module and verify tracked output
+        run: npm run build:curriculum && git diff --exit-code -- curriculum/progress.js
       - name: Compile TypeScript
         run: npm run build
 
