@@ -9,6 +9,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 - Introduced a strict TypeScript curriculum runtime for browser-local mastery storage, lesson navigation and the complete lesson viewer.
 - Added an accessible shared TypeScript donation dialog controller with focus restoration and keyboard handling.
+- Rebuilt the Web APIs Reference with 15 readable-without-JavaScript entries, category filtering, accessible disclosure sections, code examples and MDN links.
+- Added strict TypeScript enhancement for Web API search, reset, expand/collapse and slash-to-search keyboard navigation.
+- Added tests catching the original broken API Reference script and guarding progressive HTML / TypeScript search behavior.
 - Added Previous/Next lesson controls for the Go, SQL and C# learning paths.
 - Added automated test coverage for TypeScript progress persistence, URL parsing, guided navigation, donation dialog keyboard behavior and support link completeness.
 - Added CI checks to ensure compiled browser assets match their TypeScript source before merging.
