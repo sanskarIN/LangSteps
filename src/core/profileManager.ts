@@ -29,7 +29,6 @@ export const OFFICIAL_PROFILE: DeveloperProfile = {
     devto: 'https://dev.to/SanskarCodes',
     bluesky: 'https://SanskarCodes.bsky.social',
     instagram: 'https://instagram.com/SanskarCode',
-    threads: 'https://threads.com/SanskarCode'
   },
   support: {
     buymeacoffee: 'https://buymeacoffee.com/SanskarCodes',

@@ -968,7 +968,6 @@ Connect with Sanskar across social and developer platforms:
 - **Dev.to**: [@SanskarCodes](https://dev.to/SanskarCodes)
 - **Bluesky**: [@SanskarCodes.bsky.social](https://SanskarCodes.bsky.social)
 - **Instagram**: [@SanskarCode](https://instagram.com/SanskarCode)
-- **Threads**: [@SanskarCode](https://threads.com/SanskarCode)
 - **GitHub**: [@sanskarIN](https://github.com/sanskarIN)
 
 ---

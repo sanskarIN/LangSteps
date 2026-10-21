@@ -8,7 +8,6 @@ public record SocialLinks(
     string Devto,
     string Bluesky,
     string Instagram,
-    string Threads,
     string Github
 );
 
