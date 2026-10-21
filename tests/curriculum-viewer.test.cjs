@@ -6,6 +6,7 @@ const path = require('node:path');
 const vm = require('node:vm');
 
 const viewer = fs.readFileSync(path.join(__dirname, '../curriculum/learning.js'), 'utf8');
+const progressModule = fs.readFileSync(path.join(__dirname, '../curriculum/progress.js'), 'utf8');
 
 class Element {
   constructor(tag = 'div') {
@@ -72,6 +73,7 @@ function mount({ hash = '', saved = '[]', storageDisabled = false, clipboard = n
     addEventListener: (type, fn) => (events[type] ??= []).push(fn)
   };
   const sandbox = { window: win, document: doc, localStorage: storage, navigator: { clipboard } };
+  vm.runInNewContext(progressModule, sandbox, { timeout: 1000, filename: 'progress.js' });
   vm.runInNewContext(viewer, sandbox, { timeout: 1000, filename: 'learning.js' });
   const content = elements['lesson-content'];
   return {
