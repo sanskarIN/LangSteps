@@ -1,5 +1,5 @@
 /* LangSteps v1.1.1 offline service worker, scoped to the GitHub Pages project. */
-const CACHE_NAME = 'langsteps-v1.1.1';
+const CACHE_NAME = 'langsteps-v1.2.0-dev1';
 const CORE_ASSETS = [
   './',
   './index.html',
@@ -8,6 +8,9 @@ const CORE_ASSETS = [
   './curriculum/learning.js',
   './curriculum/progress.js',
   './curriculum/navigation.js',
+  './curriculum/donation.js',
+  './privacy.html',
+  './terms.html',
   './Go/index.html',
   './Go/data.js',
   './SQL/index.html',
