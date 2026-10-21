@@ -10,7 +10,6 @@ export interface SocialLinks {
   devto: string;
   bluesky: string;
   instagram: string;
-  threads: string;
 }
 
 export interface SupportLinks {
