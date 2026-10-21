@@ -91,7 +91,7 @@
   function renderList() {
     sidebar.replaceChildren();
     const items = filteredLessons();
-    byId('result-count').textContent = items.length + ' lessons';
+    byId('result-count').textContent = items.length + (items.length === 1 ? ' lesson' : ' lessons');
     if (!items.length) {
       const empty = document.createElement('p');
       empty.textContent = 'No matching lessons. Try another search or category.';
