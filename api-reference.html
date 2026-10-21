@@ -1,136 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web API Reference</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="splash.png">
-    <style>
-        :root {
-            --bg: #0b0f19;
-            --text: #f8fafc;
-            --accent1: #6c63ff;
-            --accent2: #3ecfcf;
-            --surface: rgba(255, 255, 255, 0.05);
-            --border: rgba(255, 255, 255, 0.1);
-        }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
-        body { background-color: var(--bg); color: var(--text); padding: 2rem; max-width: 1200px; margin: 0 auto; }
-        h1 { text-align: center; margin-bottom: 2rem; background: linear-gradient(45deg, var(--accent1), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .search-bar { width: 100%; padding: 1rem; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); color: var(--text); outline: none; margin-bottom: 2rem; font-size: 1.1rem; }
-        .accordion { display: flex; flex-direction: column; gap: 1rem; }
-        .accordion-item { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; backdrop-filter: blur(10px); }
-        .accordion-header { padding: 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.2); transition: 0.2s; }
-        .accordion-header:hover { background: rgba(0,0,0,0.4); }
-        .accordion-header h2 { font-size: 1.25rem; }
-        .badges { display: flex; gap: 0.5rem; }
-        .badge { font-size: 0.75rem; padding: 0.25rem 0.5rem; border-radius: 4px; background: rgba(255,255,255,0.1); }
-        .accordion-content { padding: 0; max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out, padding 0.3s; }
-        .accordion-content.active { padding: 1.5rem; max-height: 1000px; }
-        pre { background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto; font-family: monospace; font-size: 0.95rem; border: 1px solid var(--border); margin: 1rem 0; color: #a5b4fc; }
-        p { margin-bottom: 0.5rem; line-height: 1.6; color: #cbd5e1; }
-        strong { color: var(--text); }
-        .use-cases { margin-top: 1rem; }
-        .use-cases ul { list-style-position: inside; color: #cbd5e1; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore 15 browser Web APIs with practical examples, notes on permissions and privacy, accessible search, and official MDN documentation.">
+  <link rel="canonical" href="https://sanskarin.github.io/LangSteps/api-reference.html">
+  <title>Web APIs Reference | LangSteps</title>
+  <link rel="icon" href="splash.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root { color-scheme:dark; --bg:#141417;--surface:#211f24;--border:#39353c;--text:#eeeaf2;--muted:#b5adbf;--accent:#8c9efa; }
+    * { box-sizing:border-box; }
+    body { margin:0;background:var(--bg);color:var(--text);font-family:"Plus Jakarta Sans",system-ui,sans-serif;line-height:1.6; }
+    .container { width:min(100% - 2rem,1060px);margin:auto;padding:1.7rem 0 5rem; }
+    .site-nav { display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-bottom:3rem;font-size:.92rem; }
+    .site-nav a {color:#c5d2ff;text-decoration:none;} .site-nav a:hover{text-decoration:underline;}
+    h1 {margin:0;color:#91b6ff;font-size:clamp(2rem,4.5vw,3.2rem);line-height:1.2;letter-spacing:-.04em;}
+    .intro {max-width:760px;color:var(--muted);margin:1rem 0 1.75rem;}
+    .controls {background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:1rem;display:grid;grid-template-columns:minmax(0,1fr) 200px auto;gap:.75rem;align-items:end;}
+    label {display:block;font-weight:700;font-size:.83rem;margin:0 0 .35rem;color:#e3deea;}
+    input,select,button {font:inherit;}
+    input,select {background:#151419;color:var(--text);border:1px solid #5a535e;border-radius:10px;padding:.85rem .95rem;width:100%;min-height:48px;}
+    input::placeholder {color:#aaa0b1;}button{cursor:pointer;}
+    button:disabled{opacity:.5;cursor:default;}
+    .button {background:#38333f;border:1px solid #645c70;border-radius:10px;padding:.78rem 1rem;color:var(--text);min-height:48px;}
+    .button:hover:not(:disabled) {background:#474151;}
+    :focus-visible {outline:3px solid #a4b9ff;outline-offset:3px;}
+    .toolbar {display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin:1.35rem 0;}
+    .toolbar-buttons {display:flex;gap:.6rem;flex-wrap:wrap;}
+    output {color:var(--muted);}
+    .api-list {display:grid;gap:.75rem;}
+    .api-item {background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+    .api-item[open]{border-color:#7771a8;}
+    .api-item summary{list-style:none;display:flex;gap:1rem;align-items:center;padding:1.05rem 1.2rem;cursor:pointer;min-height:68px;}
+    .api-item summary::-webkit-details-marker{display:none;}
+    .api-item summary:hover{background:#2b2730;}
+    .api-number {font:700 .8rem ui-monospace,monospace;color:#a29ac0;}
+    .api-title{font-weight:800;font-size:1.05rem;flex:1;}
+    .api-category {background:#333051;color:#cac7ff;border:1px solid #514b86;padding:.18rem .55rem;border-radius:999px;font-size:.75rem;font-weight:700;}
+    .api-chevron {font-size:1.4rem;transition:transform .18s ease;color:#b6aec7;}
+    .api-item[open] .api-chevron{transform:rotate(180deg);}
+    .api-detail {padding:.2rem 1.2rem 1.35rem;border-top:1px solid var(--border);}
+    .api-detail p {color:#dbd5e2;margin:1rem 0;}
+    .api-detail .api-note {background:#302b36;border-left:3px solid #8c9efa;border-radius:4px;padding:.7rem .9rem;font-size:.92rem;}
+    h3 {margin:1.15rem 0 .55rem;font-size:.94rem;}
+    pre{background:#131217;border:1px solid #45404c;border-radius:10px;padding:1rem;overflow-x:auto;white-space:pre;color:#c5e0ff;font-size:.85rem;line-height:1.6;}
+    .api-detail ul {padding-left:1.5rem;color:#d5ccdd;margin:.45rem 0 1rem;}
+    .docs-link {display:inline-block;color:#b2c9ff;font-weight:700;text-decoration:underline;text-underline-offset:3px;margin-top:.2rem;}
+    .empty {padding:2.5rem 1rem;text-align:center;border:1px dashed #60596e;border-radius:14px;color:var(--muted);}
+    [hidden] {display:none!important;}
+    .footer {margin-top:2.25rem;border-top:1px solid var(--border);padding-top:1rem;font-size:.87rem;color:var(--muted);}
+    .footer a{color:#c5d2ff;}
+    @media(max-width:720px){.site-nav{margin-bottom:2rem}.controls{grid-template-columns:1fr}.api-item summary{gap:.55rem;padding:.95rem .8rem}.api-title{font-size:.92rem}.api-category{font-size:.68rem}.api-detail{padding:.2rem .8rem 1rem}.container{width:calc(100% - 1.35rem)}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+  </style>
 </head>
 <body>
-    <h1>Web APIs Reference</h1>
-    <input type="text" id="search" class="search-bar" placeholder="Search APIs..." onkeyup="filterApis()">
-    
-    <div class="accordion" id="apiList"></div>
-
-    <script>
-        const apis = [
-            {
-                name: 'Fetch API',
-                desc: 'Provides a JavaScript interface for accessing and manipulating parts of the protocol, such as requests and responses.',
-                support: ['Chrome 42+', 'Firefox 39+', 'Safari 10.1+'],
-                syntax: `fetch(resource, options)\n  .then(response => response.json())\n  .then(data => console.log(data));`,
-                uses: ['Making HTTP requests', 'Fetching remote JSON data', 'Uploading files']
-            },
-            {
-                name: 'Storage API (Local/Session)',
-                desc: 'Provides mechanisms by which browsers can store key/value pairs, in a much more intuitive fashion than using cookies.',
-                support: ['Chrome 4+', 'Firefox 3.5+', 'Safari 4+'],
-                syntax: `localStorage.setItem('key', 'value');\nconst val = localStorage.getItem('key');`,
-                uses: ['Saving user preferences', 'Caching application state', 'Shopping carts']
-            },
-            {
-                name: 'Geolocation API',
-                desc: 'Allows the user to provide their location to web applications if they so desire.',
-                support: ['Chrome 5+', 'Firefox 3.5+', 'Safari 5+'],
-                syntax: `navigator.geolocation.getCurrentPosition(position => {\n  console.log(position.coords.latitude, position.coords.longitude);\n});`,
-                uses: ['Mapping applications', 'Local search', 'Weather apps based on location']
-            },
-            {
-                name: 'Intersection Observer',
-                desc: 'Provides a way to asynchronously observe changes in the intersection of a target element with an ancestor element or with a top-level document viewport.',
-                support: ['Chrome 51+', 'Firefox 55+', 'Safari 12.2+'],
-                syntax: `const observer = new IntersectionObserver((entries) => {\n  entries.forEach(entry => {\n    if(entry.isIntersecting) { /* Element is visible */ }\n  });\n});\nobserver.observe(document.querySelector('.box'));`,
-                uses: ['Lazy loading images', 'Infinite scrolling', 'Ad visibility tracking']
-            },
-            {
-                name: 'Clipboard API',
-                desc: 'Provides the ability to respond to clipboard commands (cut, copy, and paste) as well as to asynchronously read from and write to the system clipboard.',
-                support: ['Chrome 66+', 'Firefox 63+', 'Safari 13.1+'],
-                syntax: `navigator.clipboard.writeText('Hello World')\n  .then(() => console.log('Copied!'));`,
-                uses: ['Copy to clipboard buttons', 'Reading pasted content safely']
-            },
-            {
-                name: 'Web Workers API',
-                desc: 'Makes it possible to run a script operation in a background thread separate from the main execution thread of a web application.',
-                support: ['Chrome 4+', 'Firefox 3.5+', 'Safari 4+'],
-                syntax: `const worker = new Worker('worker.js');\nworker.postMessage('Hello');\nworker.onmessage = (e) => console.log(e.data);`,
-                uses: ['Heavy computations', 'Image processing', 'Data parsing in background']
-            }
-        ];
-
-        function renderApis(filtered) {
-            const list = document.getElementById('apiList');
-            list.innerHTML = filtered.map((api, i) => `
-                <div class="accordion-item">
-                    <div class="accordion-header" onclick="toggleAcc(${i})">
-                        <h2>${api.name}</h2>
-                        <div class="badges">
-                            ${api.support.map(s => `<span class="badge">${s}</span>`).join('')}
-                        </div>
-                    </div>
-                    <div class="accordion-content" id="content-${i}">
-                        <p><strong>Description:</strong> ${api.desc}</p>
-                        <pre><code>${api.syntax}</code></pre>
-                        <div class="use-cases">
-                            <strong>Common Use Cases:</strong>
-                            <ul>
-                                ${api.uses.map(u => `<li>${u}</li>`).join('')}
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function filterApis() {
-            const query = document.getElementById('search').value.toLowerCase();
-            const filtered = apis.filter(api => 
-                api.name.toLowerCase().includes(query) || 
-                api.desc.toLowerCase().includes(query)
-            );
-            renderApis(filtered);
-        }
-
-        let openIndex = null;
-        function toggleAcc(index) {
-            const el = document.getElementById(`content-${index}`);
-            if (openIndex !== null && openIndex !== index) {
-                document.getElementById(`content-${openIndex}`).classList.remove('active');
-            }
-            el.classList.toggle('active');
-            openIndex = el.classList.contains('active') ? index : null;
-        }
-
-        renderApis(apis);
-    </script>
+<main class="container">
+  <nav class="site-nav" aria-label="Breadcrumb"><a href="./index.html">← LangSteps home</a><a href="./resources.html">Learning resources ↗</a></nav>
+  <header><h1>Web APIs Reference</h1><p class="intro">Learn what browser APIs do, where to use them, and how to start. Expand any API for a short explanation, safe example, and a link to its official documentation.</p></header>
+  <section class="controls" aria-label="Filter Web APIs">
+    <div><label for="api-search">Search APIs</label><input id="api-search" type="search" placeholder="Try clipboard, offline, location…" autocomplete="off" aria-controls="apiList"></div>
+    <div><label for="api-category">Category</label><select id="api-category" aria-controls="apiList"><option value="all">All categories</option><option value="Network">Network</option><option value="Storage">Storage</option><option value="Browser">Browser</option><option value="Performance">Performance</option><option value="Media">Media</option><option value="Security">Security</option></select></div>
+    <button class="button" id="api-clear" type="button" disabled>Clear filters</button>
+  </section>
+  <div class="toolbar"><output id="api-result-count" role="status" aria-live="polite">15 of 15 APIs shown</output><div class="toolbar-buttons"><button class="button" id="api-expand" type="button">Expand visible</button><button class="button" id="api-collapse" type="button">Collapse all</button></div></div>
+  <section class="api-list" id="apiList" aria-label="Browser API documentation">
+<details class="api-item" data-category="Network" data-search="Fetch API Network Send HTTP requests and read responses using promises. Requesting JSON;Submitting forms;Uploading files Works with URLs permitted by browser networking and CORS rules.">
+  <summary><span class="api-number" aria-hidden="true">01</span><span class="api-title">Fetch API</span><span class="api-category">Network</span><span class="api-chevron" aria-hidden="true">⌄</span></summary>
+  <div class="api-detail"><p>Send HTTP requests and read responses using promises.</p><p class="api-note">Works with URLs permitted by browser networking and CORS rules.</p><h3>Example</h3><pre><code>const response = await fetch(&#39;/api/status&#39;);
+if (!response.ok) throw new Error(&#39;Request failed&#39;);
+const data = await response.json();</code></pre><h3>Practical uses</h3><ul><li>Requesting JSON</li><li>Submitting forms</li><li>Uploading files</li></ul><a class="docs-link" href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API" target="_blank" rel="noopener noreferrer">Read MDN documentation ↗</a></div>
+</details>
+<details class="api-item" data-category="Network" data-search="WebSocket API Network Keep an interactive, bidirectional connection to a server. Live collaboration;Chat updates;Streaming dashboards Use wss:// on HTTPS websites and handle reconnections.">
+  <summary><span class="api-number" aria-hidden="true">02</span><span class="api-title">WebSocket API</span><span class="api-category">Network</span><span class="api-chevron" aria-hidden="true">⌄</span></summary>
+  <div class="api-detail"><p>Keep an interactive, bidirectional connection to a server.</p><p class="api-note">Use wss:// on HTTPS websites and handle reconnections.</p><h3>Example</h3><pre><code>const socket = new WebSocket(&#39;wss://example.com/events&#39;);
+socket.addEventListener(&#39;message&#39;, e =&gt; console.log(e.data));</code></pre><h3>Practical uses</h3><ul><li>Live collaboration</li><li>Chat updates</li><li>Streaming dashboards</li></ul><a class="docs-link" href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API" target="_blank" rel="noopener noreferrer">Read MDN documentation ↗</a></div>
+</details>
+<details class="api-item" data-category="Storage" data-search="Web Storage API Storage Persist small string values in localStorage or per-tab sessionStorage. Preferences;Draft forms;Short session state Storage is synchronous and may be unavailable; avoid storing secrets.">
+  <summary><span class="api-number" aria-hidden="true">03</span><span class="api-title">Web Storage API</span><span class="api-category">Storage</span><span class="api-chevron" aria-hidden="true">⌄</span></summary>
+  <div class="api-detail"><p>Persist small string values in localStorage or per-tab sessionStorage.</p><p class="api-note">Storage is synchronous and may be unavailable; avoid storing secrets.</p><h3>Example</h3><pre><code>localStorage.setItem(&#39;theme&#39;, &#39;dark&#39;);
+const theme = localStorage.getItem(&#39;theme&#39;) ?? &#39;light&#39;;</code></pre><h3>Practical uses</h3><ul><li>Preferences</li><li>Draft forms</li><li>Short session state</li></ul><a class="docs-link" href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API" target="_blank" rel="noopener noreferrer">Read MDN documentation ↗</a></div>
+</details>
+<details class="api-item" data-category="Storage" data-search="IndexedDB API Storage Store larger structured records and indexes in the browser. Offline records;Searchable datasets;Caching structured data Transactions are asynchronous; upgrades define object stores.">
+  <summary><span class="api-number" aria-hidden="true">04</span><span class="api-title">IndexedDB API</span><span class="api-category">Storage</span><span class="api-chevron" aria-hidden="true">⌄</span></summary>
+  <div class="api-detail"><p>Store larger structured records and indexes in the browser.</p><p class="api-note">Transactions are asynchronous; upgrades define object stores.</p><h3>Example</h3><pre><code>const request = indexedDB.open(&#39;notes&#39;, 1);
+request.onupgradeneeded = () =&gt; {
+  request.result.createObjectStore(&#39;items&#39;, { keyPath: &#39;id&#39; });
+};</code></pre><h3>Practical uses</h3><ul><li>Offline records</li><li>Searchable datasets</li><li>Caching structured data</li></ul><a class="docs-link" href="https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API" target="_blank" rel="noopener noreferrer">Read MDN documentation ↗</a></div>
+</details>
+<details class="api-item" data-category="Browser" data-search="Clipboard API Browser Copy text or interact with the clipboard after appropriate user interaction. Copy code;Copy links;Paste workflows Generally requires a secure context; browser permissions and user gestures apply.">
+  <summary><span class="api-number" aria-hidden="true">05</span><span class="api-title">Clipboard API</span><span class="api-category">Browser</span><span class="api-chevron" aria-hidden="true">⌄</span></summary>
+  <div class="api-detail"><p>Copy text or interact with the clipboard after appropriate user interaction.</p><p class="api-note">Generally requires a secure context; browser permissions and user gestures apply.</p><h3>Example</h3><pre><code>await navigator.clipboard.writeText(&#39;Hello LangSteps&#39;);</code></pre><h3>Practical uses</h3><ul><li>Copy code</li><li>Copy links</li><li>Paste workflows</li></ul><a class="docs-link" href="https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API" target="_blank" rel="noopener noreferrer">Read MDN documentation ↗</a></div>
+</details>
+<details class="api-item" data-category="Browser" data-search="Geolocation API Browser Request the user&#39;s location with their permission. Location-aware maps;Local search;Weather widgets Requires user consent and a secure context; never request it automatically.">
+  <summary><span class="api-number" aria-hidden="true">06</span><span class="api-title">Geolocation API</span><span class="api-category">Browser</span><span class="api-chevron" aria-hidden="true">⌄</span></summary>
+  <div class="api-detail"><p>Request the user&#39;s location with their permission.</p><p class="api-note">Requires user consent and a secure context; never request it automatically.</p><h3>Example</h3><pre><code>navigator.geolocation.getCurrentPosition(
+  pos =&gt; console.log(pos.coords.latitude),
+  err =&gt; console.error(err.message)
+);</code></pre><h3>Practical uses</h3><ul><li>Location-aware maps</li><li>Local search</li><li>Weather widgets</li></ul><a class="docs-link" href="https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API" target="_blank" rel="noopener noreferrer">Read MDN documentation ↗</a></div>
+</details>
+<details class="api-item" data-category="Browser" data-search="Notifications API Browser Show system notifications when the user has granted permission. Reminders;Status alerts;User-requested updates Request permission only in response to an explicit user action; support varies.">
+  <summary><span class="api-number" aria-hidden="true">07</span><span class="api-title">Notifications API</span><span class="api-category">Browser</span><span class="api-chevron" aria-hidden="true">⌄</span></summary>
+  <div class="api-detail"><p>Show system notifications when the user has granted permission.</p><p class="api-note">Request permission only in response to an explicit user action; support varies.</p><h3>Example</h3><pre><code>const permission = await Notification.requestPermission();
+if (permission === &#39;granted&#39;) new Notification(&#39;Ready!&#39;);</code></pre><h3>Practical uses</h3><ul><li>Reminders</li><li>Status alerts</li><li>User-requested updates</li></ul><a class="docs-link" href="https://developer.mozilla.org/en-US/docs/Web/API/Notifications_API" target="_blank" rel="noopener noreferrer">Read MDN documentation ↗</a></div>
+</details>
+<details class="api-item" data-category="Browser" data-search="Web Share API Browser Open the operating system&#39;s native share interface where supported. Sharing articles;Sharing URLs;Mobile share sheets Typically requires HTTPS and a direct user gesture; provide a fallback link.">
+  <summary><span class="api-number" aria-hidden="true">08</span><span class="api-title">Web Share API</span><span class="api-category">Browser</span><span class="api-chevron" aria-hidden="true">⌄</span></summary>
+  <div class="api-detail"><p>Open the operating system&#39;s native share interface where supported.</p><p class="api-note">Typically requires HTTPS and a direct user gesture; provide a fallback link.</p><h3>Example</h3><pre><code>if (navigator.share) {
+  await navigator.share({ title: &#39;LangSteps&#39;, url: location.href });
+}</code></pre><h3>Practical uses</h3><ul><li>Sharing articles</li><li>Sharing URLs</li><li>Mobile share sheets</li></ul><a class="docs-link" href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Share_API" target="_blank" rel="noopener noreferrer">Read MDN documentation ↗</a></div>
+</details>
+<details class="api-item" data-category="Performance" data-search="Intersection Observer API Performance Observe when elements enter or leave the viewport without scroll polling. Lazy-loading;Reading progress;Infinite lists Disconnect observers when no longer needed.">
+  <summary><span class="api-number" aria-hidden="true">09</span><span class="api-title">Intersection Observer API</span><span class="api-category">Performance</span><span class="api-chevron" aria-hidden="true">⌄</span></summary>
+  <div class="api-detail"><p>Observe when elements enter or leave the viewport without scroll polling.</p><p class="api-note">Disconnect observers when no longer needed.</p><h3>Example</h3><pre><code>const observer = new IntersectionObserver(entries =&gt; {
+  for (const entry of entries) {
+    if (entry.isIntersecting) console.log(&#39;Visible&#39;);
+  }
+});</code></pre><h3>Practical uses</h3><ul><li>Lazy-loading</li><li>Reading progress</li><li>Infinite lists</li></ul><a class="docs-link" href="https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API" target="_blank" rel="noopener noreferrer">Read MDN documentation ↗</a></div>
+</details>
+<details class="api-item" data-category="Performance" data-search="Web Workers API Performance Move CPU-intensive JavaScript work away from the main UI thread. Data parsing;Background computation;Image processing Workers do not directly manipulate the document DOM.">
+  <summary><span class="api-number" aria-hidden="true">10</span><span class="api-title">Web Workers API</span><span class="api-category">Performance</span><span class="api-chevron" aria-hidden="true">⌄</span></summary>
+  <div class="api-detail"><p>Move CPU-intensive JavaScript work away from the main UI thread.</p><p class="api-note">Workers do not directly manipulate the document DOM.</p><h3>Example</h3><pre><code>const worker = new Worker(&#39;./worker.js&#39;);
+worker.postMessage({ task: &#39;summarize&#39; });
+worker.onmessage = event =&gt; console.log(event.data);</code></pre><h3>Practical uses</h3><ul><li>Data parsing</li><li>Background computation</li><li>Image processing</li></ul><a class="docs-link" href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API" target="_blank" rel="noopener noreferrer">Read MDN documentation ↗</a></div>
+</details>
+<details class="api-item" data-category="Performance" data-search="Service Worker API Performance Intercept selected network requests for offline-capable web applications. Offline lessons;Asset caching;Background synchronization HTTPS is generally required. Scope caches carefully to your own app.">
+  <summary><span class="api-number" aria-hidden="true">11</span><span class="api-title">Service Worker API</span><span class="api-category">Performance</span><span class="api-chevron" aria-hidden="true">⌄</span></summary>
+  <div class="api-detail"><p>Intercept selected network requests for offline-capable web applications.</p><p class="api-note">HTTPS is generally required. Scope caches carefully to your own app.</p><h3>Example</h3><pre><code>if (&#39;serviceWorker&#39; in navigator) {
+  await navigator.serviceWorker.register(&#39;./sw.js&#39;);
+}</code></pre><h3>Practical uses</h3><ul><li>Offline lessons</li><li>Asset caching</li><li>Background synchronization</li></ul><a class="docs-link" href="https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API" target="_blank" rel="noopener noreferrer">Read MDN documentation ↗</a></div>
+</details>
+<details class="api-item" data-category="Media" data-search="Canvas API Media Draw graphics, charts, sprites, and pixel data on an HTML canvas. Games;Charts;Image editing Always confirm the drawing context exists before using it.">
+  <summary><span class="api-number" aria-hidden="true">12</span><span class="api-title">Canvas API</span><span class="api-category">Media</span><span class="api-chevron" aria-hidden="true">⌄</span></summary>
+  <div class="api-detail"><p>Draw graphics, charts, sprites, and pixel data on an HTML canvas.</p><p class="api-note">Always confirm the drawing context exists before using it.</p><h3>Example</h3><pre><code>const canvas = document.querySelector(&#39;canvas&#39;);
+const ctx = canvas.getContext(&#39;2d&#39;);
+ctx.fillRect(10, 10, 100, 60);</code></pre><h3>Practical uses</h3><ul><li>Games</li><li>Charts</li><li>Image editing</li></ul><a class="docs-link" href="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API" target="_blank" rel="noopener noreferrer">Read MDN documentation ↗</a></div>
+</details>
+<details class="api-item" data-category="Media" data-search="Web Audio API Media Generate, route and analyze audio inside the browser. Audio visualizers;Sound synthesis;Accessibility audio Audio playback commonly needs a user gesture before resuming.">
+  <summary><span class="api-number" aria-hidden="true">13</span><span class="api-title">Web Audio API</span><span class="api-category">Media</span><span class="api-chevron" aria-hidden="true">⌄</span></summary>
+  <div class="api-detail"><p>Generate, route and analyze audio inside the browser.</p><p class="api-note">Audio playback commonly needs a user gesture before resuming.</p><h3>Example</h3><pre><code>const audio = new AudioContext();
+const gain = audio.createGain();
+gain.connect(audio.destination);</code></pre><h3>Practical uses</h3><ul><li>Audio visualizers</li><li>Sound synthesis</li><li>Accessibility audio</li></ul><a class="docs-link" href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API" target="_blank" rel="noopener noreferrer">Read MDN documentation ↗</a></div>
+</details>
+<details class="api-item" data-category="Media" data-search="Web Animations API Media Control element animations programmatically with keyframes and timing. Interactive UI;Entrance transitions;Timeline controls Respect prefers-reduced-motion when designing animations.">
+  <summary><span class="api-number" aria-hidden="true">14</span><span class="api-title">Web Animations API</span><span class="api-category">Media</span><span class="api-chevron" aria-hidden="true">⌄</span></summary>
+  <div class="api-detail"><p>Control element animations programmatically with keyframes and timing.</p><p class="api-note">Respect prefers-reduced-motion when designing animations.</p><h3>Example</h3><pre><code>document.querySelector(&#39;.card&#39;)?.animate(
+  [{ opacity: 0 }, { opacity: 1 }],
+  { duration: 250, fill: &#39;forwards&#39; }
+);</code></pre><h3>Practical uses</h3><ul><li>Interactive UI</li><li>Entrance transitions</li><li>Timeline controls</li></ul><a class="docs-link" href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API" target="_blank" rel="noopener noreferrer">Read MDN documentation ↗</a></div>
+</details>
+<details class="api-item" data-category="Security" data-search="Web Crypto API Security Use browser cryptographic primitives for digest and key operations. Integrity checks;Key derivation;Secure applications Use established protocols and authenticated cryptography rather than custom designs.">
+  <summary><span class="api-number" aria-hidden="true">15</span><span class="api-title">Web Crypto API</span><span class="api-category">Security</span><span class="api-chevron" aria-hidden="true">⌄</span></summary>
+  <div class="api-detail"><p>Use browser cryptographic primitives for digest and key operations.</p><p class="api-note">Use established protocols and authenticated cryptography rather than custom designs.</p><h3>Example</h3><pre><code>const data = new TextEncoder().encode(&#39;hello&#39;);
+const hash = await crypto.subtle.digest(&#39;SHA-256&#39;, data);</code></pre><h3>Practical uses</h3><ul><li>Integrity checks</li><li>Key derivation</li><li>Secure applications</li></ul><a class="docs-link" href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API" target="_blank" rel="noopener noreferrer">Read MDN documentation ↗</a></div>
+</details>
+  </section>
+  <p class="empty" id="api-empty" hidden>No APIs match those filters. Try a different keyword or category.</p>
+  <footer class="footer">Examples are educational and do not run automatically. Browser support and permission requirements vary. Press <kbd>/</kbd> to focus search. <a href="https://developer.mozilla.org/en-US/docs/Web/API" target="_blank" rel="noopener noreferrer">Browse MDN's complete API index ↗</a></footer>
+</main>
+<script src="./curriculum/api-reference.js" defer></script>
 </body>
 </html>
