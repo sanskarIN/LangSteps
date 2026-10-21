@@ -173,7 +173,11 @@
       else learned.add(lesson.id);
       saveProgress();
       updateProgress();
-      show(lesson.id);
+      // Update in place so the completion button retains keyboard focus.
+      // Rebuilding the lesson here used to detach the focused button.
+      mark.textContent = learned.has(lesson.id) ? '✓ Completed — undo' : 'Mark lesson complete';
+      mark.setAttribute('aria-pressed', String(learned.has(lesson.id)));
+      renderList();
     });
 
     renderList();
