@@ -17,7 +17,9 @@ test('Patch version is consistent across npm, TypeScript, ASP.NET Core and servi
   assert.match(read('src/core/apiClient.ts'), /version: '1\.1\.1'/);
   assert.match(read('server/LangSteps.Server/Program.cs'), /Version: "1\.1\.1"/);
   assert.match(read('server/LangSteps.Server/Services/StatsService.cs'), /LangSteps v1\.1\.1/);
-  assert.match(read('sw.js'), /langsteps-v1\.1\.1/);
+  // The development service worker uses a new cache to avoid stale v1.1.1 assets.
+  // Published API/package metadata remains pinned until the v1.2.0 release.
+  assert.match(read('sw.js'), /langsteps-v1\.2\.0-dev[0-9]+/);
 });
 
 test('Original lesson IDs and progress key are preserved in maintenance release', () => {
@@ -104,7 +106,7 @@ test('Service worker cleans only its own previous caches', async () => {
   let wait;
   h.handlers.get('activate')({ waitUntil: promise => { wait = promise; } });
   await wait;
-  assert.deepEqual(h.deletions, ['langsteps-v1.1.0']);
+  assert.deepEqual(h.deletions, ['langsteps-v1.1.0', 'langsteps-v1.1.1']);
 });
 
 test('Service worker leaves other GitHub Pages projects and API requests untouched', () => {
