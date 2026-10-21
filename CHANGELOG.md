@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Fixed
 - Prevented malformed lesson deep links from crashing the Go, SQL and C# curriculum viewer.
 - Eliminated duplicated lesson rendering during hash-based navigation; improved keyboard focus and copy feedback.
+- Retained keyboard focus when marking lessons complete or undoing completion, and corrected singular search-result labels.
 - Added a code-selection fallback when clipboard access is unavailable.
 - Corrected C# record/model-binding examples and a complete ASP.NET Core CORS example.
 - Made the Go HTTP server tutorial report startup and JSON response errors.
@@ -20,6 +21,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Prevented deletion of unrelated applications' browser caches on a shared GitHub Pages host.
 - Removed fabricated leaderboard entries and disallowed arbitrary XP submissions to the optional API.
 - Validated quiz language, answers, elapsed time and username lengths in the optional ASP.NET Core backend.
+- Removed answer keys and explanations from the public quiz-question API; they are returned only in the scored review after submission.
+- Rejected unknown question IDs, out-of-range option indices and empty answer sets; added a live ASP.NET Core API smoke test to CI.
 - Added browser-model curriculum tests and offline-cache boundary regressions.
 - Bumped package, frontend health, gateway and backend version metadata to `1.1.1`.
 - Retired the completed one-time v1.1.0 release publisher.
