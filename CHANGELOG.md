@@ -96,7 +96,6 @@ See [v1.1.0 release notes](docs/releases/v1.1.0.md) for setup, testing and known
   - Dev.to: `https://dev.to/SanskarCodes`
   - Bluesky: `https://SanskarCodes.bsky.social`
   - Instagram: `https://instagram.com/SanskarCode`
-  - Threads: `https://threads.com/SanskarCode`
 
 ### 🔷 TypeScript Subsystem Expansion (`src/`)
 - **Developer Profile Core**: Added `src/types/profile.ts` and `src/core/profileManager.ts` managing official profile metadata and links.
