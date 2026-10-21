@@ -4,7 +4,7 @@ All notable changes to **LangSteps** will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-## [1.1.1] — Unreleased (maintenance branch)
+## [1.1.1] — 2026-10-21
 
 ### Fixed
 - Prevented malformed lesson deep links from crashing the Go, SQL and C# curriculum viewer.
@@ -28,7 +28,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Retired the completed one-time v1.1.0 release publisher.
 
 ### Release status
-Prepared for review on `release/v1.1.1`; **no v1.1.1 GitHub tag or release has been published**. See [release preparation](docs/releases/v1.1.1.md) and [public notes draft](docs/releases/v1.1.1-public.md).
+Published as a [stable GitHub release](https://github.com/sanskarIN/LangSteps/releases/tag/v1.1.1) after successful GitHub Pages deployment and verification workflows. See [release preparation](docs/releases/v1.1.1.md) and [public notes draft](docs/releases/v1.1.1-public.md).
 
 ---
 
