@@ -22,7 +22,8 @@ test('Patch version is consistent across npm, TypeScript, ASP.NET Core and servi
 
 test('Original lesson IDs and progress key are preserved in maintenance release', () => {
   const viewer = read('curriculum/learning.js');
-  assert.match(viewer, /langsteps:v1\.1\.0:mastery:/);
+  assert.match(read('src/curriculum/progress.ts'), /langsteps:v1\.1\.0:mastery:/);
+  assert.match(viewer, /LangStepsProgress\.createStore/);
   for (const directory of ['Go', 'SQL', 'CSharp']) {
     const course = lessonData(directory);
     assert.equal(course.lessons.length, 15);
