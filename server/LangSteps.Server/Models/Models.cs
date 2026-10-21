@@ -34,6 +34,18 @@ public record QuizQuestionItem(
     string? CodeSnippet = null
 );
 
+/// <summary>
+/// A question sent to learners without its private answer key or explanation.
+/// </summary>
+public record PublicQuizQuestionItem(
+    int Id,
+    string Language,
+    string Question,
+    string[] Options,
+    string Difficulty,
+    string? CodeSnippet
+);
+
 public record QuizSubmissionRequest(
     string Language,
     Dictionary<int, int> Answers,
