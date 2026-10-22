@@ -16,10 +16,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Added automated test coverage for TypeScript progress persistence, URL parsing, guided navigation, donation dialog keyboard behavior and support link completeness.
 - Added CI checks to ensure compiled browser assets match their TypeScript source before merging.
 
+- Added strict `src/sw.ts` source compiled to the root GitHub Pages `sw.js` with a release-versioned offline cache.
+- Added course-data schema validation that rejects malformed or executable JavaScript payloads and duplicate IDs.
+- Added Playwright browser integration checks for lesson navigation, offline cache isolation, API documentation, donations, keyboard interactions, and mobile overflow.
+- Extended browser testing to Chromium, Firefox, and WebKit (release-gating checks pending).
+- Added a TypeScript-worker consistency check to CI.
+
 ### Changed
 - Reused existing v1.1.0 learner progress keys through a typed storage adapter, preserving completed lessons.
-- Added offline precaching for typed navigation, progress, viewer and donation scripts using a v1.2 development cache.
+- Added offline precaching for typed navigation, progress, viewer and donation scripts using the `langsteps-v1.2.0` release cache.
 - Restored visible Razorpay, Buy Me a Coffee and PayPal choices in all ten root/course Privacy and Terms dialogs through stable-site hotfix PR #7.
+- Corrected small-screen grid sizing after Playwright detected unintended horizontal scrolling at 390px.
+- Aligned the package, TypeScript client, and optional ASP.NET Core API to version `1.2.0`.
 - Documented the incremental migration and validation plan in `docs/releases/v1.2.0.md`.
 
 **Status:** Work in progress on `release/v1.2.0`. v1.1.1 remains the latest stable GitHub release.
