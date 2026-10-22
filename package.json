@@ -48,6 +48,6 @@
     "prettier": "^3.9.6",
     "stylelint": "^17.15.0",
     "typescript": "^7.0.2",
-    "@playwright/test": "^1.56.0"
+    "@playwright/test": "1.64.0"
   }
 }
