@@ -152,3 +152,30 @@ test('service-worker upgrades clean only LangSteps caches and preserve unrelated
     return response && response.text();
   })).toBe('keep this cache');
 });
+
+test('online notice links to the live platform and persists dismissal across course pages', async ({ page }) => {
+  await page.goto('index.html', { waitUntil: 'domcontentloaded' });
+  const notice = page.locator('[data-ls-online-notice]');
+  await expect(notice).toBeVisible();
+  await expect(notice).toContainText('LangSteps is online.');
+  await expect(notice.locator('a')).toHaveAttribute('href', 'https://sanskarin.github.io/LangSteps/');
+  await notice.locator('[data-ls-online-dismiss]').click();
+  await expect(notice).toBeHidden();
+  await page.goto('Go/index.html', { waitUntil: 'domcontentloaded' });
+  await expect(page.locator('[data-ls-online-notice]')).toBeHidden();
+  await page.goto('Rust/index.html', { waitUntil: 'domcontentloaded' });
+  await expect(page.locator('[data-ls-online-notice]')).toBeHidden();
+});
+
+test('online availability announcement is visible when JavaScript is disabled', async ({ browser }) => {
+  const context = await browser.newContext({ javaScriptEnabled: false });
+  try {
+    const page = await context.newPage();
+    await page.goto('SQL/index.html', { waitUntil: 'domcontentloaded' });
+    const notice = page.locator('[data-ls-online-notice]');
+    await expect(notice).toBeVisible();
+    await expect(notice).toContainText('Learn for free on our website');
+  } finally {
+    await context.close();
+  }
+});
