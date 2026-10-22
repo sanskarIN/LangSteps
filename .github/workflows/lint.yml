@@ -19,8 +19,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Lint released v1.1.0 lesson HTML
-        run: npx --yes htmlhint "Go/index.html" "SQL/index.html" "CSharp/index.html"
+      - name: Lint new course pages and progressive API reference
+        run: npx --yes htmlhint "Go/index.html" "SQL/index.html" "CSharp/index.html" "api-reference.html"
 
 # TODO: Expand lint coverage after historical HTML debt is cleared.
 # The pre-v1.1 baseline reported 263 HTMLHint findings across 50 of 97 pages.
