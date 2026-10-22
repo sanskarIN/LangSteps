@@ -4,7 +4,7 @@ const { test, expect } = require('@playwright/test');
 
 // Exercise real browser layout, focus and storage instead of the stub DOM in Node tests.
 test('Go lessons preserve old mastery keys and support real browser navigation', async ({ page }) => {
-  await page.goto('/Go/index.html', { waitUntil: 'domcontentloaded' });
+  await page.goto('Go/index.html', { waitUntil: 'domcontentloaded' });
   await expect(page.locator('#lesson-content h2')).toHaveText('Your first Go program');
 
   const mark = page.getByRole('button', { name: 'Mark lesson complete' });
@@ -29,7 +29,7 @@ test('All three curricula render actual lesson content and filter by keyword', a
     ['SQL', ''],
     ['CSharp', '']
   ]) {
-    await page.goto('/' + course + '/index.html', { waitUntil: 'domcontentloaded' });
+    await page.goto(course + '/index.html', { waitUntil: 'domcontentloaded' });
     await expect(page.locator('#lesson-list button')).toHaveCount(15);
     if (heading) await expect(page.locator('#lesson-content h2')).toHaveText(heading);
     else await expect(page.locator('#lesson-content h2')).not.toBeEmpty();
@@ -43,7 +43,7 @@ test('API Reference works with JavaScript disabled, including native details', a
   const context = await browser.newContext({ javaScriptEnabled: false });
   try {
     const page = await context.newPage();
-    await page.goto('/api-reference.html', { waitUntil: 'domcontentloaded' });
+    await page.goto('api-reference.html', { waitUntil: 'domcontentloaded' });
     await expect(page.locator('.api-item')).toHaveCount(15);
     await page.locator('.api-item summary').first().click();
     await expect(page.locator('.api-item').first()).toHaveAttribute('open', '');
@@ -54,7 +54,7 @@ test('API Reference works with JavaScript disabled, including native details', a
 });
 
 test('API Reference keyboard search and category filtering use accessible controls', async ({ page }) => {
-  await page.goto('/api-reference.html', { waitUntil: 'domcontentloaded' });
+  await page.goto('api-reference.html', { waitUntil: 'domcontentloaded' });
   await expect(page.locator('#api-result-count')).toHaveText('15 of 15 APIs shown');
 
   await page.keyboard.press('/');
@@ -72,7 +72,7 @@ test('API Reference keyboard search and category filtering use accessible contro
 });
 
 test('Donation dialog opens by choice, offers all providers, and restores keyboard focus', async ({ page }) => {
-  await page.goto('/privacy.html', { waitUntil: 'domcontentloaded' });
+  await page.goto('privacy.html', { waitUntil: 'domcontentloaded' });
   const trigger = page.locator('#donate-nav-btn');
   const dialog = page.getByRole('dialog', { name: /Support LangSteps/ });
 
@@ -91,7 +91,7 @@ test('Donation dialog opens by choice, offers all providers, and restores keyboa
 test('All guided curricula fit mobile widths while code remains horizontally scrollable', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   for (const course of ['Go', 'SQL', 'CSharp']) {
-    await page.goto('/' + course + '/index.html', { waitUntil: 'domcontentloaded' });
+    await page.goto(course + '/index.html', { waitUntil: 'domcontentloaded' });
     await expect(page.locator('#lesson-content h2')).toBeVisible();
     await expect(page.getByRole('button', { name: 'Mark lesson complete' })).toBeVisible();
     const dimensions = await page.evaluate(() => ({
@@ -107,7 +107,7 @@ test('All guided curricula fit mobile widths while code remains horizontally scr
 });
 
 test('v1.1.1 mastery remains after service worker activation and offline reload', async ({ page, context }) => {
-  await page.goto('/index.html', { waitUntil: 'domcontentloaded' });
+  await page.goto('index.html', { waitUntil: 'domcontentloaded' });
   await page.evaluate(async () => {
     localStorage.setItem('langsteps:v1.1.0:mastery:go', '["hello"]');
     await navigator.serviceWorker.ready;
@@ -116,7 +116,7 @@ test('v1.1.1 mastery remains after service worker activation and offline reload'
   await expect.poll(() => page.evaluate(() =>
     Boolean(navigator.serviceWorker.controller)), { timeout: 15_000 }).toBe(true);
 
-  await page.goto('/Go/index.html', { waitUntil: 'domcontentloaded' });
+  await page.goto('Go/index.html', { waitUntil: 'domcontentloaded' });
   await expect(page.locator('#progress-label')).toHaveText('1 / 15 lessons completed');
 
   await context.setOffline(true);
@@ -131,13 +131,13 @@ test('v1.1.1 mastery remains after service worker activation and offline reload'
 
 test('service-worker upgrades clean only LangSteps caches and preserve unrelated projects', async ({ page }) => {
   // Seed old keys before visiting the homepage (the registration point).
-  await page.goto('/Go/index.html', { waitUntil: 'domcontentloaded' });
+  await page.goto('Go/index.html', { waitUntil: 'domcontentloaded' });
   await page.evaluate(async () => {
     await caches.open('langsteps-v1.1.1');
     const other = await caches.open('another-project-v2');
     await other.put('/another-project-offline', new Response('keep this cache'));
   });
-  await page.goto('/index.html', { waitUntil: 'domcontentloaded' });
+  await page.goto('index.html', { waitUntil: 'domcontentloaded' });
   await page.evaluate(() => navigator.serviceWorker.ready);
   await expect.poll(() => page.evaluate(() => Boolean(navigator.serviceWorker.controller)),
     { timeout: 15_000 }).toBe(true);
