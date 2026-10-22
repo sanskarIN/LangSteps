@@ -14,9 +14,13 @@ permissions:
 
 jobs:
   chromium:
-    name: Chromium Firefox WebKit curriculum and offline
+    name: Browser checks — ${{ matrix.engine }}
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        engine: [chromium, firefox, webkit]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -27,14 +31,14 @@ jobs:
       - name: Install test dependencies
         run: npm install --ignore-scripts --no-audit --no-fund
       - name: Install browser engines
-        run: npx playwright install --with-deps chromium firefox webkit
+        run: npx playwright install --with-deps ${{ matrix.engine }}
       - name: Test live browser behavior against a local copy
-        run: npm run test:browser
+        run: npm run test:browser -- --project=${{ matrix.engine }}
       - name: Save traces and screenshots when browser checks fail
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: langsteps-browser-smoke-failures
+          name: langsteps-browser-smoke-${{ matrix.engine }}-failures
           path: |
             playwright-report/
             test-results/
