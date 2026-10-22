@@ -6,17 +6,17 @@ A premium, state-of-the-art interactive learning platform designed to help devel
 
 This platform requires **no compilation, no server setup, and no dependencies**. It operates entirely in the client browser using vanilla technologies (HTML5, JavaScript, CSS3), making it lightweight, easily shareable, and highly responsive.
 
-## 🔧 v1.2.0 development — TypeScript-first curriculum
+## 🔧 v1.2.0 — TypeScript-first curriculum and offline engine
 
-The [v1.2.0 development branch](https://github.com/sanskarIN/LangSteps/tree/release/v1.2.0) begins a staged migration of browser lesson code to strict TypeScript. The Go, SQL and C# lesson viewer, navigation and mastery storage now have strict TypeScript source, preserving existing completion data and adding Previous/Next lesson controls. The Web APIs Reference has also been rebuilt with 15 HTML-first educational entries and typed search/filter interactions that do not depend on JavaScript to display the content. Privacy/Terms donation dialogs across five site sections now offer Razorpay, Buy Me a Coffee and PayPal, with a shared keyboard-accessible TypeScript controller. Compiled `curriculum/*.js` assets remain checked in for direct GitHub Pages delivery. Run `npm run build:curriculum` after editing `src/curriculum/*.ts`.
+The [v1.2.0 implementation](https://github.com/sanskarIN/LangSteps/tree/release/v1.2.0) introduces a staged migration of browser lesson code to strict TypeScript. The Go, SQL and C# lesson viewer, navigation and mastery storage now have strict TypeScript source, preserving existing completion data and adding Previous/Next lesson controls. The Web APIs Reference has also been rebuilt with 15 HTML-first educational entries and typed search/filter interactions that do not depend on JavaScript to display the content. Privacy/Terms donation dialogs across five site sections now offer Razorpay, Buy Me a Coffee and PayPal, with a shared keyboard-accessible TypeScript controller. The offline worker is now authored as strict `src/sw.ts` and compiled into the root `sw.js`. Compiled `curriculum/*.js` assets remain checked in for direct GitHub Pages delivery. Run `npm run build:curriculum` after editing `src/curriculum/*.ts` and `npm run build:sw` after editing `src/sw.ts`. The HTML is retained for semantic structure and progressive accessibility.
 
-This work is **not yet released**. The current stable release is [v1.1.1](https://github.com/sanskarIN/LangSteps/releases/tag/v1.1.1). See the [v1.2.0 development notes](docs/releases/v1.2.0.md).
+See the [v1.2.0 release notes](docs/releases/v1.2.0-public.md) and [technical verification record](docs/releases/v1.2.0.md). The [GitHub Releases page](https://github.com/sanskarIN/LangSteps/releases) is authoritative for the latest published version.
 
 ## ✅ v1.1.1 — Stable release
 
 [LangSteps v1.1.1](https://github.com/sanskarIN/LangSteps/releases/tag/v1.1.1) is published as a stable maintenance update. The release improves curriculum navigation, keyboard focus, offline freshness, Go/C# examples, quiz API validation and answer privacy while preserving existing learner progress keys.
 
-For the exact scope, see the [v1.1.1 public release notes](docs/releases/v1.1.1-public.md). New development work continues separately on `release/v1.2.0`.
+For the exact scope, see the [v1.1.1 public release notes](docs/releases/v1.1.1-public.md). Historical compatibility details are retained in the versioned release notes.
 
 ## 🆕 v1.1.0 — Three released curricula
 
