@@ -17,9 +17,9 @@ test('Patch version is consistent across npm, TypeScript, ASP.NET Core and servi
   assert.match(read('src/core/apiClient.ts'), /version: '1\.1\.1'/);
   assert.match(read('server/LangSteps.Server/Program.cs'), /Version: "1\.1\.1"/);
   assert.match(read('server/LangSteps.Server/Services/StatsService.cs'), /LangSteps v1\.1\.1/);
-  // The development service worker uses a new cache to avoid stale v1.1.1 assets.
-  // Published API/package metadata remains pinned until the v1.2.0 release.
-  assert.match(read('sw.js'), /langsteps-v1\.2\.0-dev[0-9]+/);
+  // The worker is generated from strict TypeScript for the v1.2.0 upgrade.
+  assert.match(read('src/sw.ts'), /langsteps-v1\.2\.0/);
+  assert.match(read('sw.js'), /langsteps-v1\.2\.0/);
 });
 
 test('Original lesson IDs and progress key are preserved in maintenance release', () => {
