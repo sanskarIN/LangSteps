@@ -1,0 +1,38 @@
+name: Browser Smoke — Chromium
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  chromium:
+    name: Real browser curriculum and offline checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install test dependencies
+        run: npm install --ignore-scripts --no-audit --no-fund
+      - name: Install Chromium browser
+        run: npx playwright install --with-deps chromium
+      - name: Test live browser behavior against a local copy
+        run: npm run test:browser
+      - name: Save traces and screenshots when browser checks fail
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: langsteps-browser-smoke-failures
+          path: |
+            playwright-report/
+            test-results/
+          if-no-files-found: ignore
+          retention-days: 7
