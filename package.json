@@ -17,7 +17,7 @@
     "typecheck:sw": "tsc --project tsconfig.sw.json --noEmit",
     "build:sw": "tsc --project tsconfig.sw.json && node scripts/copy-worker.cjs",
     "typecheck:online": "tsc --project tsconfig.online.json --noEmit",
-    "build:online": "tsc --project tsconfig.online.json"
+    "build:online": "tsc --project tsconfig.online.json && node scripts/copy-online.cjs"
   },
   "repository": {
     "type": "git",
