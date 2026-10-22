@@ -145,7 +145,7 @@ test('service-worker upgrades clean only LangSteps caches and preserve unrelated
   const cacheNames = await page.evaluate(() => caches.keys());
   expect(cacheNames).not.toContain('langsteps-v1.1.1');
   expect(cacheNames).toContain('another-project-v2');
-  expect(cacheNames.some(key => key.startsWith('langsteps-v1.2.0-'))).toBe(true);
+  expect(cacheNames).toContain('langsteps-v1.2.0');
   expect(await page.evaluate(async () => {
     const other = await caches.open('another-project-v2');
     const response = await other.match('/another-project-offline');
@@ -155,6 +155,13 @@ test('service-worker upgrades clean only LangSteps caches and preserve unrelated
 
 test('online notice links to the live platform and persists dismissal across course pages', async ({ page }) => {
   await page.goto('index.html', { waitUntil: 'domcontentloaded' });
+  // The homepage intentionally shows a short splash and a cookie-consent panel.
+  // Respect both visible overlays before exercising the separate announcement.
+  await expect(page.locator('#splash-screen')).toBeHidden({ timeout: 10000 });
+  const cookie = page.locator('#cookieBanner');
+  await expect(cookie).toBeVisible({ timeout: 8000 });
+  await cookie.getByRole('button', { name: 'Decline' }).click();
+  await expect(cookie).not.toBeVisible();
   const notice = page.locator('[data-ls-online-notice]');
   await expect(notice).toBeVisible();
   await expect(notice).toContainText('LangSteps is online.');
