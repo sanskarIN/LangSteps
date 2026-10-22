@@ -15,7 +15,7 @@
     "validate:curriculum": "node scripts/validate-curricula.cjs",
     "test:browser": "playwright test",
     "typecheck:sw": "tsc --project tsconfig.sw.json --noEmit",
-    "build:sw": "tsc --project tsconfig.sw.json"
+    "build:sw": "tsc --project tsconfig.sw.json && node scripts/copy-worker.cjs"
   },
   "repository": {
     "type": "git",
