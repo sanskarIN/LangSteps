@@ -2567,7 +2567,7 @@
                     function goToSlide(index) {
                         currentIndex = index;
                         const percentage = -(currentIndex * 100);
-                        carousel.style.transform = \`translateX(\${percentage}%)\`;
+                        carousel.style.transform = `translateX(${percentage}%)`;
                         updateDots();
                     }
 
@@ -2617,13 +2617,13 @@
                             <textarea id="liveCodeInput" style="width: 100%; height: 100%; padding: 24px; background: #0d1117; color: #c9d1d9; border: none; font-family: 'Fira Code', monospace; font-size: 15px; resize: none; outline: none; line-height: 1.6;" spellcheck="false"></textarea>
                         </div>
                         <div style="background: white; padding: 0;">
-                            <iframe id="liveCodePreview" style="width: 100%; height: 100%; border: none;"></iframe>
+                            <iframe id="liveCodePreview" title="Live code preview" sandbox="allow-scripts" referrerpolicy="no-referrer" style="width: 100%; height: 100%; border: none;"></iframe>
                         </div>
                     </div>
                 </div>
                 
                 <script>
-                    const defaultLiveCode = \`<style>
+                    const defaultLiveCode = `<style>
   body {
     display: flex;
     justify-content: center;
@@ -2665,17 +2665,15 @@
   <h1>Hello, LangSteps!</h1>
   <p>Try editing this code.</p>
   <button onclick="alert('You clicked me!')">Click Me</button>
-</div>\`;
+</div>`;
 
                     const liveCodeInput = document.getElementById('liveCodeInput');
                     const liveCodePreview = document.getElementById('liveCodePreview');
 
                     function runLiveCode() {
                         const code = liveCodeInput.value;
-                        const iframeDoc = liveCodePreview.contentDocument || liveCodePreview.contentWindow.document;
-                        iframeDoc.open();
-                        iframeDoc.write(code);
-                        iframeDoc.close();
+                        // srcdoc runs in a sandboxed opaque origin, not the LangSteps origin.
+                        liveCodePreview.srcdoc = code;
                     }
 
                     function resetLiveCode() {
