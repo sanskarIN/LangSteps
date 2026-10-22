@@ -123,4 +123,4 @@ if (require.main === module) {
   }
 }
 
-module.exports = { parseCourseData, validateCourse, validateRepository };
+module.exports = { COURSE_FIELDS, LESSON_FIELDS, parseCourseData, validateCourse, validateRepository };
