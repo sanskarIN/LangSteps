@@ -70,3 +70,6 @@ auto_commit*.py
 
 # Temporary strict TypeScript worker compilation
 /build-sw/
+
+# Intermediate output for the TypeScript online announcement
+/build-online/
