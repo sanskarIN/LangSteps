@@ -12,7 +12,8 @@
     "check": "npm run validate:curriculum && npm run test && npm run typecheck && npm run typecheck:curriculum && npm run build && npm run build:curriculum",
     "build:curriculum": "tsc --project tsconfig.curriculum.json",
     "typecheck:curriculum": "tsc --project tsconfig.curriculum.json --noEmit",
-    "validate:curriculum": "node scripts/validate-curricula.cjs"
+    "validate:curriculum": "node scripts/validate-curricula.cjs",
+    "test:browser": "playwright test"
   },
   "repository": {
     "type": "git",
@@ -42,6 +43,7 @@
     "htmlhint": "^1.9.2",
     "prettier": "^3.9.6",
     "stylelint": "^17.15.0",
-    "typescript": "^7.0.2"
+    "typescript": "^7.0.2",
+    "@playwright/test": "^1.56.0"
   }
 }
