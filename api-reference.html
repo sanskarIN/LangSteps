@@ -56,6 +56,7 @@
     @media(max-width:720px){.site-nav{margin-bottom:2rem}.controls{grid-template-columns:1fr}.api-item summary{gap:.55rem;padding:.95rem .8rem}.api-title{font-size:.92rem}.api-category{font-size:.68rem}.api-detail{padding:.2rem .8rem 1rem}.container{width:calc(100% - 1.35rem)}}
     @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
   </style>
+<link rel="stylesheet" href="./online-status.css">
 </head>
 <body>
 <main class="container">
@@ -162,5 +163,12 @@ const hash = await crypto.subtle.digest(&#39;SHA-256&#39;, data);</code></pre><h
   <footer class="footer">Examples are educational and do not run automatically. Browser support and permission requirements vary. Press <kbd>/</kbd> to focus search. <a href="https://developer.mozilla.org/en-US/docs/Web/API" target="_blank" rel="noopener noreferrer">Browse MDN's complete API index ↗</a></footer>
 </main>
 <script src="./curriculum/api-reference.js" defer></script>
+
+<!-- LangSteps v1.2.0 public online-learning status; available without JavaScript. -->
+<aside class="ls-online-notice" data-ls-online-notice aria-label="LangSteps online availability">
+  <span><strong>LangSteps is online.</strong> <a href="https://sanskarin.github.io/LangSteps/">Learn for free on our website</a>. Course pages work in your browser; code execution depends on the lesson.</span>
+  <button class="ls-online-dismiss" data-ls-online-dismiss type="button" aria-label="Dismiss online announcement">×</button>
+</aside>
+<script src="./online-status.js" defer></script>
 </body>
 </html>
