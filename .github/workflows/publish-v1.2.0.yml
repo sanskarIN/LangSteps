@@ -41,10 +41,12 @@ jobs:
           npm run typecheck
           npm run typecheck:curriculum
           npm run typecheck:sw
+          npm run typecheck:online
           npm run build
           npm run build:curriculum
           npm run build:sw
-          git diff --exit-code -- sw.js curriculum/progress.js curriculum/navigation.js curriculum/donation.js curriculum/learning.js curriculum/api-reference.js
+          npm run build:online
+          git diff --exit-code -- sw.js curriculum/progress.js curriculum/navigation.js curriculum/donation.js curriculum/learning.js curriculum/api-reference.js online-status.js
       - name: Lint v1.2.0 content pages
         run: npx htmlhint Go/index.html SQL/index.html CSharp/index.html api-reference.html
       - name: Build and smoke-test optional ASP.NET Core backend
