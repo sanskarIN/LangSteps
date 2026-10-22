@@ -10,6 +10,8 @@ const CORE_ASSETS = [
     './',
     './index.html',
     './manifest.json',
+    './online-status.css',
+    './online-status.js',
     './curriculum/learning.css',
     './curriculum/learning.js',
     './curriculum/progress.js',
