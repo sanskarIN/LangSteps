@@ -12,15 +12,15 @@ module.exports = defineConfig({
   retries: process.env.CI ? 1 : 0,
   reporter: process.env.CI ? [['list'], ['html', { open: 'never' }]] : 'list',
   use: {
-    baseURL: 'http://127.0.0.1:4173',
+    baseURL: 'http://127.0.0.1:4173/LangSteps/',
     trace: 'retain-on-failure'
   },
   projects: [
     { name: 'chromium', use: { ...devices['Desktop Chrome'] } }
   ],
   webServer: {
-    command: 'python3 -m http.server 4173 --bind 127.0.0.1',
-    url: 'http://127.0.0.1:4173/Go/index.html',
+    command: 'node scripts/serve-pages.cjs',
+    url: 'http://127.0.0.1:4173/LangSteps/Go/index.html',
     reuseExistingServer: !process.env.CI,
     timeout: 30_000
   }
