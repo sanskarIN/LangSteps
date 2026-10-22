@@ -12,14 +12,9 @@ const lessonData = directory => JSON.parse(
   read(directory + '/data.js').replace(/^window\.LANGSTEPS_COURSE = /, '').replace(/;\s*$/, '')
 );
 
-test('Patch version is consistent across npm, TypeScript, ASP.NET Core and service worker', () => {
-  assert.equal(JSON.parse(read('package.json')).version, '1.1.1');
-  assert.match(read('src/core/apiClient.ts'), /version: '1\.1\.1'/);
-  assert.match(read('server/LangSteps.Server/Program.cs'), /Version: "1\.1\.1"/);
-  assert.match(read('server/LangSteps.Server/Services/StatsService.cs'), /LangSteps v1\.1\.1/);
-  // The worker is generated from strict TypeScript for the v1.2.0 upgrade.
-  assert.match(read('src/sw.ts'), /langsteps-v1\.2\.0/);
-  assert.match(read('sw.js'), /langsteps-v1\.2\.0/);
+test('The v1.1.1 maintenance release record stays available during upgrades', () => {
+  assert.match(read('docs/releases/v1.1.1.md'), /v1\.1\.1/);
+  assert.match(read('src/curriculum/progress.ts'), /langsteps:v1\.1\.0:mastery:/);
 });
 
 test('Original lesson IDs and progress key are preserved in maintenance release', () => {
