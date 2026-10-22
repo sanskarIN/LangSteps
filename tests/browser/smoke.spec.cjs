@@ -88,16 +88,22 @@ test('Donation dialog opens by choice, offers all providers, and restores keyboa
   await expect(trigger).toBeFocused();
 });
 
-test('Go curriculum remains usable at mobile viewport without horizontal overflow', async ({ page }) => {
+test('All guided curricula fit mobile widths while code remains horizontally scrollable', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto('/Go/index.html', { waitUntil: 'domcontentloaded' });
-  await expect(page.locator('#lesson-content h2')).toBeVisible();
-  await expect(page.getByRole('button', { name: 'Mark lesson complete' })).toBeVisible();
-  const dimensions = await page.evaluate(() => ({
-    inner: window.innerWidth,
-    document: document.documentElement.scrollWidth
-  }));
-  expect(dimensions.document).toBeLessThanOrEqual(dimensions.inner + 1);
+  for (const course of ['Go', 'SQL', 'CSharp']) {
+    await page.goto('/' + course + '/index.html', { waitUntil: 'domcontentloaded' });
+    await expect(page.locator('#lesson-content h2')).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Mark lesson complete' })).toBeVisible();
+    const dimensions = await page.evaluate(() => ({
+      inner: window.innerWidth,
+      document: document.documentElement.scrollWidth,
+      code: document.querySelector('#lesson-content pre').getBoundingClientRect().width
+    }));
+    expect(dimensions.document, course + ' should not overflow page width')
+      .toBeLessThanOrEqual(dimensions.inner + 1);
+    expect(dimensions.code, course + ' example should fit its panel')
+      .toBeLessThanOrEqual(dimensions.inner);
+  }
 });
 
 test('v1.1.1 mastery remains after service worker activation and offline reload', async ({ page, context }) => {
