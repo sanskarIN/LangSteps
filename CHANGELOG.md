@@ -26,6 +26,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Extended browser testing to Chromium, Firefox, and WebKit (release-gating checks pending).
 - Added a TypeScript-worker consistency check to CI.
 
+### Fixed
+- Repaired two malformed homepage inline JavaScript template literals that broke the testimonial carousel and live-code example.
+- Isolated the homepage HTML preview in a sandboxed iframe with an opaque origin to keep user code away from website storage.
+- Corrected cross-browser offline cache upgrade assertions to the stable v1.2.0 cache key.
+- Added browser checks that account for the homepage splash screen and cookie-consent overlay.
+
 ### Changed
 - Reused existing v1.1.0 learner progress keys through a typed storage adapter, preserving completed lessons.
 - Added offline precaching for typed navigation, progress, viewer and donation scripts using the `langsteps-v1.2.0` release cache.
