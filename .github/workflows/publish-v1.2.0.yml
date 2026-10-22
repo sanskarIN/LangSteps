@@ -53,10 +53,12 @@ jobs:
         run: |
           dotnet build server/LangSteps.Server/LangSteps.Server.csproj -c Release --warnaserror
           bash tests/api-smoke.sh
-      - name: Install Chromium Firefox and WebKit
-        run: npx playwright install --with-deps chromium firefox webkit
-      - name: Test browser and offline behavior
-        run: npm run test:browser
+      - name: Test Chromium Firefox and WebKit with pinned Playwright image
+        run: |
+          docker run --rm --ipc=host \
+            -v "$PWD":/workspace -w /workspace \
+            -e CI=true mcr.microsoft.com/playwright:v1.64.0-noble \
+            npm run test:browser
       - name: Publish stable release only after all checks pass
         env:
           GH_TOKEN: ${{ github.token }}
