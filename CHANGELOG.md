@@ -4,7 +4,7 @@ All notable changes to **LangSteps** will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-## [1.2.0] — In development (not released)
+## [1.2.0] — 2026-10-22
 
 ### Added
 - Introduced a strict TypeScript curriculum runtime for browser-local mastery storage, lesson navigation and the complete lesson viewer.
@@ -30,7 +30,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Aligned the package, TypeScript client, and optional ASP.NET Core API to version `1.2.0`.
 - Documented the incremental migration and validation plan in `docs/releases/v1.2.0.md`.
 
-**Status:** Work in progress on `release/v1.2.0`. v1.1.1 remains the latest stable GitHub release.
+**Release record:** Publication is gated on the final v1.2.0 checks. The GitHub Releases page is the authoritative source for publication status.
 
 ---
 
