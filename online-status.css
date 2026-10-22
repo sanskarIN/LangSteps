@@ -1,0 +1,23 @@
+/* Small, accessible notice shared by all LangSteps pages. No page-specific selectors. */
+.ls-online-notice{
+  box-sizing:border-box;position:fixed;inset:auto 1rem 1rem;z-index:1200;
+  max-width:760px;margin-inline:auto;display:flex;align-items:center;
+  gap:1rem;padding:.75rem 1rem;border:1px solid #506ea7;
+  border-radius:12px;background:#101c34;color:#f5f8ff;
+  box-shadow:0 8px 30px rgb(0 0 0 / .3);font:500 14px/1.5 system-ui,sans-serif;
+}
+.ls-online-notice[hidden]{display:none!important}
+.ls-online-notice strong{font-weight:750}
+.ls-online-notice a{color:#b5e3ff;text-decoration:underline;text-underline-offset:2px}
+.ls-online-notice a:hover{color:white}
+.ls-online-dismiss{
+  flex:none;min-width:40px;min-height:40px;border:1px solid #7285a7;
+  border-radius:8px;background:transparent;color:inherit;cursor:pointer;
+  font:700 22px/1 system-ui,sans-serif
+}
+.ls-online-dismiss:hover{background:#293d5f}
+.ls-online-dismiss:focus-visible,.ls-online-notice a:focus-visible{
+  outline:3px solid #ffe18d;outline-offset:3px
+}
+@media(max-width:520px){.ls-online-notice{inset:auto .5rem .5rem;padding:.65rem .75rem;gap:.5rem;font-size:12px}}
+@media print{.ls-online-notice{display:none!important}}
