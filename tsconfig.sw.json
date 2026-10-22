@@ -1,9 +1,10 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    "module": "None",
+    "module": "ESNext",
     "lib": ["ES2022", "WebWorker"],
-    "outFile": "./sw.js",
+    "rootDir": "./src",
+    "outDir": "./build-sw",
     "strict": true,
     "noEmitOnError": true,
     "skipLibCheck": true
