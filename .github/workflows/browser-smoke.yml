@@ -30,6 +30,8 @@ jobs:
       - name: Install test dependencies
         run: npm install --ignore-scripts --no-audit --no-fund
       - name: Run cross-engine browser and offline tests
+        env:
+          HOME: /root
         run: npm run test:browser
       - name: Save traces and screenshots when browser checks fail
         if: failure()
