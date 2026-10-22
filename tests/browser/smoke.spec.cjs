@@ -128,3 +128,27 @@ test('v1.1.1 mastery remains after service worker activation and offline reload'
     await context.setOffline(false);
   }
 });
+
+test('service-worker upgrades clean only LangSteps caches and preserve unrelated projects', async ({ page }) => {
+  // Seed old keys before visiting the homepage (the registration point).
+  await page.goto('/Go/index.html', { waitUntil: 'domcontentloaded' });
+  await page.evaluate(async () => {
+    await caches.open('langsteps-v1.1.1');
+    const other = await caches.open('another-project-v2');
+    await other.put('/another-project-offline', new Response('keep this cache'));
+  });
+  await page.goto('/index.html', { waitUntil: 'domcontentloaded' });
+  await page.evaluate(() => navigator.serviceWorker.ready);
+  await expect.poll(() => page.evaluate(() => Boolean(navigator.serviceWorker.controller)),
+    { timeout: 15_000 }).toBe(true);
+
+  const cacheNames = await page.evaluate(() => caches.keys());
+  expect(cacheNames).not.toContain('langsteps-v1.1.1');
+  expect(cacheNames).toContain('another-project-v2');
+  expect(cacheNames.some(key => key.startsWith('langsteps-v1.2.0-'))).toBe(true);
+  expect(await page.evaluate(async () => {
+    const other = await caches.open('another-project-v2');
+    const response = await other.match('/another-project-offline');
+    return response && response.text();
+  })).toBe('keep this cache');
+});
