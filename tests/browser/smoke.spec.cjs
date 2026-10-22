@@ -135,7 +135,11 @@ test('service-worker upgrades clean only LangSteps caches and preserve unrelated
   await page.evaluate(async () => {
     await caches.open('langsteps-v1.1.1');
     const other = await caches.open('another-project-v2');
-    await other.put('/another-project-offline', new Response('keep this cache'));
+    const unrelatedUrl = new URL('/another-project-offline', location.origin).href;
+    await other.put(new Request(unrelatedUrl), new Response('keep this cache'));
+    if (!(await other.match(new Request(unrelatedUrl)))) {
+      throw new Error('Browser failed to persist unrelated cache content even before activation');
+    }
   });
   await page.goto('index.html', { waitUntil: 'domcontentloaded' });
   await page.evaluate(() => navigator.serviceWorker.ready);
@@ -148,7 +152,8 @@ test('service-worker upgrades clean only LangSteps caches and preserve unrelated
   expect(cacheNames).toContain('langsteps-v1.2.0');
   expect(await page.evaluate(async () => {
     const other = await caches.open('another-project-v2');
-    const response = await other.match('/another-project-offline');
+    const unrelatedUrl = new URL('/another-project-offline', location.origin).href;
+    const response = await other.match(new Request(unrelatedUrl));
     return response && response.text();
   })).toBe('keep this cache');
 });
