@@ -1,7 +1,7 @@
 {
   "name": "LangSteps — Programming Mastery",
   "short_name": "LangSteps",
-  "description": "Free interactive programming lessons, exercises, examples, quizzes and local progress tracking.",
+  "description": "Free online programming lessons and references across 10 learning paths, with optional browser-local offline access and progress tracking.",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#0b0f19",
