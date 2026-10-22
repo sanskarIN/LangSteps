@@ -7,6 +7,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [1.2.0] — 2026-10-22
 
 ### Added
+- Announced the free online LangSteps learning site across all 97 HTML pages, with an accessible static banner and optional TypeScript dismissal.
+- Added online availability information to the homepage search metadata, application manifest, README, and public release notes.
+- Added regression checks guarding all published page announcements, correct shared asset paths, and privacy-aware dismissal behavior.
+- Precached the online-status stylesheet and generated script for existing offline readers.
 - Introduced a strict TypeScript curriculum runtime for browser-local mastery storage, lesson navigation and the complete lesson viewer.
 - Added an accessible shared TypeScript donation dialog controller with focus restoration and keyboard handling.
 - Rebuilt the Web APIs Reference with 15 readable-without-JavaScript entries, category filtering, accessible disclosure sections, code examples and MDN links.
