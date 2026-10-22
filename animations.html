@@ -38,6 +38,7 @@
         @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-10px); } 75% { transform: translateX(10px); } }
         @keyframes flip { 0% { transform: perspective(400px) rotateY(0); } 100% { transform: perspective(400px) rotateY(360deg); } }
     </style>
+<link rel="stylesheet" href="./online-status.css">
 </head>
 <body>
     <div class="panel">
@@ -129,5 +130,12 @@
 
         update(); // Init
     </script>
+
+<!-- LangSteps v1.2.0 public online-learning status; available without JavaScript. -->
+<aside class="ls-online-notice" data-ls-online-notice aria-label="LangSteps online availability">
+  <span><strong>LangSteps is online.</strong> <a href="https://sanskarin.github.io/LangSteps/">Learn for free on our website</a>. Course pages work in your browser; code execution depends on the lesson.</span>
+  <button class="ls-online-dismiss" data-ls-online-dismiss type="button" aria-label="Dismiss online announcement">×</button>
+</aside>
+<script src="./online-status.js" defer></script>
 </body>
 </html>

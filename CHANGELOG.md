@@ -4,6 +4,46 @@ All notable changes to **LangSteps** will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [1.2.0] — 2026-10-22
+
+### Added
+- Announced the free online LangSteps learning site across all 97 HTML pages, with an accessible static banner and optional TypeScript dismissal.
+- Added online availability information to the homepage search metadata, application manifest, README, and public release notes.
+- Added regression checks guarding all published page announcements, correct shared asset paths, and privacy-aware dismissal behavior.
+- Precached the online-status stylesheet and generated script for existing offline readers.
+- Introduced a strict TypeScript curriculum runtime for browser-local mastery storage, lesson navigation and the complete lesson viewer.
+- Added an accessible shared TypeScript donation dialog controller with focus restoration and keyboard handling.
+- Rebuilt the Web APIs Reference with 15 readable-without-JavaScript entries, category filtering, accessible disclosure sections, code examples and MDN links.
+- Added strict TypeScript enhancement for Web API search, reset, expand/collapse and slash-to-search keyboard navigation.
+- Added tests catching the original broken API Reference script and guarding progressive HTML / TypeScript search behavior.
+- Added Previous/Next lesson controls for the Go, SQL and C# learning paths.
+- Added automated test coverage for TypeScript progress persistence, URL parsing, guided navigation, donation dialog keyboard behavior and support link completeness.
+- Added CI checks to ensure compiled browser assets match their TypeScript source before merging.
+
+- Added strict `src/sw.ts` source compiled to the root GitHub Pages `sw.js` with a release-versioned offline cache.
+- Added course-data schema validation that rejects malformed or executable JavaScript payloads and duplicate IDs.
+- Added Playwright browser integration checks for lesson navigation, offline cache isolation, API documentation, donations, keyboard interactions, and mobile overflow.
+- Extended browser testing to Chromium, Firefox, and WebKit (release-gating checks pending).
+- Added a TypeScript-worker consistency check to CI.
+
+### Fixed
+- Repaired two malformed homepage inline JavaScript template literals that broke the testimonial carousel and live-code example.
+- Isolated the homepage HTML preview in a sandboxed iframe with an opaque origin to keep user code away from website storage.
+- Corrected cross-browser offline cache upgrade assertions to the stable v1.2.0 cache key.
+- Added browser checks that account for the homepage splash screen and cookie-consent overlay.
+
+### Changed
+- Reused existing v1.1.0 learner progress keys through a typed storage adapter, preserving completed lessons.
+- Added offline precaching for typed navigation, progress, viewer and donation scripts using the `langsteps-v1.2.0` release cache.
+- Restored visible Razorpay, Buy Me a Coffee and PayPal choices in all ten root/course Privacy and Terms dialogs through stable-site hotfix PR #7.
+- Corrected small-screen grid sizing after Playwright detected unintended horizontal scrolling at 390px.
+- Aligned the package, TypeScript client, and optional ASP.NET Core API to version `1.2.0`.
+- Documented the incremental migration and validation plan in `docs/releases/v1.2.0.md`.
+
+**Release record:** Publication is gated on the final v1.2.0 checks. The GitHub Releases page is the authoritative source for publication status.
+
+---
+
 ## [1.1.1] — 2026-10-21
 
 ### Fixed

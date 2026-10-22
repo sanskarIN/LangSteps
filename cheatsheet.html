@@ -20,6 +20,7 @@
         table { width: 100%; border-collapse: collapse; }
         th, td { padding: 0.75rem; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.1); }
     </style>
+<link rel="stylesheet" href="./online-status.css">
 </head>
 <body>
     <h1>LangSteps Polyglot Cheatsheet</h1>
@@ -52,5 +53,12 @@
             evt.currentTarget.classList.add('active');
         }
     </script>
+
+<!-- LangSteps online learning availability -->
+<aside class="ls-online-notice" data-ls-online-notice aria-label="LangSteps online availability">
+  <span><strong>LangSteps is online.</strong> <a href="https://sanskarin.github.io/LangSteps/">Learn for free on our website</a>. Course pages work in your browser; code execution depends on the lesson.</span>
+  <button class="ls-online-dismiss" data-ls-online-dismiss type="button" aria-label="Dismiss online announcement">×</button>
+</aside>
+<script src="./online-status.js" defer></script>
 </body>
 </html>

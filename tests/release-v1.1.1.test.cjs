@@ -12,17 +12,15 @@ const lessonData = directory => JSON.parse(
   read(directory + '/data.js').replace(/^window\.LANGSTEPS_COURSE = /, '').replace(/;\s*$/, '')
 );
 
-test('Patch version is consistent across npm, TypeScript, ASP.NET Core and service worker', () => {
-  assert.equal(JSON.parse(read('package.json')).version, '1.1.1');
-  assert.match(read('src/core/apiClient.ts'), /version: '1\.1\.1'/);
-  assert.match(read('server/LangSteps.Server/Program.cs'), /Version: "1\.1\.1"/);
-  assert.match(read('server/LangSteps.Server/Services/StatsService.cs'), /LangSteps v1\.1\.1/);
-  assert.match(read('sw.js'), /langsteps-v1\.1\.1/);
+test('The v1.1.1 maintenance release record stays available during upgrades', () => {
+  assert.match(read('docs/releases/v1.1.1.md'), /v1\.1\.1/);
+  assert.match(read('src/curriculum/progress.ts'), /langsteps:v1\.1\.0:mastery:/);
 });
 
 test('Original lesson IDs and progress key are preserved in maintenance release', () => {
   const viewer = read('curriculum/learning.js');
-  assert.match(viewer, /langsteps:v1\.1\.0:mastery:/);
+  assert.match(read('src/curriculum/progress.ts'), /langsteps:v1\.1\.0:mastery:/);
+  assert.match(viewer, /LangStepsProgress\.createStore/);
   for (const directory of ['Go', 'SQL', 'CSharp']) {
     const course = lessonData(directory);
     assert.equal(course.lessons.length, 15);
@@ -103,7 +101,7 @@ test('Service worker cleans only its own previous caches', async () => {
   let wait;
   h.handlers.get('activate')({ waitUntil: promise => { wait = promise; } });
   await wait;
-  assert.deepEqual(h.deletions, ['langsteps-v1.1.0']);
+  assert.deepEqual(h.deletions, ['langsteps-v1.1.0', 'langsteps-v1.1.1']);
 });
 
 test('Service worker leaves other GitHub Pages projects and API requests untouched', () => {

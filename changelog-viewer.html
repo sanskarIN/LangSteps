@@ -31,6 +31,7 @@
         .change-item:last-child { margin-bottom: 0; }
         @media(max-width: 600px) { .timeline::before { left: 20px; } .release { padding-left: 2rem; } .release::before { left: -14px; } }
     </style>
+<link rel="stylesheet" href="./online-status.css">
 </head>
 <body>
     <nav><div class="logo">LangSteps</div><div><a href="index.html">Home</a><a href="changelog-viewer.html">Changelog</a></div></nav>
@@ -57,5 +58,12 @@
             </div>
         </div>
     </div>
+
+<!-- LangSteps online learning availability -->
+<aside class="ls-online-notice" data-ls-online-notice aria-label="LangSteps online availability">
+  <span><strong>LangSteps is online.</strong> <a href="https://sanskarin.github.io/LangSteps/">Learn for free on our website</a>. Course pages work in your browser; code execution depends on the lesson.</span>
+  <button class="ls-online-dismiss" data-ls-online-dismiss type="button" aria-label="Dismiss online announcement">×</button>
+</aside>
+<script src="./online-status.js" defer></script>
 </body>
 </html>

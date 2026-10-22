@@ -8,6 +8,10 @@ on:
     branches:
       - main
 
+concurrency:
+  group: langsteps-verify-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
 
@@ -20,12 +24,24 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Validate course content and local routes
-        run: npm test
+      - name: Validate typed curriculum data and local routes
+        run: npm run validate:curriculum && npm test
       - name: Install build dependencies
         run: npm install --ignore-scripts --no-audit --no-fund
       - name: Check TypeScript types
         run: npm run typecheck
+      - name: Check shared curriculum TypeScript
+        run: npm run typecheck:curriculum
+      - name: Check service worker TypeScript
+        run: npm run typecheck:sw
+      - name: Check sitewide online banner TypeScript
+        run: npm run typecheck:online
+      - name: Compile browser curriculum module and verify tracked output
+        run: npm run build:curriculum && git diff --exit-code -- curriculum/progress.js curriculum/navigation.js curriculum/donation.js curriculum/learning.js curriculum/api-reference.js
+      - name: Compile typed service worker and verify tracked asset
+        run: npm run build:sw && git diff --exit-code -- sw.js
+      - name: Compile online banner and verify tracked output
+        run: npm run build:online && git diff --exit-code -- online-status.js
       - name: Compile TypeScript
         run: npm run build
 

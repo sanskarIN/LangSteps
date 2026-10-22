@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LangSteps — Learn HTML, CSS, JS, React, Python, TypeScript, Rust, Go, SQL & C#</title>
     <meta name="description"
-        content="The ultimate open-source multi-language programming platform. Master HTML, CSS, JavaScript, React, Python, TypeScript, Rust, Go, SQL, and C# with interactive lessons, live sandboxes, and premium design.">
+        content="LangSteps is a free online programming learning website for HTML, CSS, JavaScript, React, Python, TypeScript, Rust, Go, SQL, and C#. Study lessons in your browser at sanskarin.github.io/LangSteps.">
     <meta name="keywords"
         content="Programming, Multi-Language, Python, TypeScript, Rust, JavaScript, React, HTML, CSS, ASP.NET Core, Learn to Code, LangSteps, Sanskar Developer">
     <meta name="author" content="Sanskar">
@@ -18,10 +18,10 @@
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="LangSteps — Learn HTML, CSS, JS, React, Python, TypeScript, Rust, Go, SQL & C#">
     <meta property="og:description"
-        content="The ultimate open-source multi-language programming platform. Master Python, TypeScript, Rust, JavaScript, React, HTML, CSS, and ASP.NET Core with 500+ concepts, live sandboxes, and premium design.">
+        content="LangSteps is now available online: free browser-based programming education with 10 learning paths, examples, revision and optional offline reading.">
     <meta property="og:type" content="website">
     <meta property="og:image" content="splash.png">
-    <meta property="og:url" content="https://github.com/sanskarIN/LangSteps">
+    <meta property="og:url" content="https://sanskarin.github.io/LangSteps/">
 
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
@@ -1909,6 +1909,7 @@
             }
         }
     </style>
+<link rel="stylesheet" href="./online-status.css">
 </head>
 
 <body>
@@ -1988,7 +1989,7 @@
                     <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                     <polyline points="22 4 12 14.01 9 11.01"></polyline>
                 </svg>
-                v5.0 Premium Edition • Open Source
+                Open Source • Free Programming Education
             </div>
 
             <h1>Master Multi-Language Coding <br><span class="gradient-text">Like a Pro</span></h1>
@@ -2566,7 +2567,7 @@
                     function goToSlide(index) {
                         currentIndex = index;
                         const percentage = -(currentIndex * 100);
-                        carousel.style.transform = \`translateX(\${percentage}%)\`;
+                        carousel.style.transform = `translateX(${percentage}%)`;
                         updateDots();
                     }
 
@@ -2616,13 +2617,13 @@
                             <textarea id="liveCodeInput" style="width: 100%; height: 100%; padding: 24px; background: #0d1117; color: #c9d1d9; border: none; font-family: 'Fira Code', monospace; font-size: 15px; resize: none; outline: none; line-height: 1.6;" spellcheck="false"></textarea>
                         </div>
                         <div style="background: white; padding: 0;">
-                            <iframe id="liveCodePreview" style="width: 100%; height: 100%; border: none;"></iframe>
+                            <iframe id="liveCodePreview" title="Live code preview" sandbox="allow-scripts" referrerpolicy="no-referrer" style="width: 100%; height: 100%; border: none;"></iframe>
                         </div>
                     </div>
                 </div>
                 
                 <script>
-                    const defaultLiveCode = \`<style>
+                    const defaultLiveCode = `<style>
   body {
     display: flex;
     justify-content: center;
@@ -2664,17 +2665,15 @@
   <h1>Hello, LangSteps!</h1>
   <p>Try editing this code.</p>
   <button onclick="alert('You clicked me!')">Click Me</button>
-</div>\`;
+</div>`;
 
                     const liveCodeInput = document.getElementById('liveCodeInput');
                     const liveCodePreview = document.getElementById('liveCodePreview');
 
                     function runLiveCode() {
                         const code = liveCodeInput.value;
-                        const iframeDoc = liveCodePreview.contentDocument || liveCodePreview.contentWindow.document;
-                        iframeDoc.open();
-                        iframeDoc.write(code);
-                        iframeDoc.close();
+                        // srcdoc runs in a sandboxed opaque origin, not the LangSteps origin.
+                        liveCodePreview.srcdoc = code;
                     }
 
                     function resetLiveCode() {
@@ -2935,7 +2934,7 @@
             </div>
 
             <div class="footer-bottom">
-                <div class="footer-badge">v5.0 Premium Edition</div>
+                <div class="footer-badge">LangSteps • Open Source</div>
                 <p>&copy; 2026 Sanskar. All rights reserved.</p>
                 <p>Made with ❤️ in India 🇮🇳</p>
                 <button onclick="openDonate()" class="btn btn-donate"
@@ -3084,8 +3083,8 @@
         // Typing Effect for Hero Subtitle
         const typingElement = document.getElementById('typing-text');
         const phrases = [
-            '500+ Concepts Deep-Dived',
-            '4 Complete Modules',
+            '10 Programming Learning Paths',
+            'Go, SQL & C# Guided Lessons',
             'Live Code Sandboxes',
             'Zero Dependencies'
         ];
@@ -3377,6 +3376,13 @@
         document.getElementById('cookieBanner').classList.remove('visible');
     }
     </script>
+
+<!-- LangSteps online learning availability -->
+<aside class="ls-online-notice" data-ls-online-notice aria-label="LangSteps online availability">
+  <span><strong>LangSteps is online.</strong> <a href="https://sanskarin.github.io/LangSteps/">Learn for free on our website</a>. Course pages work in your browser; code execution depends on the lesson.</span>
+  <button class="ls-online-dismiss" data-ls-online-dismiss type="button" aria-label="Dismiss online announcement">×</button>
+</aside>
+<script src="./online-status.js" defer></script>
 </body>
 
 <!-- Service Worker Registration -->

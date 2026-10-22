@@ -42,6 +42,7 @@
         footer { background: var(--glass-bg); border-top: 1px solid var(--glass-border); padding: 2rem; text-align: center; margin-top: 4rem; }
         @media (max-width: 768px) { nav { flex-direction: column; gap: 1rem; } nav div { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; } nav a { margin: 0; } }
     </style>
+<link rel="stylesheet" href="./online-status.css">
 </head>
 <body>
     <nav>
@@ -89,5 +90,12 @@
     <footer>
         <p>&copy; 2026 LangSteps. All rights reserved.</p>
     </footer>
+
+<!-- LangSteps online learning availability -->
+<aside class="ls-online-notice" data-ls-online-notice aria-label="LangSteps online availability">
+  <span><strong>LangSteps is online.</strong> <a href="https://sanskarin.github.io/LangSteps/">Learn for free on our website</a>. Course pages work in your browser; code execution depends on the lesson.</span>
+  <button class="ls-online-dismiss" data-ls-online-dismiss type="button" aria-label="Dismiss online announcement">×</button>
+</aside>
+<script src="./online-status.js" defer></script>
 </body>
 </html>

@@ -932,6 +932,7 @@
             transform: translateY(0);
         }
     </style>
+<link rel="stylesheet" href="./online-status.css">
 </head>
 <body>
     <!-- Floating Orbs -->
@@ -1215,9 +1216,9 @@
 
     <!-- Donate Overlay -->
     <div class="donate-overlay" id="donate-overlay">
-        <div class="donate-modal">
+        <div class="donate-modal" role="dialog" aria-modal="true" aria-labelledby="donate-dialog-title" tabindex="-1">
             <button class="donate-close" id="donate-close" aria-label="Close donate modal">✕</button>
-            <h3>❤️ Support LangSteps</h3>
+            <h3 id="donate-dialog-title">❤️ Support LangSteps</h3>
             <p>
                 Your donation helps us create free, high-quality multi-language programming tutorials for everyone. Every contribution makes a difference!
             </p>
@@ -1328,37 +1329,7 @@
             }
         })();
 
-        /* ==================== DONATE OVERLAY ==================== */
-        (function() {
-            const overlay = document.getElementById('donate-overlay');
-            const navBtn = document.getElementById('donate-nav-btn');
-            const closeBtn = document.getElementById('donate-close');
-            const closeBtnAlt = document.getElementById('donate-close-btn');
 
-            function openDonate() {
-                overlay.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            }
-
-            function closeDonate() {
-                overlay.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-
-            navBtn.addEventListener('click', openDonate);
-            closeBtn.addEventListener('click', closeDonate);
-            closeBtnAlt.addEventListener('click', closeDonate);
-
-            overlay.addEventListener('click', function(e) {
-                if (e.target === overlay) closeDonate();
-            });
-
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && overlay.classList.contains('active')) {
-                    closeDonate();
-                }
-            });
-        })();
 
         /* ==================== SCROLL ANIMATIONS ==================== */
         (function() {
@@ -1416,5 +1387,13 @@
             });
         })();
     </script>
+    <script src="curriculum/donation.js"></script>
+
+<!-- LangSteps online learning availability -->
+<aside class="ls-online-notice" data-ls-online-notice aria-label="LangSteps online availability">
+  <span><strong>LangSteps is online.</strong> <a href="https://sanskarin.github.io/LangSteps/">Learn for free on our website</a>. Course pages work in your browser; code execution depends on the lesson.</span>
+  <button class="ls-online-dismiss" data-ls-online-dismiss type="button" aria-label="Dismiss online announcement">×</button>
+</aside>
+<script src="./online-status.js" defer></script>
 </body>
 </html>
