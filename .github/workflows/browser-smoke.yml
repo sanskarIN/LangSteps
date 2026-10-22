@@ -13,14 +13,13 @@ permissions:
   contents: read
 
 jobs:
-  chromium:
-    name: Browser checks — ${{ matrix.engine }}
+  browser:
+    name: Chromium Firefox WebKit integration checks
     runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.64.0-noble
+      options: --ipc=host
     timeout-minutes: 20
-    strategy:
-      fail-fast: false
-      matrix:
-        engine: [chromium, firefox, webkit]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -30,15 +29,13 @@ jobs:
           node-version: '22'
       - name: Install test dependencies
         run: npm install --ignore-scripts --no-audit --no-fund
-      - name: Install browser engines
-        run: npx playwright install --with-deps ${{ matrix.engine }}
-      - name: Test live browser behavior against a local copy
-        run: npm run test:browser -- --project=${{ matrix.engine }}
+      - name: Run cross-engine browser and offline tests
+        run: npm run test:browser
       - name: Save traces and screenshots when browser checks fail
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: langsteps-browser-smoke-${{ matrix.engine }}-failures
+          name: langsteps-cross-browser-failures
           path: |
             playwright-report/
             test-results/
