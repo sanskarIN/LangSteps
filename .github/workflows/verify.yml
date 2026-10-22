@@ -20,8 +20,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Validate course content and local routes
-        run: npm test
+      - name: Validate typed curriculum data and local routes
+        run: npm run validate:curriculum && npm test
       - name: Install build dependencies
         run: npm install --ignore-scripts --no-audit --no-fund
       - name: Check TypeScript types
