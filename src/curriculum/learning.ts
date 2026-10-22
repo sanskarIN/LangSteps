@@ -3,28 +3,6 @@
  * Course data is display-only; examples are never executed.
  * Existing progress keys and fragment URLs are preserved across upgrades.
  */
-interface LangStepsLesson {
-  id: string;
-  title: string;
-  category: string;
-  summary: string;
-  explanation: string;
-  code: string;
-  challenge: string;
-  level: string;
-}
-
-interface LangStepsCourse {
-  slug: string;
-  title: string;
-  summary: string;
-  lessons: LangStepsLesson[];
-}
-
-interface Window {
-  LANGSTEPS_COURSE?: LangStepsCourse;
-}
-
 ((): void => {
   'use strict';
 
