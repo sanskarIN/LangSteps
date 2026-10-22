@@ -57,7 +57,7 @@ jobs:
         run: |
           docker run --rm --ipc=host \
             -v "$PWD":/workspace -w /workspace \
-            -e CI=true mcr.microsoft.com/playwright:v1.64.0-noble \
+            -e CI=true -e HOME=/root mcr.microsoft.com/playwright:v1.64.0-noble \
             npm run test:browser
       - name: Publish stable release only after all checks pass
         env:
