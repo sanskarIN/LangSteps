@@ -28,8 +28,12 @@ jobs:
         run: npm run typecheck
       - name: Check shared curriculum TypeScript
         run: npm run typecheck:curriculum
+      - name: Check service worker TypeScript
+        run: npm run typecheck:sw
       - name: Compile browser curriculum module and verify tracked output
         run: npm run build:curriculum && git diff --exit-code -- curriculum/progress.js curriculum/navigation.js curriculum/donation.js curriculum/learning.js curriculum/api-reference.js
+      - name: Compile typed service worker and verify tracked asset
+        run: npm run build:sw && git diff --exit-code -- sw.js
       - name: Compile TypeScript
         run: npm run build
 
