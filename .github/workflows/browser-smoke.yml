@@ -1,4 +1,4 @@
-name: Browser Smoke — Chromium
+name: Browser Smoke — All Engines
 
 on:
   pull_request:
@@ -14,7 +14,7 @@ permissions:
 
 jobs:
   chromium:
-    name: Real browser curriculum and offline checks
+    name: Chromium Firefox WebKit curriculum and offline
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -26,8 +26,8 @@ jobs:
           node-version: '22'
       - name: Install test dependencies
         run: npm install --ignore-scripts --no-audit --no-fund
-      - name: Install Chromium browser
-        run: npx playwright install --with-deps chromium
+      - name: Install browser engines
+        run: npx playwright install --with-deps chromium firefox webkit
       - name: Test live browser behavior against a local copy
         run: npm run test:browser
       - name: Save traces and screenshots when browser checks fail
