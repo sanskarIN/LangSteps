@@ -9,9 +9,10 @@
     "watch": "tsc --watch",
     "typecheck": "tsc --noEmit",
     "test": "node --test tests/*.test.cjs",
-    "check": "npm run test && npm run typecheck && npm run typecheck:curriculum && npm run build && npm run build:curriculum",
+    "check": "npm run validate:curriculum && npm run test && npm run typecheck && npm run typecheck:curriculum && npm run build && npm run build:curriculum",
     "build:curriculum": "tsc --project tsconfig.curriculum.json",
-    "typecheck:curriculum": "tsc --project tsconfig.curriculum.json --noEmit"
+    "typecheck:curriculum": "tsc --project tsconfig.curriculum.json --noEmit",
+    "validate:curriculum": "node scripts/validate-curricula.cjs"
   },
   "repository": {
     "type": "git",
