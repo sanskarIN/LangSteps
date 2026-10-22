@@ -1,4 +1,9 @@
 "use strict";
+/**
+ * Strict TypeScript curriculum viewer for static GitHub Pages lessons.
+ * Course data is display-only; examples are never executed.
+ * Existing progress keys and fragment URLs are preserved across upgrades.
+ */
 (() => {
     'use strict';
     const course = window.LANGSTEPS_COURSE;
