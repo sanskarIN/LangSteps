@@ -66,7 +66,8 @@ const server = http.createServer((req, res) => {
   res.writeHead(200, {
     'content-type': types[path.extname(filename)] || 'application/octet-stream',
     'content-length': stat.size,
-    'cache-control': 'no-store'
+    // Mirror cacheable static GitHub Pages responses. Error responses use no-store.
+    'cache-control': 'public, max-age=0, must-revalidate'
   });
   if (req.method === 'HEAD') return res.end();
   fs.createReadStream(filename).pipe(res);
