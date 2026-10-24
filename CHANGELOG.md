@@ -4,6 +4,24 @@ All notable changes to **LangSteps** will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [1.3.0] — 2026-10-24
+
+### Added
+- Introduced on-demand offline caching for successfully visited lesson pages and same-origin static assets, extending beyond the existing Go/SQL/C# precache.
+- Added an accessible offline explanation for uncached lessons rather than showing an unrelated homepage.
+- Enabled scoped service-worker registration directly from Go, SQL and C# course pages with a new TypeScript-generated module.
+- Added browser and Node regressions for offline navigation, scoped caching, cache eviction and response validation.
+
+### Improved
+- Bounded the runtime cache at 64 entries, excluded non-success or no-store responses, and ignored API traffic and requests outside LangSteps.
+- Preserved historical browser-local lesson mastery keys and unrelated GitHub Pages application caches.
+- Updated frontend and optional backend version metadata to 1.3.0.
+- Added verified TypeScript output parity for the course registration module and a guarded stable-release workflow.
+
+**Scope:** Existing site content remains free and online; visited lessons can be read offline where supported, but the full curriculum is not precached. See [v1.3.0 release notes](docs/releases/v1.3.0-public.md).
+
+---
+
 ## [1.2.0] — 2026-10-22
 
 ### Added

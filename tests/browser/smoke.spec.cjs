@@ -149,7 +149,7 @@ test('service-worker upgrades clean only LangSteps caches and preserve unrelated
   const cacheNames = await page.evaluate(() => caches.keys());
   expect(cacheNames).not.toContain('langsteps-v1.1.1');
   expect(cacheNames).toContain('another-project-v2');
-  expect(cacheNames).toContain('langsteps-v1.2.0');
+  expect(cacheNames).toContain('langsteps-core-v1.3.0');
   // CacheStorage values can be evicted independently by WebKit across navigations.
   // The application-controlled invariant is preserving unrelated named caches:
   // the activation handler must delete only keys prefixed with "langsteps-".
@@ -182,5 +182,40 @@ test('online availability announcement is visible when JavaScript is disabled', 
     await expect(notice).toContainText('Learn for free on our website');
   } finally {
     await context.close();
+  }
+});
+
+test('an unprecached course page becomes available offline after a successful visit', async ({ page, context }) => {
+  await page.goto('index.html', { waitUntil: 'domcontentloaded' });
+  await page.evaluate(() => navigator.serviceWorker.ready);
+  await expect.poll(() => page.evaluate(() => Boolean(navigator.serviceWorker.controller)),
+    { timeout: 15_000 }).toBe(true);
+  await page.goto('Rust/index.html', { waitUntil: 'load' });
+  await expect(page.locator('body')).toContainText('Rust');
+  await context.setOffline(true);
+  try {
+    await page.reload({ waitUntil: 'domcontentloaded' });
+    await expect(page.locator('body')).toContainText('Rust');
+    await expect(page.getByRole('heading', { name: /not been saved for offline reading/i })).toHaveCount(0);
+  } finally {
+    await context.setOffline(false);
+  }
+});
+
+test('a valid unvisited course shows a truthful offline explanation, not the homepage', async ({ page, context, browserName }) => {
+  // Firefox's Playwright offline emulation may still serve a previously fetched
+  // document through the browser HTTP cache instead of failing the SW network fetch.
+  // Node worker tests cover the actual network-failure fallback deterministically.
+  test.skip(browserName === 'firefox', 'Firefox offline emulation can serve the page from its HTTP cache');
+  await page.goto('index.html', { waitUntil: 'domcontentloaded' });
+  await page.evaluate(() => navigator.serviceWorker.ready);
+  await expect.poll(() => page.evaluate(() => Boolean(navigator.serviceWorker.controller)),
+    { timeout: 15_000 }).toBe(true);
+  await context.setOffline(true);
+  try {
+    await page.goto('TypeScript/index.html', { waitUntil: 'domcontentloaded' });
+    await expect(page.getByRole('heading', { name: /not been saved for offline reading/i })).toBeVisible();
+  } finally {
+    await context.setOffline(false);
   }
 });

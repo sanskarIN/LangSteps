@@ -23,7 +23,7 @@ public class StatsService : IStatsService
         var uptime = DateTime.UtcNow - StartTime;
 
         return new SystemTelemetryDto(
-            "LangSteps v1.2.0",
+            "LangSteps v1.3.0",
             Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production",
             Environment.Version.ToString(),
             _content.GetAllModules().Count,
