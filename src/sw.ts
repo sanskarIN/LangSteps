@@ -18,6 +18,7 @@ const CORE_ASSETS = [
     './curriculum/learning.js',
     './curriculum/progress.js',
     './curriculum/navigation.js',
+    './curriculum/offline-register.js',
     './curriculum/donation.js',
     './privacy.html',
     './terms.html',
