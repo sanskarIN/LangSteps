@@ -202,14 +202,14 @@ test('an unprecached course page becomes available offline after a successful vi
   }
 });
 
-test('unknown uncached pages show a truthful offline explanation, not the homepage', async ({ page, context }) => {
+test('a valid unvisited course shows a truthful offline explanation, not the homepage', async ({ page, context }) => {
   await page.goto('index.html', { waitUntil: 'domcontentloaded' });
   await page.evaluate(() => navigator.serviceWorker.ready);
   await expect.poll(() => page.evaluate(() => Boolean(navigator.serviceWorker.controller)),
     { timeout: 15_000 }).toBe(true);
   await context.setOffline(true);
   try {
-    await page.goto('Python/page-not-visited-offline-check.html', { waitUntil: 'domcontentloaded' });
+    await page.goto('TypeScript/index.html', { waitUntil: 'domcontentloaded' });
     await expect(page.getByRole('heading', { name: /not been saved for offline reading/i })).toBeVisible();
   } finally {
     await context.setOffline(false);
