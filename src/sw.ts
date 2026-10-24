@@ -10,7 +10,7 @@ const MAX_RUNTIME_ENTRIES = 64;
 const CORE_ASSETS = [
     './',
     './index.html',
-    './offline.html',
+    './docs/offline.html',
     './manifest.json',
     './online-status.css',
     './online-status.js',
@@ -78,7 +78,7 @@ scope.addEventListener('fetch', (event: FetchEvent) => {
             } catch {
                 // Do not substitute the homepage for an unrelated, uncached lesson.
                 return (await caches.match(request)) ||
-                    (await caches.match('./offline.html')) || Response.error();
+                    (await caches.match('./docs/offline.html')) || Response.error();
             }
         })());
         return;
