@@ -14,6 +14,14 @@ LangSteps is publicly available on the web with ten programming learning paths, 
 
 This announcement is available on all 97 HTML pages through a shared accessible banner; its dismissal behavior is authored in `src/site/online-status.ts` and compiled to `online-status.js`.
 
+## 📴 v1.3.0 — More reliable offline learning
+
+When you visit a lesson while online, LangSteps now saves successful HTML pages and their same-origin static resources for later offline reading (subject to browser storage limits). Direct visits to Go, SQL and C# can also register the worker. An uncached page displays an accessible explanation instead of incorrectly showing the homepage. Storage is bounded and other GitHub Pages projects and API endpoints are not intercepted. Your existing lesson completion records stay in this browser.
+
+**How to try it:** Open the [live website](https://sanskarin.github.io/LangSteps/), visit a lesson while connected, then reopen that lesson offline. The entire curriculum is not downloaded automatically; internet-only features and external resources still need a connection.
+
+See the [v1.3.0 release notes](docs/releases/v1.3.0-public.md), [technical verification](docs/releases/v1.3.0.md), and [GitHub Releases](https://github.com/sanskarIN/LangSteps/releases) for actual publication status.
+
 ## 🔧 v1.2.0 — TypeScript-first curriculum and offline engine
 
 The [v1.2.0 implementation](https://github.com/sanskarIN/LangSteps/tree/release/v1.2.0) introduces a staged migration of browser lesson code to strict TypeScript. The Go, SQL and C# lesson viewer, navigation and mastery storage now have strict TypeScript source, preserving existing completion data and adding Previous/Next lesson controls. The Web APIs Reference has also been rebuilt with 15 HTML-first educational entries and typed search/filter interactions that do not depend on JavaScript to display the content. Privacy/Terms donation dialogs across five site sections now offer Razorpay, Buy Me a Coffee and PayPal, with a shared keyboard-accessible TypeScript controller. The offline worker is now authored as strict `src/sw.ts` and compiled into the root `sw.js`. Compiled `curriculum/*.js` assets remain checked in for direct GitHub Pages delivery. Run `npm run build:curriculum` after editing `src/curriculum/*.ts` and `npm run build:sw` after editing `src/sw.ts`. The HTML is retained for semantic structure and progressive accessibility.
