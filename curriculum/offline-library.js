@@ -35,6 +35,18 @@
         guided('SQL', 'SQL'),
         guided('CSharp', 'C# & .NET')
     ];
+    const dependencyNotes = {
+    'html': 'CodeMirror editor scripts and styles, Google Fonts, and translation tools load from external services.',
+    'css': 'CodeMirror editor scripts and styles, Google Fonts, translation tools, and some examples load external resources.',
+    'javascript': 'CodeMirror, Google Fonts, optional animation effects, translation, and network examples may require internet.',
+    'react': 'CodeMirror, Google Fonts, and interactive React/Babel demonstrations load third-party scripts.',
+    'python': 'Google Fonts and network-request exercises may require internet.',
+    'typescript': 'CodeMirror editor scripts and styles, Google Fonts, translation, and some API examples may require internet.',
+    'rust': 'Google Fonts and Font Awesome icons are loaded externally; the reading text uses local files.',
+    'go': 'The guided course viewer and lesson data are local. Quiz links and other courses are not included.',
+    'sql': 'The guided course viewer and lesson data are local. Quiz links and other courses are not included.',
+    'csharp': 'The guided course viewer and lesson data are local. Quiz links and other courses are not included.'
+    };
     const CACHE_PREFIX = 'langsteps-library-v1-';
     const MAX_FILE_BYTES = 5 * 1024 * 1024;
     const MAX_BUNDLE_BYTES = 20 * 1024 * 1024;
@@ -106,8 +118,13 @@
             try {
                 const saved = await countSaved(card.course);
                 const total = card.course.assets.length;
+                const entryCached = saved === 0
+                    ? Boolean(await caches.match(resolveAsset(card.course.assets[0]), { ignoreSearch: true }))
+                    : false;
                 card.state.textContent = saved === 0
-                    ? 'Not saved by Offline Library'
+                    ? entryCached
+                        ? 'Entry page cached from a visit or preload; course bundle not saved'
+                        : 'Not saved by Offline Library'
                     : saved === total
                         ? `Saved: ${saved}/${total} local files`
                         : `Partial download: ${saved}/${total} local files`;
@@ -210,9 +227,8 @@
         link.textContent = course.title;
         heading.append(link);
         const note = document.createElement('p');
-        note.textContent = course.external
-            ? 'Local reading files only; externally hosted editors, fonts and tools may need internet.'
-            : 'Guided lessons and the self-hosted viewer files can be saved together.';
+        note.textContent = dependencyNotes[course.slug] || 'Some features require a connection.';
+        note.dataset.dependencyNote = course.slug;
         const state = document.createElement('p');
         state.dataset.courseStatus = course.slug;
         state.textContent = 'Checking offline availability…';
