@@ -9,6 +9,7 @@
   <link rel="canonical" href="https://sanskarin.github.io/LangSteps/offline-library.html">
   <link rel="icon" href="./splash.png">
   <link rel="stylesheet" href="./offline-library.css">
+  <link rel="stylesheet" href="./online-status.css">
   <script defer src="./curriculum/offline-library.js"></script>
 </head>
 <body>
@@ -51,5 +52,10 @@
     <p class="last"><a href="./docs/offline.html">How the offline fallback works</a> · <a href="./index.html">Return to LangSteps</a></p>
   </main>
   <footer>LangSteps · Free, open-source programming education · No required sign-in</footer>
+<aside class="ls-online-notice" data-ls-online-notice aria-label="LangSteps online availability">
+  <span><strong>LangSteps is online.</strong> <a href="https://sanskarin.github.io/LangSteps/">Learn for free on our website</a>. Course pages work in your browser; code execution depends on the lesson.</span>
+  <button class="ls-online-dismiss" data-ls-online-dismiss type="button" aria-label="Dismiss online announcement">×</button>
+</aside>
+<script src="./online-status.js" defer></script>
 </body>
 </html>
