@@ -9,10 +9,14 @@ const CORE_CACHE = 'langsteps-core-v1.3.0';
 const RUNTIME_CACHE = 'langsteps-runtime-v1.3.0';
 const MAX_RUNTIME_ENTRIES = 64;
 const MAX_CACHE_ENTRY_BYTES = 5 * 1024 * 1024;
+const LIBRARY_CACHE_PREFIX = 'langsteps-library-v1-';
 const CORE_ASSETS = [
     './',
     './index.html',
     './docs/offline.html',
+    './offline-library.html',
+    './offline-library.css',
+    './curriculum/offline-library.js',
     './manifest.json',
     './online-status.css',
     './online-status.js',
@@ -62,7 +66,7 @@ scope.addEventListener('install', (event) => {
 scope.addEventListener('activate', (event) => {
     event.waitUntil(caches.keys()
         .then(keys => Promise.all(keys
-        .filter(key => key.startsWith('langsteps-') && key !== CORE_CACHE && key !== RUNTIME_CACHE)
+        .filter(key => key.startsWith('langsteps-') && !key.startsWith(LIBRARY_CACHE_PREFIX) && key !== CORE_CACHE && key !== RUNTIME_CACHE)
         .map(key => caches.delete(key))))
         .then(() => scope.clients.claim()));
 });
