@@ -74,7 +74,9 @@ scope.addEventListener('fetch', (event) => {
     const basePath = new URL(scope.registration.scope).pathname;
     if (url.origin !== scope.location.origin || !url.pathname.startsWith(basePath))
         return;
-    if (url.pathname.includes('/api/'))
+    // Keep backend routes outside this static site's offline cache.
+    const route = url.pathname.slice(basePath.length).toLowerCase();
+    if (route === 'api' || route.startsWith('api/'))
         return;
     if (request.mode === 'navigate') {
         event.respondWith((async () => {
