@@ -29,7 +29,9 @@ test('offline downloads do not touch progress, other apps or cross-origin resour
   assert.doesNotMatch(source, /localStorage[.](?:setItem|removeItem|clear)/);
   assert.ok(sw.includes('!key.startsWith(LIBRARY_CACHE_PREFIX)'));
   assert.ok(sw.includes("'./offline-library.html'"));
-  assert.ok(read('index.html').includes('href="./offline-library.html"'));
+  const homepage = read('index.html');
+  assert.equal(homepage.split('href="./offline-library.html"').length - 1, 3,
+    'The offline library must appear in desktop, mobile and footer navigation');
 });
 
 test('build and CI track the published offline library script', () => {
