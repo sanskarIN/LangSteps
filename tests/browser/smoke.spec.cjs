@@ -219,3 +219,50 @@ test('a valid unvisited course shows a truthful offline explanation, not the hom
     await context.setOffline(false);
   }
 });
+
+test('offline library saves and removes a course without changing other browser data', async ({ page }) => {
+  await page.goto('offline-library.html', { waitUntil: 'domcontentloaded' });
+  await expect(page.locator('#offline-course-list li')).toHaveCount(10);
+  const save = page.getByRole('button', { name: 'Save Python' });
+  const remove = page.getByRole('button', { name: 'Remove Python' });
+  await expect(save).toBeEnabled();
+  await page.evaluate(async () => {
+    localStorage.setItem('langsteps:v1.1.0:mastery:go', '["hello"]');
+    const other = await caches.open('unrelated-app-offline-data');
+    await other.put(new Request(new URL('/unrelated-app/test', location.origin)),
+      new Response('preserve this'));
+  });
+  await save.click();
+  await expect(page.locator('[data-course-status="python"]')).toContainText('Saved:');
+  const saved = await page.evaluate(async () => {
+    const cache = await caches.open('langsteps-library-v1-python');
+    return Boolean(await cache.match(new URL('./Python/index.html', location.href)));
+  });
+  expect(saved).toBe(true);
+  await remove.click();
+  await expect(page.locator('[data-course-status="python"]'))
+    .toHaveText('Not saved by Offline Library');
+  const state = await page.evaluate(async () => ({
+    cacheNames: await caches.keys(),
+    mastery: localStorage.getItem('langsteps:v1.1.0:mastery:go')
+  }));
+  expect(state.cacheNames).toContain('unrelated-app-offline-data');
+  expect(state.cacheNames).not.toContain('langsteps-library-v1-python');
+  expect(state.mastery).toBe('["hello"]');
+});
+
+test('offline library itself remains readable after worker installation', async ({ page, context }) => {
+  await page.goto('offline-library.html', { waitUntil: 'domcontentloaded' });
+  await expect(page.getByRole('button', { name: 'Save Go', exact: true })).toBeEnabled();
+  await page.evaluate(() => navigator.serviceWorker.ready);
+  await expect.poll(() => page.evaluate(() => Boolean(navigator.serviceWorker.controller)),
+    { timeout: 15_000 }).toBe(true);
+  await context.setOffline(true);
+  try {
+    await page.reload({ waitUntil: 'domcontentloaded' });
+    await expect(page.getByRole('heading', { name: 'Offline Library' })).toBeVisible();
+    await expect(page.locator('#offline-course-list li')).toHaveCount(10);
+  } finally {
+    await context.setOffline(false);
+  }
+});
