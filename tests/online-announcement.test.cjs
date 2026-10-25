@@ -16,7 +16,7 @@ const pages = sections.flatMap(section =>
 const code = fs.readFileSync(path.join(root, 'online-status.js'), 'utf8');
 
 test('every LangSteps HTML page announces live online learning', () => {
-  assert.equal(pages.length, 97, 'Update this count when publishing new HTML pages');
+  assert.equal(pages.length, 98, 'Update this count when publishing new HTML pages');
   for (const file of pages) {
     const html = fs.readFileSync(path.join(root, file), 'utf8');
     const prefix = file.includes('/') ? '../' : './';
