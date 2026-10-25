@@ -8,6 +8,7 @@ const scope = self;
 const CORE_CACHE = 'langsteps-core-v1.3.0';
 const RUNTIME_CACHE = 'langsteps-runtime-v1.3.0';
 const MAX_RUNTIME_ENTRIES = 64;
+const MAX_CACHE_ENTRY_BYTES = 5 * 1024 * 1024;
 const CORE_ASSETS = [
     './',
     './index.html',
@@ -33,8 +34,12 @@ const CORE_ASSETS = [
     './CSharp/data.js'
 ];
 async function storeRuntime(request, response) {
-    if (!response.ok || response.type !== 'basic' || response.headers.get('cache-control')?.includes('no-store'))
-        return;
+    // Never persist private responses, even when other directives permit caching.
+    const directives = response.headers.get('cache-control') || '';
+    if (!response.ok || response.type !== 'basic' || /(?:^|,)\s*(?:no-store|private)\b/i.test(directives)) return;
+    // The header is advisory: avoid known oversize files without buffering responses.
+    const length = response.headers.get('content-length');
+    if (length !== null && Number(length) > MAX_CACHE_ENTRY_BYTES) return;
     try {
         const cache = await caches.open(RUNTIME_CACHE);
         await cache.put(request, response.clone());
@@ -73,6 +78,11 @@ scope.addEventListener('fetch', (event) => {
         event.respondWith((async () => {
             try {
                 const response = await fetch(request);
+                // A temporary server outage should not hide a visited lesson.
+                // True 404 responses remain visible rather than masking broken links.
+                if (response.status >= 500 && response.status < 600) {
+                    return (await caches.match(request, { ignoreSearch: true })) || response;
+                }
                 if (response.headers?.get('content-type')?.includes('text/html')) {
                     await storeRuntime(request, response);
                 }
@@ -80,7 +90,7 @@ scope.addEventListener('fetch', (event) => {
             }
             catch {
                 // Do not substitute the homepage for an unrelated, uncached lesson.
-                return (await caches.match(request)) ||
+                return (await caches.match(request, { ignoreSearch: true })) ||
                     (await caches.match('./docs/offline.html')) || Response.error();
             }
         })());
