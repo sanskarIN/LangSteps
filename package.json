@@ -1,6 +1,6 @@
 {
   "name": "langsteps",
-  "version": "1.3.0",
+  "version": "1.4.0-rc.1",
   "description": "Open-source programming lessons for HTML, CSS, JavaScript, React, Python, TypeScript, Rust, Go, SQL and C#, with an optional ASP.NET Core backend.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
