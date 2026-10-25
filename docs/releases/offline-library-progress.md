@@ -34,6 +34,17 @@ npm run test:browser
 
 Browser tests cover saving a real course, per-course removal without impacting unrelated caches or learning progress, and offline loading of the library interface.
 
+## Resilience follow-up (after the initial deployment)
+
+- A partial course download can be resumed with **Save** without re-fetching files already present in that course's private bundle. To force a full refresh, use **Remove** and then **Save**.
+- If CacheStorage refuses a write with `QuotaExceededError`, the page explains that browser storage must be freed, then keeps successfully saved files available for retry.
+- If CacheStorage access fails during saved-file inspection, each course displays an honest **status unavailable** message rather than leaving the page with an unhandled error. Controls remain usable.
+- The browser storage estimate explicitly warns when estimated usage reaches 90% of the origin quota. This is advisory, not a promise that space is available.
+- Cancelling at the final download boundary is checked again before announcing completion.
+- New Playwright scenarios simulate quota denial, partial cancellation/resume and cache-entry eviction, across the existing Chromium/Firefox/WebKit workflow.
+
+These improvements apply only to the local Offline Library. They do not grant offline access to third-party services or change learner progress keys. This section describes post-v1.3.0 work; check the pull request and Pages deployment for publication status.
+
 ## Next refinements
 
 - Better bundle dependency discovery and validation for legacy modules.
