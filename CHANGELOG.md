@@ -4,6 +4,23 @@ All notable changes to **LangSteps** will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [1.4.0-rc.1] — 2026-10-25 (Pre-release)
+
+### Added
+- Shipped a user-controlled Offline Library for all ten language paths, with independent first-party bundles per course and save/remove/cancel controls.
+- Added honest offline-readiness indicators distinguishing an entry page cached from a visit or precache from a complete explicitly saved course bundle.
+- Added per-course explanations of external code editors, scripts, fonts and online examples that may still require internet.
+- Added a safeguarded GitHub Actions prerelease workflow that verifies the source and generated TypeScript, Node tests, release-facing HTML, optional ASP.NET Core backend, and Chromium/Firefox/WebKit before publishing.
+
+### Improved
+- Resumed partial downloads without refetching previously stored files and handled browser quota errors, storage estimate pressure, cancellation and cache inspection failures.
+- Protected learner progress and unrelated GitHub Pages project caches; kept runtime storage bounded and API calls excluded.
+- Expanded cross-browser regression tests for partial saves, cancelled downloads, cache eviction, and misleading offline-complete states.
+
+**Publication:** [v1.4.0-rc.1 on GitHub](https://github.com/sanskarIN/LangSteps/releases/tag/v1.4.0-rc.1) is an early-test **prerelease**, not a new stable release. The latest stable version remains v1.3.0. Offline reading never promises that third-party tools or remote services work offline.
+
+---
+
 ## [1.3.0] — 2026-10-24
 
 ### Added
