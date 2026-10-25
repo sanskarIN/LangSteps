@@ -241,7 +241,7 @@ test('offline library saves and removes a course without changing other browser 
   expect(saved).toBe(true);
   await remove.click();
   await expect(page.locator('[data-course-status="python"]'))
-    .toHaveText('Not saved by Offline Library');
+    .toContainText(/Not saved by Offline Library|Entry page cached from a visit or preload/);
   const state = await page.evaluate(async () => ({
     cacheNames: await caches.keys(),
     mastery: localStorage.getItem('langsteps:v1.1.0:mastery:go')
@@ -347,4 +347,26 @@ test('offline library does not report an evicted bundle as fully saved', async (
   });
   await page.reload({ waitUntil: 'domcontentloaded' });
   await expect(page.locator('[data-course-status="go"]')).toContainText('Partial download');
+});
+
+test('offline library distinguishes visited page cache from a complete course download', async ({ page }) => {
+  await page.goto('offline-library.html', { waitUntil: 'domcontentloaded' });
+  await expect(page.getByRole('button', { name: 'Save Rust' })).toBeEnabled();
+  await page.evaluate(async () => {
+    const runtime = await caches.open('langsteps-runtime-v1.3.0');
+    await runtime.put(new URL('./Rust/index.html', location.href),
+      new Response('<!doctype html><title>Rust</title>', { headers: { 'content-type': 'text/html' } }));
+    await caches.delete('langsteps-library-v1-rust');
+  });
+  await page.reload({ waitUntil: 'domcontentloaded' });
+  await expect(page.locator('[data-course-status="rust"]'))
+    .toHaveText('Entry page cached from a visit or preload; course bundle not saved');
+  await expect(page.locator('[data-dependency-note="rust"]'))
+    .toContainText('Font Awesome');
+  await expect(page.locator('[data-dependency-note="react"]'))
+    .toContainText('React/Babel');
+  await expect(page.locator('[data-dependency-note="go"]'))
+    .toContainText('guided course viewer');
+  expect(await page.evaluate(async () => (await caches.keys()).includes('langsteps-library-v1-rust')))
+    .toBe(false);
 });
