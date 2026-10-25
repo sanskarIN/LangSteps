@@ -10,32 +10,32 @@ test('all ten courses are named in the opt-in offline library', () => {
   const source = read('src/curriculum/offline-library.ts');
   for (const course of ['HTML', 'CSS', 'JavaScript', 'React', 'Python',
     'TypeScript', 'Rust', 'Go', 'SQL', 'CSharp']) {
-    assert.match(source, new RegExp('(?:legacy|guided)\\(\\x27' + course + '\\x27'));
+    assert.ok(source.includes("legacy('" + course + "'") ||
+      source.includes("guided('" + course + "'"), course);
     assert.equal(fs.existsSync(path.join(root, course, 'index.html')), true);
   }
-  assert.match(read('offline-library.html'), /id="offline-library-status"/);
-  assert.match(read('offline-library.html'), /id="offline-library-cancel"/);
-  assert.match(read('offline-library.html'), /curriculum\\/offline-library\\.js/);
+  assert.ok(read('offline-library.html').includes('id="offline-library-status"'));
+  assert.ok(read('offline-library.html').includes('id="offline-library-cancel"'));
+  assert.ok(read('offline-library.html').includes('curriculum/offline-library.js'));
 });
 
 test('offline downloads do not touch progress, other apps or cross-origin resources', () => {
   const source = read('src/curriculum/offline-library.ts');
   const sw = read('src/sw.ts');
-  assert.match(source, /credentials: 'omit'/);
-  assert.match(source, /url\\.origin !== base\\.origin/);
-  assert.match(source, /private\\|no-store/);
-  assert.match(source, /controller\\?\\.abort\\(\\)/);
-  assert.match(source, /caches\\.delete\\(cacheName\\(course\\)\\)/);
-  assert.doesNotMatch(source, /localStorage\\.(?:setItem|removeItem|clear)/);
-  assert.match(sw, /!key\\.startsWith\\(LIBRARY_CACHE_PREFIX\\)/);
-  assert.match(sw, /\\.\\/offline-library\\.html/);
-  assert.match(read('index.html'), /href="\\.\\/offline-library\\.html"/);
+  for (const required of ["credentials: 'omit'", 'url.origin !== base.origin',
+    'private|no-store', 'controller?.abort()', 'caches.delete(cacheName(course))']) {
+    assert.ok(source.includes(required), required);
+  }
+  assert.doesNotMatch(source, /localStorage[.](?:setItem|removeItem|clear)/);
+  assert.ok(sw.includes('!key.startsWith(LIBRARY_CACHE_PREFIX)'));
+  assert.ok(sw.includes("'./offline-library.html'"));
+  assert.ok(read('index.html').includes('href="./offline-library.html"'));
 });
 
 test('build and CI track the published offline library script', () => {
-  assert.match(read('.github/workflows/verify.yml'), /curriculum\\/offline-library\\.js/);
-  assert.match(read('tsconfig.curriculum.json'), /src\\/curriculum\\/\\*\\.ts/);
+  assert.ok(read('.github/workflows/verify.yml').includes('curriculum/offline-library.js'));
+  assert.ok(read('tsconfig.curriculum.json').includes('src/curriculum/*.ts'));
   const html = read('offline-library.html');
-  assert.match(html, /<noscript|<ul id="offline-course-list"/);
-  assert.match(html, /Browser|browser/);
+  assert.ok(html.includes('<ul id="offline-course-list"'));
+  assert.ok(html.includes('browser'));
 });
