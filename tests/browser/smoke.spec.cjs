@@ -266,3 +266,85 @@ test('offline library itself remains readable after worker installation', async 
     await context.setOffline(false);
   }
 });
+
+test('offline library recovers from a simulated browser storage quota error', async ({ page }) => {
+  await page.goto('offline-library.html', { waitUntil: 'domcontentloaded' });
+  const save = page.getByRole('button', { name: 'Save Python' });
+  const status = page.locator('#offline-library-status');
+  await expect(save).toBeEnabled();
+
+  await page.evaluate(() => {
+    const originalPut = Cache.prototype.put;
+    let rejectOnce = true;
+    Cache.prototype.put = async function(request, response) {
+      if (rejectOnce && String(request.url || request).endsWith('/Python/style.css')) {
+        rejectOnce = false;
+        throw new DOMException('Insufficient storage', 'QuotaExceededError');
+      }
+      return originalPut.call(this, request, response);
+    };
+    const originalFetch = window.fetch.bind(window);
+    window.__pythonIndexFetches = 0;
+    window.fetch = (input, options) => {
+      if (String(input).endsWith('/Python/index.html')) window.__pythonIndexFetches++;
+      return originalFetch(input, options);
+    };
+  });
+
+  await save.click();
+  await expect(status).toContainText('Not enough browser storage');
+  await expect(save).toBeEnabled();
+  await expect(page.locator('[data-course-status="python"]')).toContainText('Partial download');
+
+  await save.click();
+  await expect(page.locator('[data-course-status="python"]')).toContainText('Saved:');
+  await expect(status).toContainText('saved');
+  expect(await page.evaluate(() => window.__pythonIndexFetches)).toBe(1);
+});
+
+test('offline library cancels an interrupted download and resumes its partial cache', async ({ page }) => {
+  await page.goto('offline-library.html', { waitUntil: 'domcontentloaded' });
+  const save = page.getByRole('button', { name: 'Save Python' });
+  const cancel = page.getByRole('button', { name: 'Cancel download' });
+  const status = page.locator('#offline-library-status');
+  await expect(save).toBeEnabled();
+
+  await page.evaluate(() => {
+    const original = window.fetch.bind(window);
+    let delayOnce = true;
+    window.fetch = (input, options) => {
+      if (delayOnce && String(input).endsWith('/Python/style.css')) {
+        delayOnce = false;
+        return new Promise((resolve, reject) => {
+          options.signal.addEventListener('abort', () => {
+            reject(new DOMException('Cancelled', 'AbortError'));
+          }, { once: true });
+        });
+      }
+      return original(input, options);
+    };
+  });
+  await save.click();
+  await expect(status).toContainText('Saving Python: 2/');
+  await cancel.click();
+  await expect(status).toContainText('Download cancelled');
+  await expect(save).toBeEnabled();
+  await expect(page.locator('[data-course-status="python"]')).toContainText('Partial download');
+
+  await save.click();
+  await expect(page.locator('[data-course-status="python"]')).toContainText('Saved:');
+});
+
+test('offline library does not report an evicted bundle as fully saved', async ({ page }) => {
+  await page.goto('offline-library.html', { waitUntil: 'domcontentloaded' });
+  const save = page.getByRole('button', { name: 'Save Go', exact: true });
+  await expect(save).toBeEnabled();
+  await save.click();
+  await expect(page.locator('[data-course-status="go"]')).toContainText('Saved:');
+  await page.evaluate(async () => {
+    const cache = await caches.open('langsteps-library-v1-go');
+    await cache.delete(new URL('./Go/data.js', location.href));
+  });
+  await page.reload({ waitUntil: 'domcontentloaded' });
+  await expect(page.locator('[data-course-status="go"]')).toContainText('Partial download');
+});
