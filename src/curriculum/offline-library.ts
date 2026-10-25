@@ -53,6 +53,9 @@
   if (!(list instanceof HTMLElement) || !(message instanceof HTMLElement) ||
       !(cancel instanceof HTMLButtonElement) || !(storage instanceof HTMLElement)) return;
 
+  const cancelButton = cancel;
+  const storageLabel = storage;
+
   const cards: Array<{
     course: Course;
     state: HTMLElement;
@@ -74,7 +77,7 @@
 
   function setBusy(value: boolean): void {
     busy = value;
-    cancel.hidden = !value;
+    cancelButton.hidden = !value;
     for (const card of cards) {
       card.save.disabled = value || !supported;
       card.remove.disabled = value || !supported;
@@ -93,17 +96,17 @@
 
   async function reportStorage(): Promise<void> {
     if (!navigator.storage?.estimate) {
-      storage.textContent = 'Storage estimate unavailable in this browser.';
+      storageLabel.textContent = 'Storage estimate unavailable in this browser.';
       return;
     }
     try {
       const estimate = await navigator.storage.estimate();
       if (typeof estimate.usage === 'number' && typeof estimate.quota === 'number') {
         const mb = (value: number): string => (value / (1024 * 1024)).toFixed(1);
-        storage.textContent = `Browser origin storage: ${mb(estimate.usage)} MiB used of ${mb(estimate.quota)} MiB estimated. This includes other projects on this origin.`;
+        storageLabel.textContent = `Browser origin storage: ${mb(estimate.usage)} MiB used of ${mb(estimate.quota)} MiB estimated. This includes other projects on this origin.`;
       }
     } catch {
-      storage.textContent = 'The browser did not provide a storage estimate.';
+      storageLabel.textContent = 'The browser did not provide a storage estimate.';
     }
   }
 
@@ -214,7 +217,7 @@
     list.append(item);
     cards.push({ course, state, save, remove });
   }
-  cancel.addEventListener('click', () => { controller?.abort(); });
+  cancelButton.addEventListener('click', () => { controller?.abort(); });
   window.addEventListener('online', () => { void refresh(); });
   (async (): Promise<void> => {
     if (!window.isSecureContext || !('caches' in window) || !('serviceWorker' in navigator)) {
