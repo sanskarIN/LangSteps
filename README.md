@@ -14,6 +14,12 @@ LangSteps is publicly available on the web with ten programming learning paths, 
 
 This announcement is available on all 97 HTML pages through a shared accessible banner; its dismissal behavior is authored in `src/site/online-status.ts` and compiled to `online-status.js`.
 
+## 🧪 v1.4.0 Release Candidate — Offline Readiness (planned pre-release)
+
+The next candidate focuses on offline download reliability and honest course availability reporting. The [Offline Library](offline-library.html) now differentiates **a cached course entry page** from **a complete opt-in course bundle**, and displays a course-specific description of features that still depend on external services. Earlier improvements let learners save, resume, cancel and remove first-party bundles while preserving completion records and unrelated GitHub Pages caches.
+
+[Pre-release notes](docs/releases/v1.4.0-rc.1.md) explain the preview scope and limits. The automated candidate workflow verifies Node, strict TypeScript, compiled asset parity, release-facing HTML, the optional ASP.NET Core backend, and Chromium/Firefox/WebKit before publishing. Until the workflow actually publishes a GitHub pre-release, these notes describe development and **v1.3.0 remains the last tagged stable release**.
+
 ## 📴 v1.3.0 — More reliable offline learning
 
 When you visit a lesson while online, LangSteps now saves successful HTML pages and their same-origin static resources for later offline reading (subject to browser storage limits). Direct visits to Go, SQL and C# can also register the worker. An uncached page displays an accessible explanation instead of incorrectly showing the homepage. Storage is bounded and other GitHub Pages projects and API endpoints are not intercepted. Your existing lesson completion records stay in this browser.
