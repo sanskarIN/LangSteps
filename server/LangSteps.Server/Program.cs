@@ -52,7 +52,7 @@ app.MapGet("/api/health", (IContentService content, IQuizService quiz) =>
 {
     var response = new HealthStatusResponse(
         Status: "healthy",
-        Version: "1.3.0",
+        Version: "1.4.0-rc.1",
         Platform: "LangSteps.Server (ASP.NET Core / C#)",
         Timestamp: DateTime.UtcNow.ToString("o"),
         ServerTime: DateTime.UtcNow.ToString("R"),
@@ -155,7 +155,7 @@ app.MapGet("/api/stats/summary", (IContentService content, IQuizService quiz) =>
         TotalQuestions: quiz.GetTotalQuestionCount(),
         SupportedLanguages: modules.Select(m => m.Slug).ToArray(),
         EcosystemLinksCount: 12,
-        Version: "1.3.0",
+        Version: "1.4.0-rc.1",
         Timestamp: DateTime.UtcNow.ToString("o")
     );
     return Results.Ok(stats);
