@@ -8,9 +8,9 @@ const read = pathName => fs.readFileSync(path.join(root, pathName), 'utf8');
 
 test('release candidate metadata is consistent across static and optional server code', () => {
   assert.equal(JSON.parse(read('package.json')).version, '1.4.0-rc.1');
-  assert.match(read('src/core/apiClient.ts'), /version: '1\.3\.0'/);
-  assert.equal((read('server/LangSteps.Server/Program.cs').match(/Version: "1\.3\.0"/g) || []).length, 2);
-  assert.match(read('server/LangSteps.Server/Services/StatsService.cs'), /LangSteps v1\.3\.0/);
+  assert.match(read('src/core/apiClient.ts'), /version: '1\.4\.0-rc\.1'/);
+  assert.equal((read('server/LangSteps.Server/Program.cs').match(/Version: "1\.4\.0-rc\.1"/g) || []).length, 2);
+  assert.match(read('server/LangSteps.Server/Services/StatsService.cs'), /LangSteps v1\.4\.0-rc\.1/);
   assert.match(read('docs/releases/v1.3.0-public.md'), /LangSteps v1\.3\.0/);
 });
 
