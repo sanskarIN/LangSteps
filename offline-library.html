@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1020">
+  <meta name="description" content="Choose which LangSteps course reading files to download for offline use. No account required.">
+  <title>Offline Library | LangSteps</title>
+  <link rel="canonical" href="https://sanskarin.github.io/LangSteps/offline-library.html">
+  <link rel="icon" href="./splash.png">
+  <link rel="stylesheet" href="./offline-library.css">
+  <script defer src="./curriculum/offline-library.js"></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header>
+    <nav aria-label="Main navigation">
+      <a class="brand" href="./index.html">🌱 LangSteps</a>
+      <a href="./index.html#modules">Explore courses</a>
+    </nav>
+  </header>
+  <main id="main">
+    <p class="eyebrow">Private, browser-local learning</p>
+    <h1>Offline Library</h1>
+    <p class="intro">Choose which first-party course reading files to save for later. Nothing is downloaded automatically by this page. Saved files stay in your browser; there is no account and no cloud sync.</p>
+    <section class="instructions" aria-labelledby="guidance">
+      <h2 id="guidance">Before you download</h2>
+      <p>Saving a course captures its listed local page, scripts and styles—not a guaranteed fully offline code editor. Some courses use external libraries, fonts or tools that still need internet. Saved data may be evicted when browser storage is full or cleared. Existing progress is not changed.</p>
+      <p>“Remove” deletes only that course's Offline Library download. Files previously visited or included in LangSteps' basic offline cache may remain available.</p>
+    </section>
+    <div class="tools">
+      <p id="offline-library-status" class="message" role="status" aria-live="polite">Checking browser support…</p>
+      <button id="offline-library-cancel" type="button" hidden>Cancel download</button>
+      <p id="offline-library-storage" class="storage">Storage estimate unavailable.</p>
+    </div>
+    <section aria-labelledby="courses-title">
+      <h2 id="courses-title">Choose a programming path</h2>
+      <ul id="offline-course-list" class="courses">
+        <li><a href="./HTML/index.html">HTML</a></li>
+        <li><a href="./CSS/index.html">CSS</a></li>
+        <li><a href="./JavaScript/index.html">JavaScript</a></li>
+        <li><a href="./React/index.html">React</a></li>
+        <li><a href="./Python/index.html">Python</a></li>
+        <li><a href="./TypeScript/index.html">TypeScript</a></li>
+        <li><a href="./Rust/index.html">Rust</a></li>
+        <li><a href="./Go/index.html">Go</a></li>
+        <li><a href="./SQL/index.html">SQL</a></li>
+        <li><a href="./CSharp/index.html">C# &amp; .NET</a></li>
+      </ul>
+    </section>
+    <p class="last"><a href="./docs/offline.html">How the offline fallback works</a> · <a href="./index.html">Return to LangSteps</a></p>
+  </main>
+  <footer>LangSteps · Free, open-source programming education · No required sign-in</footer>
+</body>
+</html>
