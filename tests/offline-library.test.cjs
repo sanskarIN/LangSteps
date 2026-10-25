@@ -40,4 +40,9 @@ test('build and CI track the published offline library script', () => {
   const html = read('offline-library.html');
   assert.ok(html.includes('<ul id="offline-course-list"'));
   assert.ok(html.includes('browser'));
+  const source = read('src/curriculum/offline-library.ts');
+  assert.ok(source.includes("caches.match(resolveAsset(card.course.assets[0]!)"));
+  for (const label of ['CodeMirror', 'React/Babel', 'Font Awesome', 'guided course viewer']) {
+    assert.ok(source.includes(label), 'Missing disclosed dependency: ' + label);
+  }
 });
