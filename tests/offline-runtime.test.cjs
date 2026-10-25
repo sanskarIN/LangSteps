@@ -36,10 +36,15 @@ function harness() {
     open,
     keys: async () => [...stores.keys()],
     delete: async name => { deleted.push(name); return stores.delete(name); },
-    match: async request => {
+    match: async (request, options = {}) => {
+      const target = new URL(keyOf(request));
+      if (options.ignoreSearch) target.search = '';
       for (const cache of stores.values()) {
-        const response = cache.get(keyOf(request));
-        if (response) return response.clone();
+        for (const [key, response] of cache) {
+          const candidate = new URL(key);
+          if (options.ignoreSearch) candidate.search = '';
+          if (candidate.href === target.href) return response.clone();
+        }
       }
       return undefined;
     }
@@ -140,4 +145,59 @@ test('runtime cache has a fixed maximum number of entries', async () => {
   assert.equal(runtime.size, 64);
   assert.equal(runtime.has(root + 'Rust/page-0.html'), false);
   assert.equal(runtime.has(root + 'Rust/page-67.html'), true);
+});
+
+test('a temporary server error serves the saved page but does not mask a new error', async () => {
+  const h = harness();
+  await h.send('install');
+  const page = h.request('Rust/index.html');
+  await h.send('fetch', page);
+  h.network.set(page.url, new Response('Temporary outage', {
+    status: 503, headers: { 'content-type': 'text/html' }
+  }));
+  assert.match(await (await h.send('fetch', page)).text(), /Fresh:.*Rust\/index\.html/);
+  const unseen = h.request('Python/new.html');
+  h.network.set(unseen.url, new Response('Temporary outage', {
+    status: 503, headers: { 'content-type': 'text/html' }
+  }));
+  const notSaved = await h.send('fetch', unseen);
+  assert.equal(notSaved.status, 503);
+  assert.equal(await notSaved.text(), 'Temporary outage');
+});
+
+test('offline navigation reuses an exact page despite different tracking query strings', async () => {
+  const h = harness();
+  await h.send('install');
+  await h.send('fetch', h.request('Rust/index.html?campaign=first'));
+  h.setOnline(false);
+  const response = await h.send('fetch', h.request('Rust/index.html?campaign=second'));
+  assert.match(await response.text(), /Rust\/index\.html/);
+  const other = await h.send('fetch', h.request('Python/index.html?campaign=first'));
+  assert.equal(await other.text(), 'Offline lesson explanation');
+});
+
+test('private and oversized responses are never persisted', async () => {
+  const h = harness();
+  await h.send('install');
+  const pages = [
+    ['Rust/private-header.html', { 'content-type': 'text/html', 'cache-control': 'public, PRIVATE' }],
+    ['Rust/huge.html', { 'content-type': 'text/html', 'content-length': '6000000' }]
+  ];
+  for (const [path, headers] of pages) {
+    h.network.set(root + path, new Response('Sensitive or large', { headers }));
+    await h.send('fetch', h.request(path));
+  }
+  h.setOnline(false);
+  for (const [path] of pages) {
+    assert.equal(await (await h.send('fetch', h.request(path))).text(),
+      'Offline lesson explanation');
+  }
+});
+
+test('API endpoints with and without trailing slash are not intercepted', async () => {
+  const h = harness();
+  await h.send('install');
+  for (const path of ['api', 'api/', 'api/health', 'API/Health']) {
+    assert.equal(h.send('fetch', h.request(path)), undefined, path);
+  }
 });
