@@ -37,7 +37,7 @@ jobs:
       - name: Check sitewide online banner TypeScript
         run: npm run typecheck:online
       - name: Compile browser curriculum module and verify tracked output
-        run: npm run build:curriculum && git diff --exit-code -- curriculum/progress.js curriculum/navigation.js curriculum/offline-register.js curriculum/donation.js curriculum/learning.js curriculum/api-reference.js
+        run: npm run build:curriculum && git diff --exit-code -- curriculum/progress.js curriculum/navigation.js curriculum/offline-register.js curriculum/offline-library.js curriculum/donation.js curriculum/learning.js curriculum/api-reference.js
       - name: Compile typed service worker and verify tracked asset
         run: npm run build:sw && git diff --exit-code -- sw.js
       - name: Compile online banner and verify tracked output
