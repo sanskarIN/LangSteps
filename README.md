@@ -12,13 +12,13 @@ This platform requires **no compilation, no server setup, and no dependencies**.
 
 LangSteps is publicly available on the web with ten programming learning paths, lesson navigation, browser-based progress, examples, quizzes, and educational tools. No account is required to read the public lessons. Some content can also remain accessible offline when cached by the browser. Online availability does **not** mean Go, SQL, or C# examples execute in a hosted coding sandbox; the optional ASP.NET Core backend is not deployed by GitHub Pages.
 
-This announcement is available on all 97 HTML pages through a shared accessible banner; its dismissal behavior is authored in `src/site/online-status.ts` and compiled to `online-status.js`.
+This announcement is available on all 98 HTML pages through a shared accessible banner; its dismissal behavior is authored in `src/site/online-status.ts` and compiled to `online-status.js`.
 
-## 🧪 v1.4.0 Release Candidate — Offline Readiness (planned pre-release)
+## 🧪 v1.4.0-rc.1 — Published Offline Readiness Pre-release
 
-The next candidate focuses on offline download reliability and honest course availability reporting. The [Offline Library](offline-library.html) now differentiates **a cached course entry page** from **a complete opt-in course bundle**, and displays a course-specific description of features that still depend on external services. Earlier improvements let learners save, resume, cancel and remove first-party bundles while preserving completion records and unrelated GitHub Pages caches.
+The published v1.4.0-rc.1 candidate focuses on offline download reliability and honest course availability reporting. The [Offline Library](offline-library.html) now differentiates **a cached course entry page** from **a complete opt-in course bundle**, and displays a course-specific description of features that still depend on external services. Earlier improvements let learners save, resume, cancel and remove first-party bundles while preserving completion records and unrelated GitHub Pages caches.
 
-[Pre-release notes](docs/releases/v1.4.0-rc.1.md) explain the preview scope and limits. The automated candidate workflow verifies Node, strict TypeScript, compiled asset parity, release-facing HTML, the optional ASP.NET Core backend, and Chromium/Firefox/WebKit before publishing. Until the workflow actually publishes a GitHub pre-release, these notes describe development and **v1.3.0 remains the last tagged stable release**.
+[Pre-release notes](docs/releases/v1.4.0-rc.1.md) explain the preview scope and limits. The automated candidate workflow verifies Node, strict TypeScript, compiled asset parity, release-facing HTML, the optional ASP.NET Core backend, and Chromium/Firefox/WebKit before publishing. The [v1.4.0-rc.1 GitHub pre-release](https://github.com/sanskarIN/LangSteps/releases/tag/v1.4.0-rc.1) was published on October 25, 2026 after its verification workflow passed. **v1.3.0 remains the latest stable release.**
 
 ## 📴 v1.3.0 — More reliable offline learning
 
