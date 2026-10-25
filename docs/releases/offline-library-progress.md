@@ -1,6 +1,6 @@
 # Offline Library — Post-v1.3.0 Development
 
-**Status:** Feature PR; not a separately tagged LangSteps release.
+**Status:** Merged via PR #12 on October 25, 2026, and deployed to GitHub Pages. The last tagged stable GitHub release remains v1.3.0.
 
 ## What is implemented
 
