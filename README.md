@@ -22,15 +22,15 @@ When you visit a lesson while online, LangSteps now saves successful HTML pages 
 
 See the [v1.3.0 release notes](docs/releases/v1.3.0-public.md), [technical verification](docs/releases/v1.3.0.md), and [GitHub Releases](https://github.com/sanskarIN/LangSteps/releases) for actual publication status.
 
-### Offline Library — user-controlled course downloads (post-v1.3.0 development)
+### Offline Library — available on the live website
 
 Open the [Offline Library](offline-library.html) to save or remove first-party reading files for each of the ten programming paths. The library is authored in strict TypeScript (`src/curriculum/offline-library.ts`), has offline-status checks and accessible download feedback, and does not change learning progress. Downloaded files remain in separate course caches that the service worker preserves across upgrades. External editors, fonts and APIs are not downloaded, and browser storage may still evict any offline resources.
 
-This work is an unreleased enhancement after the v1.3.0 GitHub release. See [implementation notes](docs/releases/offline-library-progress.md) and issue #11 for remaining verification and scope.
+This feature was merged through [PR #12](https://github.com/sanskarIN/LangSteps/pull/12) and deployed to GitHub Pages on October 25, 2026. The latest *tagged stable release* remains v1.3.0; the live main-branch website includes newer changes. See [implementation notes](docs/releases/offline-library-progress.md) and issue #11 for remaining refinements.
 
-### Offline reliability work after v1.3.0 (unreleased)
+### Offline reliability improvements after v1.3.0 (deployed)
 
-Development on the [offline reliability follow-up](docs/releases/offline-reliability-next.md) improves recovery from temporary server errors, access to visited pages with differing URL query strings, cache privacy/size safeguards, and API route isolation. These changes are not part of the published v1.3.0 release and will only reach the live website after review, tests and deployment.
+Development on the [offline reliability follow-up](docs/releases/offline-reliability-next.md) improves recovery from temporary server errors, access to visited pages with differing URL query strings, cache privacy/size safeguards, and API route isolation. These improvements were merged and deployed from main after the published v1.3.0 tag; they are present on the live website but are not part of that historical tagged release.
 
 ## 🔧 v1.2.0 — TypeScript-first curriculum and offline engine
 
