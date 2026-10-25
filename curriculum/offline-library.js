@@ -36,16 +36,16 @@
         guided('CSharp', 'C# & .NET')
     ];
     const dependencyNotes = {
-    'html': 'CodeMirror editor scripts and styles, Google Fonts, and translation tools load from external services.',
-    'css': 'CodeMirror editor scripts and styles, Google Fonts, translation tools, and some examples load external resources.',
-    'javascript': 'CodeMirror, Google Fonts, optional animation effects, translation, and network examples may require internet.',
-    'react': 'CodeMirror, Google Fonts, and interactive React/Babel demonstrations load third-party scripts.',
-    'python': 'Google Fonts and network-request exercises may require internet.',
-    'typescript': 'CodeMirror editor scripts and styles, Google Fonts, translation, and some API examples may require internet.',
-    'rust': 'Google Fonts and Font Awesome icons are loaded externally; the reading text uses local files.',
-    'go': 'The guided course viewer and lesson data are local. Quiz links and other courses are not included.',
-    'sql': 'The guided course viewer and lesson data are local. Quiz links and other courses are not included.',
-    'csharp': 'The guided course viewer and lesson data are local. Quiz links and other courses are not included.'
+        'html': 'CodeMirror editor scripts and styles, Google Fonts, and translation tools load from external services.',
+        'css': 'CodeMirror editor scripts and styles, Google Fonts, translation tools, and some examples load external resources.',
+        'javascript': 'CodeMirror, Google Fonts, optional animation effects, translation, and network examples may require internet.',
+        'react': 'CodeMirror, Google Fonts, and interactive React/Babel demonstrations load third-party scripts.',
+        'python': 'Google Fonts and network-request exercises may require internet.',
+        'typescript': 'CodeMirror editor scripts and styles, Google Fonts, translation, and some API examples may require internet.',
+        'rust': 'Google Fonts and Font Awesome icons are loaded externally; the reading text uses local files.',
+        'go': 'The guided course viewer and lesson data are local. Quiz links and other courses are not included.',
+        'sql': 'The guided course viewer and lesson data are local. Quiz links and other courses are not included.',
+        'csharp': 'The guided course viewer and lesson data are local. Quiz links and other courses are not included.'
     };
     const CACHE_PREFIX = 'langsteps-library-v1-';
     const MAX_FILE_BYTES = 5 * 1024 * 1024;
