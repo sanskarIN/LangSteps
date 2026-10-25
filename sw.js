@@ -36,10 +36,12 @@ const CORE_ASSETS = [
 async function storeRuntime(request, response) {
     // Never persist private responses, even when other directives permit caching.
     const directives = response.headers.get('cache-control') || '';
-    if (!response.ok || response.type !== 'basic' || /(?:^|,)\s*(?:no-store|private)\b/i.test(directives)) return;
+    if (!response.ok || response.type !== 'basic' || /(?:^|,)\s*(?:no-store|private)\b/i.test(directives))
+        return;
     // The header is advisory: avoid known oversize files without buffering responses.
     const length = response.headers.get('content-length');
-    if (length !== null && Number(length) > MAX_CACHE_ENTRY_BYTES) return;
+    if (length !== null && Number(length) > MAX_CACHE_ENTRY_BYTES)
+        return;
     try {
         const cache = await caches.open(RUNTIME_CACHE);
         await cache.put(request, response.clone());
