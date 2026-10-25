@@ -89,7 +89,10 @@
             const estimate = await navigator.storage.estimate();
             if (typeof estimate.usage === 'number' && typeof estimate.quota === 'number') {
                 const mb = (value) => (value / (1024 * 1024)).toFixed(1);
-                storageLabel.textContent = `Browser origin storage: ${mb(estimate.usage)} MiB used of ${mb(estimate.quota)} MiB estimated. This includes other projects on this origin.`;
+                const pressure = estimate.quota > 0 && estimate.usage / estimate.quota >= 0.9
+                    ? ' Storage is almost full; downloads may fail.'
+                    : '';
+                storageLabel.textContent = `Browser origin storage: ${mb(estimate.usage)} MiB used of ${mb(estimate.quota)} MiB estimated. This includes other projects on this origin.` + pressure;
             }
         }
         catch {
@@ -100,13 +103,19 @@
         if (!supported)
             return;
         for (const card of cards) {
-            const saved = await countSaved(card.course);
-            const total = card.course.assets.length;
-            card.state.textContent = saved === 0
-                ? 'Not saved by Offline Library'
-                : saved === total
-                    ? `Saved: ${saved}/${total} local files`
-                    : `Partial download: ${saved}/${total} local files`;
+            try {
+                const saved = await countSaved(card.course);
+                const total = card.course.assets.length;
+                card.state.textContent = saved === 0
+                    ? 'Not saved by Offline Library'
+                    : saved === total
+                        ? `Saved: ${saved}/${total} local files`
+                        : `Partial download: ${saved}/${total} local files`;
+            }
+            catch {
+                // CacheStorage can reject in private browsing or under storage pressure.
+                card.state.textContent = 'Saved-file status unavailable. Try reopening this page.';
+            }
         }
         await reportStorage();
     }
@@ -127,7 +136,12 @@
                 if (controller.signal.aborted)
                     throw new Error('Download cancelled');
                 const url = resolveAsset(asset);
-                announce(`Downloading ${course.title}: ${completed + 1}/${course.assets.length} local files…`);
+                announce(`Saving ${course.title}: ${completed + 1}/${course.assets.length} local files…`);
+                // Continue partial downloads without repeating files already saved in this bundle.
+                if (await store.match(url)) {
+                    completed++;
+                    continue;
+                }
                 const response = await fetch(url, {
                     signal: controller.signal, cache: 'no-cache', credentials: 'omit', redirect: 'error'
                 });
@@ -150,11 +164,19 @@
                 await store.put(url, response);
                 completed++;
             }
-            announce(`${course.title}: downloaded ${completed} local files. External tools may still require internet.`);
+            if (controller.signal.aborted)
+                throw new Error('Download cancelled');
+            announce(`${course.title}: saved ${completed} local files. External tools may still require internet.`);
         }
         catch (error) {
-            const detail = error instanceof Error ? error.message : 'Unknown error';
-            announce(`${course.title}: ${detail}. Successfully downloaded files are kept; you can retry.`);
+            const detail = error instanceof Error
+                ? error.name === 'QuotaExceededError'
+                    ? 'Not enough browser storage. Free space or remove a saved course, then retry'
+                    : error.name === 'AbortError' || controller.signal.aborted
+                        ? 'Download cancelled'
+                        : error.message
+                : 'Unknown error';
+            announce(`${course.title}: ${detail}. Successfully saved files are kept; you can retry.`);
         }
         finally {
             controller = null;
