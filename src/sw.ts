@@ -7,6 +7,7 @@ const scope = self as unknown as ServiceWorkerGlobalScope;
 const CORE_CACHE = 'langsteps-core-v1.3.0';
 const RUNTIME_CACHE = 'langsteps-runtime-v1.3.0';
 const MAX_RUNTIME_ENTRIES = 64;
+const MAX_CACHE_ENTRY_BYTES = 5 * 1024 * 1024;
 const CORE_ASSETS = [
     './',
     './index.html',
@@ -33,7 +34,12 @@ const CORE_ASSETS = [
 ];
 
 async function storeRuntime(request: Request, response: Response): Promise<void> {
-    if (!response.ok || response.type !== 'basic' || response.headers.get('cache-control')?.includes('no-store')) return;
+    // Never persist private responses, even when other directives permit caching.
+    const directives = response.headers.get('cache-control') || '';
+    if (!response.ok || response.type !== 'basic' || /(?:^|,)\s*(?:no-store|private)\b/i.test(directives)) return;
+    // The header is advisory: avoid known oversize files without buffering responses.
+    const length = response.headers.get('content-length');
+    if (length !== null && Number(length) > MAX_CACHE_ENTRY_BYTES) return;
     try {
         const cache = await caches.open(RUNTIME_CACHE);
         await cache.put(request, response.clone());
@@ -66,19 +72,26 @@ scope.addEventListener('fetch', (event: FetchEvent) => {
     const url = new URL(request.url);
     const basePath = new URL(scope.registration.scope).pathname;
     if (url.origin !== scope.location.origin || !url.pathname.startsWith(basePath)) return;
-    if (url.pathname.includes('/api/')) return;
+    // Keep backend routes outside this static site's offline cache.
+    const route = url.pathname.slice(basePath.length).toLowerCase();
+    if (route === 'api' || route.startsWith('api/')) return;
 
     if (request.mode === 'navigate') {
         event.respondWith((async () => {
             try {
                 const response = await fetch(request);
+                // A temporary server outage should not hide a visited lesson.
+                // True 404 responses remain visible rather than masking broken links.
+                if (response.status >= 500 && response.status < 600) {
+                    return (await caches.match(request, { ignoreSearch: true })) || response;
+                }
                 if (response.headers?.get('content-type')?.includes('text/html')) {
                     await storeRuntime(request, response);
                 }
                 return response;
             } catch {
                 // Do not substitute the homepage for an unrelated, uncached lesson.
-                return (await caches.match(request)) ||
+                return (await caches.match(request, { ignoreSearch: true })) ||
                     (await caches.match('./docs/offline.html')) || Response.error();
             }
         })());
