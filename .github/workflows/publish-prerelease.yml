@@ -1,0 +1,88 @@
+name: Publish LangSteps Prerelease
+
+on:
+  push:
+    branches:
+      - 'prerelease/**'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: langsteps-prerelease-${{ github.ref_name }}
+  cancel-in-progress: false
+
+jobs:
+  verify-and-publish:
+    # Deliberate prerelease branches only; no releases from PRs or ordinary main commits.
+    if: github.repository == 'sanskarIN/LangSteps'
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - name: Checkout exact candidate
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: .NET 10
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+      - name: Validate candidate branch and version
+        env:
+          GH_TOKEN: ${{ github.token }}
+          CANDIDATE_BRANCH: ${{ github.ref_name }}
+        run: |
+          set -euo pipefail
+          version="${CANDIDATE_BRANCH#prerelease/}"
+          [[ "$CANDIDATE_BRANCH" == prerelease/* ]]
+          [[ "$version" =~ ^v[0-9]+\.[0-9]+\.[0-9]+-rc\.[0-9]+$ ]]
+          test "$(node -p 'require("./package.json").version')" = "${version#v}"
+          test -s "docs/releases/${version}.md"
+          if gh release view "$version" >/dev/null 2>&1; then
+            echo "The release $version already exists; refusing to overwrite it."
+            exit 1
+          fi
+      - name: Install dependencies
+        run: npm install --ignore-scripts --no-audit --no-fund
+      - name: Validate curriculum and test all Node cases
+        run: |
+          npm run validate:curriculum
+          npm test
+      - name: Check strict TypeScript and generated browser files
+        run: |
+          npm run typecheck
+          npm run typecheck:curriculum
+          npm run typecheck:sw
+          npm run typecheck:online
+          npm run build
+          npm run build:curriculum
+          npm run build:sw
+          npm run build:online
+          git diff --exit-code -- sw.js online-status.js curriculum/progress.js curriculum/navigation.js curriculum/offline-register.js curriculum/offline-library.js curriculum/donation.js curriculum/learning.js curriculum/api-reference.js
+      - name: Lint release-facing HTML
+        run: npx htmlhint Go/index.html SQL/index.html CSharp/index.html api-reference.html offline-library.html
+      - name: Verify optional .NET server
+        run: |
+          dotnet build server/LangSteps.Server/LangSteps.Server.csproj --configuration Release --warnaserror
+          bash tests/api-smoke.sh
+      - name: Browser smoke with Chromium Firefox and WebKit
+        run: |
+          docker run --rm --ipc=host \
+            -v "$PWD":/workspace -w /workspace \
+            -e CI=true -e HOME=/root mcr.microsoft.com/playwright:v1.64.0-noble \
+            npm run test:browser
+      - name: Publish verified candidate as a GitHub prerelease
+        env:
+          GH_TOKEN: ${{ github.token }}
+          CANDIDATE_BRANCH: ${{ github.ref_name }}
+        run: |
+          set -euo pipefail
+          version="${CANDIDATE_BRANCH#prerelease/}"
+          gh release create "$version" --target "$GITHUB_SHA" \
+            --title "LangSteps ${version} — Offline Readiness Preview" \
+            --notes-file "docs/releases/${version}.md" \
+            --prerelease --latest=false
