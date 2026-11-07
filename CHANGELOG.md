@@ -4,6 +4,12 @@ All notable changes to **LangSteps** will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [Unreleased]
+
+### Fixed
+- Corrected HTML, CSS and TypeScript course entry pages to use the shared root PWA manifest instead of missing course-local manifest files.
+- Added regression tests for local styles, scripts, icons and manifest references across the homepage and all ten course entries.
+
 ## [1.4.0-rc.1] — 2026-10-25 (Pre-release)
 
 ### Added
