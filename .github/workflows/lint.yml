@@ -29,3 +29,27 @@ jobs:
 # TODO: Expand lint coverage after historical HTML debt is cleared.
 # The pre-v1.1 baseline reported 263 HTMLHint findings across 50 of 97 pages.
 # Existing legacy pages are not silently counted as passing lint.
+
+  legacy-html-report:
+    name: Legacy HTMLHint inventory
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install local HTMLHint
+        run: npm install --ignore-scripts --no-audit --no-fund
+      - name: Record non-blocking full-repository HTML findings
+        run: npm run audit:html
+      - name: Upload HTMLHint diagnostic reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: langsteps-htmlhint-baseline
+          path: |
+            reports/htmlhint-baseline.json
+            reports/htmlhint-baseline.md
+          if-no-files-found: warn
