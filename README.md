@@ -1007,6 +1007,7 @@ Connect with Sanskar across social and developer platforms:
 ## ☕ Support & Sponsorship
 
 If you find value in LangSteps, tutorials, or open-source projects, consider supporting:
+- ❤️ **GitHub Sponsors**: [github.com/sponsors/sanskarIN](https://github.com/sponsors/sanskarIN) (monthly or one-time)
 - ☕ **Buy Me a Coffee**: [buymeacoffee.com/SanskarCodes](https://buymeacoffee.com/SanskarCodes)
 - ⚡ **Razorpay**: [razorpay.me/@SanskarCodes](https://razorpay.me/@SanskarCodes)
 
