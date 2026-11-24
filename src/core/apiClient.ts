@@ -30,7 +30,7 @@ export class LangStepsApiClient {
     } catch {
       return {
         status: 'offline',
-        version: '1.3.0',
+        version: '1.4.0-rc.2',
         platform: 'Static Client (Offline Mode)',
         timestamp: new Date().toISOString(),
         serverTime: new Date().toUTCString()

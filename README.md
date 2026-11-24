@@ -14,6 +14,10 @@ LangSteps is publicly available on the web with ten programming learning paths, 
 
 This announcement is available on all 98 HTML pages through a shared accessible banner; its dismissal behavior is authored in `src/site/online-status.ts` and compiled to `online-status.js`.
 
+## v1.4.0-rc.2 — Offline reliability candidate
+
+This candidate includes the offline cache isolation and download freshness fixes from [PR #21](https://github.com/sanskarIN/LangSteps/pull/21), plus corrections to local manifest links and course-entry asset regression checks. See [candidate notes](docs/releases/v1.4.0-rc.2.md) and [GitHub Releases](https://github.com/sanskarIN/LangSteps/releases) for publication status. v1.3.0 remains the latest stable release.
+
 ## 🧪 v1.4.0-rc.1 — Published Offline Readiness Pre-release
 
 The published v1.4.0-rc.1 candidate focuses on offline download reliability and honest course availability reporting. The [Offline Library](offline-library.html) now differentiates **a cached course entry page** from **a complete opt-in course bundle**, and displays a course-specific description of features that still depend on external services. Earlier improvements let learners save, resume, cancel and remove first-party bundles while preserving completion records and unrelated GitHub Pages caches.

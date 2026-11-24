@@ -6,7 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [1.4.0-rc.2] — Release candidate
+
 ### Fixed
+- Restrict offline cache reads to LangSteps caches and prefer recently visited pages during outages.
+- Explicit course downloads bypass cached responses and validate network responses directly.
+- Scope visited-page indicators to LangSteps runtime and core caches.
+- Add regression coverage for foreign cache isolation, download bypass and fallback precedence.
 - Corrected HTML, CSS and TypeScript course entry pages to use the shared root PWA manifest instead of missing course-local manifest files.
 - Added regression tests for local styles, scripts, icons and manifest references across the homepage and all ten course entries.
 
