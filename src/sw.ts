@@ -37,6 +37,22 @@ const CORE_ASSETS = [
     './CSharp/data.js'
 ];
 
+// CacheStorage is origin-wide; read only caches owned by this application.
+async function matchOwned(request: Request | string, ignoreSearch = false): Promise<Response | undefined> {
+    try {
+        const names = await caches.keys();
+        const candidates = [RUNTIME_CACHE, CORE_CACHE, ...names.filter(name => name.startsWith(LIBRARY_CACHE_PREFIX))];
+        for (const cacheName of candidates) {
+            if (!names.includes(cacheName)) continue;
+            const response = await caches.match(request, { cacheName, ignoreSearch });
+            if (response) return response;
+        }
+    } catch {
+        // Cache access can be denied or evicted; network requests must still work.
+    }
+    return undefined;
+}
+
 async function storeRuntime(request: Request, response: Response): Promise<void> {
     // Never persist private responses, even when other directives permit caching.
     const directives = response.headers.get('cache-control') || '';
@@ -80,6 +96,11 @@ scope.addEventListener('fetch', (event: FetchEvent) => {
     const route = url.pathname.slice(basePath.length).toLowerCase();
     if (route === 'api' || route.startsWith('api/')) return;
 
+    // Explicit Offline Library downloads must validate a live response, not a stale cache hit.
+    // The controller owns these writes and their size, type and cache-control checks.
+    if (request.cache === 'no-cache' && request.credentials === 'omit' && request.redirect === 'error') {
+        return;
+    }
     if (request.mode === 'navigate') {
         event.respondWith((async () => {
             try {
@@ -87,7 +108,7 @@ scope.addEventListener('fetch', (event: FetchEvent) => {
                 // A temporary server outage should not hide a visited lesson.
                 // True 404 responses remain visible rather than masking broken links.
                 if (response.status >= 500 && response.status < 600) {
-                    return (await caches.match(request, { ignoreSearch: true })) || response;
+                    return (await matchOwned(request, true)) || response;
                 }
                 if (response.headers?.get('content-type')?.includes('text/html')) {
                     await storeRuntime(request, response);
@@ -95,8 +116,8 @@ scope.addEventListener('fetch', (event: FetchEvent) => {
                 return response;
             } catch {
                 // Do not substitute the homepage for an unrelated, uncached lesson.
-                return (await caches.match(request, { ignoreSearch: true })) ||
-                    (await caches.match('./docs/offline.html')) || Response.error();
+                return (await matchOwned(request, true)) ||
+                    (await matchOwned('./docs/offline.html')) || Response.error();
             }
         })());
         return;
@@ -105,7 +126,7 @@ scope.addEventListener('fetch', (event: FetchEvent) => {
     // No executable endpoints, unbounded media, or cross-origin requests in the cache.
     if (!/\.(?:html?|css|js|json|svg|png|webp|ico)$/i.test(url.pathname)) return;
     event.respondWith((async () => {
-        const cached = await caches.match(request);
+        const cached = await matchOwned(request);
         if (cached) return cached;
         const response = await fetch(request);
         await storeRuntime(request, response);
