@@ -67,7 +67,7 @@ test('Optional API rejects arbitrary leaderboard XP and nonexistent quiz languag
 function workerHarness({ online = true } = {}) {
   const handlers = new Map();
   const deletions = [];
-  const keys = ['langsteps-v1.1.0', 'langsteps-v1.1.1', 'wdm-v3', 'other-project-v1'];
+  const keys = ['langsteps-v1.1.0', 'langsteps-v1.1.1', 'langsteps-core-v1.3.0', 'wdm-v3', 'other-project-v1'];
   const cached = { url: 'cached page' };
   let networkRequests = 0;
   const self = {
@@ -81,7 +81,8 @@ function workerHarness({ online = true } = {}) {
     keys: async () => keys,
     delete: async key => { deletions.push(key); return true; },
     open: async () => ({ addAll: async () => {} }),
-    match: async request => {
+    match: async (request, options = {}) => {
+      if (options.cacheName !== 'langsteps-core-v1.3.0') return undefined;
       if (typeof request === 'string' && request === './index.html') return cached;
       if (request && request.url?.includes('/Go/index.html')) return cached;
       return undefined;

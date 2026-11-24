@@ -119,7 +119,8 @@
                 const saved = await countSaved(card.course);
                 const total = card.course.assets.length;
                 const entryCached = saved === 0
-                    ? Boolean(await caches.match(resolveAsset(card.course.assets[0]), { ignoreSearch: true }))
+                    ? Boolean(await caches.match(resolveAsset(card.course.assets[0]), { cacheName: 'langsteps-runtime-v1.3.0', ignoreSearch: true }) ||
+                        await caches.match(resolveAsset(card.course.assets[0]), { cacheName: 'langsteps-core-v1.3.0', ignoreSearch: true }))
                     : false;
                 card.state.textContent = saved === 0
                     ? entryCached

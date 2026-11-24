@@ -39,7 +39,8 @@ function harness() {
     match: async (request, options = {}) => {
       const target = new URL(keyOf(request));
       if (options.ignoreSearch) target.search = '';
-      for (const cache of stores.values()) {
+      for (const [name, cache] of stores) {
+        if (options.cacheName && name !== options.cacheName) continue;
         for (const [key, response] of cache) {
           const candidate = new URL(key);
           if (options.ignoreSearch) candidate.search = '';
@@ -200,4 +201,39 @@ test('API endpoints with and without trailing slash are not intercepted', async 
   for (const path of ['api', 'api/', 'api/health', 'API/Health']) {
     assert.equal(h.send('fetch', h.request(path)), undefined, path);
   }
+});
+
+test('offline responses never use another project cache even for matching URLs', async () => {
+  const h = harness();
+  const foreign = await h.open('another-project-v2');
+  const asset = h.request('Rust/script.js', 'no-cors');
+  const page = h.request('Rust/index.html');
+  await foreign.put(asset, new Response('Foreign script'));
+  await foreign.put(page, new Response('Foreign page'));
+  await h.send('install');
+  const library = await h.open('langsteps-library-v1-rust');
+  await library.put(asset, new Response('Saved course script'));
+  h.setOnline(false);
+  assert.equal(await (await h.send('fetch', asset)).text(), 'Saved course script');
+  assert.equal(await (await h.send('fetch', page)).text(), 'Offline lesson explanation');
+});
+
+test('explicit library downloads bypass cached responses and runtime cache writes', async () => {
+  const h = harness();
+  await h.send('install');
+  const asset = h.request('Go/data.js', 'cors');
+  const download = { ...asset, cache: 'no-cache', credentials: 'omit', redirect: 'error' };
+  // An unhandled FetchEvent proceeds to the browser network, not CacheStorage.
+  assert.equal(h.send('fetch', download), undefined);
+  assert.equal(h.stores.has('langsteps-runtime-v1.3.0'), false);
+  assert.match(await (await h.send('fetch', asset)).text(), /Core:/);
+});
+
+test('runtime navigation is preferred to an older core page during an outage', async () => {
+  const h = harness();
+  await h.send('install');
+  const page = h.request('Go/index.html');
+  await h.send('fetch', page);
+  h.setOnline(false);
+  assert.match(await (await h.send('fetch', page)).text(), /Fresh:.*Go\/index\.html/);
 });
