@@ -7,6 +7,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [Unreleased]
 
 ### Fixed
+- Enforced the 20 MiB course bundle limit across resumed downloads by counting previously saved assets before writing new files; oversized legacy bundles must be removed before retrying.
+- Added executable regression coverage for resumed downloads, oversized cached files and exact storage boundaries.
 - Corrected HTML, CSS and TypeScript course entry pages to use the shared root PWA manifest instead of missing course-local manifest files.
 - Added regression tests for local styles, scripts, icons and manifest references across the homepage and all ten course entries.
 
