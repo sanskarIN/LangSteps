@@ -126,10 +126,17 @@ scope.addEventListener('fetch', (event: FetchEvent) => {
     // No executable endpoints, unbounded media, or cross-origin requests in the cache.
     if (!/\.(?:html?|css|js|json|svg|png|webp|ico)$/i.test(url.pathname)) return;
     event.respondWith((async () => {
-        const cached = await matchOwned(request);
-        if (cached) return cached;
-        const response = await fetch(request);
-        await storeRuntime(request, response);
-        return response;
+        // Respect the browser's normal HTTP cache while online. A CacheStorage
+        // hit alone must not indefinitely pin a script or stylesheet to old code.
+        try {
+            const response = await fetch(request);
+            if (response.status >= 500 && response.status < 600) {
+                return (await matchOwned(request)) || response;
+            }
+            await storeRuntime(request, response);
+            return response;
+        } catch {
+            return (await matchOwned(request)) || Response.error();
+        }
     })());
 });
