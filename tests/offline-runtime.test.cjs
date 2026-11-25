@@ -226,6 +226,7 @@ test('explicit library downloads bypass cached responses and runtime cache write
   // An unhandled FetchEvent proceeds to the browser network, not CacheStorage.
   assert.equal(h.send('fetch', download), undefined);
   assert.equal(h.stores.has('langsteps-runtime-v1.3.0'), false);
+  h.setOnline(false);
   assert.match(await (await h.send('fetch', asset)).text(), /Core:/);
 });
 
@@ -236,4 +237,42 @@ test('runtime navigation is preferred to an older core page during an outage', a
   await h.send('fetch', page);
   h.setOnline(false);
   assert.match(await (await h.send('fetch', page)).text(), /Fresh:.*Go\/index\.html/);
+});
+
+test('online static assets refresh older core and runtime cache entries', async () => {
+  const h = harness();
+  await h.send('install');
+  const asset = h.request('Go/data.js', 'cors');
+  h.network.set(asset.url, new Response('Updated course data', {
+    headers: { 'content-type': 'text/javascript' }
+  }));
+  assert.equal(await (await h.send('fetch', asset)).text(), 'Updated course data');
+  h.network.set(asset.url, new Response('Newest course data', {
+    headers: { 'content-type': 'text/javascript' }
+  }));
+  assert.equal(await (await h.send('fetch', asset)).text(), 'Newest course data');
+  h.setOnline(false);
+  assert.equal(await (await h.send('fetch', asset)).text(), 'Newest course data');
+});
+
+test('static asset outage uses the saved copy but does not hide a real 404', async () => {
+  const h = harness();
+  await h.send('install');
+  const asset = h.request('Go/data.js', 'cors');
+  h.network.set(asset.url, new Response('Temporary outage', { status: 503 }));
+  assert.match(await (await h.send('fetch', asset)).text(), /Core:/);
+  h.network.set(asset.url, new Response('Removed asset', { status: 404 }));
+  const missing = await h.send('fetch', asset);
+  assert.equal(missing.status, 404);
+  assert.equal(await missing.text(), 'Removed asset');
+});
+
+test('uncached static assets retain upstream server errors and fail offline', async () => {
+  const h = harness();
+  await h.send('install');
+  const asset = h.request('Rust/unseen.js', 'cors');
+  h.network.set(asset.url, new Response('Temporary outage', { status: 503 }));
+  assert.equal((await h.send('fetch', asset)).status, 503);
+  h.setOnline(false);
+  assert.equal((await h.send('fetch', asset)).type, 'error');
 });
