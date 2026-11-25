@@ -150,16 +150,33 @@
         let totalBytes = 0;
         try {
             const store = await caches.open(cacheName(course));
+            // Account for every existing file before writing anything, including files
+            // saved later in the asset list by a previous attempt.
+            const existing = new Set();
             for (const asset of course.assets) {
                 if (controller.signal.aborted)
                     throw new Error('Download cancelled');
                 const url = resolveAsset(asset);
-                announce(`Saving ${course.title}: ${completed + 1}/${course.assets.length} local files…`);
-                // Continue partial downloads without repeating files already saved in this bundle.
-                if (await store.match(url)) {
-                    completed++;
+                const saved = await store.match(url);
+                if (!saved)
                     continue;
+                const bytes = (await saved.arrayBuffer()).byteLength;
+                if (controller.signal.aborted)
+                    throw new Error('Download cancelled');
+                totalBytes += bytes;
+                if (bytes > MAX_FILE_BYTES || totalBytes > MAX_BUNDLE_BYTES) {
+                    throw new Error('Existing download exceeds the local storage safety limit; remove the course bundle before retrying');
                 }
+                existing.add(url);
+                completed++;
+            }
+            for (const asset of course.assets) {
+                if (controller.signal.aborted)
+                    throw new Error('Download cancelled');
+                const url = resolveAsset(asset);
+                if (existing.has(url))
+                    continue;
+                announce(`Saving ${course.title}: ${completed + 1}/${course.assets.length} local files…`);
                 const response = await fetch(url, {
                     signal: controller.signal, cache: 'no-cache', credentials: 'omit', redirect: 'error'
                 });
